@@ -84,7 +84,8 @@
       gap: 20px;
     }
     h1, h2, h3, p { margin: 0; }
-    h1 { font-size: clamp(1.55rem, 4vw, 2.1rem); font-weight: 750; }
+    h1, h2, h3, th { font-weight: normal; }
+    h1 { font-size: clamp(1.55rem, 4vw, 2.1rem); }
     .action {
       border: 0; border-radius: 8px;
       background: var(--control-fill); padding: 10px 15px; font-size: .9rem;
@@ -104,7 +105,7 @@
     .navigation, .definition { position: sticky; top: 16px; min-width: 0; }
     .directory-toggle {
       display: flex; justify-content: space-between; align-items: center;
-      width: 100%; gap: 8px; padding: 8px 10px; font-weight: 700;
+      width: 100%; gap: 8px; padding: 8px 10px;
     }
     .directory-closed .directory-toggle { justify-content: center; }
     .directory-closed .directory-text { display: none; }
@@ -119,7 +120,7 @@
       border: 0; border-radius: 4px; background: transparent; text-align: left; font-size: .85rem;
     }
     .directory-lesson:hover, .directory-lesson[aria-current="page"] { background: var(--blue-soft); }
-    .directory-lesson[aria-current="page"] { color: var(--blue); font-weight: 700; }
+    .directory-lesson[aria-current="page"] { color: var(--blue); }
     .directory-number { flex: 0 0 1.45em; color: var(--muted); font-variant-numeric: tabular-nums; }
     .directory-status { margin-left: auto; flex: 0 0 auto; color: var(--read); }
     .surface {
@@ -133,7 +134,7 @@
     .reading-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 9px; }
     .translated-title {
       margin-top: 8px; color: var(--blue); font-size: clamp(1.5rem, 3.4vw, 2.55rem);
-      font-family: var(--translation-font); font-weight: 700;
+      font-family: var(--translation-font);
     }
     .bilingual-toggle { padding: 5px 9px; white-space: nowrap; }
     .bilingual-toggle[aria-pressed="true"] { background: var(--blue-soft); color: var(--blue); }
@@ -145,7 +146,7 @@
     .passage.bilingual .passage-block + .passage-block { margin-top: 1.2em; }
     .translation {
       display: none; margin-top: .48em; color: var(--translation-ink);
-      font-family: var(--translation-font); font-weight: 700;
+      font-family: var(--translation-font);
     }
     .passage.bilingual .translation { display: block; }
     .passage.bilingual .aligned-sentence.matched { background: var(--blue-soft); border-radius: 3px; }
@@ -189,7 +190,7 @@
       padding: 0; border: 0; background: transparent; text-align: left; color: var(--blue);
     }
     .term-button:hover, .entry-word:hover { text-decoration: underline; }
-    .review-title { font-size: 1.65rem; font-weight: 740; }
+    .review-title { font-size: 1.65rem; }
     .review-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
     .feedback:empty { display: none; }
     .feedback { margin-top: 10px; color: var(--blue); font-size: .88rem; line-height: 1.6; }
@@ -199,7 +200,7 @@
     }
     .table-scroll { margin-top: 16px; overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; font-size: .9rem; }
-    caption { text-align: left; font-size: 1rem; font-weight: 700; padding-bottom: 8px; }
+    caption { text-align: left; font-size: 1rem; padding-bottom: 8px; }
     th, td { text-align: left; padding: 9px 10px; vertical-align: top; }
     thead th { color: var(--muted); font-size: .83rem; }
     td { line-height: 1.55; }
@@ -210,7 +211,7 @@
     .undo { background: transparent; border: none; color: var(--blue); padding: 1px 4px; white-space: nowrap; }
     .undo:hover { text-decoration: underline; }
     .progress { margin-top: 26px; }
-    .progress summary { color: var(--blue); cursor: pointer; font-size: .92rem; font-weight: 700; }
+    .progress summary { color: var(--blue); cursor: pointer; font-size: .92rem; }
     .progress .table-scroll { max-height: 350px; }
     .copy-text {
       width: 100%; min-height: 7rem; margin-top: 12px; padding: 9px 11px; border: 0;
@@ -243,7 +244,7 @@
     .sync-status:empty { display: none; }
     .sync-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
     .vocab-list { margin-top: 16px; }
-    .vocab-letter { margin-bottom: 4px; color: var(--blue); font-size: 1rem; }
+    .vocab-letter { margin-bottom: 4px; color: var(--blue); font-size: 1rem; font-weight: bold; }
     .vocab-letter-group + .vocab-letter-group { margin-top: 17px; }
     .vocab-entry {
       padding: 6px 0; font-size: .89rem; line-height: 1.65;
