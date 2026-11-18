@@ -172,8 +172,15 @@
     .definition-close, .definition-toggle { display: none; }
     .definition-list { margin: 9px 0 0; padding: 0; list-style: none; }
     .definition-list li { padding: 8px 0; border-top: 1px solid var(--line); }
+    .definition-term { display: flex; align-items: center; gap: 5px; }
     .definition-list .definition-word { color: var(--red); font: 600 1.08rem/1.35 Georgia, "Times New Roman", serif; }
     .definition-meaning { margin-top: 3px; font-size: .85rem; line-height: 1.6; }
+    .speaker-button {
+      display: inline-grid; place-items: center; flex: none; width: 30px; height: 28px;
+      padding: 0; border: 0; border-radius: 5px; background: transparent; color: var(--muted);
+    }
+    .speaker-button:hover, .speaker-button.speaking { color: var(--blue); background: var(--blue-soft); }
+    .speaker-button svg { width: 16px; height: 16px; }
     .reading-foot {
       display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center;
       gap: 7px; margin-top: 26px; padding-top: 17px; border-top: 1px solid var(--line);
@@ -348,6 +355,7 @@
           <button type="button" class="definition-close" id="close-definition" aria-label="收起本篇生词">×</button>
         </div>
         <ul class="definition-list" id="definition-list" hidden></ul>
+        <p class="feedback" id="pronunciation-status" role="status"></p>
       </aside>
     </main>
     <dialog class="sync-dialog" id="sync-dialog" aria-labelledby="sync-heading">
@@ -370,6 +378,11 @@
     </dialog>
     <div class="word-menu" id="word-menu" role="dialog" aria-label="出现篇目" hidden></div>
   </div>
+  <template id="speaker-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path d="M3 9v6h4l5 4V5L7 9H3zM15.5 9a4 4 0 0 1 0 6M18.5 6a8 8 0 0 1 0 12"/>
+    </svg>
+  </template>
   <script type="application/json" id="bilingual-titles">
 {
   "read-01": "失踪的戏服",
@@ -7878,10 +7891,54 @@
       byId("show-definitions").setAttribute("aria-expanded", Boolean(trigger));
     }
 
+    let currentPronunciation;
+
+    function pronounceWord(surface, button) {
+      const status = byId("pronunciation-status");
+      const speech = window.speechSynthesis;
+      status.textContent = "";
+      if (!speech || typeof window.SpeechSynthesisUtterance !== "function") {
+        status.textContent = "当前浏览器无法播放发音。";
+        return;
+      }
+
+      currentPronunciation?.button.classList.remove("speaking");
+      currentPronunciation = undefined;
+      if (speech.speaking || speech.pending) speech.cancel();
+
+      const utterance = new window.SpeechSynthesisUtterance(surface);
+      const english = speech.getVoices().filter(voice => /^en(?:[-_]|$)/i.test(voice.lang));
+      const american = voice => /^en[-_]us$/i.test(voice.lang);
+      const voice = english.find(voice => voice.localService && american(voice))
+        ?? english.find(voice => voice.localService) ?? english.find(american) ?? english[0];
+      utterance.lang = voice?.lang ?? "en-US";
+      if (voice) utterance.voice = voice;
+      utterance.rate = 0.9;
+
+      currentPronunciation = { utterance, button };
+      button.classList.add("speaking");
+      function finish(error) {
+        if (currentPronunciation?.utterance !== utterance) return;
+        button.classList.remove("speaking");
+        currentPronunciation = undefined;
+        if (error && button.isConnected && !["canceled", "interrupted"].includes(error)) {
+          status.textContent = "暂时无法播放英语发音。";
+        }
+      }
+      utterance.addEventListener("end", () => finish());
+      utterance.addEventListener("error", event => finish(event.error));
+      try {
+        speech.speak(utterance);
+      } catch {
+        finish("synthesis-failed");
+      }
+    }
+
     function renderDefinitions() {
       const lesson = readings[activeIndex];
       const group = marks[activeIndex];
       const list = byId("definition-list");
+      byId("pronunciation-status").textContent = "";
       list.hidden = group.size === 0;
       list.replaceChildren(...Array.from(group, ([key, exampleIndex]) => {
         const { meaning, examples } = lesson.terms.get(key);
@@ -7896,7 +7953,17 @@
         word.title = "出现篇目";
         word.setAttribute("aria-haspopup", "dialog");
         word.addEventListener("click", () => openWordMenu(key, word));
-        row.append(word);
+        const speaker = document.createElement("button");
+        speaker.type = "button";
+        speaker.className = "speaker-button";
+        speaker.title = "播放发音";
+        speaker.setAttribute("aria-label", "播放 " + surface + " 的发音");
+        speaker.append(byId("speaker-icon").content.cloneNode(true));
+        speaker.addEventListener("click", () => pronounceWord(surface, speaker));
+        const term = document.createElement("div");
+        term.className = "definition-term";
+        term.append(word, speaker);
+        row.append(term);
         const gloss = document.createElement("p");
         gloss.className = "definition-meaning";
         gloss.textContent = meaning || "暂无中文释义";
