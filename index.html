@@ -168,10 +168,8 @@
       padding: 10px 8px;
       max-height: calc(100vh - 32px); overflow: auto; overflow-wrap: anywhere;
     }
-    .definition-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-    .definition-head h2 { font-size: .95rem; }
-    .definition-close { padding: 0 4px; border: 0; background: transparent; color: var(--muted); font-size: 1.2rem; }
-    .definition-close, .definition-toggle { display: none; }
+    .definition h2 { font-size: .95rem; }
+    .definition-toggle { display: none; }
     .definition-list { margin: 9px 0 0; padding: 0; list-style: none; }
     .definition-list li + li { margin-top: 12px; }
     .definition-term { display: flex; align-items: center; gap: 5px; }
@@ -267,18 +265,12 @@
     @media (max-width: 880px), (orientation: portrait) and (max-width: 1100px) {
       .layout[data-view="reader"] { grid-template-columns: var(--directory-width) minmax(0, 1fr); }
       .definition {
-        position: fixed; inset: auto 0 0; z-index: 30; max-height: 42vh; max-height: min(42dvh, 24rem);
-        padding: 0 max(16px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
-        border-radius: 16px 16px 0 0; background: var(--paper);
-        box-shadow: 0 -5px 24px var(--overlay-shadow); overscroll-behavior: contain;
+        position: static; grid-column: -2 / -1;
+        max-height: none; overflow: visible; padding: 0 clamp(18px, 3vw, 40px);
       }
-      .definition:not(.mobile-open) { display: none; }
-      .definition-close, .definition-toggle { display: inline-block; }
-      .definition-head { position: sticky; top: 0; background: var(--paper); }
-      .definition-close { width: 42px; height: 42px; }
-      .definition-list { margin-top: 2px; }
+      .definition.definition-empty { display: none; }
       .speaker-button { width: 34px; height: 32px; }
-      .definition-toggle { padding: 7px 10px; }
+      .definition-toggle { display: inline-block; padding: 7px 10px; }
     }
     @media (max-width: 720px), (orientation: portrait) and (max-width: 1100px) {
       body { background: var(--paper); }
@@ -296,6 +288,7 @@
       .directory-closed .directory-toggle { justify-content: space-between; }
       .directory-closed .directory-text { display: inline; }
       .surface { padding: 0; overflow-wrap: anywhere; }
+      .definition { padding: 0; }
       .reading-title { font-size: clamp(1.7rem, 6.2vw, 2.75rem); }
       .reading-tools { justify-content: flex-start; }
       .reading-tools .action { min-height: 36px; }
@@ -344,7 +337,7 @@
             <p class="translated-title" id="translated-title" hidden></p>
             <div class="reading-tools">
               <button type="button" class="action bilingual-toggle" id="toggle-bilingual" aria-controls="passage" aria-pressed="false">中英对照</button>
-              <button type="button" class="action definition-toggle" id="show-definitions" aria-controls="definition" aria-expanded="false">本篇生词</button>
+              <button type="button" class="action definition-toggle" id="show-definitions" aria-controls="definition" disabled>本篇生词</button>
             </div>
           </header>
           <div class="passage" id="passage"></div>
@@ -390,11 +383,8 @@
           <div class="vocab-list" id="full-vocabulary-list"></div>
         </section>
       </div>
-      <aside class="definition" id="definition" aria-labelledby="definition-heading">
-        <div class="definition-head">
-          <h2 id="definition-heading">本篇生词释义</h2>
-          <button type="button" class="definition-close" id="close-definition" aria-label="收起本篇生词">×</button>
-        </div>
+      <aside class="definition definition-empty" id="definition" aria-labelledby="definition-heading">
+        <h2 id="definition-heading" tabindex="-1">本篇生词释义</h2>
         <ul class="definition-list" id="definition-list" hidden></ul>
         <p class="feedback" id="pronunciation-status" role="status"></p>
       </aside>
@@ -7817,7 +7807,6 @@
     const singleColumn = window.matchMedia("(max-width: 720px), (orientation: portrait) and (max-width: 1100px)");
     let directoryClosed = savedProgress.directoryClosed ?? singleColumn.matches;
     let showingBilingual = false;
-    let definitionTrigger;
     const byId = id => document.getElementById(id);
     const workspace = byId("workspace");
     const reader = byId("reader");
@@ -7927,12 +7916,6 @@
       if (!passage.matches(":hover")) highlightSentence(event.relatedTarget);
     });
 
-    function setMobileDefinitions(trigger) {
-      definitionTrigger = trigger;
-      definition.classList.toggle("mobile-open", Boolean(trigger));
-      byId("show-definitions").setAttribute("aria-expanded", Boolean(trigger));
-    }
-
     let currentPronunciation;
 
     function pronounceWord(surface, button) {
@@ -7981,7 +7964,10 @@
       const group = marks[activeIndex];
       const list = byId("definition-list");
       byId("pronunciation-status").textContent = "";
-      list.hidden = group.size === 0;
+      const empty = group.size === 0;
+      list.hidden = empty;
+      definition.classList.toggle("definition-empty", empty);
+      byId("show-definitions").disabled = empty;
       list.replaceChildren(...Array.from(group, ([key, exampleIndex]) => {
         const { meaning, examples } = lesson.terms.get(key);
         const surface = examples[exampleIndex].text;
@@ -8037,7 +8023,6 @@
           for (const occurrence of visibleWords.get(token.key)) {
             occurrence.setAttribute("aria-pressed", group.has(token.key));
           }
-          setMobileDefinitions(button);
           saveProgress();
           renderDefinitions();
         });
@@ -8068,7 +8053,6 @@
       activeIndex = index;
       highlightSentence();
       setView("reader");
-      setMobileDefinitions();
       const lesson = readings[index];
       visibleWords = new Map();
       title.replaceChildren(textParts(lesson.title, lesson));
@@ -8405,13 +8389,9 @@
       showingBilingual = !showingBilingual;
       updateBilingual();
     });
-    byId("close-definition").addEventListener("click", () => {
-      definitionTrigger?.focus({ preventScroll: true });
-      setMobileDefinitions();
-    });
-    byId("show-definitions").addEventListener("click", event => {
-      setMobileDefinitions(event.currentTarget);
-      byId("close-definition").focus({ preventScroll: true });
+    byId("show-definitions").addEventListener("click", () => {
+      byId("definition-heading").focus({ preventScroll: true });
+      definition.scrollIntoView({ block: "start" });
     });
     byId("resume").addEventListener("click", () => selectLesson(activeIndex));
     byId("previous").addEventListener("click", () => {
