@@ -113,8 +113,9 @@
     .directory-entries {
       position: relative; max-height: min(66vh, 720px); overflow: auto;
       display: grid; gap: 2px; margin-top: 8px; padding: 2px 4px 6px;
-      scrollbar-gutter: stable; overscroll-behavior: contain;
+      scrollbar-width: none; overscroll-behavior: contain;
     }
+    .directory-entries::-webkit-scrollbar { display: none; }
     .directory-lesson {
       display: flex; align-items: baseline; gap: 7px; width: 100%; padding: 7px 6px;
       border: 0; border-radius: 4px; background: transparent; text-align: left; font-size: .85rem;
