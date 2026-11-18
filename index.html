@@ -29,10 +29,7 @@
       --paper: #fff;
       --ink: #1e2e41;
       --muted: #506377;
-      --line: #d6e0ea;
-      --header-border: #b8c9db;
-      --control-border: #bbcddd;
-      --directory-paper: #f7faff;
+      --control-fill: #e0e8f1;
       --blue: #244d76;
       --blue-soft: #e7f0fa;
       --primary: #244d76;
@@ -42,7 +39,6 @@
       --read: #2d6958;
       --translation-ink: #40566e;
       --located-ring: #527ead;
-      --menu-border: #a5bad1;
       --overlay-shadow: #142f4b24;
       --translation-font: "SimSun", "宋体", "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", serif;
       font-family: "Microsoft YaHei UI", "PingFang SC", system-ui, sans-serif;
@@ -54,10 +50,7 @@
       --paper: #1d2734;
       --ink: #e3eaf2;
       --muted: #abbacf;
-      --line: #38485b;
-      --header-border: #3c4d62;
-      --control-border: #536882;
-      --directory-paper: #19222e;
+      --control-fill: #293749;
       --blue: #adcdf8;
       --blue-soft: #30445f;
       --primary: #345c85;
@@ -67,7 +60,6 @@
       --read: #a4d4bf;
       --translation-ink: #c6d4e7;
       --located-ring: #91b8ee;
-      --menu-border: #536882;
       --overlay-shadow: #0007;
     }
 
@@ -80,16 +72,16 @@
     .shell { max-width: 1420px; margin: 0 auto; padding: 32px clamp(16px, 2.6vw, 36px) 56px; }
     .masthead {
       display: flex; justify-content: space-between; align-items: center;
-      gap: 20px; padding: 0 0 24px; border-bottom: 1px solid var(--header-border);
+      gap: 20px;
     }
     h1, h2, h3, p { margin: 0; }
     h1 { font-size: clamp(1.55rem, 4vw, 2.1rem); font-weight: 750; }
     .action {
-      border: 1px solid var(--control-border); border-radius: 8px;
-      background: var(--paper); padding: 10px 15px; font-size: .9rem;
+      border: 0; border-radius: 8px;
+      background: var(--control-fill); padding: 10px 15px; font-size: .9rem;
     }
     .action:hover:not(:disabled) { background: var(--blue-soft); }
-    .primary { background: var(--primary); border-color: var(--primary); color: white; }
+    .primary { background: var(--primary); color: white; }
     .primary:hover:not(:disabled) { background: var(--primary-hover); }
     .theme-toggle[aria-pressed="true"] { background: var(--blue-soft); color: var(--blue); }
     .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
@@ -110,8 +102,8 @@
     .directory-arrow { color: var(--blue); font-size: 1.15rem; line-height: 1; }
     .directory-entries {
       position: relative; max-height: min(66vh, 720px); overflow: auto;
-      display: grid; gap: 2px; margin-top: 8px; padding: 2px 4px 6px; scrollbar-gutter: stable;
-      border: 1px solid var(--line); border-radius: 8px; background: var(--directory-paper);
+      display: grid; gap: 2px; margin-top: 8px; padding: 2px 4px 6px;
+      scrollbar-gutter: stable; overscroll-behavior: contain;
     }
     .directory-lesson {
       display: flex; align-items: baseline; gap: 7px; width: 100%; padding: 7px 6px;
@@ -122,10 +114,9 @@
     .directory-number { flex: 0 0 1.45em; color: var(--muted); font-variant-numeric: tabular-nums; }
     .directory-status { margin-left: auto; flex: 0 0 auto; color: var(--read); }
     .surface {
-      background: var(--paper); border: 1px solid var(--line); border-radius: 12px;
+      background: var(--paper);
       padding: clamp(18px, 3vw, 40px); min-width: 0;
     }
-    .reading-head { padding-bottom: 17px; border-bottom: 1px solid var(--line); }
     .reading-title {
       font-family: Georgia, "Times New Roman", serif; font-weight: normal;
       font-size: clamp(1.85rem, 4.2vw, 3.15rem); line-height: 1.15;
@@ -163,7 +154,7 @@
     }
     .word.located { outline: 2px solid var(--located-ring); outline-offset: 2px; }
     .definition {
-      padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper);
+      padding: 10px 8px;
       max-height: calc(100vh - 32px); overflow: auto; overflow-wrap: anywhere;
     }
     .definition-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
@@ -171,7 +162,7 @@
     .definition-close { padding: 0 4px; border: 0; background: transparent; color: var(--muted); font-size: 1.2rem; }
     .definition-close, .definition-toggle { display: none; }
     .definition-list { margin: 9px 0 0; padding: 0; list-style: none; }
-    .definition-list li { padding: 8px 0; border-top: 1px solid var(--line); }
+    .definition-list li + li { margin-top: 12px; }
     .definition-term { display: flex; align-items: center; gap: 5px; }
     .definition-list .definition-word { color: var(--red); font: 600 1.08rem/1.35 Georgia, "Times New Roman", serif; }
     .definition-meaning { margin-top: 3px; font-size: .85rem; line-height: 1.6; }
@@ -183,7 +174,7 @@
     .speaker-button svg { width: 16px; height: 16px; }
     .reading-foot {
       display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center;
-      gap: 7px; margin-top: 26px; padding-top: 17px; border-top: 1px solid var(--line);
+      gap: 7px; margin-top: 26px;
     }
     .term-button, .entry-word {
       padding: 0; border: 0; background: transparent; text-align: left; color: var(--blue);
@@ -200,8 +191,8 @@
     .table-scroll { margin-top: 16px; overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; font-size: .9rem; }
     caption { text-align: left; font-size: 1rem; font-weight: 700; padding-bottom: 8px; }
-    th, td { text-align: left; padding: 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
-    thead th { background: var(--blue-soft); color: var(--blue); font-size: .83rem; }
+    th, td { text-align: left; padding: 9px 10px; vertical-align: top; }
+    thead th { color: var(--muted); font-size: .83rem; }
     td { line-height: 1.55; }
     td:first-child { padding-left: 10px; }
     .review-term { color: var(--red); font-weight: 700; }
@@ -209,18 +200,23 @@
     .example mark { background: var(--red-soft); color: var(--red); }
     .undo { background: transparent; border: none; color: var(--blue); padding: 1px 4px; white-space: nowrap; }
     .undo:hover { text-decoration: underline; }
-    .progress { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 15px; }
+    .progress { margin-top: 26px; }
     .progress summary { color: var(--blue); cursor: pointer; font-size: .92rem; font-weight: 700; }
     .progress .table-scroll { max-height: 350px; }
-    .copy-text { width: 100%; min-height: 7rem; margin-top: 12px; font: inherit; }
+    .copy-text {
+      width: 100%; min-height: 7rem; margin-top: 12px; padding: 9px 11px; border: 0;
+      border-radius: 7px; background: var(--control-fill); color: var(--ink); font: inherit;
+    }
     .vocab-tools { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 14px; }
     .vocab-search {
-      max-width: 100%; width: 21rem; padding: 9px 11px; border: 1px solid var(--control-border);
-      border-radius: 7px; color: var(--ink); background: var(--paper); font: inherit; font-size: .9rem;
+      max-width: 100%; width: 21rem; padding: 9px 11px; border: 0;
+      border-radius: 7px; color: var(--ink); background: var(--control-fill); font: inherit; font-size: .9rem;
     }
-    .vocab-search:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+    .vocab-search:focus-visible, .copy-text:focus-visible, .sync-token:focus-visible {
+      outline: 2px solid var(--blue); outline-offset: 2px;
+    }
     .sync-dialog {
-      width: min(29rem, calc(100% - 28px)); padding: 20px; border: 1px solid var(--control-border);
+      width: min(29rem, calc(100% - 28px)); padding: 20px; border: 0;
       border-radius: 12px; background: var(--paper); color: var(--ink);
     }
     .sync-dialog::backdrop { background: #13192299; }
@@ -229,8 +225,8 @@
     .sync-form { display: grid; gap: 10px; margin-top: 15px; }
     .sync-form a { color: var(--blue); }
     .sync-token {
-      width: 100%; padding: 9px 10px; border: 1px solid var(--control-border); border-radius: 7px;
-      background: var(--paper); color: var(--ink); font: inherit;
+      width: 100%; padding: 9px 10px; border: 0; border-radius: 7px;
+      background: var(--control-fill); color: var(--ink); font: inherit;
     }
     .sync-remember, .sync-status { font-size: .87rem; }
     .sync-scope { color: var(--muted); font-size: .84rem; line-height: 1.6; }
@@ -238,19 +234,17 @@
     .sync-status:empty { display: none; }
     .sync-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
     .vocab-list { margin-top: 16px; }
-    .vocab-letter {
-      padding: 7px 9px; background: var(--blue-soft); color: var(--blue); font-size: .93rem;
-    }
+    .vocab-letter { margin-bottom: 4px; color: var(--blue); font-size: 1rem; }
     .vocab-letter-group + .vocab-letter-group { margin-top: 17px; }
     .vocab-entry {
-      padding: 7px 9px; border-bottom: 1px solid var(--line); font-size: .89rem; line-height: 1.65;
+      padding: 6px 0; font-size: .89rem; line-height: 1.65;
     }
     .vocab-entry p { min-width: 0; overflow-wrap: anywhere; }
     .entry-word { font: 600 1.08rem Georgia, "Times New Roman", serif; }
     .word-menu {
       position: fixed; z-index: 50; width: min(300px, calc(100vw - 16px)); max-height: min(460px, 65vh);
       overflow-y: auto; overscroll-behavior: contain; padding: 7px;
-      background: var(--paper); border: 1px solid var(--menu-border); border-radius: 9px;
+      background: var(--paper); border-radius: 9px;
       box-shadow: 0 8px 25px var(--overlay-shadow);
     }
     .word-menu-title { padding: 6px 8px 9px; font-size: .88rem; overflow-wrap: anywhere; color: var(--muted); }
@@ -259,21 +253,57 @@
       background: transparent; text-align: left; font-size: .88rem;
     }
     .word-menu-item:hover, .word-menu-item:focus { background: var(--blue-soft); }
-    @media (max-width: 880px) {
+    @media (max-width: 880px), (orientation: portrait) and (max-width: 1100px) {
       .layout[data-view="reader"] { grid-template-columns: var(--directory-width) minmax(0, 1fr); }
-      .definition { position: fixed; inset: auto 12px 12px; z-index: 30; max-height: 36vh; overflow: auto; box-shadow: 0 5px 24px var(--overlay-shadow); }
+      .definition {
+        position: fixed; inset: auto 0 0; z-index: 30; max-height: 42vh; max-height: min(42dvh, 24rem);
+        padding: 0 max(16px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+        border-radius: 16px 16px 0 0; background: var(--paper);
+        box-shadow: 0 -5px 24px var(--overlay-shadow); overscroll-behavior: contain;
+      }
       .definition:not(.mobile-open) { display: none; }
       .definition-close, .definition-toggle { display: inline-block; }
-      .definition-toggle { padding: 5px 9px; }
+      .definition-head { position: sticky; top: 0; background: var(--paper); }
+      .definition-close { width: 42px; height: 42px; }
+      .definition-list { margin-top: 2px; }
+      .speaker-button { width: 34px; height: 32px; }
+      .definition-toggle { padding: 7px 10px; }
     }
-    @media (max-width: 640px) {
-      .layout, .layout[data-view="reader"] { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 15px; }
+    @media (max-width: 720px), (orientation: portrait) and (max-width: 1100px) {
+      body { background: var(--paper); }
+      .shell { max-width: 760px; padding: 15px clamp(13px, 4vw, 34px) 32px; }
+      .masthead { align-items: flex-start; flex-direction: column; gap: 10px; }
+      h1 { font-size: clamp(1.32rem, 5.4vw, 1.75rem); }
+      .toolbar { column-gap: 6px; row-gap: 7px; }
+      .toolbar .action { padding: 8px 9px; font-size: .82rem; white-space: nowrap; }
+      .layout, .layout[data-view="reader"] { grid-template-columns: minmax(0, 1fr); gap: 15px; margin-top: 13px; }
       .navigation { position: static; }
-      .directory-entries { max-height: 220px; }
+      .directory-toggle { min-height: 38px; }
+      .directory-arrow { transform: rotate(90deg); }
+      .directory-entries { max-height: min(41vh, 320px); }
+      .directory-lesson { min-height: 36px; align-items: center; }
       .directory-closed .directory-toggle { justify-content: space-between; }
       .directory-closed .directory-text { display: inline; }
-      .shell { padding: 22px 15px 32px; }
-      .masthead { flex-wrap: wrap; gap: 12px; padding-bottom: 15px; }
+      .surface { padding: 0; overflow-wrap: anywhere; }
+      .reading-title { font-size: clamp(1.7rem, 6.2vw, 2.75rem); }
+      .reading-tools { justify-content: flex-start; }
+      .reading-tools .action { min-height: 36px; }
+      .passage { margin-top: 14px; font-size: clamp(1.16rem, 4.9vw, 1.45rem); line-height: 1.72; }
+      .reading-foot { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 21px; }
+      .reading-foot .action { min-height: 42px; padding: 8px 5px; }
+      .vocab-search { width: auto; flex: 1 1 10rem; min-width: 0; font-size: 1rem; }
+    }
+    @media (max-width: 540px) {
+      #review-table { overflow: visible; }
+      #review-table table, #review-table tbody { display: block; }
+      #review-table thead {
+        position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+      }
+      #marked-rows tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 10px; padding: 8px 0; }
+      #marked-rows td { min-width: 0; padding: 0; }
+      #marked-rows td:nth-child(2), #marked-rows td:nth-child(3) { grid-column: 1 / -1; }
+      #marked-rows td:nth-child(4) { grid-area: 1 / 2; }
+      #marked-rows .example { color: var(--muted); }
     }
   </style>
 </head>
@@ -324,7 +354,7 @@
           <textarea class="copy-text" id="copy-text" aria-label="可复制的生词表" readonly hidden></textarea>
           <p class="empty" id="empty">暂无生词</p>
           <div class="table-scroll" id="review-table" hidden>
-            <table aria-label="已标记生词">
+            <table role="table" aria-label="已标记生词">
               <thead><tr><th scope="col">生词</th><th scope="col">词义</th><th scope="col">原句</th><th scope="col">操作</th></tr></thead>
               <tbody id="marked-rows"></tbody>
             </table>
@@ -7773,7 +7803,8 @@
     let visibleWords = new Map();
     const sentencePairs = new WeakMap();
     let matchedPair;
-    let directoryClosed = savedProgress.directoryClosed ?? window.matchMedia("(max-width: 640px)").matches;
+    const singleColumn = window.matchMedia("(max-width: 720px), (orientation: portrait) and (max-width: 1100px)");
+    let directoryClosed = savedProgress.directoryClosed ?? singleColumn.matches;
     let showingBilingual = false;
     let definitionTrigger;
     const byId = id => document.getElementById(id);
@@ -8081,7 +8112,13 @@
       status.className = "directory-status";
       status.setAttribute("aria-hidden", "true");
       button.append(number, topic, status);
-      button.addEventListener("click", () => selectLesson(index));
+      button.addEventListener("click", () => {
+        if (singleColumn.matches) {
+          directoryClosed = true;
+          updateDirectory();
+        }
+        selectLesson(index);
+      });
       return button;
     });
     directory.replaceChildren(...directoryItems);
