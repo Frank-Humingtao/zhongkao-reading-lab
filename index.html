@@ -76,7 +76,7 @@
     [hidden] { display: none !important; }
     body { margin: 0; background: var(--background); color: var(--ink); }
     button { font: inherit; color: inherit; cursor: pointer; }
-    button:focus-visible, .reading-materials a:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+    button:focus-visible, .reading-materials :is(summary, a):focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
     button:disabled { opacity: .55; cursor: default; }
     .shell { max-width: 1420px; margin: 0 auto; padding: 32px clamp(16px, 2.6vw, 36px) 56px; }
     .masthead {
@@ -92,7 +92,7 @@
     }
     .action:hover:not(:disabled) { background: var(--blue-soft); }
     .reading-materials { margin-top: 18px; }
-    .reading-materials h2 { color: var(--muted); font-size: .95rem; }
+    .reading-materials summary { width: fit-content; padding-block: 4px; cursor: pointer; }
     .reading-materials ul { display: grid; gap: 4px; margin: 6px 0 0; padding-inline-start: 1.25rem; }
     .reading-materials a { color: var(--blue); text-underline-offset: .18em; }
     .reading-materials a[aria-current="page"] { color: var(--ink); font-weight: 600; }
@@ -328,13 +328,15 @@
         <button type="button" class="action primary" id="open-review" aria-controls="review" aria-expanded="false">生词表</button>
       </div>
     </header>
-    <nav class="reading-materials" aria-labelledby="reading-materials-title">
-      <h2 id="reading-materials-title">阅读资料</h2>
-      <ul>
-        <li><a href="./" id="screening-material" aria-current="page">中考英语阅读标词</a></li>
-        <li><a href="?set=reading-01" id="reading-material-01">01 生词复现</a></li>
-      </ul>
-    </nav>
+    <details class="reading-materials">
+      <summary>阅读资料</summary>
+      <nav aria-label="阅读资料">
+        <ul>
+          <li><a href="./" id="screening-material" aria-current="page">中考英语阅读标词</a></li>
+          <li><a href="?set=reading-01" id="reading-material-01">01 生词复现</a></li>
+        </ul>
+      </nav>
+    </details>
     <p class="reading-guide" id="reading-guide" hidden>先读故事，卡住时再点词。点释义里的英文词，可以跳到它出现的其他短文。</p>
     <p class="feedback" id="storage-error" role="status" hidden>无法保存到本地。</p>
     <main class="layout" id="workspace" data-view="reader">
@@ -7852,7 +7854,6 @@
       byId("screening-material").removeAttribute("aria-current");
       byId("reading-material-01").setAttribute("aria-current", "page");
       byId("reading-guide").hidden = false;
-      byId("open-sync").hidden = true;
       byId("open-vocabulary").textContent = "重点词索引";
       byId("full-vocabulary-title").textContent = "重点词索引";
     }
@@ -7870,7 +7871,7 @@
 
     function saveProgress() {
       writeLocalProgress();
-      if (!memoryMode) noteProgressChange();
+      noteProgressChange();
     }
 
     function writeLocalProgress() {
@@ -8489,8 +8490,10 @@
     selectLesson(activeIndex, false);
   </script>
   <script id="github-sync">
-    const githubProgressUrl = "https://api.github.com/repos/Frank-Humingtao/zhongkao-reading-progress/contents/progress.json";
-    const githubRecordsKey = "zhongkao-github-sync-records-v1";
+    // Older readers only keep records for lessons they know, so each reading set needs its own file.
+    const githubProgressFile = memoryMode ? "progress-reading-01.json" : "progress.json";
+    const githubProgressUrl = "https://api.github.com/repos/Frank-Humingtao/zhongkao-reading-progress/contents/" + githubProgressFile;
+    const githubRecordsKey = memoryMode ? "zhongkao-github-sync-records-reading-01-v1" : "zhongkao-github-sync-records-v1";
     const githubTokenKey = "zhongkao-github-sync-token-v1";
     const syncIndices = new Map(allReadings.map((lesson, index) => [lesson.id, index]));
     const syncWriter = globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2);
@@ -8498,7 +8501,7 @@
     const syncMessage = byId("sync-status");
     let githubToken;
     try {
-      if (!memoryMode) githubToken = sessionStorage.getItem(githubTokenKey) ?? localStorage.getItem(githubTokenKey);
+      githubToken = sessionStorage.getItem(githubTokenKey) ?? localStorage.getItem(githubTokenKey);
     } catch {
       // A token can still be used for the current page.
     }
@@ -8529,7 +8532,7 @@
       ));
     }
 
-    let progressRecords = memoryMode ? new Map() : decodeSyncRecords(readMarks(githubRecordsKey, {}));
+    let progressRecords = decodeSyncRecords(readMarks(githubRecordsKey, {}));
     let lastReadingFields = readingFields();
     let readingRevision = 0;
     let syncClock = 0;
@@ -8673,7 +8676,7 @@
 
     function requestSync(resume = false) {
       const token = githubToken;
-      if (memoryMode || !token) return;
+      if (!token) return;
       const revision = readingRevision;
       clearTimeout(syncTimer);
       syncQueue = syncQueue.then(async () => {
@@ -8738,10 +8741,8 @@
       if (document.visibilityState === "visible") requestSync(true);
       else requestSync();
     });
-    if (!memoryMode) {
-      showSyncConnection();
-      requestSync(true);
-    }
+    showSyncConnection();
+    requestSync(true);
   </script>
 </body>
 </html>
