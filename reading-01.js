@@ -31,6 +31,7 @@ const memoryReadingSet = {
       id: "memory-01-film",
       title: "Thunder for a Film",
       topic: "为电影造雷",
+      illustration: ["film.jpg", "两人在家用金属托盘和厚坐垫尝试制造雷声，架子上的手机正录音。"],
       paragraphs: [
         [
           ["My cousin and I made a film about two astronauts who hear thunder inside their spacecraft.", "我和表亲拍了一部短片，讲的是两名宇航员在航天器里听见雷声的故事。"],
@@ -54,6 +55,7 @@ const memoryReadingSet = {
       id: "memory-01-books",
       title: "The Blue Door",
       topic: "蓝门上的收据",
+      illustration: ["books.jpg", "街边的小书箱开着蓝门，门上系着细绳，里面整齐地叠着书。"],
       paragraphs: [
         [
           ["A little book box stood opposite our bus stop.", "公交车站对面有个小书箱。"],
@@ -75,6 +77,7 @@ const memoryReadingSet = {
       id: "memory-01-light",
       title: "A Light on the Stairs",
       topic: "楼梯间的一盏灯",
+      illustration: ["light.jpg", "昏暗的楼梯间里，搁板上的一盏小灯照亮了台阶。"],
       paragraphs: [
         [
           ["One evening, all the lights in our building went out.", "一天晚上，我们楼里的灯全灭了。"],
@@ -95,6 +98,7 @@ const memoryReadingSet = {
       id: "memory-01-photo",
       title: "A Photograph at Six",
       topic: "六点钟的照片",
+      illustration: ["photo.jpg", "傍晚，围栏旁的女孩拉着细绳，把小篮子升向二楼窗户。"],
       paragraphs: [
         [
           ["I was assigned to take a photograph for a local exhibition.", "我分到的任务是给本地展览拍一张照片。"],
@@ -117,6 +121,7 @@ const memoryReadingSet = {
       id: "memory-01-jacket",
       title: "The Jacket That Grew",
       topic: "会长大的外套",
+      illustration: ["jacket.jpg", "裁缝帮女孩检查绿外套接长的黄袖口，口袋上缝着一颗黄星星。"],
       paragraphs: [
         [
           ["My niece loved a plain green jacket that had once belonged to her brother.", "我外甥女喜欢一件纯绿色的外套，那是她哥哥以前穿过的。"],
@@ -139,6 +144,7 @@ const memoryReadingSet = {
       id: "memory-01-shop",
       title: "The Shop That Sold Nothing",
       topic: "不收钱的小店",
+      illustration: ["shop.jpg", "女孩抱着一本用胶带补过的书，打开架子上的蓝色零钱包，看到里面有张便条。"],
       paragraphs: [
         [
           ["An advertisement on a fence said, “Bring something you no longer need.”", "围栏上有一则广告：“带一件你不再需要的东西来。”"],
@@ -160,6 +166,7 @@ const memoryReadingSet = {
       id: "memory-01-rain",
       title: "The Cup That Overflowed",
       topic: "接满雨水的杯子",
+      illustration: ["rain.jpg", "雨后的两个透明杯，一个放在围栏边，另一个放在树叶下。"],
       paragraphs: [
         [
           ["My cousin and I wanted to see how much rain fell in our garden.", "我和表亲想看看自家花园到底下了多少雨。"],
@@ -181,6 +188,7 @@ const memoryReadingSet = {
       id: "memory-01-ball",
       title: "The Ball We Could Hear",
       topic: "能听见的球",
+      illustration: ["ball.jpg", "体育馆里，一名闭着眼睛的学生伸手等着滚来的球，两个运动包标出球门。"],
       paragraphs: [
         [
           ["At a sports club, our instructor set two bags on the ground to make a goal.", "在体育俱乐部，教练把两个包放在地上，当作球门。"],
@@ -203,6 +211,7 @@ const memoryReadingSet = {
       id: "memory-01-invite",
       title: "What Counts as Next Door?",
       topic: "谁算是邻居？",
+      illustration: ["invite.jpg", "带着一叠信封的访客站在院门旁，门口的男孩递给她一个梨。"],
       paragraphs: [
         [
           ["Our street was planning a picnic, and I was assigned to invite the people who lived nearby.", "我们这条街要办野餐，我负责邀请住在附近的人。"],
@@ -222,6 +231,7 @@ const memoryReadingSet = {
       id: "memory-01-guitar",
       title: "Music from a Tin",
       topic: "铁盒里传来的曲调",
+      illustration: ["guitar.jpg", "公园长椅上，男孩弹着用饼干铁盒、木条和细绳做成的小吉他。"],
       paragraphs: [
         [
           ["In the park, a boy tried to play a tune on an old biscuit tin.", "公园里，一个男孩试着用旧饼干铁盒弹一段曲调。"],

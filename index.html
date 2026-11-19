@@ -149,6 +149,24 @@
       margin-top: 19px; font: clamp(1.16rem, 2.12vw, 1.48rem)/1.78 Georgia, "Times New Roman", serif;
       max-width: 66ch;
     }
+    #reader.illustrated { container-type: inline-size; }
+    .illustrated .reading-body {
+      display: grid; align-items: start; gap: 16px; margin-top: 16px;
+    }
+    .illustrated .reading-body .passage { margin-top: 0; }
+    .reading-illustration {
+      display: block; width: 100%; max-width: 32rem; height: auto;
+      aspect-ratio: 3 / 2; object-fit: contain; border-radius: 8px;
+      justify-self: center; background: var(--control-fill);
+    }
+    @container (min-width: 42rem) {
+      .illustrated .reading-body {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 32%);
+        column-gap: clamp(18px, 3.5cqw, 30px);
+      }
+      .reading-illustration { grid-column: 2; grid-row: 1; }
+      .illustrated .reading-body .passage { grid-column: 1; grid-row: 1; }
+    }
     .passage-block + .passage-block { margin-top: .85em; }
     .passage.bilingual .passage-block + .passage-block { margin-top: 1.2em; }
     .translation {
@@ -356,7 +374,10 @@
               <button type="button" class="action definition-toggle" id="show-definitions" aria-controls="definition" disabled>本篇生词</button>
             </div>
           </header>
-          <div class="passage" id="passage"></div>
+          <div class="reading-body">
+            <img class="reading-illustration" id="reading-illustration" width="960" height="640" alt="" decoding="async" hidden>
+            <div class="passage" id="passage"></div>
+          </div>
           <footer class="reading-foot">
             <button type="button" class="action" id="previous">上一篇</button>
             <button type="button" class="action" id="finish-lesson" aria-pressed="false">标为已读</button>
@@ -7796,6 +7817,7 @@
         id: story.id,
         title: story.title,
         topic: story.topic,
+        illustration: story.illustration,
         primary: [],
         targets: memoryReadingSet.words,
         sentences: story.paragraphs.map(paragraph => paragraph.map(([english]) => english))
@@ -7863,6 +7885,7 @@
     const vocabulary = byId("full-vocabulary");
     const title = byId("reading-title");
     const passage = byId("passage");
+    const readingIllustration = byId("reading-illustration");
     const directory = byId("directory-panel");
     const definition = byId("definition");
     const wordMenu = byId("word-menu");
@@ -8103,6 +8126,13 @@
       highlightSentence();
       setView("reader");
       const lesson = readings[index];
+      reader.classList.toggle("illustrated", Boolean(lesson.illustration));
+      readingIllustration.hidden = !lesson.illustration;
+      if (lesson.illustration) {
+        const [file, alt] = lesson.illustration;
+        readingIllustration.alt = alt;
+        readingIllustration.src = "images/reading-01/" + file;
+      }
       visibleWords = new Map();
       title.replaceChildren(textParts(lesson.title, lesson));
       byId("translated-title").textContent = bilingualTitles[lesson.id];
