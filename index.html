@@ -96,7 +96,6 @@
     .reading-materials ul { display: grid; gap: 4px; margin: 6px 0 0; padding-inline-start: 1.25rem; }
     .reading-materials a { color: var(--blue); text-underline-offset: .18em; }
     .reading-materials a[aria-current="page"] { color: var(--ink); font-weight: 600; }
-    .reading-guide { margin-top: 12px; color: var(--muted); line-height: 1.5; }
     .primary { background: var(--primary); color: white; }
     .primary:hover:not(:disabled) { background: var(--primary-hover); }
     .theme-toggle[aria-pressed="true"] { background: var(--blue-soft); color: var(--blue); }
@@ -106,7 +105,9 @@
       display: grid; grid-template-columns: var(--directory-width) minmax(0, 1fr);
       align-items: start; gap: clamp(10px, 1.55vw, 22px); margin-top: 24px;
     }
-    .layout[data-view="reader"] { grid-template-columns: var(--directory-width) minmax(0, 1fr) clamp(178px, 19vw, 234px); }
+    .layout[data-view="reader"]:where(:not(.inline-definitions)) {
+      grid-template-columns: var(--directory-width) minmax(0, 1fr) clamp(178px, 19vw, 234px);
+    }
     .layout.directory-closed { --directory-width: 42px; }
     .navigation, .definition { position: sticky; top: 16px; min-width: 0; }
     .directory-toggle {
@@ -161,10 +162,10 @@
     }
     @container (min-width: 42rem) {
       .illustrated .reading-body {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 32%);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 42%);
         column-gap: clamp(18px, 3.5cqw, 30px);
       }
-      .reading-illustration { grid-column: 2; grid-row: 1; }
+      .reading-illustration { grid-column: 2; grid-row: 1; max-width: 36rem; }
       .illustrated .reading-body .passage { grid-column: 1; grid-row: 1; }
     }
     .passage-block + .passage-block { margin-top: .85em; }
@@ -186,6 +187,10 @@
     .word[aria-pressed="true"] {
       color: var(--red); background: var(--red-soft);
       text-decoration: underline; text-decoration-thickness: .065em; text-underline-offset: .17em;
+    }
+    .inline-gloss {
+      color: var(--translation-ink); font-family: var(--translation-font);
+      font-size: .78em; font-weight: normal; overflow-wrap: anywhere;
     }
     .word.located { outline: 2px solid var(--located-ring); outline-offset: 2px; }
     .definition {
@@ -285,7 +290,8 @@
       display: block; width: 100%; padding: 8px; border: 0; border-radius: 4px;
       background: transparent; text-align: left; font-size: .88rem;
     }
-    .word-menu-item:hover, .word-menu-item:focus { background: var(--blue-soft); }
+    .word-menu-item:hover, .word-menu-item:focus, .word-menu-item.speaking { background: var(--blue-soft); }
+    .word-menu .feedback:empty { margin: 0; }
     @media (max-width: 880px), (orientation: portrait) and (max-width: 1100px) {
       .layout[data-view="reader"] { grid-template-columns: var(--directory-width) minmax(0, 1fr); }
       .definition {
@@ -355,7 +361,6 @@
         </ul>
       </nav>
     </details>
-    <p class="reading-guide" id="reading-guide" hidden>先读故事，卡住时再点词。点释义里的英文词，可以跳到它出现的其他短文。</p>
     <p class="feedback" id="storage-error" role="status" hidden>无法保存到本地。</p>
     <main class="layout" id="workspace" data-view="reader">
       <nav class="navigation" aria-label="短文目录">
@@ -7875,7 +7880,8 @@
       document.title = byId("site-title").textContent = "初中阅读资料 01｜生词复现";
       byId("screening-material").removeAttribute("aria-current");
       byId("reading-material-01").setAttribute("aria-current", "page");
-      byId("reading-guide").hidden = false;
+      byId("workspace").classList.add("inline-definitions");
+      byId("show-definitions").hidden = true;
       byId("open-vocabulary").textContent = "重点词索引";
       byId("full-vocabulary-title").textContent = "重点词索引";
     }
@@ -7953,7 +7959,7 @@
       reader.hidden = view !== "reader";
       review.hidden = view !== "review";
       vocabulary.hidden = view !== "vocabulary";
-      definition.hidden = view !== "reader";
+      definition.hidden = memoryMode || view !== "reader";
       byId("open-review").setAttribute("aria-expanded", view === "review");
       byId("open-vocabulary").setAttribute("aria-expanded", view === "vocabulary");
       updateProgress();
@@ -7990,8 +7996,7 @@
 
     let currentPronunciation;
 
-    function pronounceWord(surface, button) {
-      const status = byId("pronunciation-status");
+    function pronounceWord(surface, button, status = byId("pronunciation-status")) {
       const speech = window.speechSynthesis;
       status.textContent = "";
       if (!speech || typeof window.SpeechSynthesisUtterance !== "function") {
@@ -8034,6 +8039,18 @@
     function renderDefinitions() {
       const lesson = readings[activeIndex];
       const group = marks[activeIndex];
+      if (memoryMode) {
+        reader.querySelectorAll(".inline-gloss").forEach(gloss => gloss.remove());
+        for (const [key, exampleIndex] of group) {
+          const word = visibleWords.get(key)[exampleIndex];
+          const gloss = document.createElement("span");
+          gloss.className = "inline-gloss";
+          gloss.lang = "zh-CN";
+          gloss.textContent = "（" + (lesson.terms.get(key).meaning || "暂无中文释义") + "）";
+          word.after(gloss);
+        }
+        return;
+      }
       const list = byId("definition-list");
       byId("pronunciation-status").textContent = "";
       const empty = group.size === 0;
@@ -8090,8 +8107,9 @@
         visibleWords.get(token.key).push(button);
         button.addEventListener("click", () => {
           const group = marks[activeIndex];
-          if (group.has(token.key)) group.delete(token.key);
-          else group.set(token.key, lesson.terms.get(token.key).examples.indexOf(token));
+          const exampleIndex = lesson.terms.get(token.key).examples.indexOf(token);
+          if (group.has(token.key) && (!memoryMode || group.get(token.key) === exampleIndex)) group.delete(token.key);
+          else group.set(token.key, exampleIndex);
           for (const occurrence of visibleWords.get(token.key)) {
             occurrence.setAttribute("aria-pressed", group.has(token.key));
           }
@@ -8251,6 +8269,17 @@
         return option;
       });
       wordMenu.replaceChildren(heading, ...options);
+      if (memoryMode) {
+        const speaker = document.createElement("button");
+        speaker.type = "button";
+        speaker.className = "word-menu-item";
+        speaker.textContent = "播放发音";
+        const status = document.createElement("p");
+        status.className = "feedback";
+        status.setAttribute("role", "status");
+        speaker.addEventListener("click", () => pronounceWord(trigger.textContent, speaker, status));
+        wordMenu.append(speaker, status);
+      }
       wordMenu.hidden = false;
       wordMenu.scrollTop = 0;
       menuTrigger = trigger;
