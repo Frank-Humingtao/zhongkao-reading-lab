@@ -1,0 +1,242 @@
+const memoryReadingSet = {
+  words: {
+    bang: ["砰的一声"],
+    beneath: ["在……正下方"],
+    cupboard: ["柜子；橱柜", "cupboards"],
+    disturb: ["打扰；惊动", "disturbed", "disturbs"],
+    envelope: ["信封", "envelopes"],
+    equipment: ["设备；器材"],
+    explanation: ["解释；说明", "explanations"],
+    fence: ["围栏", "fences"],
+    mend: ["修补；修理", "mended", "mending"],
+    neat: ["整齐的；工整的"],
+    note: ["便条；音符", "notes"],
+    opposite: ["在……对面；相反的"],
+    pile: ["一堆", "piles"],
+    plain: ["朴素的；纯色的；未加调味的"],
+    proper: ["合适的；正规的"],
+    realise: ["意识到；明白", "realised"],
+    receipt: ["收据；小票", "receipts"],
+    separate: ["把……分开；各自独立的", "separated"],
+    shelf: ["搁板；架子", "shelves"],
+    silent: ["安静的；无声的"],
+    slip: ["滑倒；滑落；悄悄放入", "slipped", "slipping"],
+    string: ["细绳；弦", "strings"],
+    tape: ["胶带；用胶带粘；在 tape measure 中指卷尺或软尺", "taped"],
+    thick: ["厚的；浓的"],
+    tuck: ["塞进；掖好", "tucked", "tucking"]
+  },
+  stories: [
+    {
+      id: "memory-01-film",
+      title: "Thunder for a Film",
+      topic: "为电影造雷",
+      paragraphs: [
+        [
+          ["My cousin and I made a film about two astronauts who hear thunder inside their spacecraft.", "我和表亲拍了一部短片，讲的是两名宇航员在航天器里听见雷声的故事。"],
+          ["Our script called for a loud bang, but we had no proper sound equipment.", "剧本需要一声巨响，可我们没有合适的录音设备。"],
+          ["I pulled a metal tray from the cupboard and shook it beneath a thick cushion.", "我从柜子里取出一个金属托盘，在厚坐垫底下晃了晃。"],
+          ["The sound was so soft it wouldn't disturb a sleeping cat.", "声音轻得连睡着的猫都不会惊动。"],
+          ["Then the tray slipped out and hit the floor.", "接着托盘滑了出去，砸在地板上。"]
+        ],
+        [
+          ["We went silent.", "我们一下子安静了。"],
+          ["There was the bang we wanted!", "这正是我们想要的那一声巨响！"],
+          ["My cousin taped a note in neat letters to the cupboard: “Drop the tray from here.”", "表亲用胶带把一张字迹工整的便条贴在柜子上：“从这个高度放下托盘。”"],
+          ["We put a phone on a shelf to record the sound.", "我们把手机放在架子上录音。"],
+          ["Later, a classmate asked for an explanation of how we had made the thunder.", "后来，同学问我们这雷声是怎么做出来的。"],
+          ["I showed her the tray.", "我把托盘拿给她看。"],
+          ["She went home and tried it herself.", "她回家后也自己试了一遍。"]
+        ]
+      ]
+    },
+    {
+      id: "memory-01-books",
+      title: "The Blue Door",
+      topic: "蓝门上的收据",
+      paragraphs: [
+        [
+          ["A little book box stood opposite our bus stop.", "公交车站对面有个小书箱。"],
+          ["Its plain blue door had lost its handle, so nobody could open it.", "书箱有扇纯蓝色的门，门把手掉了，谁也打不开。"],
+          ["I got a piece of string from our kitchen cupboard to mend it until we could fit a proper handle.", "我从厨房柜子里找了段细绳，把门暂时修好，等有空再装个合适的把手。"],
+          ["Inside, there was a neat pile of books on the bottom shelf.", "里面最下面的搁板上整整齐齐地放着一摞书。"],
+          ["Beneath the pile, I found an envelope with no name on it.", "我在书堆下发现一个没写名字的信封。"]
+        ],
+        [
+          ["A receipt was tucked inside.", "信封里塞着一张收据。"],
+          ["On the back of the receipt, someone had left a note: “Please take a book and leave one for the next reader.”", "有人在收据背面留了张便条：“请拿一本书，再给下一位读者留一本。”"],
+          ["I taped the note to the door.", "我用胶带把便条贴到了门上。"],
+          ["I left my favourite novel there.", "我把自己最喜欢的小说留在了书箱里。"],
+          ["The next day, my favourite novel was gone, and a book about the moon sat in its place.", "第二天，我最喜欢的那本小说被人拿走了，原处多了一本讲月球的书。"]
+        ]
+      ]
+    },
+    {
+      id: "memory-01-light",
+      title: "A Light on the Stairs",
+      topic: "楼梯间的一盏灯",
+      paragraphs: [
+        [
+          ["One evening, all the lights in our building went out.", "一天晚上，我们楼里的灯全灭了。"],
+          ["I heard a bang in the corridor and found my neighbour sitting on the stairs.", "我听见走廊里砰的一声，发现邻居坐在楼梯上。"],
+          ["He had slipped in the dark, and his foot was sore.", "他在黑暗中滑了一跤，脚有些疼。"],
+          ["My aunt helped him while I looked in our cupboard.", "姨妈去扶他，我跑去翻家里的柜子。"],
+          ["A small lamp and an envelope full of spare batteries were on the top shelf.", "最高一层搁板上有一盏小灯和一个装着备用电池的信封。"]
+        ],
+        [
+          ["We set it on a shelf opposite the stairs and taped a note to the wall beneath it: “Please leave the lamp on.”", "我们把灯放在楼梯对面的架子上，在灯下的墙上贴了张便条：“请让灯一直亮着。”"],
+          ["By morning, two more lamps stood on the shelf.", "到了早上，架子上又多了两盏灯。"],
+          ["Only then did I realise that the people upstairs had been in the dark, too.", "我这才意识到，楼上的住户昨晚也摸着黑。"],
+          ["One little lamp had helped a lot of people.", "一盏小灯帮到了不少人。"]
+        ]
+      ]
+    },
+    {
+      id: "memory-01-photo",
+      title: "A Photograph at Six",
+      topic: "六点钟的照片",
+      paragraphs: [
+        [
+          ["I was assigned to take a photograph for a local exhibition.", "我分到的任务是给本地展览拍一张照片。"],
+          ["Every evening at six, a girl by the fence opposite my window pulled on a long piece of string.", "每天傍晚六点，我窗户对面的围栏旁都有个女孩在拉一根长细绳。"],
+          ["I could think of no explanation, so one day I went down to ask her.", "我想不出她为什么这样做，于是有一天下楼去问她。"],
+          ["She put a finger to her lips.", "她把手指放到嘴唇上。"],
+          ["I stayed silent and looked where she was pointing.", "我安静地顺着她指的方向看去。"]
+        ],
+        [
+          ["A basket rose past the fence and stopped beneath a second-floor window.", "一只篮子越过围栏升了起来，在二楼一扇窗户下停住。"],
+          ["An old man at the window pulled the basket in.", "窗边的一位老人把篮子拉了进去。"],
+          ["“That's Grandpa's supper,” the girl whispered.", "“那是爷爷的晚饭。”女孩低声说。"],
+          ["“The doorbell disturbs the baby downstairs.”", "“门铃会吵到楼下的小宝宝。”"],
+          ["I took one photograph and wrote a plain caption: “Waiting for supper.”", "我拍了张照片，配上一句简单的说明：“等晚饭。”"],
+          ["When I showed her the picture, she gave me a quick nod.", "我把照片拿给她看，她飞快地点了点头。"]
+        ]
+      ]
+    },
+    {
+      id: "memory-01-jacket",
+      title: "The Jacket That Grew",
+      topic: "会长大的外套",
+      paragraphs: [
+        [
+          ["My niece loved a plain green jacket that had once belonged to her brother.", "我外甥女喜欢一件纯绿色的外套，那是她哥哥以前穿过的。"],
+          ["By winter, its sleeves were too short, and one pocket had a hole.", "到了冬天，袖子已经太短了，其中一个口袋也破了个洞。"],
+          ["She tucked the jacket into a bag and took it to a tailor.", "她把外套塞进袋子里，拿去给裁缝看。"],
+          ["“Can you mend it and make the sleeves longer?” she asked.", "“您能补好它，再把袖子做长一点吗？”她问。"],
+          ["The tailor gave a nod and took a tape measure from the shelf.", "裁缝点点头，从架子上拿下一把软尺。"]
+        ],
+        [
+          ["On a table lay two separate piles of cloth, one thick and one thin.", "桌上分开放着两摞布料，一摞厚的，一摞薄的。"],
+          ["She added thick yellow cloth to both sleeves, with a neat row of stitches along each edge.", "裁缝给两只袖子都接上厚黄布，沿着每条边工工整整地缝了一排针脚。"],
+          ["When we came back, a small yellow star covered the hole in the pocket.", "我们回来时，口袋上的破洞已经被一颗黄色小星星盖住了。"],
+          ["The tailor slipped the receipt and the leftover cloth into an envelope.", "裁缝把收据和剩下的布料塞进一个信封。"],
+          ["My niece held up her arms.", "外甥女举起双臂。"],
+          ["“Look! It grew!”", "“看！它长大了！”"]
+        ]
+      ]
+    },
+    {
+      id: "memory-01-shop",
+      title: "The Shop That Sold Nothing",
+      topic: "不收钱的小店",
+      paragraphs: [
+        [
+          ["An advertisement on a fence said, “Bring something you no longer need.”", "围栏上有一则广告：“带一件你不再需要的东西来。”"],
+          ["I used tape to mend the cover of a thick novel, then took it to the hall opposite the park.", "我先用胶带把一本厚小说的封面粘好，再带着它去了公园对面的礼堂。"],
+          ["At the door, a woman handed me a receipt with the number one on it.", "门口有位女士递给我一张写着数字一的收据。"],
+          ["Before I could ask for an explanation, she said, “You can take one thing from the shelves.”", "我还没来得及问是怎么回事，她就说：“架子上的东西，你可以任选一件。”"]
+        ],
+        [
+          ["On a shelf, behind a pile of old art equipment, I spotted a plain blue purse.", "我在架子上的一堆旧美术用具后面瞧见一个纯蓝色零钱包。"],
+          ["A note tucked inside the purse said, “I made this when I was ten.”", "零钱包里塞着一张便条，上面写着：“这是我十岁时做的。”"],
+          ["I chose the purse.", "我选了零钱包。"],
+          ["At the check-out, a boy held up my book.", "在结算处，一个男孩举起了我带来的书。"],
+          ["“This one's so good I read it twice,” I told him.", "“这本特别好看，我读过两遍。”我告诉他。"],
+          ["He gave me a nod and handed over his receipt.", "他点点头，交出了自己的收据。"]
+        ]
+      ]
+    },
+    {
+      id: "memory-01-rain",
+      title: "The Cup That Overflowed",
+      topic: "接满雨水的杯子",
+      paragraphs: [
+        [
+          ["My cousin and I wanted to see how much rain fell in our garden.", "我和表亲想看看自家花园到底下了多少雨。"],
+          ["We had no proper equipment, so we put one cup by the fence and taped a ruler to it.", "我们没有合适的设备，就在围栏边放了一个杯子，再贴上一把尺子。"],
+          ["At supper, the rain began with a bang of thunder.", "晚饭时，雷声轰地一响，雨下了起来。"],
+          ["An hour later, the cup was full.", "一小时后，杯子满了。"],
+          ["A second cup of the same size was almost empty.", "另一个同样大小的杯子却几乎是空的。"],
+          ["We had left it beneath a tree.", "我们把它放在树底下了。"]
+        ],
+        [
+          ["My cousin said the difference seemed too big and asked for an explanation.", "表亲觉得差得太多，问我这是怎么回事。"],
+          ["I looked up and realised that the thick layer of leaves had kept most of the rain out.", "我抬头一看，才意识到密密的叶子挡住了大部分雨水。"],
+          ["We made a note on our chart and put the cups in separate spots out in the open.", "我们在记录表上记了一笔，把杯子分开放在空旷处。"],
+          ["The next shower gave us almost the same reading in both.", "下一场雨过后，两边的读数就差不多了。"]
+        ]
+      ]
+    },
+    {
+      id: "memory-01-ball",
+      title: "The Ball We Could Hear",
+      topic: "能听见的球",
+      paragraphs: [
+        [
+          ["At a sports club, our instructor set two bags on the ground to make a goal.", "在体育俱乐部，教练把两个包放在地上，当作球门。"],
+          ["He set a ball between them and rolled it towards us.", "他把一个球放在两个包中间，朝我们滚过来。"],
+          ["We heard a bell inside it.", "我们听见球里有铃铛声。"],
+          ["“This is proper equipment for players who can't see,” he said.", "“这是给看不见的球员用的正规器材。”他说。"],
+          ["We stood in two separate lines and took turns closing our eyes and trying to stop the ball.", "我们站成两列，轮流闭上眼睛，试着拦住球。"]
+        ],
+        [
+          ["I could hear the bell until a loud bang from the opposite end of the hall made me turn my head.", "我本来能听见铃声，直到礼堂另一头传来砰的一声，我转过头去。"],
+          ["The ball slipped beneath my hand.", "球从我手底下溜了过去。"],
+          ["Then I realised why we had to stay silent.", "这时我明白了为什么大家得保持安静。"],
+          ["Even a small sound could disturb a player who was listening for the ball.", "哪怕一点声音，也可能干扰靠听觉判断球在哪儿的队员。"],
+          ["On my next turn, I listened and caught it.", "下一轮轮到我时，我仔细听，接住了球。"],
+          ["My team waited until the bell stopped before they began to clap.", "我的队友等铃声停了才开始鼓掌。"]
+        ]
+      ]
+    },
+    {
+      id: "memory-01-invite",
+      title: "What Counts as Next Door?",
+      topic: "谁算是邻居？",
+      paragraphs: [
+        [
+          ["Our street was planning a picnic, and I was assigned to invite the people who lived nearby.", "我们这条街要办野餐，我负责邀请住在附近的人。"],
+          ["I wrote each address on a separate envelope, put them in a neat pile and tied the pile with string.", "我把每个地址分别写在一个信封上，把信封整齐叠好，再用细绳捆起来。"],
+          ["At number eight, a woman read the note and asked whether the families behind the fence could come too.", "到了八号，一位女士读完便条，问围栏后面的几户人家能不能也来。"],
+          ["I hadn't even realised there were houses back there.", "我之前都没意识到后面还有房子。"]
+        ],
+        [
+          ["The woman drew a map on the back of an old receipt.", "那位女士在一张旧收据背面画了张地图。"],
+          ["“Go through this gate so you don't disturb the dog by the other one,” she said.", "“从这道门进去，免得惊动另一道门旁边的狗。”她说。"],
+          ["I followed her map.", "我照着她画的地图走。"],
+          ["At the first door, a boy gave me a pear before I could even ask his name.", "在第一户门口，我还没来得及问名字，一个男孩就递给我一个梨。"]
+        ]
+      ]
+    },
+    {
+      id: "memory-01-guitar",
+      title: "Music from a Tin",
+      topic: "铁盒里传来的曲调",
+      paragraphs: [
+        [
+          ["In the park, a boy tried to play a tune on an old biscuit tin.", "公园里，一个男孩试着用旧饼干铁盒弹一段曲调。"],
+          ["He had found some string on a shelf in the equipment cupboard at home and made his own guitar.", "他在家里器材柜的搁板上找了些细绳，自己动手做了把吉他。"],
+          ["When I sat down, one of his three strings slipped loose.", "我坐下时，他的三根弦里有一根松脱了。"],
+          ["He tucked it through a hole in the tin, but the tin fell with a bang.", "他把弦塞进铁盒上的一个孔里，铁盒却砰的一声掉到了地上。"]
+        ],
+        [
+          ["I helped him mend it with a thick piece of string from my bag.", "我从包里拿出一根粗绳，帮他修好了。"],
+          ["The new string gave a much lower note.", "新弦发出的音低了许多。"],
+          ["He stayed silent for a moment, then played the same tune again.", "他安静了一会儿，又弹起了同一段曲调。"],
+          ["This time, he used the low note at the end.", "这回，他把那个低音用在了最后。"],
+          ["It sounded like someone saying goodnight.", "听起来就像有人在道晚安。"]
+        ]
+      ]
+    }
+  ]
+};

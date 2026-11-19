@@ -76,7 +76,7 @@
     [hidden] { display: none !important; }
     body { margin: 0; background: var(--background); color: var(--ink); }
     button { font: inherit; color: inherit; cursor: pointer; }
-    button:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+    button:focus-visible, .action:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
     button:disabled { opacity: .55; cursor: default; }
     .shell { max-width: 1420px; margin: 0 auto; padding: 32px clamp(16px, 2.6vw, 36px) 56px; }
     .masthead {
@@ -91,6 +91,8 @@
       background: var(--control-fill); padding: 10px 15px; font-size: .9rem;
     }
     .action:hover:not(:disabled) { background: var(--blue-soft); }
+    .action[href] { color: inherit; text-decoration: none; }
+    .reading-guide { margin-top: 12px; color: var(--muted); line-height: 1.5; }
     .primary { background: var(--primary); color: white; }
     .primary:hover:not(:disabled) { background: var(--primary-hover); }
     .theme-toggle[aria-pressed="true"] { background: var(--blue-soft); color: var(--blue); }
@@ -314,14 +316,16 @@
 <body>
   <div class="shell">
     <header class="masthead">
-      <h1>中考英语阅读标词</h1>
+      <h1 id="site-title">中考英语阅读标词</h1>
       <div class="toolbar">
+        <a class="action" id="switch-reading-set" href="?set=reading-01">初中阅读资料 01</a>
         <button type="button" class="action theme-toggle" id="dark-mode" aria-pressed="false">深色模式</button>
         <button type="button" class="action" id="open-sync" aria-haspopup="dialog">GitHub 同步</button>
         <button type="button" class="action" id="open-vocabulary" aria-controls="full-vocabulary" aria-expanded="false">完整词汇表</button>
         <button type="button" class="action primary" id="open-review" aria-controls="review" aria-expanded="false">生词表</button>
       </div>
     </header>
+    <p class="reading-guide" id="reading-guide" hidden>先读故事，卡住时再点词。点释义里的英文词，可以跳到它出现的其他短文。</p>
     <p class="feedback" id="storage-error" role="status" hidden>无法保存到本地。</p>
     <main class="layout" id="workspace" data-view="reader">
       <nav class="navigation" aria-label="短文目录">
@@ -7603,6 +7607,7 @@
   "wrote": ["write", "(wrote, written) v. 写，书写；写作，著述"]
 }
   </script>
+  <script src="reading-01.js"></script>
   <script>
     const previousLessons = [
       {
@@ -7672,11 +7677,20 @@
     ];
 
     const readData = id => JSON.parse(document.getElementById(id).textContent);
+    const memoryMode = new URLSearchParams(location.search).get("set") === "reading-01";
     const screening = readData("screening-data");
-    const bilingualText = readData("bilingual-text");
-    const bilingualTitles = readData("bilingual-titles");
+    const bilingualText = memoryMode
+      ? Object.fromEntries(memoryReadingSet.stories.map(story => [
+        story.id, story.paragraphs.map(paragraph => paragraph.map(([, chinese]) => chinese))
+      ]))
+      : readData("bilingual-text");
+    const bilingualTitles = memoryMode
+      ? Object.fromEntries(memoryReadingSet.stories.map(({ id, topic }) => [id, topic]))
+      : readData("bilingual-titles");
     const extraMeanings = readData("supplemental-meanings");
-    const originalVocabulary = readData("original-vocabulary");
+    const originalVocabulary = memoryMode
+      ? [["重点词", Object.entries(memoryReadingSet.words).map(([key, [meaning]]) => [key, key, " " + meaning])]]
+      : readData("original-vocabulary");
     const trialLessons = readData("lesson-data");
     const trialGlossary = readData("new-glossary");
     const previousGlossary = readData("source-glossary");
@@ -7686,11 +7700,16 @@
     const abbreviatedWords = abbreviations.map(escapePattern).join("|");
     const wordPattern = new RegExp(abbreviatedWords + "|[\\p{L}]+(?:['’\\-][\\p{L}]+)*", "giu");
     const sentencePattern = /[^.!?]+[.!?]+(?:["”'’])?|[^.!?]+$/g;
-    const storageKey = "zhongkao-reading-lab-v3";
+    const storageKey = memoryMode ? "zhongkao-reading-lab-reading-01" : "zhongkao-reading-lab-v3";
     const sourceGlossary = Object.fromEntries(Object.entries(screening.forms).map(([surface, key]) => {
       const [display, meaning] = screening.dictionary[key];
       return [surface, [key, meaning, display]];
     }));
+    if (memoryMode) {
+      for (const [key, [meaning, ...forms]] of Object.entries(memoryReadingSet.words)) {
+        for (const form of [key, ...forms]) sourceGlossary[form] = [key, meaning, key];
+      }
+    }
 
     function splitSentences(text) {
       const masked = text.replace(/\b(?:[A-Za-z]\.){2,}|\b(?:Mr|Mrs|Ms)\.(?=\s+[A-Z])|\bNo\.(?=\s*\d)/g,
@@ -7755,16 +7774,26 @@
       }
 
       const title = tokenize(lesson.title);
-      const paragraphs = lesson.paragraphs.map(paragraph => splitSentences(paragraph).map(tokenize));
+      const sentences = lesson.sentences ?? lesson.paragraphs.map(splitSentences);
+      const paragraphs = sentences.map(paragraph => paragraph.map(tokenize));
       return { ...lesson, title, paragraphs, terms };
     }
 
-    const readings = screening.lessons.map(lesson => {
-      const targets = Object.fromEntries([...lesson.primary, ...lesson.review].map(key => [key, []]));
-      return buildLesson({ ...lesson, targets }, sourceGlossary);
-    });
-    const trialReadings = trialLessons.map(lesson => buildLesson(lesson, trialGlossary));
-    const previousReadings = previousLessons.map(lesson => buildLesson(lesson, previousGlossary));
+    const readings = memoryMode
+      ? memoryReadingSet.stories.map(story => buildLesson({
+        id: story.id,
+        title: story.title,
+        topic: story.topic,
+        primary: [],
+        targets: memoryReadingSet.words,
+        sentences: story.paragraphs.map(paragraph => paragraph.map(([english]) => english))
+      }, sourceGlossary))
+      : screening.lessons.map(lesson => {
+        const targets = Object.fromEntries([...lesson.primary, ...lesson.review].map(key => [key, []]));
+        return buildLesson({ ...lesson, targets }, sourceGlossary);
+      });
+    const trialReadings = memoryMode ? [] : trialLessons.map(lesson => buildLesson(lesson, trialGlossary));
+    const previousReadings = memoryMode ? [] : previousLessons.map(lesson => buildLesson(lesson, previousGlossary));
     const allReadings = [...readings, ...trialReadings, ...previousReadings];
     const articleLocations = new Map();
     const primaryLocations = new Map();
@@ -7785,8 +7814,8 @@
     }
 
     const savedProgress = readMarks(storageKey, {});
-    const trialMarks = readMarks("zhongkao-reading-lab-v2", {});
-    const previousMarks = readMarks("zhongkao-reading-lab-v1", []);
+    const trialMarks = memoryMode ? {} : readMarks("zhongkao-reading-lab-v2", {});
+    const previousMarks = memoryMode ? [] : readMarks("zhongkao-reading-lab-v1", []);
     const marks = allReadings.map((lesson, index) => {
       const pairs = savedProgress.marks?.[lesson.id] ?? trialMarks[lesson.id]
         ?? previousMarks[index - readings.length - trialReadings.length];
@@ -7808,6 +7837,15 @@
     let directoryClosed = savedProgress.directoryClosed ?? singleColumn.matches;
     let showingBilingual = false;
     const byId = id => document.getElementById(id);
+    if (memoryMode) {
+      document.title = byId("site-title").textContent = "初中阅读资料 01｜生词复现";
+      byId("switch-reading-set").textContent = "回到阅读标词";
+      byId("switch-reading-set").href = "./";
+      byId("reading-guide").hidden = false;
+      byId("open-sync").hidden = true;
+      byId("open-vocabulary").textContent = "重点词索引";
+      byId("full-vocabulary-title").textContent = "重点词索引";
+    }
     const workspace = byId("workspace");
     const reader = byId("reader");
     const review = byId("review");
@@ -7822,7 +7860,7 @@
 
     function saveProgress() {
       writeLocalProgress();
-      noteProgressChange();
+      if (!memoryMode) noteProgressChange();
     }
 
     function writeLocalProgress() {
@@ -8156,7 +8194,8 @@
       const ordered = primary === undefined ? occurrences : [primary, ...occurrences.filter(index => index !== primary)];
       const heading = document.createElement("p");
       heading.className = "word-menu-title";
-      const display = screening.dictionary[key]?.[0] ?? readings[activeIndex].terms.get(key)?.display ?? key;
+      const display = (memoryMode && Object.hasOwn(memoryReadingSet.words, key))
+        ? key : screening.dictionary[key]?.[0] ?? readings[activeIndex].terms.get(key)?.display ?? key;
       heading.textContent = display;
       wordMenu.setAttribute("aria-label", display + " 的出现篇目");
       const options = ordered.map(index => {
@@ -8449,7 +8488,7 @@
     const syncMessage = byId("sync-status");
     let githubToken;
     try {
-      githubToken = sessionStorage.getItem(githubTokenKey) ?? localStorage.getItem(githubTokenKey);
+      if (!memoryMode) githubToken = sessionStorage.getItem(githubTokenKey) ?? localStorage.getItem(githubTokenKey);
     } catch {
       // A token can still be used for the current page.
     }
@@ -8480,7 +8519,7 @@
       ));
     }
 
-    let progressRecords = decodeSyncRecords(readMarks(githubRecordsKey, {}));
+    let progressRecords = memoryMode ? new Map() : decodeSyncRecords(readMarks(githubRecordsKey, {}));
     let lastReadingFields = readingFields();
     let readingRevision = 0;
     let syncClock = 0;
@@ -8624,7 +8663,7 @@
 
     function requestSync(resume = false) {
       const token = githubToken;
-      if (!token) return;
+      if (memoryMode || !token) return;
       const revision = readingRevision;
       clearTimeout(syncTimer);
       syncQueue = syncQueue.then(async () => {
@@ -8689,8 +8728,10 @@
       if (document.visibilityState === "visible") requestSync(true);
       else requestSync();
     });
-    showSyncConnection();
-    requestSync(true);
+    if (!memoryMode) {
+      showSyncConnection();
+      requestSync(true);
+    }
   </script>
 </body>
 </html>
