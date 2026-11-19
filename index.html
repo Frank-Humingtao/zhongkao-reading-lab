@@ -105,11 +105,8 @@
       display: grid; grid-template-columns: var(--directory-width) minmax(0, 1fr);
       align-items: start; gap: clamp(10px, 1.55vw, 22px); margin-top: 24px;
     }
-    .layout[data-view="reader"]:where(:not(.inline-definitions)) {
-      grid-template-columns: var(--directory-width) minmax(0, 1fr) clamp(178px, 19vw, 234px);
-    }
     .layout.directory-closed { --directory-width: 42px; }
-    .navigation, .definition { position: sticky; top: 16px; min-width: 0; }
+    .navigation { position: sticky; top: 16px; min-width: 0; }
     .directory-toggle {
       display: flex; justify-content: space-between; align-items: center;
       width: 100%; gap: 8px; padding: 8px 10px;
@@ -193,23 +190,6 @@
       font-size: .78em; font-weight: normal; overflow-wrap: anywhere;
     }
     .word.located { outline: 2px solid var(--located-ring); outline-offset: 2px; }
-    .definition {
-      padding: 10px 8px;
-      max-height: calc(100vh - 32px); overflow: auto; overflow-wrap: anywhere;
-    }
-    .definition h2 { font-size: .95rem; }
-    .definition-toggle { display: none; }
-    .definition-list { margin: 9px 0 0; padding: 0; list-style: none; }
-    .definition-list li + li { margin-top: 12px; }
-    .definition-term { display: flex; align-items: center; gap: 5px; }
-    .definition-list .definition-word { color: var(--red); font: 600 1.08rem/1.35 Georgia, "Times New Roman", serif; }
-    .definition-meaning { margin-top: 3px; font-size: .85rem; line-height: 1.6; }
-    .speaker-button {
-      display: inline-grid; place-items: center; flex: none; width: 30px; height: 28px;
-      padding: 0; border: 0; border-radius: 5px; background: transparent; color: var(--muted);
-    }
-    .speaker-button:hover, .speaker-button.speaking { color: var(--blue); background: var(--blue-soft); }
-    .speaker-button svg { width: 16px; height: 16px; }
     .reading-foot {
       display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center;
       gap: 7px; margin-top: 26px;
@@ -292,16 +272,6 @@
     }
     .word-menu-item:hover, .word-menu-item:focus, .word-menu-item.speaking { background: var(--blue-soft); }
     .word-menu .feedback:empty { margin: 0; }
-    @media (max-width: 880px), (orientation: portrait) and (max-width: 1100px) {
-      .layout[data-view="reader"] { grid-template-columns: var(--directory-width) minmax(0, 1fr); }
-      .definition {
-        position: static; grid-column: -2 / -1;
-        max-height: none; overflow: visible; padding: 0 clamp(18px, 3vw, 40px);
-      }
-      .definition.definition-empty { display: none; }
-      .speaker-button { width: 34px; height: 32px; }
-      .definition-toggle { display: inline-block; padding: 7px 10px; }
-    }
     @media (max-width: 720px), (orientation: portrait) and (max-width: 1100px) {
       body { background: var(--paper); }
       .shell { max-width: 760px; padding: 15px clamp(13px, 4vw, 34px) 32px; }
@@ -309,7 +279,7 @@
       h1 { font-size: clamp(1.32rem, 5.4vw, 1.75rem); }
       .toolbar { column-gap: 6px; row-gap: 7px; }
       .toolbar .action { padding: 8px 9px; font-size: .82rem; white-space: nowrap; }
-      .layout, .layout[data-view="reader"] { grid-template-columns: minmax(0, 1fr); gap: 15px; margin-top: 13px; }
+      .layout { grid-template-columns: minmax(0, 1fr); gap: 15px; margin-top: 13px; }
       .navigation { position: static; }
       .directory-toggle { min-height: 38px; }
       .directory-arrow { transform: rotate(90deg); }
@@ -318,7 +288,6 @@
       .directory-closed .directory-toggle { justify-content: space-between; }
       .directory-closed .directory-text { display: inline; }
       .surface { padding: 0; overflow-wrap: anywhere; }
-      .definition { padding: 0; }
       .reading-title { font-size: clamp(1.7rem, 6.2vw, 2.75rem); }
       .reading-tools { justify-content: flex-start; }
       .reading-tools .action { min-height: 36px; }
@@ -362,7 +331,7 @@
       </nav>
     </details>
     <p class="feedback" id="storage-error" role="status" hidden>无法保存到本地。</p>
-    <main class="layout" id="workspace" data-view="reader">
+    <main class="layout" id="workspace">
       <nav class="navigation" aria-label="短文目录">
         <button type="button" class="action directory-toggle" id="directory-toggle" aria-controls="directory-panel" aria-expanded="true">
           <span class="directory-text">短文目录</span><span class="directory-arrow" id="directory-arrow" aria-hidden="true">‹</span>
@@ -376,7 +345,6 @@
             <p class="translated-title" id="translated-title" hidden></p>
             <div class="reading-tools">
               <button type="button" class="action bilingual-toggle" id="toggle-bilingual" aria-controls="passage" aria-pressed="false">中英对照</button>
-              <button type="button" class="action definition-toggle" id="show-definitions" aria-controls="definition" disabled>本篇生词</button>
             </div>
           </header>
           <div class="reading-body">
@@ -425,11 +393,6 @@
           <div class="vocab-list" id="full-vocabulary-list"></div>
         </section>
       </div>
-      <aside class="definition definition-empty" id="definition" aria-labelledby="definition-heading">
-        <h2 id="definition-heading" tabindex="-1">本篇生词释义</h2>
-        <ul class="definition-list" id="definition-list" hidden></ul>
-        <p class="feedback" id="pronunciation-status" role="status"></p>
-      </aside>
     </main>
     <dialog class="sync-dialog" id="sync-dialog" aria-labelledby="sync-heading">
       <div class="sync-head">
@@ -451,11 +414,6 @@
     </dialog>
     <div class="word-menu" id="word-menu" role="dialog" aria-label="出现篇目" hidden></div>
   </div>
-  <template id="speaker-icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-      <path d="M3 9v6h4l5 4V5L7 9H3zM15.5 9a4 4 0 0 1 0 6M18.5 6a8 8 0 0 1 0 12"/>
-    </svg>
-  </template>
   <script type="application/json" id="bilingual-titles">
 {
   "read-01": "失踪的戏服",
@@ -7646,6 +7604,7 @@
 }
   </script>
   <script src="reading-01.js"></script>
+  <script src="screening-illustrations.js"></script>
   <script>
     const previousLessons = [
       {
@@ -7716,6 +7675,7 @@
 
     const readData = id => JSON.parse(document.getElementById(id).textContent);
     const memoryMode = new URLSearchParams(location.search).get("set") === "reading-01";
+    const illustrationDirectory = memoryMode ? "reading-01" : "screening";
     const screening = readData("screening-data");
     const bilingualText = memoryMode
       ? Object.fromEntries(memoryReadingSet.stories.map(story => [
@@ -7829,7 +7789,8 @@
       }, sourceGlossary))
       : screening.lessons.map(lesson => {
         const targets = Object.fromEntries([...lesson.primary, ...lesson.review].map(key => [key, []]));
-        return buildLesson({ ...lesson, targets }, sourceGlossary);
+        const illustration = [lesson.id + ".jpg", screeningIllustrations[lesson.id]];
+        return buildLesson({ ...lesson, targets, illustration }, sourceGlossary);
       });
     const trialReadings = memoryMode ? [] : trialLessons.map(lesson => buildLesson(lesson, trialGlossary));
     const previousReadings = memoryMode ? [] : previousLessons.map(lesson => buildLesson(lesson, previousGlossary));
@@ -7880,8 +7841,6 @@
       document.title = byId("site-title").textContent = "初中阅读资料 01｜生词复现";
       byId("screening-material").removeAttribute("aria-current");
       byId("reading-material-01").setAttribute("aria-current", "page");
-      byId("workspace").classList.add("inline-definitions");
-      byId("show-definitions").hidden = true;
       byId("open-vocabulary").textContent = "重点词索引";
       byId("full-vocabulary-title").textContent = "重点词索引";
     }
@@ -7893,7 +7852,6 @@
     const passage = byId("passage");
     const readingIllustration = byId("reading-illustration");
     const directory = byId("directory-panel");
-    const definition = byId("definition");
     const wordMenu = byId("word-menu");
     let menuTrigger;
     let vocabularyGroups;
@@ -7955,11 +7913,9 @@
 
     function setView(view) {
       currentView = view;
-      workspace.dataset.view = view;
       reader.hidden = view !== "reader";
       review.hidden = view !== "review";
       vocabulary.hidden = view !== "vocabulary";
-      definition.hidden = memoryMode || view !== "reader";
       byId("open-review").setAttribute("aria-expanded", view === "review");
       byId("open-vocabulary").setAttribute("aria-expanded", view === "vocabulary");
       updateProgress();
@@ -7996,7 +7952,7 @@
 
     let currentPronunciation;
 
-    function pronounceWord(surface, button, status = byId("pronunciation-status")) {
+    function pronounceWord(surface, button, status) {
       const speech = window.speechSynthesis;
       status.textContent = "";
       if (!speech || typeof window.SpeechSynthesisUtterance !== "function") {
@@ -8036,57 +7992,17 @@
       }
     }
 
-    function renderDefinitions() {
+    function renderInlineGlosses() {
       const lesson = readings[activeIndex];
-      const group = marks[activeIndex];
-      if (memoryMode) {
-        reader.querySelectorAll(".inline-gloss").forEach(gloss => gloss.remove());
-        for (const [key, exampleIndex] of group) {
-          const word = visibleWords.get(key)[exampleIndex];
-          const gloss = document.createElement("span");
-          gloss.className = "inline-gloss";
-          gloss.lang = "zh-CN";
-          gloss.textContent = "（" + (lesson.terms.get(key).meaning || "暂无中文释义") + "）";
-          word.after(gloss);
-        }
-        return;
+      reader.querySelectorAll(".inline-gloss").forEach(gloss => gloss.remove());
+      for (const [key, exampleIndex] of marks[activeIndex]) {
+        const word = visibleWords.get(key)[exampleIndex];
+        const gloss = document.createElement("span");
+        gloss.className = "inline-gloss";
+        gloss.lang = "zh-CN";
+        gloss.textContent = "（" + (lesson.terms.get(key).meaning || "暂无中文释义") + "）";
+        word.after(gloss);
       }
-      const list = byId("definition-list");
-      byId("pronunciation-status").textContent = "";
-      const empty = group.size === 0;
-      list.hidden = empty;
-      definition.classList.toggle("definition-empty", empty);
-      byId("show-definitions").disabled = empty;
-      list.replaceChildren(...Array.from(group, ([key, exampleIndex]) => {
-        const { meaning, examples } = lesson.terms.get(key);
-        const surface = examples[exampleIndex].text;
-        const row = document.createElement("li");
-        const word = document.createElement("button");
-        word.type = "button";
-        word.className = "term-button definition-word";
-        word.lang = "en";
-        word.textContent = surface;
-        word.dataset.wordKey = key;
-        word.title = "出现篇目";
-        word.setAttribute("aria-haspopup", "dialog");
-        word.addEventListener("click", () => openWordMenu(key, word));
-        const speaker = document.createElement("button");
-        speaker.type = "button";
-        speaker.className = "speaker-button";
-        speaker.title = "播放发音";
-        speaker.setAttribute("aria-label", "播放 " + surface + " 的发音");
-        speaker.append(byId("speaker-icon").content.cloneNode(true));
-        speaker.addEventListener("click", () => pronounceWord(surface, speaker));
-        const term = document.createElement("div");
-        term.className = "definition-term";
-        term.append(word, speaker);
-        row.append(term);
-        const gloss = document.createElement("p");
-        gloss.className = "definition-meaning";
-        gloss.textContent = meaning || "暂无中文释义";
-        row.append(gloss);
-        return row;
-      }));
     }
 
     function textParts(segments, lesson) {
@@ -8108,13 +8024,13 @@
         button.addEventListener("click", () => {
           const group = marks[activeIndex];
           const exampleIndex = lesson.terms.get(token.key).examples.indexOf(token);
-          if (group.has(token.key) && (!memoryMode || group.get(token.key) === exampleIndex)) group.delete(token.key);
+          if (group.get(token.key) === exampleIndex) group.delete(token.key);
           else group.set(token.key, exampleIndex);
           for (const occurrence of visibleWords.get(token.key)) {
             occurrence.setAttribute("aria-pressed", group.has(token.key));
           }
           saveProgress();
-          renderDefinitions();
+          renderInlineGlosses();
         });
         fragment.append(button);
       }
@@ -8149,7 +8065,7 @@
       if (lesson.illustration) {
         const [file, alt] = lesson.illustration;
         readingIllustration.alt = alt;
-        readingIllustration.src = "images/reading-01/" + file;
+        readingIllustration.src = "images/" + illustrationDirectory + "/" + file;
       }
       visibleWords = new Map();
       title.replaceChildren(textParts(lesson.title, lesson));
@@ -8188,7 +8104,7 @@
         title.focus();
         saveProgress();
       }
-      renderDefinitions();
+      renderInlineGlosses();
     }
 
     const directoryItems = readings.map((lesson, index) => {
@@ -8268,18 +8184,15 @@
         });
         return option;
       });
-      wordMenu.replaceChildren(heading, ...options);
-      if (memoryMode) {
-        const speaker = document.createElement("button");
-        speaker.type = "button";
-        speaker.className = "word-menu-item";
-        speaker.textContent = "播放发音";
-        const status = document.createElement("p");
-        status.className = "feedback";
-        status.setAttribute("role", "status");
-        speaker.addEventListener("click", () => pronounceWord(trigger.textContent, speaker, status));
-        wordMenu.append(speaker, status);
-      }
+      const speaker = document.createElement("button");
+      speaker.type = "button";
+      speaker.className = "word-menu-item";
+      speaker.textContent = "播放发音";
+      const status = document.createElement("p");
+      status.className = "feedback";
+      status.setAttribute("role", "status");
+      speaker.addEventListener("click", () => pronounceWord(trigger.textContent, speaker, status));
+      wordMenu.replaceChildren(heading, ...options, speaker, status);
       wordMenu.hidden = false;
       wordMenu.scrollTop = 0;
       menuTrigger = trigger;
@@ -8498,10 +8411,6 @@
       showingBilingual = !showingBilingual;
       updateBilingual();
     });
-    byId("show-definitions").addEventListener("click", () => {
-      byId("definition-heading").focus({ preventScroll: true });
-      definition.scrollIntoView({ block: "start" });
-    });
     byId("resume").addEventListener("click", () => selectLesson(activeIndex));
     byId("previous").addEventListener("click", () => {
       if (activeIndex > 0) selectLesson(activeIndex - 1);
@@ -8670,7 +8579,7 @@
         for (const [word, buttons] of visibleWords) {
           for (const button of buttons) button.setAttribute("aria-pressed", marks[activeIndex].has(word));
         }
-        renderDefinitions();
+        renderInlineGlosses();
         updateProgress();
         if (currentView === "review") renderReview();
       }
