@@ -15,8 +15,10 @@ import {
   isDemoSearch,
   mergeRecords,
   presentDetails,
+  previousShanghaiDay,
+  wordsForDay,
   shanghaiDateKey
-} from "./vocab-board.js";
+} from "./vocab-core.js";
 import { buildCatalog, editionFromSource, embeddedJson } from "./vocab-context.js";
 
 const NOV_20 = Date.parse("2026-11-19T16:00:00.000Z");
@@ -147,7 +149,7 @@ test("legacy 02 v2 is included when live 02 v3 is empty", () => {
   })));
   assert.equal(state.count, 1);
   assert.equal(state.words[0].word, "quill");
-  assert.deepEqual(state.words[0].sources, ["02 v2"]);
+  assert.deepEqual(state.words[0].sources, ["02"]);
   assert.equal(state.days[0].label, "2026年11月20日");
 });
 
@@ -185,10 +187,10 @@ test("github file bytes decode without keeping invalid records", () => {
 });
 
 test("visitors with no token and no stored progress get the empty note", () => {
-  assert.match(emptyNote({ syncing: false, hasToken: false, hasStoredPayload: false }), /GitHub 同步/);
-  assert.match(emptyNote({ syncing: false, hasToken: false, hasStoredPayload: false }), /本地进度/);
-  assert.equal(emptyNote({ syncing: false, hasToken: true, hasStoredPayload: false }), "当前没有生词。");
-  assert.match(emptyNote({ syncing: true, hasToken: true, hasStoredPayload: false }), /正在从 GitHub/);
+  assert.match(emptyNote({ syncing: false, hasToken: false, hasStoredPayload: false }), /生词/);
+  assert.match(emptyNote({ syncing: false, hasToken: false, hasStoredPayload: false }), /生词/);
+  assert.equal(emptyNote({ syncing: false, hasToken: true, hasStoredPayload: false }), "还没有生词");
+  assert.match(emptyNote({ syncing: true, hasToken: true, hasStoredPayload: false }), /正在同步/);
   assert.equal(hasVocabPayload({ marks: { "read-01": [] }, active: "read-01", finished: [] }, {}), false);
   assert.equal(hasVocabPayload(null, null), false);
   assert.equal(hasVocabPayload({ marks: { "read-01": [["quill", 0]] } }, {}), true);
@@ -203,10 +205,10 @@ test("demo preview is labeled fixture data and does not keep a cleared mark", ()
   assert.equal(state.count, state.words.length);
   assert.equal(state.words.some(word => word.word === "dustnote"), false);
   const sharedEarly = state.words.find(word => word.word === "paperfox");
-  assert.deepEqual(sharedEarly.sources, ["标词", "01"]);
+  assert.deepEqual(sharedEarly.sources, ["筛选", "01"]);
   assert.equal(sharedEarly.firstTimestamp, 0);
   const sharedDay = state.words.find(word => word.word === "riverbell");
-  assert.deepEqual(sharedDay.sources, ["02 v2", "02 v3"]);
+  assert.deepEqual(sharedDay.sources, ["02"]);
   assert.equal(shanghaiDateKey(sharedDay.firstTimestamp), "2026-11-18");
   assert.deepEqual(state.days.map(day => day.label), [
     "2026年11月20日", "2026年11月19日", "2026年11月18日", PRESYNC_LABEL
@@ -214,7 +216,7 @@ test("demo preview is labeled fixture data and does not keep a cleared mark", ()
   assert.deepEqual(state.days[0].words.map(word => word.word), ["cloudmint", "velvetkey"]);
   assert.deepEqual(state.days.at(-1).words.map(word => word.word), ["glowbug", "paperfox"]);
   const labels = new Set(state.words.flatMap(word => word.sources));
-  for (const label of ["标词", "01", "02 v2", "02 v3", "03"]) assert.equal(labels.has(label), true);
+  for (const label of ["筛选", "01", "02", "03"]) assert.equal(labels.has(label), true);
   assert.equal(state.words.map(word => word.word).join(","), "cloudmint,glowbug,moonpear,paperfox,riverbell,velvetkey");
   const paperfox = presentDetails(state.words.find(word => word.word === "paperfox").details);
   assert.equal(paperfox.length, 1);
@@ -223,7 +225,7 @@ test("demo preview is labeled fixture data and does not keep a cleared mark", ()
   assert.match(paperfox[0].chinese, /纸狐狸/);
   const riverbell = presentDetails(state.words.find(word => word.word === "riverbell").details);
   assert.equal(riverbell.length, 2);
-  assert.deepEqual(riverbell.map(detail => detail.source), ["02 v2", "02 v3"]);
+  assert.deepEqual(riverbell.map(detail => detail.source), ["02", "02"]);
   assert.equal(dayCopyText(state.days[0].words), "cloudmint\nvelvetkey");
   assert.doesNotMatch(dayCopyText(state.words), /词义|萤火虫/);
   for (const word of state.words) {
@@ -273,17 +275,34 @@ test("lesson lookup finds the marked sentence in 01 and historical 02 v2", () =>
 
 test("the public page does not ship tokens or progress contents", () => {
   const page = readFileSync("vocab.html", "utf8");
-  const script = readFileSync("vocab-board.js", "utf8");
+  const script = readFileSync("vocab-board.js", "utf8") + readFileSync("vocab-core.js", "utf8");
   const bundle = page + script;
   assert.doesNotMatch(bundle, /github_pat_[A-Za-z0-9_]{8}/);
   assert.doesNotMatch(page, /glowbug|paperfox|riverbell|cloudmint|velvetkey|dustnote/);
   assert.match(page, /vocab\.html\?demo=1/);
-  assert.match(page, /查看示例/);
-  assert.match(page, /测试数据/);
+  assert.match(page, /看看示例/);
+  assert.match(page, /示例数据/);
   assert.equal(bundle.includes("progress-reading-02-v2.json"), true);
   const index = readFileSync("index.html", "utf8");
   assert.match(index, /href="vocab\.html"/);
   assert.match(index, /progressId: "reading-02-v3"/);
   assert.match(index, /progressId: "reading-03-v2"/);
   assert.doesNotMatch(index, /reading-02-v2\.js/);
+});
+
+test("wordsForDay returns only words first marked on that Beijing day", () => {
+  const sources = [
+    { label: "筛选", records: {
+      "mark/read-01/early": [0, "w", 0],
+      "mark/read-01/both": [NOV_18, "w", 1],
+      "mark/read-02/today": [NOV_20 + 3600e3, "w", 0],
+      "mark/read-02/gone": [NOV_20, "w", null]
+    } },
+    { label: "01", records: { "mark/memory-01-film/both": [NOV_20, "w", 0] } }
+  ];
+  assert.deepEqual(wordsForDay(sources, "2026-11-20").map(word => word.word), ["today"]);
+  assert.deepEqual(wordsForDay(sources, "2026-11-18").map(word => word.word), ["both"]);
+  assert.deepEqual(wordsForDay(sources, "2026-11-19"), []);
+  assert.equal(previousShanghaiDay(Date.parse("2026-11-20T18:00:00.000Z")), "2026-11-20");
+  assert.equal(previousShanghaiDay(Date.parse("2026-11-20T15:59:00.000Z")), "2026-11-19");
 });
