@@ -7606,8 +7606,8 @@
 }
   </script>
   <script src="reading-01.js"></script>
-  <script src="reading-02-v2.js"></script>
-  <script src="reading-03.js"></script>
+  <script src="reading-02-v3.js"></script>
+  <script src="reading-03-v2.js"></script>
   <script src="screening-illustrations.js"></script>
   <script>
     const previousLessons = [
@@ -7681,8 +7681,8 @@
     const editions = new Map([
       ["reading-01", { data: memoryReadingSet }],
       // A complete replacement of edition 02 starts a separate progress history.
-      ["reading-02", { data: readingSet02, progressId: "reading-02-v2" }],
-      ["reading-03", { data: readingSet03 }]
+      ["reading-02", { data: readingSet02, progressId: "reading-02-v3" }],
+      ["reading-03", { data: readingSet03, progressId: "reading-03-v2" }]
     ]);
     const setId = new URLSearchParams(location.search).get("set");
     const { data: edition, progressId = setId } = editions.get(setId) ?? {};
