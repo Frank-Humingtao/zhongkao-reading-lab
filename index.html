@@ -328,6 +328,7 @@
           <li><a href="./" id="screening-material" aria-current="page">中考英语阅读标词</a></li>
           <li><a href="?set=reading-01" id="reading-material-01">01 生词复现</a></li>
           <li><a href="?set=reading-02" id="reading-material-02">02 生词复现</a></li>
+          <li><a href="?set=reading-03" id="reading-material-03">03 生词复现</a></li>
         </ul>
       </nav>
     </details>
@@ -7606,6 +7607,7 @@
   </script>
   <script src="reading-01.js"></script>
   <script src="reading-02-v2.js"></script>
+  <script src="reading-03.js"></script>
   <script src="screening-illustrations.js"></script>
   <script>
     const previousLessons = [
@@ -7679,7 +7681,8 @@
     const editions = new Map([
       ["reading-01", { data: memoryReadingSet }],
       // A complete replacement of edition 02 starts a separate progress history.
-      ["reading-02", { data: readingSet02, progressId: "reading-02-v2" }]
+      ["reading-02", { data: readingSet02, progressId: "reading-02-v2" }],
+      ["reading-03", { data: readingSet03 }]
     ]);
     const setId = new URLSearchParams(location.search).get("set");
     const { data: edition, progressId = setId } = editions.get(setId) ?? {};
