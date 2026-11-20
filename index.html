@@ -7605,7 +7605,7 @@
 }
   </script>
   <script src="reading-01.js"></script>
-  <script src="reading-02.js"></script>
+  <script src="reading-02-v2.js"></script>
   <script src="screening-illustrations.js"></script>
   <script>
     const previousLessons = [
@@ -7677,11 +7677,12 @@
 
     const readData = id => JSON.parse(document.getElementById(id).textContent);
     const editions = new Map([
-      ["reading-01", memoryReadingSet],
-      ["reading-02", readingSet02]
+      ["reading-01", { data: memoryReadingSet }],
+      // A complete replacement of edition 02 starts a separate progress history.
+      ["reading-02", { data: readingSet02, progressId: "reading-02-v2" }]
     ]);
     const setId = new URLSearchParams(location.search).get("set");
-    const edition = editions.get(setId);
+    const { data: edition, progressId = setId } = editions.get(setId) ?? {};
     const illustrationDirectory = edition ? setId : "screening";
     const screening = readData("screening-data");
     const bilingualText = edition
@@ -7705,7 +7706,7 @@
     const abbreviatedWords = abbreviations.map(escapePattern).join("|");
     const wordPattern = new RegExp(abbreviatedWords + "|[\\p{L}]+(?:['’\\-][\\p{L}]+)*", "giu");
     const sentencePattern = /[^.!?]+[.!?]+(?:["”'’])?|[^.!?]+$/g;
-    const storageKey = edition ? "zhongkao-reading-lab-" + setId : "zhongkao-reading-lab-v3";
+    const storageKey = edition ? "zhongkao-reading-lab-" + progressId : "zhongkao-reading-lab-v3";
     const sourceGlossary = Object.fromEntries(Object.entries(screening.forms).map(([surface, key]) => {
       const [display, meaning] = screening.dictionary[key];
       return [surface, [key, meaning, display]];
@@ -8467,9 +8468,9 @@
   </script>
   <script id="github-sync">
     // Older readers only keep records for lessons they know, so each reading set needs its own file.
-    const githubProgressFile = edition ? "progress-" + setId + ".json" : "progress.json";
+    const githubProgressFile = edition ? "progress-" + progressId + ".json" : "progress.json";
     const githubProgressUrl = "https://api.github.com/repos/Frank-Humingtao/zhongkao-reading-progress/contents/" + githubProgressFile;
-    const githubRecordsKey = edition ? "zhongkao-github-sync-records-" + setId + "-v1" : "zhongkao-github-sync-records-v1";
+    const githubRecordsKey = edition ? "zhongkao-github-sync-records-" + progressId + "-v1" : "zhongkao-github-sync-records-v1";
     const githubTokenKey = "zhongkao-github-sync-token-v1";
     const syncIndices = new Map(allReadings.map((lesson, index) => [lesson.id, index]));
     const syncWriter = globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2);
