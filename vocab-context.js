@@ -121,6 +121,7 @@ export function buildCatalog({
   const wordPattern = wordPatternFromDictionary(dictionary);
   const baseGlossary = glossaryFromScreening(screening);
   const bySource = new Map();
+  const titles = new Map();
 
   if (screening?.lessons) {
     const lessons = new Map();
@@ -128,6 +129,7 @@ export function buildCatalog({
       const targets = Object.fromEntries([...(lesson.primary || []), ...(lesson.review || [])].map(key => [key, []]));
       const sentences = (lesson.paragraphs || []).map(splitSentences);
       const chinese = sentences.map((paragraph, index) => alignedChinese(paragraph, bilingual?.[lesson.id]?.[index]));
+      titles.set("screening/" + lesson.id, lesson.title || "");
       lessons.set(lesson.id, buildIndexedLesson({
         ...lesson, targets, sentences, chinese
       }, baseGlossary, wordPattern, extraMeanings, dictionary));
@@ -154,6 +156,7 @@ export function buildCatalog({
     for (const story of edition.stories) {
       const sentences = (story.paragraphs || []).map(paragraph => paragraph.map(([english]) => english));
       const chinese = (story.paragraphs || []).map(paragraph => paragraph.map(([, translated]) => translated || ""));
+      titles.set(sourceId + "/" + story.id, story.title || "");
       lessons.set(story.id, buildIndexedLesson({
         id: story.id,
         title: story.title,
@@ -167,6 +170,9 @@ export function buildCatalog({
 
   return {
     sources: [...bySource.keys()],
+    title(sourceId, lessonId) {
+      return titles.get(sourceId + "/" + lessonId) || "";
+    },
     lookup(sourceId, lessonId, word, exampleIndex) {
       const terms = bySource.get(sourceId)?.get(lessonId);
       if (!terms || typeof word !== "string") return null;

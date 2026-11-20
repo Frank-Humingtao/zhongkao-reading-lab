@@ -2,8 +2,10 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>生词看板</title>
+  <meta name="theme-color" content="#f5f3ee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#131518" media="(prefers-color-scheme: dark)">
   <script id="theme-settings">
     const themeStorageKey = "zhongkao-reading-theme";
     const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
@@ -17,7 +19,11 @@
     function updateTheme() {
       const dark = preferredTheme === "dark" || (preferredTheme !== "light" && systemTheme.matches);
       document.documentElement.dataset.theme = dark ? "dark" : "light";
-      document.getElementById("dark-mode")?.setAttribute("aria-pressed", dark);
+      const toggle = document.getElementById("dark-mode");
+      if (toggle) {
+        toggle.setAttribute("aria-pressed", dark);
+        toggle.setAttribute("aria-label", dark ? "切换到浅色" : "切换到深色");
+      }
     }
 
     updateTheme();
@@ -32,196 +38,313 @@
       font-display: swap;
       unicode-range: U+2014, U+2018-2019, U+201C-201D, U+2026, U+3000-303F, U+3100-312F, U+31A0-31BF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF, U+20000-323AF;
     }
+
+    /* ---------- Tokens ---------- */
     :root {
       color-scheme: light;
-      --background: #edf2f7;
-      --paper: #fff;
-      --ink: #1e2e41;
-      --muted: #506377;
-      --control-fill: #e0e8f1;
-      --blue: #244d76;
-      --blue-soft: #e7f0fa;
-      --primary: #244d76;
-      --primary-hover: #183a5b;
-      --red: #a52738;
-      --red-soft: #ffeaed;
-      --overlay-shadow: #142f4b24;
-      --chinese-font: "Huiwen Zhengkai", "Microsoft YaHei UI", "PingFang SC", system-ui, sans-serif;
-      font-family: var(--chinese-font);
+      --bg: #f5f3ee;
+      --raised: #fffdf9;
+      --ink: #23262b;
+      --ink-2: #4b5058;
+      --muted: #8a8d93;
+      --hair: #e7e3da;
+      --fill: #ebe7de;
+      --fill-hover: #e2ddd2;
+      --accent: #b42a2a;
+      --accent-soft: #f6e1dc;
+      --ok: #3f7d5c;
+      --solid: #23262b;
+      --on-solid: #fffdf9;
+      --scrim: #1d1f2266;
+      --chinese: "Huiwen Zhengkai", "PingFang SC", "Microsoft YaHei UI", system-ui, sans-serif;
+      --english: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+      --gutter: clamp(18px, 5vw, 32px);
+      font-family: var(--chinese);
     }
 
     :root[data-theme="dark"] {
       color-scheme: dark;
-      --background: #131922;
-      --paper: #1d2734;
-      --ink: #e3eaf2;
-      --muted: #abbacf;
-      --control-fill: #293749;
-      --blue: #adcdf8;
-      --blue-soft: #30445f;
-      --primary: #345c85;
-      --primary-hover: #406b97;
-      --red: #ffb0bc;
-      --red-soft: #512c38;
-      --overlay-shadow: #0007;
+      --bg: #131518;
+      --raised: #1b1e22;
+      --ink: #ece8e1;
+      --ink-2: #c3beb5;
+      --muted: #8c9097;
+      --hair: #272b30;
+      --fill: #24282d;
+      --fill-hover: #2d3238;
+      --accent: #f08c84;
+      --accent-soft: #3b2427;
+      --ok: #8cc7a6;
+      --solid: #ece8e1;
+      --on-solid: #131518;
+      --scrim: #000a;
     }
 
+    /* ---------- Base ---------- */
     * { box-sizing: border-box; }
     [hidden] { display: none !important; }
-    body { margin: 0; background: var(--background); color: var(--ink); }
-    button, a.action { font: inherit; color: inherit; cursor: pointer; }
-    button:focus-visible, a:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
-    .shell { max-width: 1420px; margin: 0 auto; padding: 32px clamp(16px, 2.6vw, 36px) 56px; }
-    .masthead { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-    h1, h2, h3, p { margin: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-size: 17px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, p, ul { margin: 0; }
     h1, h2, h3 { font-weight: normal; }
-    h1 { font-size: clamp(1.55rem, 4vw, 2.1rem); }
-    h2 { font-size: 1.65rem; }
-    a.action { display: inline-block; text-decoration: none; }
-    .action {
-      border: 0; border-radius: 8px;
-      background: var(--control-fill); padding: 10px 15px; font-size: .9rem;
+    ul { padding: 0; list-style: none; }
+    a { color: inherit; }
+    button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; padding: 0; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap;
     }
-    .action:hover { background: var(--blue-soft); }
-    .primary { background: var(--primary); color: white; }
-    .primary:hover { background: var(--primary-hover); }
-    .theme-toggle[aria-pressed="true"] { background: var(--blue-soft); color: var(--blue); }
-    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-    .reading-materials { margin-top: 18px; }
-    .reading-materials summary { width: fit-content; padding-block: 4px; cursor: pointer; }
-    .reading-materials ul { display: grid; gap: 4px; margin: 6px 0 0; padding-inline-start: 1.25rem; }
-    .reading-materials a { color: var(--blue); text-underline-offset: .18em; }
-    .reading-materials a[aria-current="page"] { color: var(--ink); font-weight: 600; }
-    .feedback { margin-top: 10px; color: var(--blue); font-size: .88rem; line-height: 1.6; }
-    .feedback:empty { display: none; }
-    .surface {
-      background: var(--paper);
-      padding: clamp(18px, 3vw, 40px); min-width: 0; margin-top: 24px;
+    .icon { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+    .page {
+      max-width: 720px; margin: 0 auto;
+      padding: max(14px, env(safe-area-inset-top)) var(--gutter) calc(64px + env(safe-area-inset-bottom));
     }
-    .count-line { display: flex; align-items: baseline; gap: 12px; }
-    .count { color: var(--blue); font-size: 1.65rem; font-variant-numeric: tabular-nums; }
-    .empty {
-      display: grid; gap: 8px;
-      font-size: .93rem; padding: 19px 14px; background: var(--background);
-      border-radius: 7px; margin-top: 18px; color: var(--muted);
+
+    /* ---------- Top bar ---------- */
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 48px; }
+    .site-nav { display: flex; gap: 2px; min-width: 0; overflow-x: auto; scrollbar-width: none; margin-left: -9px; }
+    .site-nav::-webkit-scrollbar { display: none; }
+    .site-nav a {
+      flex: none; padding: 6px 9px; border-radius: 999px; text-decoration: none;
+      color: var(--muted); font-size: .88rem; white-space: nowrap;
     }
-    .demo-entry { color: var(--blue); width: fit-content; }
-    .demo-banner {
-      margin-bottom: 18px; padding: 12px 14px; border-radius: 7px;
-      background: var(--red-soft); color: var(--red); font-size: .95rem; line-height: 1.6;
+    .site-nav a:hover { color: var(--ink); }
+    .site-nav a[aria-current="page"] { background: var(--fill); color: var(--ink); }
+    .tools { display: flex; flex: none; margin-right: -6px; }
+    .icon-button {
+      position: relative; display: grid; place-items: center;
+      width: 38px; height: 38px; border-radius: 999px; color: var(--ink-2);
     }
-    .demo-banner a { color: var(--blue); margin-left: .6em; }
-    .day-block + .day-block { margin-top: 26px; }
-    .day-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
-    .day-head h3 { margin: 0; color: var(--blue); font-size: 1.05rem; }
-    .day-count { color: var(--muted); font-size: .84rem; margin-left: 8px; }
-    .day-copy { padding: 6px 12px; }
-    .day-feedback { margin: 0; }
-    .copy-text {
-      width: 100%; min-height: 5rem; margin-top: 8px; padding: 9px 11px; border: 0;
-      border-radius: 7px; background: var(--control-fill); color: var(--ink); font: inherit;
+    .icon-button:hover { background: var(--fill); color: var(--ink); }
+    .sync-dot {
+      position: absolute; top: 9px; right: 8px; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--ok); box-shadow: 0 0 0 2px var(--bg);
     }
-    .word-list { list-style: none; margin: 8px 0 0; padding: 0; }
-    .mark { padding: 12px 0; }
-    .mark + .mark { margin-top: 4px; }
-    .mark-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
-    .term { color: var(--red); font-weight: 700; font-size: 1.08rem; }
-    .sources { color: var(--muted); font-size: .86rem; }
-    .speak { padding: 6px 10px; }
-    .speak.speaking { background: var(--blue-soft); color: var(--blue); }
-    .speak-status { margin: 0; }
-    .detail { margin-top: 6px; }
-    .detail + .detail { margin-top: 12px; }
-    .detail-source { color: var(--muted); font-size: .82rem; }
-    .field-label { color: var(--muted); font-size: .82rem; }
-    .meaning { margin-top: 2px; line-height: 1.6; }
-    .example { margin-top: 2px; font: 1.02rem/1.55 Georgia, "Times New Roman", serif; }
-    .example mark { background: var(--red-soft); color: var(--red); }
-    .translation { margin-top: 2px; color: var(--muted); line-height: 1.6; }
-    .sync-dialog {
-      width: min(29rem, calc(100% - 28px)); padding: 20px; border: 0;
-      border-radius: 12px; background: var(--paper); color: var(--ink);
+    .theme-sun { display: none; }
+    :root[data-theme="dark"] .theme-sun { display: block; }
+    :root[data-theme="dark"] .theme-moon { display: none; }
+
+    /* ---------- Summary ---------- */
+    .summary { padding: 36px 0 24px; }
+    .summary h1 { font-size: .95rem; color: var(--muted); letter-spacing: .08em; }
+    .total { display: flex; align-items: baseline; gap: 10px; margin-top: 6px; }
+    .total-number {
+      font-family: var(--english); font-size: clamp(3rem, 14vw, 4.2rem); line-height: 1;
+      font-variant-numeric: lining-nums tabular-nums; letter-spacing: -.02em;
     }
-    .sync-dialog::backdrop { background: #13192299; }
-    .sync-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-    .sync-head h2 { font-size: 1.15rem; }
-    .sync-form { display: grid; gap: 10px; margin-top: 15px; }
-    .sync-form a { color: var(--blue); }
-    .sync-token {
-      width: 100%; padding: 9px 10px; border: 0; border-radius: 7px;
-      background: var(--control-fill); color: var(--ink); font: inherit;
+    .total-unit { color: var(--ink-2); font-size: 1.05rem; }
+    .status { margin-top: 10px; color: var(--muted); font-size: .88rem; }
+    .status:empty { display: none; }
+
+    .notice {
+      margin-bottom: 20px; padding: 12px 16px; border-radius: 14px;
+      background: var(--accent-soft); color: var(--accent); font-size: .92rem;
     }
-    .sync-token:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-    .sync-remember, .sync-status { font-size: .87rem; }
-    .sync-scope { color: var(--muted); font-size: .84rem; line-height: 1.6; }
-    .sync-status { margin-top: 12px; line-height: 1.55; }
-    .sync-status:empty { display: none; }
-    .sync-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    @media (max-width: 720px), (orientation: portrait) and (max-width: 1100px) {
-      body { background: var(--paper); }
-      .shell { max-width: 760px; padding: 15px clamp(13px, 4vw, 34px) 32px; }
-      .masthead { align-items: flex-start; flex-direction: column; gap: 10px; }
-      h1 { font-size: clamp(1.32rem, 5.4vw, 1.75rem); }
-      .toolbar .action { padding: 8px 9px; font-size: .82rem; white-space: nowrap; }
-      .surface { padding: 0; margin-top: 16px; }
+    .notice a { margin-left: .5em; }
+
+    /* ---------- Day picker ---------- */
+    .day-picker {
+      position: sticky; top: 0; z-index: 3;
+      display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;
+      margin-inline: calc(-1 * var(--gutter)); padding: 10px var(--gutter);
+      background: var(--bg);
+    }
+    .day-picker::-webkit-scrollbar { display: none; }
+    .chip {
+      flex: none; display: inline-flex; align-items: baseline; gap: 6px;
+      padding: 7px 14px; border-radius: 999px; background: var(--fill);
+      color: var(--ink-2); font-size: .92rem; white-space: nowrap;
+    }
+    .chip:hover { background: var(--fill-hover); }
+    .chip small { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
+    .chip[aria-pressed="true"] { background: var(--solid); color: var(--on-solid); }
+    .chip[aria-pressed="true"] small { color: inherit; opacity: .7; }
+
+    /* ---------- Days ---------- */
+    .day { padding-top: 28px; }
+    .day + .day { margin-top: 20px; }
+    .day-head { display: flex; align-items: center; gap: 12px; padding-bottom: 6px; }
+    .day-title { font-size: 1.3rem; }
+    .day-title .weekday { color: var(--muted); font-size: .95rem; margin-left: 8px; }
+    .day-count { color: var(--muted); font-size: .9rem; font-variant-numeric: tabular-nums; }
+    .copy {
+      margin-left: auto; display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 12px; border-radius: 999px; color: var(--ink-2); font-size: .9rem;
+    }
+    .copy:hover { background: var(--fill); color: var(--ink); }
+    .copy[data-done] { color: var(--ok); }
+    .copy .icon { width: 17px; height: 17px; }
+    .copy-fallback {
+      width: 100%; min-height: 6rem; margin: 6px 0 4px; padding: 12px 14px; border: 0; border-radius: 12px;
+      background: var(--fill); color: var(--ink); font: 1rem/1.5 var(--english); resize: vertical;
+    }
+
+    /* ---------- Word entries ---------- */
+    .entry { padding: 22px 0 24px; }
+    .entry + .entry { box-shadow: inset 0 1px var(--hair); }
+    .entry-head { display: flex; align-items: flex-start; gap: 12px; }
+    .entry-word { flex: 1; min-width: 0; }
+    .term {
+      display: block; font-family: var(--english); font-size: 1.6rem; line-height: 1.2;
+      color: var(--accent); overflow-wrap: anywhere;
+    }
+    .meaning { margin-top: 6px; color: var(--ink); font-size: 1.02rem; }
+    .meaning:empty { display: none; }
+    .speak {
+      flex: none; display: grid; place-items: center; width: 42px; height: 42px; margin-top: -2px;
+      border-radius: 999px; background: var(--fill); color: var(--ink-2);
+    }
+    .speak:hover { background: var(--fill-hover); color: var(--ink); }
+    .speak.speaking { background: var(--accent-soft); color: var(--accent); }
+    .speak-status { margin-top: 6px; color: var(--muted); font-size: .85rem; }
+    .speak-status:empty { display: none; }
+
+    .uses { margin-top: 16px; display: grid; gap: 16px; }
+    .use { padding-left: 14px; position: relative; }
+    .use::before {
+      content: ""; position: absolute; left: 0; top: .45em; bottom: .3em; width: 2px;
+      border-radius: 2px; background: var(--hair);
+    }
+    .use-source { color: var(--muted); font-size: .8rem; letter-spacing: .02em; }
+    .use-source .lesson { font-family: var(--english); font-style: italic; letter-spacing: 0; }
+    .use-meaning { margin-top: 2px; color: var(--ink-2); font-size: .92rem; }
+    .example { margin-top: 4px; font: 1.08rem/1.6 var(--english); color: var(--ink); }
+    .example mark { background: var(--accent-soft); color: var(--accent); border-radius: 4px; padding: 0 .12em; }
+    .translation { margin-top: 4px; color: var(--ink-2); font-size: .94rem; line-height: 1.65; }
+
+    /* ---------- Empty ---------- */
+    .empty { padding: 56px 0 24px; text-align: center; color: var(--muted); }
+    .empty-title { color: var(--ink); font-size: 1.15rem; }
+    .empty p + p { margin-top: 8px; font-size: .93rem; }
+    .empty a { color: var(--ink-2); }
+
+    /* ---------- Sync sheet ---------- */
+    .sheet {
+      width: min(28rem, calc(100% - 32px)); max-height: calc(100% - 32px);
+      padding: 24px; border: 0; border-radius: 22px;
+      background: var(--raised); color: var(--ink);
+      box-shadow: 0 24px 60px #0003;
+    }
+    .sheet::backdrop { background: var(--scrim); }
+    .sheet-head { display: flex; align-items: center; justify-content: space-between; }
+    .sheet-head h2 { font-size: 1.2rem; }
+    .sheet-head .icon-button { margin-right: -10px; }
+    .sheet-body { display: grid; gap: 14px; margin-top: 14px; }
+    .sheet-note { color: var(--ink-2); font-size: .92rem; }
+    .sheet-note a { color: var(--ink); }
+    .field {
+      width: 100%; padding: 12px 14px; border: 0; border-radius: 12px;
+      background: var(--fill); color: var(--ink); font: 1rem/1.4 ui-monospace, Menlo, monospace;
+    }
+    .check { display: flex; align-items: center; gap: 8px; color: var(--ink-2); font-size: .92rem; }
+    .check input { width: 18px; height: 18px; accent-color: var(--solid); }
+    .buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+    .button {
+      flex: 1; min-height: 46px; padding: 0 18px; border-radius: 999px;
+      background: var(--fill); color: var(--ink); font-size: .98rem;
+    }
+    .button:hover { background: var(--fill-hover); }
+    .button.solid { background: var(--solid); color: var(--on-solid); }
+    .button.solid:hover { opacity: .9; }
+    .sheet-status { color: var(--ink-2); font-size: .9rem; }
+    .sheet-status:empty { display: none; }
+
+    @media (max-width: 560px) {
+      body { font-size: 16px; }
+      .summary { padding-top: 28px; }
+      .term { font-size: 1.45rem; }
+      .sheet {
+        width: 100%; max-width: none; margin: auto 0 0; border-radius: 22px 22px 0 0;
+        padding-bottom: calc(24px + env(safe-area-inset-bottom));
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .chip, .icon-button, .speak, .copy, .button { transition: background-color .15s, color .15s; }
+      .sheet[open] { animation: rise .22s ease-out; }
+      @keyframes rise { from { transform: translateY(16px); } }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <header class="masthead">
-      <h1>生词看板</h1>
-      <div class="toolbar">
-        <button type="button" class="action theme-toggle" id="dark-mode" aria-pressed="false">深色模式</button>
-        <button type="button" class="action" id="open-sync" aria-haspopup="dialog">GitHub 同步</button>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.1 9.6 4.5 4.5 0 0 0 7 18.5Z"/></symbol>
+    <symbol id="i-speak" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5"/><path d="M15.5 8.5V6A1.5 1.5 0 0 0 14 4.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  </svg>
+
+  <div class="page">
+    <header class="topbar">
+      <nav class="site-nav" aria-label="阅读资料">
+        <a href="./">筛选短文</a>
+        <a href="./?set=reading-01">01</a>
+        <a href="./?set=reading-02">02</a>
+        <a href="./?set=reading-03">03</a>
+        <a href="./vocab.html" aria-current="page">生词</a>
+      </nav>
+      <div class="tools">
+        <button type="button" class="icon-button" id="dark-mode" aria-pressed="false" aria-label="切换到深色">
+          <svg class="icon theme-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <svg class="icon theme-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+        <button type="button" class="icon-button" id="open-sync" aria-haspopup="dialog" aria-label="GitHub 同步">
+          <svg class="icon" aria-hidden="true"><use href="#i-cloud"/></svg>
+          <span class="sync-dot" id="sync-dot" hidden></span>
+        </button>
       </div>
     </header>
-    <details class="reading-materials" open>
-      <summary>阅读资料</summary>
-      <nav aria-label="阅读资料">
-        <ul>
-          <li><a href="./">中考英语阅读标词</a></li>
-          <li><a href="./?set=reading-01">01 生词复现</a></li>
-          <li><a href="./?set=reading-02">02 生词复现</a></li>
-          <li><a href="./?set=reading-03">03 生词复现</a></li>
-          <li><a href="./vocab.html" aria-current="page">生词看板</a></li>
-        </ul>
-      </nav>
-    </details>
-    <p class="feedback" id="board-status" role="status"></p>
-    <main class="surface">
-      <p class="demo-banner" id="demo-banner" hidden>测试数据。这不是你的生词，只用于查看看板样式。<a href="vocab.html">返回我的生词</a></p>
-      <section aria-labelledby="daily-title">
-        <div class="count-line">
-          <h2 id="daily-title">按日新增</h2>
-          <p class="count" id="word-count">0</p>
-        </div>
-        <p class="empty" id="empty-note">
-          <span id="empty-text">这里还没有生词。请使用本站已有的 GitHub 同步，或在此浏览器中打开已保存的本地进度。</span>
-          <a class="demo-entry" id="demo-entry" href="vocab.html?demo=1">查看示例</a>
-        </p>
-        <div id="day-list"></div>
-      </section>
+
+    <section class="summary" aria-labelledby="board-title">
+      <h1 id="board-title">生词看板</h1>
+      <p class="total"><span class="total-number" id="word-count">0</span><span class="total-unit">个生词</span></p>
+      <p class="status" id="board-status" role="status"></p>
+    </section>
+
+    <main>
+      <p class="notice" id="demo-banner" hidden>这是示例数据，不是你的生词。<a href="vocab.html">返回我的生词</a></p>
+      <div class="day-picker" id="day-picker" role="toolbar" aria-label="按日期查看" hidden></div>
+      <div class="empty" id="empty-note" hidden>
+        <p class="empty-title">还没有生词</p>
+        <p id="empty-text"></p>
+        <p id="demo-entry"><a href="vocab.html?demo=1">看看示例</a></p>
+      </div>
+      <div id="day-list"></div>
     </main>
-    <dialog class="sync-dialog" id="sync-dialog" aria-labelledby="sync-heading">
-      <div class="sync-head">
-        <h2 id="sync-heading">GitHub 同步</h2>
-        <button type="button" class="action" id="close-sync">关闭</button>
-      </div>
-      <form class="sync-form" id="sync-form">
-        <a href="https://github.com/settings/personal-access-tokens/new?name=Zhongkao+Reading+Lab&amp;target_name=Frank-Humingtao&amp;contents=write" target="_blank" rel="noopener noreferrer">创建同步令牌</a>
-        <p class="sync-scope">只选 zhongkao-reading-progress，并给 Contents 读写权限。看板使用阅读页已经保存的令牌。</p>
-        <input class="sync-token" id="sync-token" type="password" aria-label="GitHub 同步令牌" placeholder="粘贴 github_pat_ 令牌" autocomplete="off" spellcheck="false" required>
-        <label class="sync-remember"><input id="remember-sync" type="checkbox"> 在此设备上记住令牌</label>
-        <button type="submit" class="action primary">连接并同步</button>
-      </form>
-      <div class="sync-actions" id="sync-actions" hidden>
-        <button type="button" class="action primary" id="sync-now">立即同步</button>
-        <button type="button" class="action" id="disconnect-sync">断开</button>
-      </div>
-      <p class="sync-status" id="sync-status" role="status"></p>
-    </dialog>
   </div>
+
+  <dialog class="sheet" id="sync-dialog" aria-labelledby="sync-heading">
+    <div class="sheet-head">
+      <h2 id="sync-heading">GitHub 同步</h2>
+      <button type="button" class="icon-button" id="close-sync" aria-label="关闭">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+    </div>
+    <form class="sheet-body" id="sync-form">
+      <p class="sheet-note">进度保存在私有仓库里。<a href="https://github.com/settings/personal-access-tokens/new?name=Zhongkao+Reading+Lab&amp;target_name=Frank-Humingtao&amp;contents=write" target="_blank" rel="noopener noreferrer">创建令牌</a>时只选 zhongkao-reading-progress，Contents 给读写权限。阅读页里保存过的令牌这里会直接用。</p>
+      <input class="field" id="sync-token" type="password" aria-label="GitHub 同步令牌" placeholder="github_pat_…" autocomplete="off" spellcheck="false" required>
+      <label class="check"><input id="remember-sync" type="checkbox"> 在这台设备上记住</label>
+      <div class="buttons"><button type="submit" class="button solid">连接并同步</button></div>
+    </form>
+    <div class="sheet-body" id="sync-actions" hidden>
+      <p class="sheet-note">已连接私有进度仓库。</p>
+      <div class="buttons">
+        <button type="button" class="button solid" id="sync-now">立即同步</button>
+        <button type="button" class="button" id="disconnect-sync">断开</button>
+      </div>
+    </div>
+    <p class="sheet-status" id="sync-status" role="status"></p>
+  </dialog>
+
   <script>
     document.getElementById("dark-mode").addEventListener("click", () => {
       preferredTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
@@ -232,6 +355,7 @@
         // Keep the selected theme for the current page.
       }
     });
+    updateTheme();
   </script>
   <script type="module" src="vocab-board.js"></script>
 </body>
