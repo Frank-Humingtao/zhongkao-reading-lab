@@ -1,0 +1,35 @@
+{
+  "imageWidth": 960,
+  "imageHeight": 640,
+  "derivedNamesFromSet": 4,
+  "notes": "Live reading sets only. progressId values are the localStorage and GitHub progress keys; do not change them. Image folders match the set id (images/reading-02 even when the script is reading-02-v3.js). Sets 01–03 keep the historical filename in illustration[0]. From set 04 on, the page loads images/<setId>/<storyId>.jpg and illustration is only the Chinese caption. Obsolete files reading-02.js, reading-02-v2.js, and reading-03.js are not illustration sources.",
+  "sets": [
+    {
+      "setId": "reading-01",
+      "script": "reading-01.js",
+      "exportName": "memoryReadingSet",
+      "progressId": "reading-01",
+      "imageDirectory": "reading-01",
+      "illustrationNames": "explicit",
+      "htmlEntry": "[\"reading-01\", { data: memoryReadingSet }]"
+    },
+    {
+      "setId": "reading-02",
+      "script": "reading-02-v3.js",
+      "exportName": "readingSet02",
+      "progressId": "reading-02-v3",
+      "imageDirectory": "reading-02",
+      "illustrationNames": "explicit",
+      "htmlEntry": "[\"reading-02\", { data: readingSet02, progressId: \"reading-02-v3\" }]"
+    },
+    {
+      "setId": "reading-03",
+      "script": "reading-03-v2.js",
+      "exportName": "readingSet03",
+      "progressId": "reading-03-v2",
+      "imageDirectory": "reading-03",
+      "illustrationNames": "explicit",
+      "htmlEntry": "[\"reading-03\", { data: readingSet03, progressId: \"reading-03-v2\" }]"
+    }
+  ]
+}

@@ -7609,6 +7609,7 @@
   <script src="reading-02-v3.js"></script>
   <script src="reading-03-v2.js"></script>
   <script src="screening-illustrations.js"></script>
+  <script src="illustrations/resolve-illustration.js"></script>
   <script>
     const previousLessons = [
       {
@@ -7678,6 +7679,8 @@
     ];
 
     const readData = id => JSON.parse(document.getElementById(id).textContent);
+    // Illustration files: sets 01–03 use the stored filename. Sets 04+ use
+    // images/<setId>/<storyId>.jpg via resolve-illustration.js. Do not change progressId.
     const editions = new Map([
       ["reading-01", { data: memoryReadingSet }],
       // A complete replacement of edition 02 starts a separate progress history.
@@ -7793,7 +7796,7 @@
         id: story.id,
         title: story.title,
         topic: story.topic,
-        illustration: story.illustration,
+        illustration: resolveStoryIllustration(story, setId),
         primary: [],
         targets: edition.words,
         sentences: story.paragraphs.map(paragraph => paragraph.map(([english]) => english))
@@ -7852,7 +7855,7 @@
       const editionNumber = setId.slice("reading-".length);
       document.title = byId("site-title").textContent = "初中阅读资料 " + editionNumber + "｜生词复现";
       byId("screening-material").removeAttribute("aria-current");
-      byId("reading-material-" + editionNumber).setAttribute("aria-current", "page");
+      byId("reading-material-" + editionNumber)?.setAttribute("aria-current", "page");
       byId("open-vocabulary").textContent = "重点词索引";
       byId("full-vocabulary-title").textContent = "重点词索引";
     }
@@ -8066,19 +8069,38 @@
       });
     });
 
+    // A missing JPEG hides itself. Sets 04+ can gain an image by dropping
+    // images/<set id>/<story id>.jpg into place, without editing the filename.
+    function showReadingIllustration(illustration) {
+      if (!illustration) {
+        readingIllustration.onerror = null;
+        readingIllustration.hidden = true;
+        readingIllustration.removeAttribute("src");
+        reader.classList.remove("illustrated");
+        return;
+      }
+      const [file, alt] = illustration;
+      const relative = "images/" + illustrationDirectory + "/" + file;
+      const alreadyFailed = readingIllustration.getAttribute("src") === relative
+        && readingIllustration.complete && readingIllustration.naturalWidth === 0;
+      readingIllustration.alt = alt;
+      readingIllustration.hidden = alreadyFailed;
+      reader.classList.toggle("illustrated", !alreadyFailed);
+      readingIllustration.onerror = () => {
+        if (readingIllustration.getAttribute("src") !== relative) return;
+        readingIllustration.hidden = true;
+        reader.classList.remove("illustrated");
+      };
+      if (readingIllustration.getAttribute("src") !== relative) readingIllustration.src = relative;
+    }
+
     function selectLesson(index, moveFocus = true) {
       if (index !== activeIndex) showingBilingual = false;
       activeIndex = index;
       highlightSentence();
       setView("reader");
       const lesson = readings[index];
-      reader.classList.toggle("illustrated", Boolean(lesson.illustration));
-      readingIllustration.hidden = !lesson.illustration;
-      if (lesson.illustration) {
-        const [file, alt] = lesson.illustration;
-        readingIllustration.alt = alt;
-        readingIllustration.src = "images/" + illustrationDirectory + "/" + file;
-      }
+      showReadingIllustration(lesson.illustration);
       visibleWords = new Map();
       title.replaceChildren(textParts(lesson.title, lesson));
       byId("translated-title").textContent = bilingualTitles[lesson.id];
