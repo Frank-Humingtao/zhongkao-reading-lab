@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-page="vocab">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -29,106 +29,12 @@
     updateTheme();
     systemTheme.addEventListener("change", updateTheme);
   </script>
+  <link rel="stylesheet" href="site.css">
   <style>
-    @font-face {
-      font-family: "Huiwen Zhengkai";
-      src: url("huiwen-zhengkai.woff2") format("woff2");
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      unicode-range: U+2014, U+2018-2019, U+201C-201D, U+2026, U+3000-303F, U+3100-312F, U+31A0-31BF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF, U+20000-323AF;
-    }
-
-    /* ---------- Tokens ---------- */
-    :root {
-      color-scheme: light;
-      --bg: #f5f3ee;
-      --raised: #fffdf9;
-      --ink: #23262b;
-      --ink-2: #4b5058;
-      --muted: #8a8d93;
-      --hair: #e7e3da;
-      --fill: #ebe7de;
-      --fill-hover: #e2ddd2;
-      --accent: #b42a2a;
-      --accent-soft: #f6e1dc;
-      --ok: #3f7d5c;
-      --solid: #23262b;
-      --on-solid: #fffdf9;
-      --scrim: #1d1f2266;
-      --chinese: "Huiwen Zhengkai", "PingFang SC", "Microsoft YaHei UI", system-ui, sans-serif;
-      --english: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
-      --gutter: clamp(18px, 5vw, 32px);
-      font-family: var(--chinese);
-    }
-
-    :root[data-theme="dark"] {
-      color-scheme: dark;
-      --bg: #131518;
-      --raised: #1b1e22;
-      --ink: #ece8e1;
-      --ink-2: #c3beb5;
-      --muted: #8c9097;
-      --hair: #272b30;
-      --fill: #24282d;
-      --fill-hover: #2d3238;
-      --accent: #f08c84;
-      --accent-soft: #3b2427;
-      --ok: #8cc7a6;
-      --solid: #ece8e1;
-      --on-solid: #131518;
-      --scrim: #000a;
-    }
-
-    /* ---------- Base ---------- */
-    * { box-sizing: border-box; }
-    [hidden] { display: none !important; }
-    html { -webkit-text-size-adjust: 100%; }
-    body {
-      margin: 0; background: var(--bg); color: var(--ink);
-      font-size: 17px; line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    h1, h2, h3, p, ul { margin: 0; }
-    h1, h2, h3 { font-weight: normal; }
-    ul { padding: 0; list-style: none; }
-    a { color: inherit; }
-    button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; padding: 0; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-    .visually-hidden {
-      position: absolute; width: 1px; height: 1px; overflow: hidden;
-      clip: rect(0 0 0 0); white-space: nowrap;
-    }
-    .icon { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-
     .page {
       max-width: 720px; margin: 0 auto;
       padding: max(14px, env(safe-area-inset-top)) var(--gutter) calc(64px + env(safe-area-inset-bottom));
     }
-
-    /* ---------- Top bar ---------- */
-    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 48px; }
-    .site-nav { display: flex; gap: 2px; min-width: 0; overflow-x: auto; scrollbar-width: none; margin-left: -9px; }
-    .site-nav::-webkit-scrollbar { display: none; }
-    .site-nav a {
-      flex: none; padding: 6px 9px; border-radius: 999px; text-decoration: none;
-      color: var(--muted); font-size: .88rem; white-space: nowrap;
-    }
-    .site-nav a:hover { color: var(--ink); }
-    .site-nav a[aria-current="page"] { background: var(--fill); color: var(--ink); }
-    .tools { display: flex; flex: none; margin-right: -6px; }
-    .icon-button {
-      position: relative; display: grid; place-items: center;
-      width: 38px; height: 38px; border-radius: 999px; color: var(--ink-2);
-    }
-    .icon-button:hover { background: var(--fill); color: var(--ink); }
-    .sync-dot {
-      position: absolute; top: 9px; right: 8px; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--ok); box-shadow: 0 0 0 2px var(--bg);
-    }
-    .theme-sun { display: none; }
-    :root[data-theme="dark"] .theme-sun { display: block; }
-    :root[data-theme="dark"] .theme-moon { display: none; }
 
     /* ---------- Summary ---------- */
     .summary { padding: 28px 0 22px; }
@@ -223,55 +129,16 @@
     .empty p + p { margin-top: 8px; font-size: .93rem; }
     .empty a { color: var(--ink-2); }
 
-    /* ---------- Sync sheet ---------- */
-    .sheet {
-      width: min(28rem, calc(100% - 32px)); max-height: calc(100% - 32px);
-      padding: 24px; border: 0; border-radius: 22px;
-      background: var(--raised); color: var(--ink);
-      box-shadow: 0 24px 60px #0003;
-    }
-    .sheet::backdrop { background: var(--scrim); }
-    .sheet-head { display: flex; align-items: center; justify-content: space-between; }
-    .sheet-head h2 { font-size: 1.2rem; }
-    .sheet-head .icon-button { margin-right: -10px; }
-    .sheet-body { display: grid; gap: 14px; margin-top: 14px; }
-    .sheet-note { color: var(--ink-2); font-size: .92rem; }
-    .sheet-note a { color: var(--ink); }
-    .field {
-      width: 100%; padding: 12px 14px; border: 0; border-radius: 12px;
-      background: var(--fill); color: var(--ink); font: 1rem/1.4 ui-monospace, Menlo, monospace;
-    }
-    .check-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .check-row a { color: var(--ink-2); font-size: .92rem; }
-    .check { display: flex; align-items: center; gap: 8px; color: var(--ink-2); font-size: .92rem; }
-    .check input { width: 18px; height: 18px; accent-color: var(--solid); }
-    .buttons { display: flex; gap: 10px; flex-wrap: wrap; }
-    .button {
-      flex: 1; min-height: 46px; padding: 0 18px; border-radius: 999px;
-      background: var(--fill); color: var(--ink); font-size: .98rem;
-    }
-    .button:hover { background: var(--fill-hover); }
-    .button.solid { background: var(--solid); color: var(--on-solid); }
-    .button.solid:hover { opacity: .9; }
-    .sheet-status { color: var(--ink-2); font-size: .9rem; }
-    .sheet-status:empty { display: none; }
-
     @media (max-width: 560px) {
-      body { font-size: 16px; }
-      .summary { padding-top: 28px; }
+      .summary { padding-top: 22px; }
       .term { font-size: 1.45rem; }
-      .sheet {
-        width: 100%; max-width: none; margin: auto 0 0; border-radius: 22px 22px 0 0;
-        padding-bottom: calc(24px + env(safe-area-inset-bottom));
-      }
     }
 
     @media (prefers-reduced-motion: no-preference) {
-      .chip, .icon-button, .speak, .copy, .button { transition: background-color .15s, color .15s; }
-      .sheet[open] { animation: rise .22s ease-out; }
-      @keyframes rise { from { transform: translateY(16px); } }
+      .chip, .speak, .copy { transition: background-color .15s, color .15s; }
     }
   </style>
+  <script src="site-nav.js" defer></script>
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -282,18 +149,19 @@
     <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5"/><path d="M15.5 8.5V6A1.5 1.5 0 0 0 14 4.5H6A1.5 1.5 0 0 0 4.5 6v8A1.5 1.5 0 0 0 6 15.5h2.5"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9.5 6 6 6-6"/></symbol>
   </svg>
 
   <div class="page">
     <header class="topbar">
-      <nav class="site-nav" aria-label="阅读资料">
-        <a href="./">筛选短文</a>
-        <a href="./?set=reading-01">01</a>
-        <a href="./?set=reading-02">02</a>
-        <a href="./?set=reading-03">03</a>
-        <a href="./vocab.html" aria-current="page">生词</a>
-      </nav>
+      <div class="switch" id="site-switch">
+        <button type="button" class="switch-button" aria-haspopup="true" aria-expanded="false" aria-controls="switch-menu">
+          <span class="switch-label">生词看板</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg>
+        </button>
+        <nav class="switch-menu" id="switch-menu" aria-label="阅读资料" hidden></nav>
+      </div>
       <div class="tools">
+        <a class="text-button" id="vocab-link" href="vocab.html" aria-current="page">生词</a>
         <button type="button" class="icon-button" id="dark-mode" aria-pressed="false" aria-label="切换到深色">
           <svg class="icon theme-moon" aria-hidden="true"><use href="#i-moon"/></svg>
           <svg class="icon theme-sun" aria-hidden="true"><use href="#i-sun"/></svg>
@@ -332,7 +200,7 @@
     <form class="sheet-body" id="sync-form">
       <input class="field" id="sync-token" type="password" aria-label="GitHub 同步令牌" placeholder="github_pat_…" autocomplete="off" spellcheck="false" required>
       <div class="check-row">
-        <label class="check"><input id="remember-sync" type="checkbox"> 记住令牌</label>
+        <label><input id="remember-sync" type="checkbox"> 记住令牌</label>
         <a href="https://github.com/settings/personal-access-tokens/new?name=Zhongkao+Reading+Lab&amp;target_name=Frank-Humingtao&amp;contents=write" target="_blank" rel="noopener noreferrer">创建令牌</a>
       </div>
       <div class="buttons"><button type="submit" class="button solid">连接并同步</button></div>

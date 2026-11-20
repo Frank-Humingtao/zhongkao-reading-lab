@@ -28,107 +28,14 @@
 
     updateTheme();
   </script>
+  <link rel="stylesheet" href="site.css">
   <style>
-    @font-face {
-      font-family: "Huiwen Zhengkai";
-      src: url("huiwen-zhengkai.woff2") format("woff2");
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      unicode-range: U+2014, U+2018-2019, U+201C-201D, U+2026, U+3000-303F, U+3100-312F, U+31A0-31BF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF, U+20000-323AF;
-    }
-
-    /* ---------- Tokens (shared with vocab.html) ---------- */
-    :root {
-      color-scheme: light;
-      --bg: #f5f3ee;
-      --raised: #fffdf9;
-      --ink: #23262b;
-      --ink-2: #4b5058;
-      --muted: #8a8d93;
-      --hair: #e7e3da;
-      --fill: #ebe7de;
-      --fill-hover: #e2ddd2;
-      --accent: #b42a2a;
-      --accent-soft: #f6e1dc;
-      --ok: #3f7d5c;
-      --solid: #23262b;
-      --on-solid: #fffdf9;
-      --scrim: #1d1f2266;
-      --shadow: 0 18px 50px #2a201422;
-      --tab-on: #fffdf9;
-      --chinese: "Huiwen Zhengkai", "PingFang SC", "Microsoft YaHei UI", system-ui, sans-serif;
-      --english: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
-      --gutter: clamp(18px, 5vw, 32px);
-      font-family: var(--chinese);
-    }
-
-    :root[data-theme="dark"] {
-      color-scheme: dark;
-      --bg: #131518;
-      --raised: #1b1e22;
-      --ink: #ece8e1;
-      --ink-2: #c3beb5;
-      --muted: #8c9097;
-      --hair: #272b30;
-      --fill: #24282d;
-      --fill-hover: #2d3238;
-      --accent: #f08c84;
-      --accent-soft: #3b2427;
-      --ok: #8cc7a6;
-      --solid: #ece8e1;
-      --on-solid: #131518;
-      --scrim: #000a;
-      --shadow: 0 18px 50px #0008;
-      --tab-on: #3a3f46;
-    }
-
-    /* ---------- Base ---------- */
-    * { box-sizing: border-box; }
-    [hidden] { display: none !important; }
-    html { -webkit-text-size-adjust: 100%; }
-    body {
-      margin: 0; background: var(--bg); color: var(--ink);
-      font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased;
-    }
-    h1, h2, h3, p { margin: 0; }
-    h1, h2, h3, th { font-weight: normal; }
-    a { color: inherit; }
-    button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; padding: 0; }
-    button:disabled { opacity: .4; cursor: default; }
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-    .visually-hidden {
-      position: absolute; width: 1px; height: 1px; overflow: hidden;
-      clip: rect(0 0 0 0); white-space: nowrap;
-    }
-    .icon { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-
     .shell {
       max-width: 1120px; margin: 0 auto;
       padding: max(14px, env(safe-area-inset-top)) var(--gutter) calc(64px + env(safe-area-inset-bottom));
     }
 
-    /* ---------- Top bar ---------- */
-    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 48px; }
-    .site-nav { display: flex; gap: 2px; min-width: 0; overflow-x: auto; scrollbar-width: none; margin-left: -9px; }
-    .site-nav::-webkit-scrollbar { display: none; }
-    .site-nav a {
-      flex: none; padding: 6px 9px; border-radius: 999px; text-decoration: none;
-      color: var(--muted); font-size: .88rem; white-space: nowrap;
-    }
-    .site-nav a:hover { color: var(--ink); }
-    .site-nav a[aria-current="page"] { background: var(--fill); color: var(--ink); }
-    .tools { display: flex; flex: none; margin-right: -6px; }
-    .icon-button {
-      position: relative; display: grid; place-items: center;
-      width: 38px; height: 38px; border-radius: 999px; color: var(--ink-2);
-    }
-    .icon-button:hover { background: var(--fill); color: var(--ink); }
-    .theme-sun { display: none; }
-    :root[data-theme="dark"] .theme-sun { display: block; }
-    :root[data-theme="dark"] .theme-moon { display: none; }
-
-    /* ---------- View bar: 文章 / 生词表 / 词汇表 + 中英 / 目录 ---------- */
+    /* ---------- View bar: 文章 / 词汇表 + 中英 / 目录 ---------- */
     .viewbar {
       position: sticky; top: 0; z-index: 5;
       display: flex; align-items: center; gap: 8px;
@@ -136,9 +43,7 @@
       background: var(--bg);
     }
     .tabs { display: flex; gap: 2px; padding: 3px; border-radius: 999px; background: var(--fill); min-width: 0; }
-    .tab {
-      padding: 6px 14px; border-radius: 999px; color: var(--ink-2); font-size: .92rem; white-space: nowrap;
-    }
+    .tab { padding: 6px 14px; border-radius: 999px; color: var(--ink-2); font-size: .92rem; white-space: nowrap; }
     .tab:hover { color: var(--ink); }
     .tab[aria-expanded="true"],
     .tabs:not(:has([aria-expanded="true"])) #open-reader {
@@ -172,8 +77,7 @@
       display: flex; align-items: baseline; gap: 10px; width: 100%; padding: 8px 12px;
       border-radius: 10px; text-align: left; font-size: .9rem; color: var(--ink-2);
     }
-    .directory-lesson:hover { background: var(--fill); color: var(--ink); }
-    .directory-lesson[aria-current="page"] { background: var(--fill); color: var(--ink); }
+    .directory-lesson:hover, .directory-lesson[aria-current="page"] { background: var(--fill); color: var(--ink); }
     .directory-number { flex: 0 0 1.6em; color: var(--muted); font-family: var(--english); font-variant-numeric: tabular-nums; }
     .directory-status { margin-left: auto; flex: 0 0 auto; color: var(--ok); }
     .surface { min-width: 0; max-width: 700px; }
@@ -194,10 +98,7 @@
     .passage { font: 1.22rem/1.85 var(--english); color: var(--ink); }
     .passage-block + .passage-block { margin-top: 1em; }
     .passage.bilingual .passage-block + .passage-block { margin-top: 1.5em; }
-    .translation {
-      display: none; margin-top: .5em; color: var(--ink-2);
-      font: .86em/1.8 var(--chinese);
-    }
+    .translation { display: none; margin-top: .5em; color: var(--ink-2); font: .86em/1.8 var(--chinese); }
     .passage.bilingual .translation { display: block; }
     .passage.bilingual .aligned-sentence.matched { background: var(--fill); border-radius: 4px; }
     .word {
@@ -215,9 +116,7 @@
       display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px;
       margin-top: 44px; padding-top: 20px; box-shadow: inset 0 1px var(--hair);
     }
-    .foot-button {
-      min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: .95rem; color: var(--ink-2);
-    }
+    .foot-button { min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: .95rem; color: var(--ink-2); }
     .foot-button:hover:not(:disabled) { background: var(--fill); color: var(--ink); }
     #previous { justify-self: start; }
     #finish-lesson { background: var(--fill); color: var(--ink); }
@@ -226,35 +125,15 @@
     #next { justify-self: end; background: var(--solid); color: var(--on-solid); }
     #next:hover { background: var(--solid); opacity: .9; }
 
-    /* ---------- 生词表 / 词汇表 ---------- */
-    #resume, #resume-vocabulary { display: none; }
-    .section-head { display: flex; justify-content: flex-end; gap: 4px; padding-top: 4px; }
+    /* ---------- 词汇表 ---------- */
+    #resume-vocabulary { display: none; }
+    .empty { padding: 48px 0; text-align: center; color: var(--muted); }
     .feedback { margin-top: 8px; color: var(--ok); font-size: .9rem; }
     .feedback:empty { display: none; }
-    .empty { padding: 48px 0; text-align: center; color: var(--muted); }
-    .copy-text, .vocab-search {
-      width: 100%; border: 0; border-radius: 12px; background: var(--fill); color: var(--ink); font: inherit;
+    .vocab-search {
+      width: 100%; margin-top: 14px; padding: 12px 16px; border: 0; border-radius: 12px;
+      background: var(--fill); color: var(--ink); font: inherit; font-size: 1rem;
     }
-    .copy-text { min-height: 7rem; margin-top: 12px; padding: 12px 14px; }
-    .table-scroll { margin-top: 12px; overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { text-align: left; vertical-align: top; padding: 14px 10px; }
-    th:first-child, td:first-child { padding-left: 0; }
-    th:last-child, td:last-child { padding-right: 0; }
-    thead th { color: var(--muted); font-size: .82rem; padding-block: 6px; }
-    tbody tr + tr { box-shadow: inset 0 1px var(--hair); }
-    td { line-height: 1.6; font-size: .95rem; }
-    .review-term { font: 1.15rem var(--english); color: var(--accent); white-space: nowrap; }
-    .example { font: 1.02rem/1.6 var(--english); min-width: 13em; }
-    .example mark { background: var(--accent-soft); color: var(--accent); border-radius: 4px; padding: 0 .1em; }
-    .undo { color: var(--muted); font-size: .88rem; white-space: nowrap; }
-    .undo:hover { color: var(--accent); }
-    .progress { margin-top: 36px; }
-    .progress summary { color: var(--muted); cursor: pointer; font-size: .92rem; width: fit-content; }
-    .progress .table-scroll { max-height: 360px; }
-    #progress-rows td { padding-block: 9px; }
-
-    .vocab-search { margin-top: 14px; padding: 12px 16px; font-size: 1rem; }
     .vocab-list { margin-top: 18px; }
     .vocab-letter { padding: 18px 0 4px; color: var(--muted); font: 1rem var(--english); }
     .vocab-entry { padding: 7px 0; font-size: .95rem; line-height: 1.65; }
@@ -270,43 +149,16 @@
       background: var(--raised); border-radius: 16px; box-shadow: var(--shadow);
     }
     .word-menu-title { padding: 8px 10px 6px; font-size: .85rem; color: var(--muted); overflow-wrap: anywhere; }
-    .word-menu-item {
-      display: block; width: 100%; padding: 9px 10px; border-radius: 10px; text-align: left; font-size: .92rem;
-    }
+    .word-menu-item { display: block; width: 100%; padding: 9px 10px; border-radius: 10px; text-align: left; font-size: .92rem; }
     .word-menu-item:hover, .word-menu-item:focus, .word-menu-item.speaking { background: var(--fill); }
     .word-menu .feedback { padding: 0 10px 6px; }
 
-    /* ---------- Sync sheet ---------- */
-    .sync-dialog {
-      width: min(28rem, calc(100% - 32px)); padding: 24px; border: 0; border-radius: 22px;
-      background: var(--raised); color: var(--ink); box-shadow: var(--shadow);
+    @media (min-width: 1000px) {
+      .reading-body::after { content: ""; display: block; clear: both; }
+      .reading-illustration { float: right; width: 46%; margin: .45em 0 18px 28px; border-radius: 14px; }
     }
-    .sync-dialog::backdrop { background: var(--scrim); }
-    .sync-head { display: flex; align-items: center; justify-content: space-between; }
-    .sync-head h2 { font-size: 1.2rem; }
-    .sync-head .icon-button { margin-right: -10px; }
-    .sync-form, .sync-actions { display: grid; gap: 14px; margin-top: 16px; }
-    .sync-actions { grid-template-columns: 1fr 1fr; }
-    .sync-token {
-      width: 100%; padding: 12px 14px; border: 0; border-radius: 12px;
-      background: var(--fill); color: var(--ink); font: 1rem/1.4 ui-monospace, Menlo, monospace;
-    }
-    .sync-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: .92rem; color: var(--ink-2); }
-    .sync-row label { display: flex; align-items: center; gap: 8px; }
-    .sync-row input { width: 18px; height: 18px; accent-color: var(--solid); }
-    .sync-row a { color: var(--ink-2); }
-    .button {
-      min-height: 46px; padding: 0 18px; border-radius: 999px; background: var(--fill); color: var(--ink); font-size: .98rem;
-    }
-    .button:hover { background: var(--fill-hover); }
-    .button.solid { background: var(--solid); color: var(--on-solid); }
-    .button.solid:hover { opacity: .9; }
-    .sync-status { margin-top: 14px; color: var(--ink-2); font-size: .9rem; }
-    .sync-status:empty { display: none; }
 
-    /* ---------- Phone ---------- */
     @media (max-width: 760px) {
-      body { font-size: 16px; }
       .layout { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 0; }
       .navigation { position: static; margin: 4px 0 18px; }
       .directory-entries { max-height: min(46vh, 360px); padding: 6px; border-radius: 16px; background: var(--raised); }
@@ -315,28 +167,16 @@
       .pill .pill-text { display: none; }
       .pill { padding: 8px; }
       .reading-body { margin-top: 20px; }
-      .reading-illustration { margin-inline: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter)); max-width: none; border-radius: 0; margin-bottom: 22px; }
+      .reading-illustration {
+        margin-inline: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter)); max-width: none;
+        border-radius: 0; margin-bottom: 22px;
+      }
       .passage { font-size: 1.16rem; line-height: 1.8; }
       .reading-foot { margin-top: 36px; }
       .foot-button { padding: 0 12px; }
-      .sync-dialog {
-        width: 100%; max-width: none; margin: auto 0 0; border-radius: 22px 22px 0 0;
-        padding-bottom: calc(24px + env(safe-area-inset-bottom));
-      }
-      #review-table { overflow: visible; }
-      #review-table table, #review-table tbody { display: block; }
-      #review-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-      #marked-rows tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 16px 0; }
-      #marked-rows td { min-width: 0; padding: 0; }
-      #marked-rows td:nth-child(2), #marked-rows td:nth-child(3) { grid-column: 1 / -1; }
-      #marked-rows td:nth-child(4) { grid-area: 1 / 2; }
-      #marked-rows .example { min-width: 0; }
-    }
-    @media (min-width: 1000px) {
-      .reading-body::after { content: ""; display: block; clear: both; }
-      .reading-illustration { float: right; width: 46%; margin: .45em 0 18px 28px; border-radius: 14px; }
     }
   </style>
+  <script src="site-nav.js" defer></script>
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -346,18 +186,19 @@
     <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01"/></symbol>
     <symbol id="i-translate" viewBox="0 0 24 24"><path d="M3.5 5.5h9M8 3.5v2M10.5 5.5c-.8 3.6-3.2 6.4-6.5 8M5.5 8.5c1 2.2 2.8 3.9 5 5"/><path d="m12.5 20.5 4-9 4 9M14 17.5h5"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9.5 6 6 6-6"/></symbol>
   </svg>
   <div class="shell">
     <header class="topbar">
       <h1 class="visually-hidden" id="site-title">中考英语阅读标词</h1>
-      <nav class="site-nav" aria-label="阅读资料">
-        <a href="./" id="screening-material" aria-current="page">筛选短文</a>
-        <a href="?set=reading-01" id="reading-material-01">01</a>
-        <a href="?set=reading-02" id="reading-material-02">02</a>
-        <a href="?set=reading-03" id="reading-material-03">03</a>
-        <a href="vocab.html" id="vocab-board">生词</a>
-      </nav>
+      <div class="switch" id="site-switch">
+        <button type="button" class="switch-button" aria-haspopup="true" aria-expanded="false" aria-controls="switch-menu">
+          <span class="switch-label">筛选短文</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg>
+        </button>
+        <nav class="switch-menu" id="switch-menu" aria-label="阅读资料" hidden></nav>
+      </div>
       <div class="tools">
+        <a class="text-button" id="vocab-link" href="vocab.html">生词</a>
         <button type="button" class="icon-button" id="dark-mode" aria-pressed="false" aria-label="切换到深色">
           <svg class="icon theme-moon" aria-hidden="true"><use href="#i-moon"/></svg>
           <svg class="icon theme-sun" aria-hidden="true"><use href="#i-sun"/></svg>
@@ -370,7 +211,6 @@
     <div class="viewbar">
       <div class="tabs" role="group" aria-label="视图">
         <button type="button" class="tab" id="open-reader">文章</button>
-        <button type="button" class="tab" id="open-review" aria-controls="review" aria-expanded="false">生词表</button>
         <button type="button" class="tab" id="open-vocabulary" aria-controls="full-vocabulary" aria-expanded="false">完整词汇表</button>
       </div>
       <div class="viewbar-end">
@@ -403,32 +243,6 @@
             <button type="button" class="foot-button" id="next"></button>
           </footer>
         </article>
-        <section id="review" aria-labelledby="review-title" hidden>
-          <div class="section-head">
-            <h2 class="visually-hidden" id="review-title" tabindex="-1">生词表</h2>
-            <button type="button" class="pill" id="copy">复制</button>
-            <button type="button" class="pill" id="export">下载 CSV</button>
-            <button type="button" id="resume" hidden>返回短文</button>
-          </div>
-          <p class="feedback" id="feedback" role="status"></p>
-          <textarea class="copy-text" id="copy-text" aria-label="可复制的生词表" readonly hidden></textarea>
-          <p class="empty" id="empty">还没有标记生词</p>
-          <div class="table-scroll" id="review-table" hidden>
-            <table role="table" aria-label="已标记生词">
-              <thead><tr><th scope="col">生词</th><th scope="col">词义</th><th scope="col">原句</th><th scope="col">操作</th></tr></thead>
-              <tbody id="marked-rows"></tbody>
-            </table>
-          </div>
-          <details class="progress">
-            <summary id="progress-summary">阅读进度</summary>
-            <div class="table-scroll">
-              <table aria-label="阅读进度">
-                <thead><tr><th scope="col">短文</th><th scope="col">状态</th></tr></thead>
-                <tbody id="progress-rows"></tbody>
-              </table>
-            </div>
-          </details>
-        </section>
         <section id="full-vocabulary" aria-labelledby="full-vocabulary-title" hidden>
           <h2 class="visually-hidden" id="full-vocabulary-title" tabindex="-1">完整词汇表</h2>
           <input class="vocab-search" type="search" id="vocab-search" aria-label="搜索词汇" placeholder="搜索">
@@ -438,26 +252,28 @@
         </section>
       </div>
     </main>
-    <dialog class="sync-dialog" id="sync-dialog" aria-labelledby="sync-heading">
-      <div class="sync-head">
+    <dialog class="sheet" id="sync-dialog" aria-labelledby="sync-heading">
+      <div class="sheet-head">
         <h2 id="sync-heading">GitHub 同步</h2>
         <button type="button" class="icon-button" id="close-sync" aria-label="关闭">
           <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
         </button>
       </div>
-      <form class="sync-form" id="sync-form">
-        <input class="sync-token" id="sync-token" type="password" aria-label="GitHub 同步令牌" placeholder="github_pat_…" autocomplete="off" spellcheck="false" required>
-        <div class="sync-row">
+      <form class="sheet-body" id="sync-form">
+        <input class="field" id="sync-token" type="password" aria-label="GitHub 同步令牌" placeholder="github_pat_…" autocomplete="off" spellcheck="false" required>
+        <div class="check-row">
           <label><input id="remember-sync" type="checkbox"> 记住令牌</label>
           <a href="https://github.com/settings/personal-access-tokens/new?name=Zhongkao+Reading+Lab&amp;target_name=Frank-Humingtao&amp;contents=write" target="_blank" rel="noopener noreferrer">创建令牌</a>
         </div>
-        <button type="submit" class="button solid">连接并同步</button>
+        <div class="buttons"><button type="submit" class="button solid">连接并同步</button></div>
       </form>
-      <div class="sync-actions" id="sync-actions" hidden>
-        <button type="button" class="button solid" id="sync-now">立即同步</button>
-        <button type="button" class="button" id="disconnect-sync">断开</button>
+      <div class="sheet-body" id="sync-actions" hidden>
+        <div class="buttons">
+          <button type="button" class="button solid" id="sync-now">立即同步</button>
+          <button type="button" class="button" id="disconnect-sync">断开</button>
+        </div>
       </div>
-      <p class="sync-status" id="sync-status" role="status"></p>
+      <p class="sheet-status" id="sync-status" role="status"></p>
     </dialog>
     <div class="word-menu" id="word-menu" role="dialog" aria-label="出现篇目" hidden></div>
   </div>
@@ -7896,14 +7712,11 @@
     if (edition) {
       const editionNumber = setId.slice("reading-".length);
       document.title = byId("site-title").textContent = "初中阅读资料 " + editionNumber + "｜生词复现";
-      byId("screening-material").removeAttribute("aria-current");
-      byId("reading-material-" + editionNumber).setAttribute("aria-current", "page");
       byId("open-vocabulary").textContent = "重点词索引";
       byId("full-vocabulary-title").textContent = "重点词索引";
     }
     const workspace = byId("workspace");
     const reader = byId("reader");
-    const review = byId("review");
     const vocabulary = byId("full-vocabulary");
     const title = byId("reading-title");
     const passage = byId("passage");
@@ -7940,7 +7753,6 @@
         if (index === activeIndex && currentView === "reader") item.setAttribute("aria-current", "page");
         else item.removeAttribute("aria-current");
       });
-      byId("progress-summary").textContent = "阅读进度 " + finished.size + " / " + readings.length;
       const done = finished.has(readings[activeIndex].id);
       byId("finish-lesson").textContent = done ? "取消已读" : "标为已读";
       byId("finish-lesson").setAttribute("aria-pressed", done);
@@ -7975,9 +7787,7 @@
       }
       currentView = view;
       reader.hidden = view !== "reader";
-      review.hidden = view !== "review";
       vocabulary.hidden = view !== "vocabulary";
-      byId("open-review").setAttribute("aria-expanded", view === "review");
       byId("open-vocabulary").setAttribute("aria-expanded", view === "vocabulary");
       updateProgress();
     }
@@ -8160,7 +7970,7 @@
       wordContainers.forEach(container => { container.querySelector(".word").tabIndex = 0; });
       showActiveDirectoryEntry();
       byId("previous").disabled = index === 0;
-      byId("next").textContent = index < readings.length - 1 ? "下一篇" : "查看生词表";
+      byId("next").textContent = index < readings.length - 1 ? "下一篇" : "去生词看板";
       if (moveFocus) {
         title.focus();
         saveProgress();
@@ -8358,88 +8168,6 @@
       byId("full-vocabulary-title").focus();
     }
 
-    function reviewEntries() {
-      return allReadings.flatMap((lesson, index) => [...marks[index]].map(([key, exampleIndex]) => {
-        const { display, meaning, examples } = lesson.terms.get(key);
-        const topic = index < readings.length ? lesson.topic : "上一版 · " + lesson.topic;
-        return { index, topic, key, display, meaning, example: examples[exampleIndex] };
-      }));
-    }
-
-    function appendCell(row, text) {
-      const cell = row.insertCell();
-      cell.textContent = text;
-      return cell;
-    }
-
-    function renderReview() {
-      const entries = reviewEntries();
-      byId("empty").hidden = entries.length > 0;
-      byId("review-table").hidden = entries.length === 0;
-      byId("copy").disabled = entries.length === 0;
-      byId("export").disabled = entries.length === 0;
-      byId("marked-rows").replaceChildren(...entries.map(entry => {
-        const row = document.createElement("tr");
-        const term = appendCell(row, "");
-        const word = document.createElement(articleLocations.has(entry.key) ? "button" : "span");
-        word.textContent = entry.display;
-        word.className = "review-term";
-        word.lang = "en";
-        if (articleLocations.has(entry.key)) {
-          word.type = "button";
-          word.classList.add("term-button");
-          word.dataset.wordKey = entry.key;
-          word.setAttribute("aria-haspopup", "dialog");
-          word.addEventListener("click", () => openWordMenu(entry.key, word));
-        }
-        term.append(word);
-        appendCell(row, entry.meaning || "—");
-        const example = appendCell(row, "");
-        example.lang = "en";
-        example.className = "example";
-        example.title = entry.topic;
-        const highlight = document.createElement("mark");
-        highlight.textContent = entry.example.text;
-        example.append(
-          entry.example.sentence.slice(0, entry.example.offset),
-          highlight,
-          entry.example.sentence.slice(entry.example.offset + entry.example.text.length)
-        );
-        const undo = document.createElement("button");
-        undo.type = "button";
-        undo.className = "undo";
-        undo.textContent = "取消";
-        undo.setAttribute("aria-label", "取消标记 " + entry.display);
-        undo.addEventListener("click", () => {
-          marks[entry.index].delete(entry.key);
-          saveProgress();
-          renderReview();
-          byId("review-title").focus({ preventScroll: true });
-        });
-        appendCell(row, "").append(undo);
-        return row;
-      }));
-      byId("progress-rows").replaceChildren(...readings.map((lesson, index) => {
-        const row = document.createElement("tr");
-        appendCell(row, (index + 1) + " " + lesson.topic);
-        appendCell(row, finished.has(lesson.id) ? "已读" : "未读");
-        return row;
-      }));
-      byId("copy-text").hidden = true;
-      byId("feedback").textContent = "";
-    }
-
-    function openReview() {
-      setView("review");
-      renderReview();
-      byId("review-title").focus();
-    }
-
-    function tableRows() {
-      return [["生词", "词义", "原句", "短文"], ...reviewEntries().map(entry =>
-        [entry.display, entry.meaning, entry.example.sentence, entry.topic]
-      )];
-    }
 
     byId("dark-mode").addEventListener("click", () => {
       preferredTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
@@ -8453,10 +8181,6 @@
     systemTheme.addEventListener("change", updateTheme);
     updateTheme();
 
-    byId("open-review").addEventListener("click", () => {
-      if (currentView === "review") selectLesson(activeIndex);
-      else openReview();
-    });
     byId("open-vocabulary").addEventListener("click", () => {
       if (currentView === "vocabulary") selectLesson(activeIndex);
       else openVocabulary();
@@ -8473,7 +8197,6 @@
       showingBilingual = !showingBilingual;
       updateBilingual();
     });
-    byId("resume").addEventListener("click", () => selectLesson(activeIndex));
     byId("open-reader").addEventListener("click", () => {
       if (currentView !== "reader") selectLesson(activeIndex);
     });
@@ -8489,36 +8212,8 @@
     });
     byId("next").addEventListener("click", () => {
       if (activeIndex + 1 < readings.length) selectLesson(activeIndex + 1);
-      else openReview();
+      else location.href = "vocab.html";
     });
-    byId("copy").addEventListener("click", async () => {
-      const text = tableRows().map(row => row.join("\t")).join("\n");
-      const fallback = byId("copy-text");
-      try {
-        await navigator.clipboard.writeText(text);
-        fallback.hidden = true;
-        byId("feedback").textContent = "已复制";
-      } catch {
-        fallback.hidden = false;
-        fallback.value = text;
-        fallback.focus();
-        fallback.select();
-        byId("feedback").textContent = "按 Ctrl+C 复制";
-      }
-    });
-    byId("export").addEventListener("click", () => {
-      const quote = value => '"' + value.replaceAll('"', '""') + '"';
-      const csv = tableRows().map(row => row.map(quote).join(",")).join("\r\n");
-      const url = URL.createObjectURL(new Blob(["\uFEFF", csv], { type: "text/csv;charset=utf-8" }));
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "中考英语生词表.csv";
-      document.body.append(link);
-      link.click();
-      link.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-    });
-
     updateDirectory();
     selectLesson(activeIndex, false);
   </script>
@@ -8646,7 +8341,6 @@
         }
         renderInlineGlosses();
         updateProgress();
-        if (currentView === "review") renderReview();
       }
       lastReadingFields = readingFields();
       writeLocalProgress();

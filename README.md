@@ -14,3 +14,7 @@ node scripts/daily-words.mjs --progress-dir ../zhongkao-reading-progress
 ```
 
 Run the tests with `node --test vocab.test.mjs`.
+
+## Adding a reading set
+
+Add the set to the `editions` map in `index.html` (as before) and one line to `READING_SETS` in `site-nav.js`; the set switcher on every page picks it up. Shared styles live in `site.css`.
