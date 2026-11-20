@@ -8,8 +8,10 @@ import {
   currentMarks,
   decodeGithubContent,
   decodeRecords,
+  demoSources,
   emptyNote,
   hasVocabPayload,
+  isDemoSearch,
   mergeRecords,
   shanghaiDateKey
 } from "./vocab-board.js";
@@ -190,12 +192,38 @@ test("visitors with no token and no stored progress get the empty note", () => {
   assert.equal(hasVocabPayload(null, { "mark/read-01/quill": [NOV_20, "writer", null] }), true);
 });
 
+test("demo preview is labeled fixture data and does not keep a cleared mark", () => {
+  assert.equal(isDemoSearch("?demo=1"), true);
+  assert.equal(isDemoSearch(""), false);
+  assert.equal(isDemoSearch("?set=reading-02"), false);
+  const state = aggregateVocab(demoSources());
+  assert.equal(state.count, state.words.length);
+  assert.equal(state.words.some(word => word.word === "dustnote"), false);
+  const sharedEarly = state.words.find(word => word.word === "paperfox");
+  assert.deepEqual(sharedEarly.sources, ["标词", "01"]);
+  assert.equal(sharedEarly.firstTimestamp, 0);
+  const sharedDay = state.words.find(word => word.word === "riverbell");
+  assert.deepEqual(sharedDay.sources, ["02 v2", "02 v3"]);
+  assert.equal(shanghaiDateKey(sharedDay.firstTimestamp), "2026-11-18");
+  assert.deepEqual(state.days.map(day => day.label), [
+    "2026年11月20日", "2026年11月19日", "2026年11月18日", PRESYNC_LABEL
+  ]);
+  assert.deepEqual(state.days[0].words.map(word => word.word), ["cloudmint", "velvetkey"]);
+  assert.deepEqual(state.days.at(-1).words.map(word => word.word), ["glowbug", "paperfox"]);
+  const labels = new Set(state.words.flatMap(word => word.sources));
+  for (const label of ["标词", "01", "02 v2", "02 v3", "03"]) assert.equal(labels.has(label), true);
+  assert.equal(state.words.map(word => word.word).join(","), "cloudmint,glowbug,moonpear,paperfox,riverbell,velvetkey");
+});
+
 test("the public page does not ship tokens or progress contents", () => {
   const page = readFileSync("vocab.html", "utf8");
   const script = readFileSync("vocab-board.js", "utf8");
   const bundle = page + script;
   assert.doesNotMatch(bundle, /github_pat_[A-Za-z0-9_]{8}/);
-  assert.doesNotMatch(bundle, /"mark\/[a-z0-9-]+\/[a-z]/);
+  assert.doesNotMatch(page, /glowbug|paperfox|riverbell|cloudmint|velvetkey|dustnote/);
+  assert.match(page, /vocab\.html\?demo=1/);
+  assert.match(page, /查看示例/);
+  assert.match(page, /测试数据/);
   assert.equal(bundle.includes("progress-reading-02-v2.json"), true);
   const index = readFileSync("index.html", "utf8");
   assert.match(index, /href="vocab\.html"/);

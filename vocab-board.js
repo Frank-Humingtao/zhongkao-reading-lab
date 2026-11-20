@@ -1,6 +1,6 @@
 // Aggregates private reading marks for the 生词 board.
 // Reads localStorage and, when a token is already saved, the private progress repo.
-// Never embed word lists, marks, or tokens in this file.
+// The demo preview below is fictional and stays in memory. It is never stored or synced.
 
 export const TOKEN_KEY = "zhongkao-github-sync-token-v1";
 export const PROGRESS_API = "https://api.github.com/repos/Frank-Humingtao/zhongkao-reading-progress/contents/";
@@ -217,6 +217,59 @@ export function hasVocabPayload(progress, records) {
   ));
 }
 
+export function isDemoSearch(search) {
+  return new URLSearchParams(search).get("demo") === "1";
+}
+
+// Fictional preview only. These words are not reading progress.
+export function demoSources() {
+  const nov18 = Date.parse("2026-11-17T16:00:00.000Z");
+  const nov19 = Date.parse("2026-11-18T16:00:00.000Z");
+  const nov20 = Date.parse("2026-11-19T16:00:00.000Z");
+  const writer = "demo";
+  return [
+    {
+      label: "标词",
+      progress: null,
+      records: {
+        "mark/preview/glowbug": [0, writer, 1],
+        "mark/preview/paperfox": [0, writer, 0],
+        "mark/preview/dustnote": [nov20, writer, null]
+      }
+    },
+    {
+      label: "01",
+      progress: null,
+      records: {
+        "mark/preview/paperfox": [nov20, writer, 1],
+        "mark/preview/moonpear": [nov19, writer, 2]
+      }
+    },
+    {
+      label: "02 v2",
+      progress: null,
+      records: {
+        "mark/preview/riverbell": [nov18, writer, 0]
+      }
+    },
+    {
+      label: "02 v3",
+      progress: null,
+      records: {
+        "mark/preview/riverbell": [nov20, writer, 1],
+        "mark/preview/cloudmint": [nov20, writer, 0]
+      }
+    },
+    {
+      label: "03",
+      progress: null,
+      records: {
+        "mark/preview/velvetkey": [nov20, writer, 1]
+      }
+    }
+  ];
+}
+
 export function emptyNote({ syncing, hasToken, hasStoredPayload }) {
   if (syncing) return SYNCING_NOTE;
   if (!hasToken && !hasStoredPayload) return VISITOR_NOTE;
@@ -234,6 +287,7 @@ function readJson(key) {
 }
 
 function boot() {
+  const demoMode = isDemoSearch(location.search);
   const recordOverlays = new Map();
   let githubToken = "";
   let syncing = false;
@@ -245,6 +299,9 @@ function boot() {
   const dayList = document.getElementById("day-list");
   const daily = document.getElementById("daily");
   const empty = document.getElementById("empty-note");
+  const emptyText = document.getElementById("empty-text");
+  const demoEntry = document.getElementById("demo-entry");
+  const demoBanner = document.getElementById("demo-banner");
   const count = document.getElementById("word-count");
 
   try {
@@ -265,6 +322,7 @@ function boot() {
   }
 
   function rememberRecords(source, records) {
+    if (demoMode) return;
     recordOverlays.set(source.recordsKey, records);
     try {
       localStorage.setItem(source.recordsKey, JSON.stringify(Object.fromEntries(records)));
@@ -306,13 +364,15 @@ function boot() {
   }
 
   function render() {
-    const state = aggregateVocab(loadSources());
+    const state = aggregateVocab(demoMode ? demoSources() : loadSources());
     count.textContent = String(state.count);
     wordList.replaceChildren(...renderWordItems(state.words));
     wordList.hidden = state.count === 0;
-    empty.hidden = state.count !== 0;
-    if (state.count === 0) {
-      empty.textContent = emptyNote({ syncing, hasToken: Boolean(githubToken), hasStoredPayload: hasStoredPayload() });
+    empty.hidden = demoMode || state.count !== 0;
+    demoBanner.hidden = !demoMode;
+    if (demoEntry) demoEntry.hidden = demoMode || state.count !== 0;
+    if (!demoMode && state.count === 0 && emptyText) {
+      emptyText.textContent = emptyNote({ syncing, hasToken: Boolean(githubToken), hasStoredPayload: hasStoredPayload() });
     }
     daily.hidden = state.days.length === 0;
     dayList.replaceChildren(...state.days.map(day => {
@@ -404,7 +464,7 @@ function boot() {
   }
 
   function requestSync() {
-    if (!githubToken) return;
+    if (demoMode || !githubToken) return;
     if (!syncTask) {
       syncTask = syncAll().finally(() => {
         syncTask = null;
@@ -437,7 +497,8 @@ function boot() {
     }
     field.value = "";
     showConnection();
-    requestSync();
+    if (demoMode) setStatus("示例预览不会写入或同步进度。");
+    else requestSync();
   });
   document.getElementById("sync-now").addEventListener("click", () => requestSync());
   document.getElementById("disconnect-sync").addEventListener("click", () => {
@@ -459,7 +520,8 @@ function boot() {
     if (document.visibilityState === "visible") requestSync();
   });
   showConnection();
-  if (githubToken) requestSync();
+  if (demoMode) render();
+  else if (githubToken) requestSync();
   else render();
 }
 
