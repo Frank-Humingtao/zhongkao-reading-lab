@@ -63,9 +63,9 @@ export const VOCAB_SOURCES = [
   }
 ];
 
-const VISITOR_NOTE = "在文章里点一下生词，它变红后就会出现在这里。已经在别的设备上标过？点右上角的云朵连接同步。";
-const EMPTY_NOTE = "现在没有标着的生词。";
-const SYNCING_NOTE = "正在从 GitHub 读取进度…";
+const VISITOR_NOTE = "还没有生词";
+const EMPTY_NOTE = "还没有生词";
+const SYNCING_NOTE = "正在同步…";
 
 export function decodeRecords(raw) {
   if (!raw || typeof raw !== "object" || Array.isArray(raw)) return new Map();

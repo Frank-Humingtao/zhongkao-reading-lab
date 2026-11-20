@@ -131,9 +131,8 @@
     :root[data-theme="dark"] .theme-moon { display: none; }
 
     /* ---------- Summary ---------- */
-    .summary { padding: 36px 0 24px; }
-    .summary h1 { font-size: .95rem; color: var(--muted); letter-spacing: .08em; }
-    .total { display: flex; align-items: baseline; gap: 10px; margin-top: 6px; }
+    .summary { padding: 28px 0 22px; }
+    .total { display: flex; align-items: baseline; gap: 10px; }
     .total-number {
       font-family: var(--english); font-size: clamp(3rem, 14vw, 4.2rem); line-height: 1;
       font-variant-numeric: lining-nums tabular-nums; letter-spacing: -.02em;
@@ -242,6 +241,8 @@
       width: 100%; padding: 12px 14px; border: 0; border-radius: 12px;
       background: var(--fill); color: var(--ink); font: 1rem/1.4 ui-monospace, Menlo, monospace;
     }
+    .check-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .check-row a { color: var(--ink-2); font-size: .92rem; }
     .check { display: flex; align-items: center; gap: 8px; color: var(--ink-2); font-size: .92rem; }
     .check input { width: 18px; height: 18px; accent-color: var(--solid); }
     .buttons { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -305,7 +306,7 @@
     </header>
 
     <section class="summary" aria-labelledby="board-title">
-      <h1 id="board-title">生词看板</h1>
+      <h1 class="visually-hidden" id="board-title">生词看板</h1>
       <p class="total"><span class="total-number" id="word-count">0</span><span class="total-unit">个生词</span></p>
       <p class="status" id="board-status" role="status"></p>
     </section>
@@ -314,8 +315,7 @@
       <p class="notice" id="demo-banner" hidden>这是示例数据，不是你的生词。<a href="vocab.html">返回我的生词</a></p>
       <div class="day-picker" id="day-picker" role="toolbar" aria-label="按日期查看" hidden></div>
       <div class="empty" id="empty-note" hidden>
-        <p class="empty-title">还没有生词</p>
-        <p id="empty-text"></p>
+        <p class="empty-title" id="empty-text"></p>
         <p id="demo-entry"><a href="vocab.html?demo=1">看看示例</a></p>
       </div>
       <div id="day-list"></div>
@@ -330,13 +330,14 @@
       </button>
     </div>
     <form class="sheet-body" id="sync-form">
-      <p class="sheet-note">进度保存在私有仓库里。<a href="https://github.com/settings/personal-access-tokens/new?name=Zhongkao+Reading+Lab&amp;target_name=Frank-Humingtao&amp;contents=write" target="_blank" rel="noopener noreferrer">创建令牌</a>时只选 zhongkao-reading-progress，Contents 给读写权限。阅读页里保存过的令牌这里会直接用。</p>
       <input class="field" id="sync-token" type="password" aria-label="GitHub 同步令牌" placeholder="github_pat_…" autocomplete="off" spellcheck="false" required>
-      <label class="check"><input id="remember-sync" type="checkbox"> 在这台设备上记住</label>
+      <div class="check-row">
+        <label class="check"><input id="remember-sync" type="checkbox"> 记住令牌</label>
+        <a href="https://github.com/settings/personal-access-tokens/new?name=Zhongkao+Reading+Lab&amp;target_name=Frank-Humingtao&amp;contents=write" target="_blank" rel="noopener noreferrer">创建令牌</a>
+      </div>
       <div class="buttons"><button type="submit" class="button solid">连接并同步</button></div>
     </form>
     <div class="sheet-body" id="sync-actions" hidden>
-      <p class="sheet-note">已连接私有进度仓库。</p>
       <div class="buttons">
         <button type="button" class="button solid" id="sync-now">立即同步</button>
         <button type="button" class="button" id="disconnect-sync">断开</button>

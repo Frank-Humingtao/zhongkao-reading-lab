@@ -187,10 +187,10 @@ test("github file bytes decode without keeping invalid records", () => {
 });
 
 test("visitors with no token and no stored progress get the empty note", () => {
-  assert.match(emptyNote({ syncing: false, hasToken: false, hasStoredPayload: false }), /同步/);
   assert.match(emptyNote({ syncing: false, hasToken: false, hasStoredPayload: false }), /生词/);
-  assert.equal(emptyNote({ syncing: false, hasToken: true, hasStoredPayload: false }), "现在没有标着的生词。");
-  assert.match(emptyNote({ syncing: true, hasToken: true, hasStoredPayload: false }), /正在从 GitHub/);
+  assert.match(emptyNote({ syncing: false, hasToken: false, hasStoredPayload: false }), /生词/);
+  assert.equal(emptyNote({ syncing: false, hasToken: true, hasStoredPayload: false }), "还没有生词");
+  assert.match(emptyNote({ syncing: true, hasToken: true, hasStoredPayload: false }), /正在同步/);
   assert.equal(hasVocabPayload({ marks: { "read-01": [] }, active: "read-01", finished: [] }, {}), false);
   assert.equal(hasVocabPayload(null, null), false);
   assert.equal(hasVocabPayload({ marks: { "read-01": [["quill", 0]] } }, {}), true);

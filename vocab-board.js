@@ -76,7 +76,7 @@ function icon(name) {
 
 // "presync" stays 更早; real days read as 今天 / 昨天 / 11月18日 with a weekday.
 function dayNames(key, now = Date.now()) {
-  if (key === "presync") return { short: "更早", long: "更早", weekday: "同步前标的词" };
+  if (key === "presync") return { short: "更早", long: "更早", weekday: "" };
   const [year, month, day] = key.split("-").map(Number);
   const weekday = WEEKDAYS[new Date(Date.UTC(year, month - 1, day)).getUTCDay()];
   const date = month + "月" + day + "日";

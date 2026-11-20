@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>中考英语阅读标词</title>
+  <meta name="theme-color" content="#f5f3ee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#131518" media="(prefers-color-scheme: dark)">
   <script id="theme-settings">
     const themeStorageKey = "zhongkao-reading-theme";
     const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
@@ -17,7 +19,11 @@
     function updateTheme() {
       const dark = preferredTheme === "dark" || (preferredTheme !== "light" && systemTheme.matches);
       document.documentElement.dataset.theme = dark ? "dark" : "light";
-      document.getElementById("dark-mode")?.setAttribute("aria-pressed", dark);
+      const toggle = document.getElementById("dark-mode");
+      if (toggle) {
+        toggle.setAttribute("aria-pressed", dark);
+        toggle.setAttribute("aria-label", dark ? "切换到浅色" : "切换到深色");
+      }
     }
 
     updateTheme();
@@ -31,316 +37,354 @@
       font-display: swap;
       unicode-range: U+2014, U+2018-2019, U+201C-201D, U+2026, U+3000-303F, U+3100-312F, U+31A0-31BF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF, U+20000-323AF;
     }
+
+    /* ---------- Tokens (shared with vocab.html) ---------- */
     :root {
       color-scheme: light;
-      --background: #edf2f7;
-      --paper: #fff;
-      --ink: #1e2e41;
-      --muted: #506377;
-      --control-fill: #e0e8f1;
-      --blue: #244d76;
-      --blue-soft: #e7f0fa;
-      --primary: #244d76;
-      --primary-hover: #183a5b;
-      --red: #a52738;
-      --red-soft: #ffeaed;
-      --read: #2d6958;
-      --translation-ink: #40566e;
-      --located-ring: #527ead;
-      --overlay-shadow: #142f4b24;
-      --chinese-font: "Huiwen Zhengkai";
-      --translation-font: var(--chinese-font), "SimSun", "宋体", "Songti SC", serif;
-      font-family: var(--chinese-font), "Microsoft YaHei UI", "PingFang SC", system-ui, sans-serif;
+      --bg: #f5f3ee;
+      --raised: #fffdf9;
+      --ink: #23262b;
+      --ink-2: #4b5058;
+      --muted: #8a8d93;
+      --hair: #e7e3da;
+      --fill: #ebe7de;
+      --fill-hover: #e2ddd2;
+      --accent: #b42a2a;
+      --accent-soft: #f6e1dc;
+      --ok: #3f7d5c;
+      --solid: #23262b;
+      --on-solid: #fffdf9;
+      --scrim: #1d1f2266;
+      --shadow: 0 18px 50px #2a201422;
+      --tab-on: #fffdf9;
+      --chinese: "Huiwen Zhengkai", "PingFang SC", "Microsoft YaHei UI", system-ui, sans-serif;
+      --english: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+      --gutter: clamp(18px, 5vw, 32px);
+      font-family: var(--chinese);
     }
 
     :root[data-theme="dark"] {
       color-scheme: dark;
-      --background: #131922;
-      --paper: #1d2734;
-      --ink: #e3eaf2;
-      --muted: #abbacf;
-      --control-fill: #293749;
-      --blue: #adcdf8;
-      --blue-soft: #30445f;
-      --primary: #345c85;
-      --primary-hover: #406b97;
-      --red: #ffb0bc;
-      --red-soft: #512c38;
-      --read: #a4d4bf;
-      --translation-ink: #c6d4e7;
-      --located-ring: #91b8ee;
-      --overlay-shadow: #0007;
+      --bg: #131518;
+      --raised: #1b1e22;
+      --ink: #ece8e1;
+      --ink-2: #c3beb5;
+      --muted: #8c9097;
+      --hair: #272b30;
+      --fill: #24282d;
+      --fill-hover: #2d3238;
+      --accent: #f08c84;
+      --accent-soft: #3b2427;
+      --ok: #8cc7a6;
+      --solid: #ece8e1;
+      --on-solid: #131518;
+      --scrim: #000a;
+      --shadow: 0 18px 50px #0008;
+      --tab-on: #3a3f46;
     }
 
+    /* ---------- Base ---------- */
     * { box-sizing: border-box; }
     [hidden] { display: none !important; }
-    body { margin: 0; background: var(--background); color: var(--ink); }
-    button { font: inherit; color: inherit; cursor: pointer; }
-    button:focus-visible, a.action:focus-visible, .reading-materials :is(summary, a):focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
-    button:disabled { opacity: .55; cursor: default; }
-    .shell { max-width: 1420px; margin: 0 auto; padding: 32px clamp(16px, 2.6vw, 36px) 56px; }
-    .masthead {
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 20px;
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased;
     }
     h1, h2, h3, p { margin: 0; }
     h1, h2, h3, th { font-weight: normal; }
-    h1 { font-size: clamp(1.55rem, 4vw, 2.1rem); }
-    a.action { display: inline-block; text-decoration: none; color: inherit; }
-    .action {
-      border: 0; border-radius: 8px;
-      background: var(--control-fill); padding: 10px 15px; font-size: .9rem;
+    a { color: inherit; }
+    button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; padding: 0; }
+    button:disabled { opacity: .4; cursor: default; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap;
     }
-    .action:hover:not(:disabled) { background: var(--blue-soft); }
-    .reading-materials { margin-top: 18px; }
-    .reading-materials summary { width: fit-content; padding-block: 4px; cursor: pointer; }
-    .reading-materials ul { display: grid; gap: 4px; margin: 6px 0 0; padding-inline-start: 1.25rem; }
-    .reading-materials a { color: var(--blue); text-underline-offset: .18em; }
-    .reading-materials a[aria-current="page"] { color: var(--ink); font-weight: 600; }
-    .primary { background: var(--primary); color: white; }
-    .primary:hover:not(:disabled) { background: var(--primary-hover); }
-    .theme-toggle[aria-pressed="true"] { background: var(--blue-soft); color: var(--blue); }
-    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .icon { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+    .shell {
+      max-width: 1120px; margin: 0 auto;
+      padding: max(14px, env(safe-area-inset-top)) var(--gutter) calc(64px + env(safe-area-inset-bottom));
+    }
+
+    /* ---------- Top bar ---------- */
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 48px; }
+    .site-nav { display: flex; gap: 2px; min-width: 0; overflow-x: auto; scrollbar-width: none; margin-left: -9px; }
+    .site-nav::-webkit-scrollbar { display: none; }
+    .site-nav a {
+      flex: none; padding: 6px 9px; border-radius: 999px; text-decoration: none;
+      color: var(--muted); font-size: .88rem; white-space: nowrap;
+    }
+    .site-nav a:hover { color: var(--ink); }
+    .site-nav a[aria-current="page"] { background: var(--fill); color: var(--ink); }
+    .tools { display: flex; flex: none; margin-right: -6px; }
+    .icon-button {
+      position: relative; display: grid; place-items: center;
+      width: 38px; height: 38px; border-radius: 999px; color: var(--ink-2);
+    }
+    .icon-button:hover { background: var(--fill); color: var(--ink); }
+    .theme-sun { display: none; }
+    :root[data-theme="dark"] .theme-sun { display: block; }
+    :root[data-theme="dark"] .theme-moon { display: none; }
+
+    /* ---------- View bar: 文章 / 生词表 / 词汇表 + 中英 / 目录 ---------- */
+    .viewbar {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; align-items: center; gap: 8px;
+      margin: 10px calc(-1 * var(--gutter)) 0; padding: 10px var(--gutter);
+      background: var(--bg);
+    }
+    .tabs { display: flex; gap: 2px; padding: 3px; border-radius: 999px; background: var(--fill); min-width: 0; }
+    .tab {
+      padding: 6px 14px; border-radius: 999px; color: var(--ink-2); font-size: .92rem; white-space: nowrap;
+    }
+    .tab:hover { color: var(--ink); }
+    .tab[aria-expanded="true"],
+    .tabs:not(:has([aria-expanded="true"])) #open-reader {
+      background: var(--tab-on); color: var(--ink); box-shadow: 0 1px 3px #0000001a;
+    }
+    .viewbar-end { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 12px; border-radius: 999px; color: var(--ink-2); font-size: .92rem; white-space: nowrap;
+    }
+    .pill:hover { background: var(--fill); color: var(--ink); }
+    .pill[aria-pressed="true"] { background: var(--solid); color: var(--on-solid); }
+    .pill .icon { width: 18px; height: 18px; }
+    body:has(#reader[hidden]) #toggle-bilingual { display: none; }
+    .storage-error { margin-top: 8px; color: var(--accent); font-size: .9rem; }
+
+    /* ---------- Layout ---------- */
     .layout {
-      --directory-width: clamp(166px, 16.5vw, 228px);
-      display: grid; grid-template-columns: var(--directory-width) minmax(0, 1fr);
-      align-items: start; gap: clamp(10px, 1.55vw, 22px); margin-top: 24px;
+      display: grid; grid-template-columns: 220px minmax(0, 1fr);
+      align-items: start; gap: clamp(24px, 4vw, 56px); margin-top: 18px;
     }
-    .layout.directory-closed { --directory-width: 42px; }
-    .navigation { position: sticky; top: 16px; min-width: 0; }
-    .directory-toggle {
-      display: flex; justify-content: space-between; align-items: center;
-      width: 100%; gap: 8px; padding: 8px 10px;
-    }
-    .directory-closed .directory-toggle { justify-content: center; }
-    .directory-closed .directory-text { display: none; }
-    .directory-arrow { color: var(--blue); font-size: 1.15rem; line-height: 1; }
+    .layout.directory-closed { grid-template-columns: minmax(0, 1fr); }
+    .navigation { position: sticky; top: 70px; min-width: 0; }
+    .directory-closed .navigation { display: none; }
     .directory-entries {
-      position: relative; max-height: min(66vh, 720px); overflow: auto;
-      display: grid; gap: 2px; margin-top: 8px; padding: 2px 4px 6px;
+      max-height: calc(100vh - 100px); overflow: auto; display: grid; gap: 1px;
       scrollbar-width: none; overscroll-behavior: contain;
     }
     .directory-entries::-webkit-scrollbar { display: none; }
     .directory-lesson {
-      display: flex; align-items: baseline; gap: 7px; width: 100%; padding: 7px 6px;
-      border: 0; border-radius: 4px; background: transparent; text-align: left; font-size: .85rem;
+      display: flex; align-items: baseline; gap: 10px; width: 100%; padding: 8px 12px;
+      border-radius: 10px; text-align: left; font-size: .9rem; color: var(--ink-2);
     }
-    .directory-lesson:hover, .directory-lesson[aria-current="page"] { background: var(--blue-soft); }
-    .directory-lesson[aria-current="page"] { color: var(--blue); }
-    .directory-number { flex: 0 0 1.45em; color: var(--muted); font-variant-numeric: tabular-nums; }
-    .directory-status { margin-left: auto; flex: 0 0 auto; color: var(--read); }
-    .surface {
-      background: var(--paper);
-      padding: clamp(18px, 3vw, 40px); min-width: 0;
-    }
+    .directory-lesson:hover { background: var(--fill); color: var(--ink); }
+    .directory-lesson[aria-current="page"] { background: var(--fill); color: var(--ink); }
+    .directory-number { flex: 0 0 1.6em; color: var(--muted); font-family: var(--english); font-variant-numeric: tabular-nums; }
+    .directory-status { margin-left: auto; flex: 0 0 auto; color: var(--ok); }
+    .surface { min-width: 0; max-width: 700px; }
+    .directory-closed .surface { margin-inline: auto; }
+
+    /* ---------- Article ---------- */
+    .reading-head { padding-top: 8px; }
     .reading-title {
-      font-family: Georgia, "Times New Roman", serif; font-weight: normal;
-      font-size: clamp(1.85rem, 4.2vw, 3.15rem); line-height: 1.15;
+      font-family: var(--english); font-size: clamp(1.9rem, 5vw, 2.6rem); line-height: 1.18;
+      letter-spacing: -.01em; outline: none;
     }
-    .reading-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 9px; }
-    .translated-title {
-      margin-top: 8px; color: var(--blue); font-size: clamp(1.5rem, 3.4vw, 2.55rem);
-      font-family: var(--translation-font);
-    }
-    .bilingual-toggle { padding: 5px 9px; white-space: nowrap; }
-    .bilingual-toggle[aria-pressed="true"] { background: var(--blue-soft); color: var(--blue); }
-    .passage {
-      margin-top: 19px; font: clamp(1.16rem, 2.12vw, 1.48rem)/1.78 Georgia, "Times New Roman", serif;
-      max-width: 66ch;
-    }
-    #reader.illustrated { container-type: inline-size; }
-    .illustrated .reading-body {
-      display: grid; align-items: start; gap: 16px; margin-top: 16px;
-    }
-    .illustrated .reading-body .passage { margin-top: 0; }
+    .translated-title { margin-top: 8px; color: var(--ink-2); font-size: clamp(1.15rem, 3vw, 1.4rem); }
+    .reading-body { margin-top: 26px; }
     .reading-illustration {
-      display: block; width: 100%; max-width: 32rem; height: auto;
-      aspect-ratio: 3 / 2; object-fit: contain; border-radius: 8px;
-      justify-self: center; background: var(--control-fill);
+      display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover;
+      border-radius: 16px; background: var(--fill); margin-bottom: 28px;
     }
-    @container (min-width: 42rem) {
-      .illustrated .reading-body {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 42%);
-        column-gap: clamp(18px, 3.5cqw, 30px);
-      }
-      .reading-illustration { grid-column: 2; grid-row: 1; max-width: 36rem; }
-      .illustrated .reading-body .passage { grid-column: 1; grid-row: 1; }
-    }
-    .passage-block + .passage-block { margin-top: .85em; }
-    .passage.bilingual .passage-block + .passage-block { margin-top: 1.2em; }
+    .passage { font: 1.22rem/1.85 var(--english); color: var(--ink); }
+    .passage-block + .passage-block { margin-top: 1em; }
+    .passage.bilingual .passage-block + .passage-block { margin-top: 1.5em; }
     .translation {
-      display: none; margin-top: .48em; color: var(--translation-ink);
-      font-family: var(--translation-font);
+      display: none; margin-top: .5em; color: var(--ink-2);
+      font: .86em/1.8 var(--chinese);
     }
     .passage.bilingual .translation { display: block; }
-    .passage.bilingual .aligned-sentence.matched { background: var(--blue-soft); border-radius: 3px; }
+    .passage.bilingual .aligned-sentence.matched { background: var(--fill); border-radius: 4px; }
     .word {
-      display: inline; background: transparent; border: 0; border-radius: 3px;
-      font: inherit; letter-spacing: inherit; line-height: inherit; padding: 0;
+      display: inline; border-radius: 4px; font: inherit; letter-spacing: inherit; line-height: inherit;
       text-align: inherit; -webkit-tap-highlight-color: transparent;
     }
     @media (hover: hover) {
-      .word:hover { text-decoration: underline; text-underline-offset: .16em; }
+      .word:hover { background: var(--fill); }
     }
-    .word[aria-pressed="true"] {
-      color: var(--red); background: var(--red-soft);
-      text-decoration: underline; text-decoration-thickness: .065em; text-underline-offset: .17em;
-    }
-    .inline-gloss {
-      color: var(--translation-ink); font-family: var(--translation-font);
-      font-size: .78em; font-weight: normal; overflow-wrap: anywhere;
-    }
-    .word.located { outline: 2px solid var(--located-ring); outline-offset: 2px; }
+    .word[aria-pressed="true"] { color: var(--accent); background: var(--accent-soft); }
+    .inline-gloss { color: var(--muted); font: .7em var(--chinese); overflow-wrap: anywhere; margin-left: .15em; }
+    .word.located { outline: 2px solid var(--accent); outline-offset: 2px; }
+
     .reading-foot {
-      display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center;
-      gap: 7px; margin-top: 26px;
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px;
+      margin-top: 44px; padding-top: 20px; box-shadow: inset 0 1px var(--hair);
     }
-    .term-button, .entry-word {
-      padding: 0; border: 0; background: transparent; text-align: left; color: var(--blue);
+    .foot-button {
+      min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: .95rem; color: var(--ink-2);
     }
-    .term-button:hover, .entry-word:hover { text-decoration: underline; }
-    .review-title { font-size: 1.65rem; }
-    .review-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .foot-button:hover:not(:disabled) { background: var(--fill); color: var(--ink); }
+    #previous { justify-self: start; }
+    #finish-lesson { background: var(--fill); color: var(--ink); }
+    #finish-lesson:hover { background: var(--fill-hover); }
+    #finish-lesson[aria-pressed="true"] { background: none; color: var(--ok); }
+    #next { justify-self: end; background: var(--solid); color: var(--on-solid); }
+    #next:hover { background: var(--solid); opacity: .9; }
+
+    /* ---------- 生词表 / 词汇表 ---------- */
+    #resume, #resume-vocabulary { display: none; }
+    .section-head { display: flex; justify-content: flex-end; gap: 4px; padding-top: 4px; }
+    .feedback { margin-top: 8px; color: var(--ok); font-size: .9rem; }
     .feedback:empty { display: none; }
-    .feedback { margin-top: 10px; color: var(--blue); font-size: .88rem; line-height: 1.6; }
-    .empty {
-      font-size: .93rem; padding: 19px 14px; background: var(--background);
-      border-radius: 7px; margin-top: 18px; color: var(--muted);
+    .empty { padding: 48px 0; text-align: center; color: var(--muted); }
+    .copy-text, .vocab-search {
+      width: 100%; border: 0; border-radius: 12px; background: var(--fill); color: var(--ink); font: inherit;
     }
-    .table-scroll { margin-top: 16px; overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
-    caption { text-align: left; font-size: 1rem; padding-bottom: 8px; }
-    th, td { text-align: left; padding: 9px 10px; vertical-align: top; }
-    thead th { color: var(--muted); font-size: .83rem; }
-    td { line-height: 1.55; }
-    td:first-child { padding-left: 10px; }
-    .review-term { color: var(--red); font-weight: 700; }
-    .example { font: 1.02rem/1.5 Georgia, "Times New Roman", serif; min-width: 13em; }
-    .example mark { background: var(--red-soft); color: var(--red); }
-    .undo { background: transparent; border: none; color: var(--blue); padding: 1px 4px; white-space: nowrap; }
-    .undo:hover { text-decoration: underline; }
-    .progress { margin-top: 26px; }
-    .progress summary { color: var(--blue); cursor: pointer; font-size: .92rem; }
-    .progress .table-scroll { max-height: 350px; }
-    .copy-text {
-      width: 100%; min-height: 7rem; margin-top: 12px; padding: 9px 11px; border: 0;
-      border-radius: 7px; background: var(--control-fill); color: var(--ink); font: inherit;
-    }
-    .vocab-tools { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 14px; }
-    .vocab-search {
-      max-width: 100%; width: 21rem; padding: 9px 11px; border: 0;
-      border-radius: 7px; color: var(--ink); background: var(--control-fill); font: inherit; font-size: .9rem;
-    }
-    .vocab-search:focus-visible, .copy-text:focus-visible, .sync-token:focus-visible {
-      outline: 2px solid var(--blue); outline-offset: 2px;
-    }
-    .sync-dialog {
-      width: min(29rem, calc(100% - 28px)); padding: 20px; border: 0;
-      border-radius: 12px; background: var(--paper); color: var(--ink);
-    }
-    .sync-dialog::backdrop { background: #13192299; }
-    .sync-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-    .sync-head h2 { font-size: 1.15rem; }
-    .sync-form { display: grid; gap: 10px; margin-top: 15px; }
-    .sync-form a { color: var(--blue); }
-    .sync-token {
-      width: 100%; padding: 9px 10px; border: 0; border-radius: 7px;
-      background: var(--control-fill); color: var(--ink); font: inherit;
-    }
-    .sync-remember, .sync-status { font-size: .87rem; }
-    .sync-scope { color: var(--muted); font-size: .84rem; line-height: 1.6; }
-    .sync-status { margin-top: 12px; line-height: 1.55; }
-    .sync-status:empty { display: none; }
-    .sync-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .vocab-list { margin-top: 16px; }
-    .vocab-letter { margin-bottom: 4px; color: var(--blue); font-size: 1rem; font-weight: bold; }
-    .vocab-letter-group + .vocab-letter-group { margin-top: 17px; }
-    .vocab-entry {
-      padding: 6px 0; font-size: .89rem; line-height: 1.65;
-    }
+    .copy-text { min-height: 7rem; margin-top: 12px; padding: 12px 14px; }
+    .table-scroll { margin-top: 12px; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; vertical-align: top; padding: 14px 10px; }
+    th:first-child, td:first-child { padding-left: 0; }
+    th:last-child, td:last-child { padding-right: 0; }
+    thead th { color: var(--muted); font-size: .82rem; padding-block: 6px; }
+    tbody tr + tr { box-shadow: inset 0 1px var(--hair); }
+    td { line-height: 1.6; font-size: .95rem; }
+    .review-term { font: 1.15rem var(--english); color: var(--accent); white-space: nowrap; }
+    .example { font: 1.02rem/1.6 var(--english); min-width: 13em; }
+    .example mark { background: var(--accent-soft); color: var(--accent); border-radius: 4px; padding: 0 .1em; }
+    .undo { color: var(--muted); font-size: .88rem; white-space: nowrap; }
+    .undo:hover { color: var(--accent); }
+    .progress { margin-top: 36px; }
+    .progress summary { color: var(--muted); cursor: pointer; font-size: .92rem; width: fit-content; }
+    .progress .table-scroll { max-height: 360px; }
+    #progress-rows td { padding-block: 9px; }
+
+    .vocab-search { margin-top: 14px; padding: 12px 16px; font-size: 1rem; }
+    .vocab-list { margin-top: 18px; }
+    .vocab-letter { padding: 18px 0 4px; color: var(--muted); font: 1rem var(--english); }
+    .vocab-entry { padding: 7px 0; font-size: .95rem; line-height: 1.65; }
     .vocab-entry p { min-width: 0; overflow-wrap: anywhere; }
-    .entry-word { font: 600 1.08rem Georgia, "Times New Roman", serif; }
+    .term-button, .entry-word { text-align: left; color: var(--ink); }
+    .term-button:hover, .entry-word:hover { color: var(--accent); }
+    .entry-word { font: 1.1rem var(--english); margin-right: .4em; }
+
+    /* ---------- Word menu ---------- */
     .word-menu {
       position: fixed; z-index: 50; width: min(300px, calc(100vw - 16px)); max-height: min(460px, 65vh);
-      overflow-y: auto; overscroll-behavior: contain; padding: 7px;
-      background: var(--paper); border-radius: 9px;
-      box-shadow: 0 8px 25px var(--overlay-shadow);
+      overflow-y: auto; overscroll-behavior: contain; padding: 6px;
+      background: var(--raised); border-radius: 16px; box-shadow: var(--shadow);
     }
-    .word-menu-title { padding: 6px 8px 9px; font-size: .88rem; overflow-wrap: anywhere; color: var(--muted); }
+    .word-menu-title { padding: 8px 10px 6px; font-size: .85rem; color: var(--muted); overflow-wrap: anywhere; }
     .word-menu-item {
-      display: block; width: 100%; padding: 8px; border: 0; border-radius: 4px;
-      background: transparent; text-align: left; font-size: .88rem;
+      display: block; width: 100%; padding: 9px 10px; border-radius: 10px; text-align: left; font-size: .92rem;
     }
-    .word-menu-item:hover, .word-menu-item:focus, .word-menu-item.speaking { background: var(--blue-soft); }
-    .word-menu .feedback:empty { margin: 0; }
-    @media (max-width: 720px), (orientation: portrait) and (max-width: 1100px) {
-      body { background: var(--paper); }
-      .shell { max-width: 760px; padding: 15px clamp(13px, 4vw, 34px) 32px; }
-      .masthead { align-items: flex-start; flex-direction: column; gap: 10px; }
-      h1 { font-size: clamp(1.32rem, 5.4vw, 1.75rem); }
-      .toolbar { column-gap: 6px; row-gap: 7px; }
-      .toolbar .action { padding: 8px 9px; font-size: .82rem; white-space: nowrap; }
-      .layout { grid-template-columns: minmax(0, 1fr); gap: 15px; margin-top: 13px; }
-      .navigation { position: static; }
-      .directory-toggle { min-height: 38px; }
-      .directory-arrow { transform: rotate(90deg); }
-      .directory-entries { max-height: min(41vh, 320px); }
-      .directory-lesson { min-height: 36px; align-items: center; }
-      .directory-closed .directory-toggle { justify-content: space-between; }
-      .directory-closed .directory-text { display: inline; }
-      .surface { padding: 0; overflow-wrap: anywhere; }
-      .reading-title { font-size: clamp(1.7rem, 6.2vw, 2.75rem); }
-      .reading-tools { justify-content: flex-start; }
-      .reading-tools .action { min-height: 36px; }
-      .passage { margin-top: 14px; font-size: clamp(1.16rem, 4.9vw, 1.45rem); line-height: 1.72; }
-      .reading-foot { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 21px; }
-      .reading-foot .action { min-height: 42px; padding: 8px 5px; }
-      .vocab-search { width: auto; flex: 1 1 10rem; min-width: 0; font-size: 1rem; }
+    .word-menu-item:hover, .word-menu-item:focus, .word-menu-item.speaking { background: var(--fill); }
+    .word-menu .feedback { padding: 0 10px 6px; }
+
+    /* ---------- Sync sheet ---------- */
+    .sync-dialog {
+      width: min(28rem, calc(100% - 32px)); padding: 24px; border: 0; border-radius: 22px;
+      background: var(--raised); color: var(--ink); box-shadow: var(--shadow);
     }
-    @media (max-width: 540px) {
+    .sync-dialog::backdrop { background: var(--scrim); }
+    .sync-head { display: flex; align-items: center; justify-content: space-between; }
+    .sync-head h2 { font-size: 1.2rem; }
+    .sync-head .icon-button { margin-right: -10px; }
+    .sync-form, .sync-actions { display: grid; gap: 14px; margin-top: 16px; }
+    .sync-actions { grid-template-columns: 1fr 1fr; }
+    .sync-token {
+      width: 100%; padding: 12px 14px; border: 0; border-radius: 12px;
+      background: var(--fill); color: var(--ink); font: 1rem/1.4 ui-monospace, Menlo, monospace;
+    }
+    .sync-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: .92rem; color: var(--ink-2); }
+    .sync-row label { display: flex; align-items: center; gap: 8px; }
+    .sync-row input { width: 18px; height: 18px; accent-color: var(--solid); }
+    .sync-row a { color: var(--ink-2); }
+    .button {
+      min-height: 46px; padding: 0 18px; border-radius: 999px; background: var(--fill); color: var(--ink); font-size: .98rem;
+    }
+    .button:hover { background: var(--fill-hover); }
+    .button.solid { background: var(--solid); color: var(--on-solid); }
+    .button.solid:hover { opacity: .9; }
+    .sync-status { margin-top: 14px; color: var(--ink-2); font-size: .9rem; }
+    .sync-status:empty { display: none; }
+
+    /* ---------- Phone ---------- */
+    @media (max-width: 760px) {
+      body { font-size: 16px; }
+      .layout { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 0; }
+      .navigation { position: static; margin: 4px 0 18px; }
+      .directory-entries { max-height: min(46vh, 360px); padding: 6px; border-radius: 16px; background: var(--raised); }
+      .directory-lesson { min-height: 40px; align-items: center; }
+      .tab { padding: 6px 12px; }
+      .pill .pill-text { display: none; }
+      .pill { padding: 8px; }
+      .reading-body { margin-top: 20px; }
+      .reading-illustration { margin-inline: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter)); max-width: none; border-radius: 0; margin-bottom: 22px; }
+      .passage { font-size: 1.16rem; line-height: 1.8; }
+      .reading-foot { margin-top: 36px; }
+      .foot-button { padding: 0 12px; }
+      .sync-dialog {
+        width: 100%; max-width: none; margin: auto 0 0; border-radius: 22px 22px 0 0;
+        padding-bottom: calc(24px + env(safe-area-inset-bottom));
+      }
       #review-table { overflow: visible; }
       #review-table table, #review-table tbody { display: block; }
-      #review-table thead {
-        position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
-      }
-      #marked-rows tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3px 10px; padding: 8px 0; }
+      #review-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+      #marked-rows tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 16px 0; }
       #marked-rows td { min-width: 0; padding: 0; }
       #marked-rows td:nth-child(2), #marked-rows td:nth-child(3) { grid-column: 1 / -1; }
       #marked-rows td:nth-child(4) { grid-area: 1 / 2; }
-      #marked-rows .example { color: var(--muted); }
+      #marked-rows .example { min-width: 0; }
+    }
+    @media (min-width: 1000px) {
+      .reading-body::after { content: ""; display: block; clear: both; }
+      .reading-illustration { float: right; width: 46%; margin: .45em 0 18px 28px; border-radius: 14px; }
     }
   </style>
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18.5h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.1 9.6 4.5 4.5 0 0 0 7 18.5Z"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01"/></symbol>
+    <symbol id="i-translate" viewBox="0 0 24 24"><path d="M3.5 5.5h9M8 3.5v2M10.5 5.5c-.8 3.6-3.2 6.4-6.5 8M5.5 8.5c1 2.2 2.8 3.9 5 5"/><path d="m12.5 20.5 4-9 4 9M14 17.5h5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  </svg>
   <div class="shell">
-    <header class="masthead">
-      <h1 id="site-title">中考英语阅读标词</h1>
-      <div class="toolbar">
-        <button type="button" class="action theme-toggle" id="dark-mode" aria-pressed="false">深色模式</button>
-        <button type="button" class="action" id="open-sync" aria-haspopup="dialog">GitHub 同步</button>
-        <a class="action" href="vocab.html">生词看板</a>
-        <button type="button" class="action" id="open-vocabulary" aria-controls="full-vocabulary" aria-expanded="false">完整词汇表</button>
-        <button type="button" class="action primary" id="open-review" aria-controls="review" aria-expanded="false">生词表</button>
+    <header class="topbar">
+      <h1 class="visually-hidden" id="site-title">中考英语阅读标词</h1>
+      <nav class="site-nav" aria-label="阅读资料">
+        <a href="./" id="screening-material" aria-current="page">筛选短文</a>
+        <a href="?set=reading-01" id="reading-material-01">01</a>
+        <a href="?set=reading-02" id="reading-material-02">02</a>
+        <a href="?set=reading-03" id="reading-material-03">03</a>
+        <a href="vocab.html" id="vocab-board">生词</a>
+      </nav>
+      <div class="tools">
+        <button type="button" class="icon-button" id="dark-mode" aria-pressed="false" aria-label="切换到深色">
+          <svg class="icon theme-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <svg class="icon theme-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+        <button type="button" class="icon-button" id="open-sync" aria-haspopup="dialog" aria-label="GitHub 同步">
+          <svg class="icon" aria-hidden="true"><use href="#i-cloud"/></svg>
+        </button>
       </div>
     </header>
-    <details class="reading-materials">
-      <summary>阅读资料</summary>
-      <nav aria-label="阅读资料">
-        <ul>
-          <li><a href="./" id="screening-material" aria-current="page">中考英语阅读标词</a></li>
-          <li><a href="?set=reading-01" id="reading-material-01">01 生词复现</a></li>
-          <li><a href="?set=reading-02" id="reading-material-02">02 生词复现</a></li>
-          <li><a href="?set=reading-03" id="reading-material-03">03 生词复现</a></li>
-          <li><a href="vocab.html" id="vocab-board">生词看板</a></li>
-        </ul>
-      </nav>
-    </details>
-    <p class="feedback" id="storage-error" role="status" hidden>无法保存到本地。</p>
+    <div class="viewbar">
+      <div class="tabs" role="group" aria-label="视图">
+        <button type="button" class="tab" id="open-reader">文章</button>
+        <button type="button" class="tab" id="open-review" aria-controls="review" aria-expanded="false">生词表</button>
+        <button type="button" class="tab" id="open-vocabulary" aria-controls="full-vocabulary" aria-expanded="false">完整词汇表</button>
+      </div>
+      <div class="viewbar-end">
+        <button type="button" class="pill" id="toggle-bilingual" aria-controls="passage" aria-pressed="false" aria-label="中英对照">
+          <svg class="icon" aria-hidden="true"><use href="#i-translate"/></svg><span class="pill-text">中英</span>
+        </button>
+        <button type="button" class="pill" id="directory-toggle" aria-controls="directory-panel" aria-expanded="true">
+          <svg class="icon" aria-hidden="true"><use href="#i-list"/></svg><span class="pill-text">目录</span><span id="directory-arrow" hidden></span>
+        </button>
+      </div>
+    </div>
+    <p class="storage-error" id="storage-error" role="status" hidden>无法保存到本地。</p>
     <main class="layout" id="workspace">
       <nav class="navigation" aria-label="短文目录">
-        <button type="button" class="action directory-toggle" id="directory-toggle" aria-controls="directory-panel" aria-expanded="true">
-          <span class="directory-text">短文目录</span><span class="directory-arrow" id="directory-arrow" aria-hidden="true">‹</span>
-        </button>
         <div class="directory-entries" id="directory-panel" aria-label="短文篇目"></div>
       </nav>
       <div class="surface">
@@ -348,30 +392,27 @@
           <header class="reading-head">
             <h2 class="reading-title" id="reading-title" lang="en" tabindex="-1"></h2>
             <p class="translated-title" id="translated-title" hidden></p>
-            <div class="reading-tools">
-              <button type="button" class="action bilingual-toggle" id="toggle-bilingual" aria-controls="passage" aria-pressed="false">中英对照</button>
-            </div>
           </header>
           <div class="reading-body">
             <img class="reading-illustration" id="reading-illustration" width="960" height="640" alt="" decoding="async" hidden>
             <div class="passage" id="passage"></div>
           </div>
           <footer class="reading-foot">
-            <button type="button" class="action" id="previous">上一篇</button>
-            <button type="button" class="action" id="finish-lesson" aria-pressed="false">标为已读</button>
-            <button type="button" class="action primary" id="next"></button>
+            <button type="button" class="foot-button" id="previous">上一篇</button>
+            <button type="button" class="foot-button" id="finish-lesson" aria-pressed="false">标为已读</button>
+            <button type="button" class="foot-button" id="next"></button>
           </footer>
         </article>
         <section id="review" aria-labelledby="review-title" hidden>
-          <h2 class="review-title" id="review-title" tabindex="-1">生词表</h2>
-          <div class="review-actions">
-            <button type="button" class="action primary" id="copy">复制生词表</button>
-            <button type="button" class="action" id="export">下载 CSV</button>
-            <button type="button" class="action" id="resume">返回短文</button>
+          <div class="section-head">
+            <h2 class="visually-hidden" id="review-title" tabindex="-1">生词表</h2>
+            <button type="button" class="pill" id="copy">复制</button>
+            <button type="button" class="pill" id="export">下载 CSV</button>
+            <button type="button" id="resume" hidden>返回短文</button>
           </div>
           <p class="feedback" id="feedback" role="status"></p>
           <textarea class="copy-text" id="copy-text" aria-label="可复制的生词表" readonly hidden></textarea>
-          <p class="empty" id="empty">暂无生词</p>
+          <p class="empty" id="empty">还没有标记生词</p>
           <div class="table-scroll" id="review-table" hidden>
             <table role="table" aria-label="已标记生词">
               <thead><tr><th scope="col">生词</th><th scope="col">词义</th><th scope="col">原句</th><th scope="col">操作</th></tr></thead>
@@ -389,11 +430,9 @@
           </details>
         </section>
         <section id="full-vocabulary" aria-labelledby="full-vocabulary-title" hidden>
-          <h2 class="review-title" id="full-vocabulary-title" tabindex="-1">完整词汇表</h2>
-          <div class="vocab-tools">
-            <input class="vocab-search" type="search" id="vocab-search" aria-label="搜索完整词汇表" placeholder="搜索词汇">
-            <button type="button" class="action" id="resume-vocabulary">返回短文</button>
-          </div>
+          <h2 class="visually-hidden" id="full-vocabulary-title" tabindex="-1">完整词汇表</h2>
+          <input class="vocab-search" type="search" id="vocab-search" aria-label="搜索词汇" placeholder="搜索">
+          <button type="button" id="resume-vocabulary" hidden>返回短文</button>
           <p class="empty" id="vocab-empty" role="status" hidden>无匹配词条</p>
           <div class="vocab-list" id="full-vocabulary-list"></div>
         </section>
@@ -402,18 +441,21 @@
     <dialog class="sync-dialog" id="sync-dialog" aria-labelledby="sync-heading">
       <div class="sync-head">
         <h2 id="sync-heading">GitHub 同步</h2>
-        <button type="button" class="action" id="close-sync">关闭</button>
+        <button type="button" class="icon-button" id="close-sync" aria-label="关闭">
+          <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
       </div>
       <form class="sync-form" id="sync-form">
-        <a href="https://github.com/settings/personal-access-tokens/new?name=Zhongkao+Reading+Lab&amp;target_name=Frank-Humingtao&amp;contents=write" target="_blank" rel="noopener noreferrer">创建同步令牌</a>
-        <p class="sync-scope">只选 zhongkao-reading-progress，并给 Contents 读写权限。</p>
-        <input class="sync-token" id="sync-token" type="password" aria-label="GitHub 同步令牌" placeholder="粘贴 github_pat_ 令牌" autocomplete="off" spellcheck="false" required>
-        <label class="sync-remember"><input id="remember-sync" type="checkbox"> 在此设备上记住令牌</label>
-        <button type="submit" class="action primary">连接并同步</button>
+        <input class="sync-token" id="sync-token" type="password" aria-label="GitHub 同步令牌" placeholder="github_pat_…" autocomplete="off" spellcheck="false" required>
+        <div class="sync-row">
+          <label><input id="remember-sync" type="checkbox"> 记住令牌</label>
+          <a href="https://github.com/settings/personal-access-tokens/new?name=Zhongkao+Reading+Lab&amp;target_name=Frank-Humingtao&amp;contents=write" target="_blank" rel="noopener noreferrer">创建令牌</a>
+        </div>
+        <button type="submit" class="button solid">连接并同步</button>
       </form>
       <div class="sync-actions" id="sync-actions" hidden>
-        <button type="button" class="action primary" id="sync-now">立即同步</button>
-        <button type="button" class="action" id="disconnect-sync">断开</button>
+        <button type="button" class="button solid" id="sync-now">立即同步</button>
+        <button type="button" class="button" id="disconnect-sync">断开</button>
       </div>
       <p class="sync-status" id="sync-status" role="status"></p>
     </dialog>
@@ -7847,8 +7889,8 @@
     let visibleWords = new Map();
     const sentencePairs = new WeakMap();
     let matchedPair;
-    const singleColumn = window.matchMedia("(max-width: 720px), (orientation: portrait) and (max-width: 1100px)");
-    let directoryClosed = savedProgress.directoryClosed ?? singleColumn.matches;
+    const singleColumn = window.matchMedia("(max-width: 760px)");
+    let directoryClosed = singleColumn.matches || (savedProgress.directoryClosed ?? false);
     let showingBilingual = false;
     const byId = id => document.getElementById(id);
     if (edition) {
@@ -7927,6 +7969,10 @@
     }
 
     function setView(view) {
+      if (view !== currentView && singleColumn.matches && !directoryClosed) {
+        directoryClosed = true;
+        updateDirectory();
+      }
       currentView = view;
       reader.hidden = view !== "reader";
       review.hidden = view !== "review";
@@ -8421,12 +8467,16 @@
       directoryClosed = !directoryClosed;
       updateDirectory();
       saveProgress();
+      if (!directoryClosed && singleColumn.matches) window.scrollTo({ top: 0 });
     });
     byId("toggle-bilingual").addEventListener("click", () => {
       showingBilingual = !showingBilingual;
       updateBilingual();
     });
     byId("resume").addEventListener("click", () => selectLesson(activeIndex));
+    byId("open-reader").addEventListener("click", () => {
+      if (currentView !== "reader") selectLesson(activeIndex);
+    });
     byId("previous").addEventListener("click", () => {
       if (activeIndex > 0) selectLesson(activeIndex - 1);
     });
