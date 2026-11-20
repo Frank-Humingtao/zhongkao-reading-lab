@@ -8,13 +8,16 @@ import {
   currentMarks,
   decodeGithubContent,
   decodeRecords,
+  dayCopyText,
   demoSources,
   emptyNote,
   hasVocabPayload,
   isDemoSearch,
   mergeRecords,
+  presentDetails,
   shanghaiDateKey
 } from "./vocab-board.js";
+import { buildCatalog, editionFromSource, embeddedJson } from "./vocab-context.js";
 
 const NOV_20 = Date.parse("2026-11-19T16:00:00.000Z");
 const NOV_19_END = NOV_20 - 1;
@@ -213,6 +216,59 @@ test("demo preview is labeled fixture data and does not keep a cleared mark", ()
   const labels = new Set(state.words.flatMap(word => word.sources));
   for (const label of ["标词", "01", "02 v2", "02 v3", "03"]) assert.equal(labels.has(label), true);
   assert.equal(state.words.map(word => word.word).join(","), "cloudmint,glowbug,moonpear,paperfox,riverbell,velvetkey");
+  const paperfox = presentDetails(state.words.find(word => word.word === "paperfox").details);
+  assert.equal(paperfox.length, 1);
+  assert.equal(paperfox[0].meaning, "纸狐狸");
+  assert.match(paperfox[0].sentence, /paperfox/);
+  assert.match(paperfox[0].chinese, /纸狐狸/);
+  const riverbell = presentDetails(state.words.find(word => word.word === "riverbell").details);
+  assert.equal(riverbell.length, 2);
+  assert.deepEqual(riverbell.map(detail => detail.source), ["02 v2", "02 v3"]);
+  assert.equal(dayCopyText(state.days[0].words), "cloudmint\nvelvetkey");
+  assert.doesNotMatch(dayCopyText(state.words), /词义|萤火虫/);
+  for (const word of state.words) {
+    assert.ok(word.details.some(detail => detail.meaning && detail.sentence));
+  }
+});
+
+test("lesson lookup finds the marked sentence in 01 and historical 02 v2", () => {
+  const html = readFileSync("index.html", "utf8");
+  const screening = buildCatalog({
+    screening: embeddedJson(html, "screening-data"),
+    bilingual: embeddedJson(html, "bilingual-text"),
+    extraMeanings: embeddedJson(html, "supplemental-meanings")
+  });
+  const screeningHit = screening.lookup("screening", "read-01", "bang", 0);
+  assert.ok(screeningHit.meaning);
+  assert.match(screeningHit.sentence, /\bbang\b/i);
+  assert.ok(screeningHit.chinese);
+
+  const edition01 = editionFromSource(readFileSync("reading-01.js", "utf8"), "memoryReadingSet");
+  const set01 = buildCatalog({ editions: { "reading-01": edition01 } });
+  const bang = set01.lookup("reading-01", "memory-01-film", "bang", 0);
+  assert.equal(bang.meaning, "砰的一声");
+  assert.match(bang.sentence, /bang/i);
+  assert.ok(bang.chinese);
+
+  const edition02 = editionFromSource(readFileSync("reading-02-v2.js", "utf8"), "readingSet02");
+  const set02 = buildCatalog({
+    screening: embeddedJson(html, "screening-data"),
+    extraMeanings: embeddedJson(html, "supplemental-meanings"),
+    editions: { "reading-02-v2": edition02 }
+  });
+  let historical = null;
+  for (const story of edition02.stories) {
+    for (const word of Object.keys(edition02.words)) {
+      const hit = set02.lookup("reading-02-v2", story.id, word, 0);
+      if (hit?.sentence && hit.meaning) {
+        historical = hit;
+        break;
+      }
+    }
+    if (historical) break;
+  }
+  assert.ok(historical, "reading-02-v2 should resolve a marked example");
+  assert.equal(set02.sources.includes("reading-02-v2"), true);
 });
 
 test("the public page does not ship tokens or progress contents", () => {
