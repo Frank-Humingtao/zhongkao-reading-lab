@@ -6,6 +6,11 @@
 // sentence (the word is a current 生词), null means the mark was cleared.
 // A word's day is the Beijing calendar day of its earliest current mark across all
 // sets. Clock 0 means the mark predates sync, so it has no reliable day.
+// Words are grouped and shown by their base form (原型, see base-form.js).
+
+import { baseForm } from "./base-form.js";
+
+export { baseForm };
 
 export const TOKEN_KEY = "zhongkao-github-sync-token-v1";
 export const PROGRESS_API = "https://api.github.com/repos/Frank-Humingtao/zhongkao-reading-progress/contents/";
@@ -206,52 +211,54 @@ export function dayCopyText(words) {
   return words.map(word => word.word).join("\n");
 }
 
-export function aggregateVocab(sources) {
+function wordId(word, known) {
+  return baseForm(word, known).toLocaleLowerCase("en");
+}
+
+function detailFor(source, mark) {
+  const gloss = glossFor(source, mark.word);
+  return {
+    sourceId: source.id || "",
+    source: source.label,
+    lessonId: mark.lessonId,
+    exampleIndex: mark.exampleIndex,
+    word: mark.word,
+    timestamp: mark.timestamp,
+    meaning: gloss?.meaning ?? "",
+    sentence: gloss?.sentence ?? "",
+    chinese: gloss?.chinese ?? "",
+    surface: gloss?.surface ?? mark.word,
+    offset: Number.isInteger(gloss?.offset) ? gloss.offset : -1
+  };
+}
+
+// All current marks of every set, grouped by base form. Each word keeps every mark
+// (one per article it is marked in) and the earliest mark's time.
+function collectWords(sources, known) {
   const byWord = new Map();
   for (const source of sources) {
-    const grouped = new Map();
     for (const mark of currentMarkList(source.progress, source.records)) {
-      const id = mark.word.toLocaleLowerCase("en");
-      let group = grouped.get(id);
-      if (!group) {
-        group = { word: mark.word, timestamp: mark.timestamp, marks: [] };
-        grouped.set(id, group);
-      } else if (mark.timestamp < group.timestamp) {
-        group.timestamp = mark.timestamp;
-        group.word = mark.word;
-      }
-      group.marks.push(mark);
-    }
-    for (const [id, group] of grouped) {
+      const id = wordId(mark.word, known);
       let entry = byWord.get(id);
       if (!entry) {
-        entry = { word: group.word, firstTimestamp: group.timestamp, sources: [], details: [] };
+        entry = { word: baseForm(mark.word, known), firstTimestamp: mark.timestamp, sources: [], details: [] };
         byWord.set(id, entry);
-      } else if (group.timestamp < entry.firstTimestamp) {
-        entry.firstTimestamp = group.timestamp;
-        entry.word = group.word;
+      } else if (mark.timestamp < entry.firstTimestamp) {
+        entry.firstTimestamp = mark.timestamp;
+        entry.word = baseForm(mark.word, known);
       }
       if (!entry.sources.includes(source.label)) entry.sources.push(source.label);
-      for (const mark of group.marks) {
-        const gloss = glossFor(source, mark.word);
-        entry.details.push({
-          sourceId: source.id || "",
-          source: source.label,
-          lessonId: mark.lessonId,
-          exampleIndex: mark.exampleIndex,
-          word: mark.word,
-          meaning: gloss?.meaning ?? "",
-          sentence: gloss?.sentence ?? "",
-          chinese: gloss?.chinese ?? "",
-          surface: gloss?.surface ?? mark.word,
-          offset: Number.isInteger(gloss?.offset) ? gloss.offset : -1
-        });
-      }
+      entry.details.push(detailFor(source, mark));
     }
   }
-  const words = [...byWord.values()].sort((left, right) =>
-    left.word.localeCompare(right.word, "en", { sensitivity: "base" })
-  );
+  return byWord;
+}
+
+const byWordName = (left, right) => left.word.localeCompare(right.word, "en", { sensitivity: "base" });
+
+export function aggregateVocab(sources, { known = null } = {}) {
+  const byWord = collectWords(sources, known);
+  const words = [...byWord.values()].sort(byWordName);
   const grouped = new Map();
   for (const word of words) {
     const key = shanghaiDateKey(word.firstTimestamp) ?? "";
@@ -375,9 +382,36 @@ export function emptyNote({ syncing, hasToken, hasStoredPayload }) {
 
 // Words whose first current mark falls on dateKey ("YYYY-MM-DD", Beijing time).
 // This is the list the daily 墨墨 export adds; pre-sync words never belong to a day.
-export function wordsForDay(sources, dateKey) {
-  const day = aggregateVocab(sources).days.find(item => item.key === dateKey);
+export function wordsForDay(sources, dateKey, options) {
+  const day = aggregateVocab(sources, options).days.find(item => item.key === dateKey);
   return day ? day.words : [];
+}
+
+// Every word marked in any article between fromKey and toKey (Beijing days, inclusive),
+// counted once per base form. Unlike wordsForDay, an old word marked again in a new
+// article counts too: each article's mark has its own time. `details` holds only the
+// marks inside the range; `firstDay` is the word's earliest mark anywhere (null if that
+// predates sync) and `repeat` says it was already marked before the range.
+// A mark's time is its last change, so clearing and re-marking (or picking another
+// example) in the same article moves it to the later day. Pre-sync marks have no day.
+export function wordsInRange(sources, fromKey, toKey = fromKey, { known = null } = {}) {
+  const words = [];
+  for (const entry of collectWords(sources, known).values()) {
+    const inRange = entry.details.filter(detail => {
+      const key = shanghaiDateKey(detail.timestamp);
+      return key !== null && key >= fromKey && key <= toKey;
+    });
+    if (!inRange.length) continue;
+    const firstDay = shanghaiDateKey(entry.firstTimestamp);
+    words.push({
+      word: entry.word,
+      firstDay,
+      repeat: firstDay === null || firstDay < fromKey,
+      sources: [...new Set(inRange.map(detail => detail.source))],
+      details: inRange
+    });
+  }
+  return words.sort(byWordName);
 }
 
 export function previousShanghaiDay(now = Date.now()) {
