@@ -3,7 +3,7 @@ A mobile-friendly English reading lab
 
 ## 生词看板
 
-`vocab.html` shows every current 生词 from the screening passages and the 01/02/03 sets, grouped by the Beijing day each word first became current. Progress stays in the browser and the private progress repo; this repo holds no word lists.
+`vocab.html` shows every current 生词 from the screening passages, the 01/02/03 sets, and daily news editions, grouped by the Beijing day each word first became current. News editions keep their own numbers and progress files, and their marks join the same word pool. Progress stays in the browser and the private progress repo; this repo holds no word lists.
 
 Words are grouped and shown in their base form (原型): "slipped" and "slip" are one word, "sleeves" shows as "sleeve" (`base-form.js`).
 
@@ -28,3 +28,5 @@ Run the tests with `node --test vocab.test.mjs`.
 ## Adding a reading set
 
 Add the set to the `editions` map in `index.html` (as before) and one line to `READING_SETS` in `site-nav.js`; the set switcher on every page picks it up. Shared styles live in `site.css`.
+
+A news edition goes in `NEWS_EDITIONS` instead, with its own id such as `daily-news-01`. Add the same id to `VOCAB_SOURCES` in `vocab-core.js` and `EDITION_SCRIPTS` in `vocab-context.js` so the 生词 board and `scripts/daily-words.mjs` discover its marks. See `daily-news-01.md` for the first edition's sources and image credits.

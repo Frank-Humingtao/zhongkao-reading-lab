@@ -21,7 +21,7 @@ import {
   shanghaiDateKey,
   baseForm
 } from "./vocab-core.js";
-import { buildCatalog, editionFromSource, embeddedJson } from "./vocab-context.js";
+import { EDITION_SCRIPTS, buildCatalog, editionFromSource, embeddedJson, readingPlainText } from "./vocab-context.js";
 
 const NOV_20 = Date.parse("2026-11-19T16:00:00.000Z");
 const NOV_19_END = NOV_20 - 1;
@@ -363,4 +363,163 @@ test("wordsInRange counts an old word marked again in a new article", () => {
   assert.equal(day.find(word => word.word === "fresh").repeat, false);
   assert.deepEqual(wordsInRange(sources, "2026-11-19", "2026-11-20").map(word => word.word), ["chart", "fresh", "middle"]);
   assert.deepEqual(wordsInRange(sources, "2026-11-01", "2026-12-31").map(word => word.word), ["chart", "fresh", "middle"]);
+});
+
+test("inline Chinese glosses are not English tokens and do not move example offsets", () => {
+  const samples = [
+    ["The spacecraft（航天器）is now so far away that a radio signal takes 24 hours to reach it.",
+      "The spacecraft is now so far away that a radio signal takes 24 hours to reach it."],
+    ["Now it is coming home with science samples（样品）.", "Now it is coming home with science samples."],
+    ["Plasma（等离子体）is a kind of gas made of charged particles（带电粒子）.",
+      "Plasma is a kind of gas made of charged particles."],
+    ["A light-day is the distance light can travel in one day.", "A light-day is the distance light can travel in one day."]
+  ];
+  const html = readFileSync("index.html", "utf8");
+  const body = html.match(/function readingPlainText\(text\) \{\n([\s\S]*?)\n    \}/);
+  assert.ok(body, "reading page keeps readingPlainText");
+  const pagePlainText = new Function("text", body[1]);
+  for (const [source, plain] of samples) {
+    assert.equal(readingPlainText(source), plain);
+    assert.equal(pagePlainText(source), plain);
+    assert.doesNotMatch(plain, /\p{Script=Han}/u);
+  }
+
+  const edition = {
+    words: { spacecraft: ["航天器"], signal: ["信号"] },
+    stories: [{
+      id: "gloss-check",
+      title: "Gloss Check",
+      paragraphs: [[
+        ["The spacecraft（航天器）is now so far away that a radio signal takes 24 hours to reach it.", "它发出信号。"]
+      ]]
+    }]
+  };
+  const catalog = buildCatalog({ editions: { "daily-news-01": edition } });
+  const signal = catalog.lookup("daily-news-01", "gloss-check", "signal", 0);
+  assert.equal(signal.sentence, samples[0][1]);
+  assert.equal(signal.offset, signal.sentence.toLowerCase().indexOf("signal"));
+  assert.equal(signal.sentence.slice(signal.offset, signal.offset + signal.surface.length).toLowerCase(), "signal");
+  assert.equal(catalog.lookup("daily-news-01", "gloss-check", "航天器", 0), null);
+  const craft = catalog.lookup("daily-news-01", "gloss-check", "spacecraft", 0);
+  assert.equal(craft.offset, craft.sentence.toLowerCase().indexOf("spacecraft"));
+  assert.equal(craft.meaning, "航天器");
+});
+
+test("daily news 01 joins the vocabulary pool without replacing reading sets", () => {
+  const news = VOCAB_SOURCES.find(source => source.id === "daily-news-01");
+  assert.ok(news);
+  assert.equal(news.label, "daily news 01");
+  assert.equal(news.progressKey, "zhongkao-reading-lab-" + news.id);
+  assert.equal(news.file, "progress-" + news.id + ".json");
+  assert.equal(news.recordsKey, "zhongkao-github-sync-records-" + news.id + "-v1");
+  for (const id of ["screening", "reading-01", "reading-02-v3", "reading-02-v2", "reading-02", "reading-03", "reading-03-v2"]) {
+    assert.equal(VOCAB_SOURCES.some(source => source.id === id), true, id);
+  }
+  assert.deepEqual(
+    EDITION_SCRIPTS.find(row => row[0] === "daily-news-01"),
+    ["daily-news-01", "daily-news-01.js", "dailyNews01"]
+  );
+  assert.equal(EDITION_SCRIPTS.some(row => row[0] === "reading-01"), true);
+
+  const edition = editionFromSource(readFileSync("daily-news-01.js", "utf8"), "dailyNews01");
+  assert.equal(edition.columnTitle, "daily news 01");
+  assert.equal(edition.editionDate, "2026-11-21");
+  assert.equal(edition.stories.length, 3);
+  assert.deepEqual(edition.stories.map(story => story.id), [
+    "daily-news-01-01", "daily-news-01-02", "daily-news-01-03"
+  ]);
+  const voyager = edition.stories[0].paragraphs.flat().map(([english]) => english).join(" ");
+  assert.match(voyager, /November 18, 2026/);
+  assert.match(voyager, /25\.9 billion kilometers/);
+  assert.match(voyager, /Science data stopped/);
+  assert.doesNotMatch(voyager, /Some science data/);
+  const dragon = edition.stories[1].paragraphs.flat().map(([english]) => english).join(" ");
+  assert.match(dragon, /should splash down/);
+  assert.match(dragon, /has not happened yet/);
+  assert.doesNotMatch(dragon, /splashed down|made in space/);
+  const esa = edition.stories[2].paragraphs.flat().map(([english]) => english).join(" ");
+  assert.match(esa, /may launch in the late 2030s/);
+  assert.doesNotMatch(esa, /\blaunched\b/);
+  for (const story of edition.stories) {
+    assert.equal(story.figure.credit.length > 0, true);
+    assert.match(story.figure.sourceUrl, /^https:\/\//);
+    assert.equal(story.sources.length > 0, true);
+    for (const paragraph of story.paragraphs) {
+      for (const [english, chinese] of paragraph) {
+        assert.equal(typeof chinese, "string");
+        assert.ok(chinese.length > 0);
+        const plain = readingPlainText(english);
+        assert.doesNotMatch(plain, /\p{Script=Han}/u);
+        assert.doesNotMatch(plain, /spacecraftis|samplesis|particlesis/);
+        assert.equal(plain.includes("  "), false);
+      }
+    }
+  }
+
+  const catalog = buildCatalog({ editions: { "daily-news-01": edition } });
+  const first = catalog.lookup("daily-news-01", "daily-news-01-01", "spacecraft", 0);
+  assert.equal(first.meaning, "航天器");
+  assert.match(first.sentence, /\bspacecraft\b/);
+  assert.doesNotMatch(first.sentence, /\p{Script=Han}/u);
+  assert.equal(first.offset, first.sentence.toLowerCase().indexOf("spacecraft"));
+  assert.match(first.chinese, /航天器/);
+  const later = catalog.lookup("daily-news-01", "daily-news-01-01", "spacecraft", 1);
+  assert.equal(later.sentence, "");
+  assert.equal(later.offset, -1);
+  const secondStory = catalog.lookup("daily-news-01", "daily-news-01-03", "spacecraft", 0);
+  assert.match(secondStory.sentence, /seven spacecraft/i);
+  assert.doesNotMatch(secondStory.sentence, /\p{Script=Han}/u);
+  const splash = catalog.lookup("daily-news-01", "daily-news-01-02", "splash down", 0);
+  assert.equal(splash.meaning, "溅落");
+  assert.match(splash.sentence, /splash down/);
+  assert.doesNotMatch(splash.sentence, /\p{Script=Han}/u);
+  assert.equal(catalog.lookup("daily-news-01", "daily-news-01-01", "航天器", 0), null);
+  assert.equal(catalog.lookup("daily-news-01", "daily-news-01-01", "星际的", 0), null);
+
+  const sources = [
+    {
+      id: "reading-01",
+      label: "01",
+      progress: null,
+      records: { "mark/memory-01-film/slip": [NOV_18, "fixture", 0] }
+    },
+    {
+      id: news.id,
+      label: news.label,
+      progress: null,
+      records: {
+        "mark/daily-news-01-01/spacecraft": [NOV_20, "fixture", 0],
+        "mark/daily-news-01-01/slip": [NOV_20, "fixture", 1]
+      }
+    }
+  ];
+  assert.deepEqual(wordsForDay(sources, "2026-11-20").map(word => word.word), ["spacecraft"]);
+  const repeated = wordsInRange(sources, "2026-11-20");
+  assert.deepEqual(repeated.map(word => word.word), ["slip", "spacecraft"]);
+  assert.equal(repeated.find(word => word.word === "slip").repeat, true);
+  assert.deepEqual(repeated.find(word => word.word === "spacecraft").sources, ["daily news 01"]);
+  const details = presentDetails(repeated.find(word => word.word === "spacecraft").details.map(detail => ({
+    ...detail,
+    ...(catalog.lookup(detail.sourceId, detail.lessonId, detail.word, detail.exampleIndex) || {})
+  })));
+  assert.match(details[0].sentence, /spacecraft/);
+  assert.doesNotMatch(details[0].sentence, /\p{Script=Han}/u);
+
+  const index = readFileSync("index.html", "utf8");
+  const nav = readFileSync("site-nav.js", "utf8");
+  const exporter = readFileSync("scripts/daily-words.mjs", "utf8");
+  assert.match(index, /\["reading-01", \{ data: memoryReadingSet \}\]/);
+  assert.match(index, /progressId: "reading-02-v3"/);
+  assert.match(index, /progressId: "reading-03-v2"/);
+  assert.match(index, /\["daily-news-01", \{ data: dailyNews01, title: "daily news 01" \}\]/);
+  assert.match(index, /src="reading-01\.js"/);
+  assert.match(index, /src="daily-news-01\.js"/);
+  assert.match(nav, /id: "reading-01"/);
+  assert.match(nav, /id: "reading-02"/);
+  assert.match(nav, /id: "reading-03"/);
+  assert.match(nav, /title: "daily news 01"/);
+  assert.match(exporter, /EDITION_SCRIPTS/);
+  assert.match(exporter, /VOCAB_SOURCES/);
+  assert.equal(readFileSync("daily-news-01.js", "utf8").includes("github_pat_"), false);
+  assert.equal(readFileSync("daily-news-01.md", "utf8").includes("github_pat_"), false);
 });

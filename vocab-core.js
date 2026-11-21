@@ -65,6 +65,13 @@ export const VOCAB_SOURCES = [
     file: "progress-reading-03-v2.json",
     progressKey: "zhongkao-reading-lab-reading-03-v2",
     recordsKey: "zhongkao-github-sync-records-reading-03-v2-v1"
+  },
+  {
+    id: "daily-news-01",
+    label: "daily news 01",
+    file: "progress-daily-news-01.json",
+    progressKey: "zhongkao-reading-lab-daily-news-01",
+    recordsKey: "zhongkao-github-sync-records-daily-news-01-v1"
   }
 ];
 
