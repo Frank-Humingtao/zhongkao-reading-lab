@@ -17,7 +17,9 @@ import {
   presentDetails,
   previousShanghaiDay,
   wordsForDay,
-  shanghaiDateKey
+  wordsInRange,
+  shanghaiDateKey,
+  baseForm
 } from "./vocab-core.js";
 import { buildCatalog, editionFromSource, embeddedJson } from "./vocab-context.js";
 
@@ -305,4 +307,60 @@ test("wordsForDay returns only words first marked on that Beijing day", () => {
   assert.deepEqual(wordsForDay(sources, "2026-11-19"), []);
   assert.equal(previousShanghaiDay(Date.parse("2026-11-20T18:00:00.000Z")), "2026-11-20");
   assert.equal(previousShanghaiDay(Date.parse("2026-11-20T15:59:00.000Z")), "2026-11-19");
+});
+
+test("marked words are shown in their base form", () => {
+  const pairs = {
+    slipped: "slip", tucked: "tuck", spotted: "spot", spots: "spot", sleeves: "sleeve",
+    sacks: "sack", counts: "count", belonged: "belong", overflowed: "overflow",
+    shook: "shake", flown: "fly", studies: "study", watches: "watch", baked: "bake",
+    travelled: "travel", running: "run", making: "make", changed: "change", lying: "lie"
+  };
+  for (const [word, base] of Object.entries(pairs)) assert.equal(baseForm(word), base, word);
+  for (const word of ["news", "glasses", "morning", "leftover", "tin", "bus"]) assert.equal(baseForm(word), word);
+  const known = new Set(["building", "tired", "excite", "travel"]);
+  assert.equal(baseForm("building", known), "building");
+  assert.equal(baseForm("tired", known), "tired");
+  assert.equal(baseForm("excited", known), "excite");
+});
+
+test("inflected marks of one word count once under the base form", () => {
+  const state = aggregateVocab([
+    { id: "screening", label: "筛选", progress: null, records: { "mark/read-19/slipped": [NOV_18, "w", 0] } },
+    { id: "reading-01", label: "01", progress: null, records: { "mark/memory-01-light/slip": [NOV_20, "w", 1] } }
+  ]);
+  assert.deepEqual(state.words.map(word => word.word), ["slip"]);
+  assert.equal(state.words[0].details.length, 2);
+  assert.deepEqual(state.days.map(day => day.key), ["2026-11-18"]);
+});
+
+test("wordsInRange counts an old word marked again in a new article", () => {
+  const NOV_19 = Date.parse("2026-11-18T16:00:00.000Z");
+  const sources = [
+    {
+      id: "screening", label: "筛选", progress: null,
+      records: {
+        "mark/read-04/chart": [NOV_18, "w", 0],
+        "mark/read-38/chart": [NOV_20 + 5000, "w", 1],
+        "mark/read-38/fresh": [NOV_20, "w", 0],
+        "mark/read-38/gone": [NOV_20, "w", null],
+        "mark/read-01/early": [0, "w", 0]
+      }
+    },
+    {
+      id: "reading-02-v2", label: "02", progress: null,
+      records: { "mark/memory-02/charts": [NOV_20, "w", 0], "mark/memory-02/middle": [NOV_19, "w", 0] }
+    }
+  ];
+  assert.deepEqual(wordsForDay(sources, "2026-11-20").map(word => word.word), ["fresh"]);
+  const day = wordsInRange(sources, "2026-11-20");
+  assert.deepEqual(day.map(word => word.word), ["chart", "fresh"]);
+  const chart = day.find(word => word.word === "chart");
+  assert.equal(chart.repeat, true);
+  assert.equal(chart.firstDay, "2026-11-18");
+  assert.deepEqual(chart.details.map(detail => detail.lessonId), ["read-38", "memory-02"]);
+  assert.deepEqual(chart.sources, ["筛选", "02"]);
+  assert.equal(day.find(word => word.word === "fresh").repeat, false);
+  assert.deepEqual(wordsInRange(sources, "2026-11-19", "2026-11-20").map(word => word.word), ["chart", "fresh", "middle"]);
+  assert.deepEqual(wordsInRange(sources, "2026-11-01", "2026-12-31").map(word => word.word), ["chart", "fresh", "middle"]);
 });

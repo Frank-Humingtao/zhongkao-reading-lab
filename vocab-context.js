@@ -122,6 +122,15 @@ export function buildCatalog({
   const baseGlossary = glossaryFromScreening(screening);
   const bySource = new Map();
   const titles = new Map();
+  // Headwords of the site's own word lists, so base-form.js can tell a real word
+  // ("building", "tired") from an inflected one.
+  const headwords = new Set();
+  const addHeadword = word => {
+    if (typeof word === "string" && word && !word.includes(" ")) headwords.add(word.toLocaleLowerCase("en"));
+  };
+  Object.keys(dictionary).forEach(addHeadword);
+  Object.values(screening?.forms || {}).forEach(addHeadword);
+  Object.keys(trialGlossary || {}).forEach(addHeadword);
 
   if (screening?.lessons) {
     const lessons = new Map();
@@ -149,6 +158,7 @@ export function buildCatalog({
     if (!edition?.stories || !edition?.words) continue;
     const definitions = { ...baseGlossary };
     for (const [key, value] of Object.entries(edition.words)) {
+      addHeadword(key);
       const [meaning, ...forms] = Array.isArray(value) ? value : [""];
       for (const form of [key, ...forms]) definitions[form] = [key, meaning, key];
     }
@@ -170,6 +180,7 @@ export function buildCatalog({
 
   return {
     sources: [...bySource.keys()],
+    headwords,
     title(sourceId, lessonId) {
       return titles.get(sourceId + "/" + lessonId) || "";
     },

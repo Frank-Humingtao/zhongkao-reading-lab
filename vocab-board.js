@@ -223,7 +223,8 @@ function boot() {
     const item = el("li", "entry");
     const head = el("div", "entry-head");
     const wordBox = el("div", "entry-word");
-    const display = details.find(detail => detail.display)?.display || entry.word;
+    const shown = details.find(detail => detail.display)?.display;
+    const display = shown && shown.toLocaleLowerCase("en") === entry.word.toLocaleLowerCase("en") ? shown : entry.word;
     const term = el("span", "term", display);
     term.lang = "en";
     const mainMeaning = details.find(detail => detail.meaning)?.meaning || "";
@@ -325,7 +326,7 @@ function boot() {
   }
 
   function render() {
-    const state = aggregateVocab(demoMode ? demoSources() : loadSources());
+    const state = aggregateVocab(demoMode ? demoSources() : loadSources(), { known: catalog?.headwords });
     if (selectedDay !== "all" && !state.days.some(day => day.key === selectedDay)) selectedDay = "all";
 
     $("word-count").textContent = String(state.count);
