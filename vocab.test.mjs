@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 import {
   PRESYNC_LABEL,
@@ -424,9 +424,10 @@ test("daily news 01 joins the vocabulary pool without replacing reading sets", (
   const edition = editionFromSource(readFileSync("daily-news-01.js", "utf8"), "dailyNews01");
   assert.equal(edition.columnTitle, "daily news 01");
   assert.equal(edition.editionDate, "2026-11-21");
-  assert.equal(edition.stories.length, 3);
+  assert.equal(edition.stories.length, 6);
   assert.deepEqual(edition.stories.map(story => story.id), [
-    "daily-news-01-01", "daily-news-01-02", "daily-news-01-03"
+    "daily-news-01-01", "daily-news-01-02", "daily-news-01-03",
+    "daily-news-01-04", "daily-news-01-05", "daily-news-01-06"
   ]);
   const voyager = edition.stories[0].paragraphs.flat().map(([english]) => english).join(" ");
   assert.match(voyager, /November 18, 2026/);
@@ -440,9 +441,38 @@ test("daily news 01 joins the vocabulary pool without replacing reading sets", (
   const esa = edition.stories[2].paragraphs.flat().map(([english]) => english).join(" ");
   assert.match(esa, /may launch in the late 2030s/);
   assert.doesNotMatch(esa, /\blaunched\b/);
-  for (const story of edition.stories) {
+  for (const story of edition.stories.slice(0, 3)) {
+    assert.ok(story.illustration, story.id);
     assert.equal(story.figure.credit.length > 0, true);
     assert.match(story.figure.sourceUrl, /^https:\/\//);
+  }
+  for (const story of edition.stories.slice(3)) {
+    assert.ok(story.illustration, story.id);
+    assert.equal(existsSync("images/daily-news-01/" + story.illustration[0]), true, story.id);
+    assert.match(story.figure.note, /没有获得单独转载许可/);
+    assert.doesNotMatch(story.figure.note, /已授权|授权转载/);
+    assert.equal(story.figure.credit.length > 0, true);
+    assert.match(story.figure.sourceUrl, /^https:\/\//);
+    const plainWords = story.paragraphs.flat()
+      .map(([english]) => readingPlainText(english))
+      .join(" ")
+      .match(/[A-Za-z0-9]+(?:[-'][A-Za-z0-9]+)*/g);
+    assert.ok(plainWords.length >= 100 && plainWords.length <= 145, story.id + " " + plainWords.length);
+  }
+  const ue = edition.stories[3].paragraphs.flat().map(([english]) => english).join(" ");
+  assert.match(ue, /November 20, 2026/);
+  assert.match(ue, /not a new engine you can download today/);
+  assert.doesNotMatch(ue, /late 2027|Tokyo/);
+  const genie = edition.stories[4].paragraphs.flat().map(([english]) => english).join(" ");
+  assert.match(genie, /November 19, 2026/);
+  assert.match(genie, /120 seconds/);
+  assert.match(genie, /720p/);
+  const ideogram = edition.stories[5].paragraphs.flat().map(([english]) => english).join(" ");
+  assert.match(ideogram, /November 19, 2026/);
+  assert.match(ideogram, /November 17/);
+  assert.doesNotMatch(ideogram, /partner/);
+  assert.doesNotMatch(readFileSync("daily-news-01.js", "utf8"), /official-sample|child-like/);
+  for (const story of edition.stories) {
     assert.equal(story.sources.length > 0, true);
     for (const paragraph of story.paragraphs) {
       for (const [english, chinese] of paragraph) {
@@ -475,6 +505,20 @@ test("daily news 01 joins the vocabulary pool without replacing reading sets", (
   assert.doesNotMatch(splash.sentence, /\p{Script=Han}/u);
   assert.equal(catalog.lookup("daily-news-01", "daily-news-01-01", "航天器", 0), null);
   assert.equal(catalog.lookup("daily-news-01", "daily-news-01-01", "星际的", 0), null);
+  const scene = catalog.lookup("daily-news-01", "daily-news-01-04", "scene graph", 0);
+  assert.equal(scene.meaning, "场景图");
+  assert.match(scene.sentence, /Scene Graph/);
+  assert.doesNotMatch(scene.sentence, /\p{Script=Han}/u);
+  assert.equal(scene.offset, scene.sentence.toLowerCase().indexOf("scene graph"));
+  const added = wordsForDay([{
+    id: "daily-news-01",
+    label: "daily news 01",
+    progress: null,
+    records: { "mark/daily-news-01-04/scene graph": [NOV_20, "fixture", 0] }
+  }], "2026-11-20");
+  assert.deepEqual(added.map(word => word.word), ["scene graph"]);
+  assert.deepEqual(added[0].sources, ["daily news 01"]);
+  assert.equal(added[0].details[0].lessonId, "daily-news-01-04");
 
   const sources = [
     {
