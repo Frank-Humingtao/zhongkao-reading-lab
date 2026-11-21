@@ -2,6 +2,9 @@
 // Inline （中文） notes are display glosses. The reader strips them before
 // word indexing so they never become English tokens.
 // Licenses, credits, and source checks: daily-news-01.md
+// Articles 04–06 show official news art with credit and a source link.
+// That display is not a claim that a separate republication license was granted.
+const newsImageNote = "官方新闻配图，只随这篇报道展示。本站没有获得单独转载许可，也不表示与版权方有关。";
 const dailyNews01 = {
   columnTitle: "daily news 01",
   editionDate: "2026-11-21",
@@ -17,7 +20,13 @@ const dailyNews01 = {
     "charged particles": ["带电粒子"],
     "solar wind": ["太阳风"],
     "magnetic field": ["磁场"],
-    aurora: ["极光", "auroras"]
+    aurora: ["极光", "auroras"],
+    blueprint: ["蓝图", "blueprints"],
+    "scene graph": ["场景图"],
+    "early access": ["抢先体验版"],
+    "world model": ["世界模型"],
+    synthid: ["隐形水印"],
+    "precise edit": ["精确编辑"]
   },
   stories: [
     {
@@ -148,6 +157,142 @@ const dailyNews01 = {
           ["The new mission will use seven spacecraft（航天器）flying together.", "新任务将用七艘航天器一起飞行。"],
           ["They will watch how the Sun's energy moves through Earth's magnetic shield, at both small and large scales.", "它们会观察太阳的能量如何穿过地球的磁盾，既看小尺度，也看大尺度。"],
           ["ESA, the European Space Agency, says the ships may launch in the late 2030s.", "欧洲航天局（ESA）表示，这些航天器可能在2030年代末期发射。"]
+        ]
+      ]
+    },
+    {
+      id: "daily-news-01-04",
+      title: "Epic Updates the Plan for Unreal Engine 6",
+      topic: "虚幻引擎6更新计划：将不再使用蓝图",
+      illustration: ["04-unreal-ue6-official-cms.jpg", "紫蓝色玻璃状几何图形，是虚幻引擎这篇新闻的官方配图。"],
+      figure: {
+        wide: true,
+        width: 1920,
+        height: 1080,
+        caption: "虚幻引擎 2026-11-20 新闻《An update on Blueprints and the path to UE6》的官方配图。",
+        note: newsImageNote,
+        credit: "Epic Games / Unreal Engine",
+        date: "2026-11-20",
+        sourceUrl: "https://www.unrealengine.com/news/an-update-on-blueprints-and-the-path-to-ue6",
+        sourceLabel: "Unreal Engine 新闻"
+      },
+      sources: [
+        {
+          label: "Unreal Engine 官方说明，2026-11-20",
+          url: "https://www.unrealengine.com/news/an-update-on-blueprints-and-the-path-to-ue6"
+        },
+        {
+          label: "Unreal Engine 5.9 Preview 说明，更新于 2026-11-19",
+          url: "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-9-release-notes"
+        }
+      ],
+      paragraphs: [
+        [
+          ["On November 20, 2026, Unreal Engine published an official update about Unreal Engine 6, called UE6.", "2026年11月20日，虚幻引擎发布了关于 Unreal Engine 6（简称 UE6）的官方更新。"],
+          ["UE6 projects will not include Blueprints（蓝图）or the Actor gameplay system.", "UE6 项目将不再包含蓝图，也不再包含 Actor 游戏玩法系统。"],
+          ["Gameplay will be built with a language called Verse, and with a new Scene Graph（场景图）.", "游戏逻辑将用名为 Verse 的语言，以及新的场景图来编写。"],
+          ["That change starts with Early Access（抢先体验版）.", "这一变化从抢先体验版开始。"],
+          ["Early Access is not available yet.", "抢先体验版现在还不能下载。"]
+        ],
+        [
+          ["This is a plan, not a new engine you can download today.", "这是计划，不是今天就能下载的新引擎。"]
+        ],
+        [
+          ["Unreal Engine 5.9 is still a preview.", "虚幻引擎 5.9 现在仍是预览版。"],
+          ["Its notes were updated on November 19, 2026.", "它的说明在 2026年11月19日更新过。"],
+          ["Those Preview 2 notes describe more AI tools, and a way for Blueprint-only projects to run on the web.", "其中的 Preview 2 说明写了更多 AI 工具，也写了只使用蓝图的项目可以在网页上运行。"]
+        ]
+      ]
+    },
+    {
+      id: "daily-news-01-05",
+      title: "Google Opens Genie 4 to Developers",
+      topic: "谷歌向开发者开放 Genie 4",
+      illustration: ["05-genie-4-google-blog-social.jpg", "官方博客图，写着 Genie 4，以及 Now available in the Gemini API and Google AI Studio。"],
+      figure: {
+        wide: true,
+        width: 1440,
+        height: 810,
+        caption: "谷歌 2026-11-19 博客配图：Genie 4 已可在 Gemini API 和 Google AI Studio 使用。",
+        note: newsImageNote,
+        credit: "Source: Google",
+        date: "2026-11-19",
+        sourceUrl: "https://blog.google/innovation-and-ai/technology/developers-tools/genie-4-in-gemini-api/",
+        sourceLabel: "Google 博客"
+      },
+      sources: [
+        {
+          label: "Google：开发者可用，2026-11-19",
+          url: "https://blog.google/innovation-and-ai/technology/developers-tools/genie-4-in-gemini-api/"
+        },
+        {
+          label: "Google：Project Genie，2026-11-18",
+          url: "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/genie-4-now-available-project-genie/"
+        },
+        {
+          label: "Gemini API 文档：Genie 4 的限制",
+          url: "https://aistudio.google.com/docs/genie"
+        }
+      ],
+      paragraphs: [
+        [
+          ["On November 19, 2026, Google opened Genie 4 to developers through the Gemini API and Google AI Studio.", "2026年11月19日，谷歌通过 Gemini API 和 Google AI Studio，向开发者开放了 Genie 4。"],
+          ["One day earlier, on November 18, eligible Google AI Ultra users could try it in Project Genie.", "再早一天，也就是 11月18日，符合条件的 Google AI Ultra 用户已可以在 Project Genie 里试用。"]
+        ],
+        [
+          ["Genie 4 is a world model（世界模型）.", "Genie 4 是一种世界模型。"],
+          ["You can start with words, a picture, or both.", "你可以用文字、一张图片，或两者一起开始。"],
+          ["Then you can move through a 720p world at 24 frames a second, with sound.", "然后你可以在 720p、每秒 24 帧的世界里移动，并听到声音。"],
+          ["You can type during a session to change the weather, the light, or objects.", "你还可以在使用过程中输入文字，改变天气、光线或物体。"],
+          ["The video carries a SynthID（隐形水印）mark.", "生成的视频带有 SynthID 隐形水印。"]
+        ],
+        [
+          ["This tool is for tests and early ideas.", "这个工具适合测试和早期想法。"],
+          ["Official docs say one session can last up to 120 seconds.", "官方文档说，一次使用最长 120 秒。"],
+          ["The world is not a 3D scene you can save.", "这个世界不是可以保存下来的三维场景。"],
+          ["If you look away for about eight seconds, some objects may change.", "如果你把视线转开大约八秒，有些物体可能会变化。"],
+          ["It is a paid service.", "它是付费服务。"]
+        ]
+      ]
+    },
+    {
+      id: "daily-news-01-06",
+      title: "Ideogram 4.6 Arrives with Native 4K Edits",
+      topic: "Ideogram 4.6 上线，可直接生成和修改 4K 图片",
+      illustration: ["06-ideogram-46-official-og.jpg", "一只粉色的鸟，旁边有 Ideogram 标志和标语 Think it. Make it. Own it."],
+      figure: {
+        wide: true,
+        width: 1200,
+        height: 630,
+        caption: "Ideogram 4.6 官方产品页社交图，标语为 Think it. Make it. Own it.",
+        note: newsImageNote,
+        credit: "Ideogram",
+        date: "2026-11-19",
+        sourceUrl: "https://ideogram.ai/models/4.6/",
+        sourceLabel: "Ideogram 4.6"
+      },
+      sources: [
+        {
+          label: "Ideogram 4.6 官方页，2026-11-19",
+          url: "https://ideogram.ai/models/4.6/"
+        }
+      ],
+      paragraphs: [
+        [
+          ["On November 19, 2026, Ideogram released version 4.6.", "2026年11月19日，Ideogram 发布了 4.6 版本。"],
+          ["The company says it is now live in its app and its API.", "公司表示，它已在自己的应用和 API 里上线。"],
+          ["This is a public release, not a closed test.", "这是公开发布，不是封闭测试。"]
+        ],
+        [
+          ["Ideogram 4.6 can make images at up to 4K.", "Ideogram 4.6 可以生成最高 4K 的图片。"],
+          ["The company says the picture is made at that size from the start, not made small and then enlarged.", "公司称，画面从一开始就按这个尺寸生成，不是先做小图再放大。"],
+          ["A Precise Edit（精确编辑）tool can change one part of a picture, such as a color or a material, and try to keep the rest the same.", "精确编辑工具可以改动图片的一部分，比如颜色或材质，并尽量让其余部分保持原样。"],
+          ["You can make one change, check the result, and then make another.", "你也可以先改一处、检查结果，再继续改下一处。"]
+        ],
+        [
+          ["Ideogram says the model ranked first on a Rapidata multi-step edit list dated November 17.", "Ideogram 说，该模型在 11月17日的 Rapidata 多步编辑名单上排在第一。"],
+          ["That score is their announced snapshot, not our own test.", "这个名次来自他们公布的快照，不是我们自己的测试。"],
+          ["Check faces, colors, and text before you use a result.", "使用结果前应检查人脸、颜色和文字。"]
         ]
       ]
     }

@@ -47,6 +47,20 @@ NASA 没有写明这截血管是在太空里打印的，所以正文只说 “ma
 | 龙飞船 `iss075e0226575` | NASA | 同上。须说明这是 2026-10-15 的到达照片。 |
 | 地球等离子体环境 | ©ESA | [ESA 网站图像条款](https://new.esa.int/news-media/multimedia/terms-and-conditions-of-use-of-images-and-videos-available-on-the-esa-website)：教育、编辑、信息用途可以免费使用，须署 ©ESA，不得用于广告或商品，也不得暗示 ESA 认可本站。 |
 
+## 04–06
+
+这三篇接在 01–03 后面，id 仍是 `daily-news-01-04`、`daily-news-01-05`、`daily-news-01-06`。01–03 的 NASA / ESA 图保持不变。
+
+04–06 使用官方新闻或产品页上的配图，图注写明版权方和原文链接。没有找到明确的公开转载许可，页面因此写明：本站没有获得单独转载许可，也不表示与版权方有关。图只出现在对应报道里，不另做图库。没有使用 Ideogram 那张含儿童形象的写实样张。
+
+选题来自 2026-11-21 对 B 站收藏和订阅合集的抽样，只能说明那些方向出现在收藏夹里，不能写成某一个人亲手选定的兴趣。
+
+### 核对
+
+- **UE6**：2026-11-20 官方账号说明，UE6 项目将不再包含 Blueprints 和 Actor Gameplay Framework，玩法改用 Verse 和 Scene Graph，并从 Early Access 开始。这是计划更新，不是已经发布的引擎。官方新闻页本次打不开（站点返回验证页）。2027 年末和 11 月 3 日东京活动只出现在转述里，正文没有写这两项。5.9 仍是预览：Epic 文档标题为 5.9 Preview，页首写着更新于 11/19/26，Preview 2 一节写了更多 AI 工具，以及只含蓝图的项目可以打包到网页。
+- **Genie 4**：Google 博客写明 2026-11-19 向开发者开放 Gemini API 和 AI Studio，2026-11-18 向符合条件的 AI Ultra 用户开放 Project Genie。文档写明 720p、每秒 24 帧、付费、单次最长 120 秒、不是可保存的三维场景，视线转开约 8 秒后物体可能变化。博客写明输出带 SynthID。
+- **Ideogram 4.6**：官方页写明 2026-11-19 发布，应用和 API 可用，原生 4K，Precise Edit 可以一次改一处。Rapidata 多步编辑名单的日期是 2026-11-17，名次按公司自己的页面转述。官方页没有写“多家合作平台”，正文也不写。
+
 ## 进度
 
 这一期的本地进度键是 `zhongkao-reading-lab-daily-news-01`，同步文件是私有进度仓库里的 `progress-daily-news-01.json`。本仓库不存放生词或同步记录。
