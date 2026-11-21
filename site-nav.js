@@ -1,10 +1,14 @@
 // The set switcher in the top bar of every page.
 // To publish a new reading set, add one line to READING_SETS (newest last).
+// News editions live in NEWS_EDITIONS so their 01, 02, 03 do not replace 生词复现.
 (() => {
   const READING_SETS = [
-    { id: "reading-01", number: "01" },
-    { id: "reading-02", number: "02" },
-    { id: "reading-03", number: "03" }
+    { id: "reading-01", number: "01", name: "生词复现" },
+    { id: "reading-02", number: "02", name: "生词复现" },
+    { id: "reading-03", number: "03", name: "生词复现" }
+  ];
+  const NEWS_EDITIONS = [
+    { id: "daily-news-01", number: "01", name: "daily news", title: "daily news 01" }
   ];
 
   const root = document.getElementById("site-switch");
@@ -15,7 +19,7 @@
 
   const onBoard = document.documentElement.dataset.page === "vocab";
   const setParam = new URLSearchParams(location.search).get("set");
-  const known = READING_SETS.find(set => set.id === setParam);
+  const known = [...READING_SETS, ...NEWS_EDITIONS].find(set => set.id === setParam);
   const current = onBoard ? "vocab" : known ? known.id : "screening";
 
   function item(href, id, number, name) {
@@ -29,15 +33,22 @@
     return link;
   }
 
-  const gap = document.createElement("div");
-  gap.className = "set-gap";
+  function gap() {
+    const node = document.createElement("div");
+    node.className = "set-gap";
+    return node;
+  }
   menu.replaceChildren(
     item("./", "screening", "", "筛选短文"),
-    gap,
-    ...[...READING_SETS].reverse().map(set => item("./?set=" + set.id, set.id, set.number, "生词复现"))
+    gap(),
+    ...[...READING_SETS].reverse().map(set => item("./?set=" + set.id, set.id, set.number, set.name)),
+    gap(),
+    ...[...NEWS_EDITIONS].reverse().map(set => item("./?set=" + set.id, set.id, set.number, set.name))
   );
 
-  label.textContent = onBoard ? "生词看板" : known ? known.number + " 生词复现" : "筛选短文";
+  label.textContent = onBoard
+    ? "生词看板"
+    : known?.title || (known ? known.number + " " + known.name : "筛选短文");
   const vocabLink = document.getElementById("vocab-link");
   if (onBoard) vocabLink?.setAttribute("aria-current", "page");
 

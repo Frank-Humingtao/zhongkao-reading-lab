@@ -99,10 +99,16 @@
     }
     .translated-title { margin-top: 8px; color: var(--ink-2); font-size: clamp(1.15rem, 3vw, 1.4rem); }
     .reading-body { margin-top: 26px; }
+    .reading-figure { margin: 0 0 28px; }
     .reading-illustration {
       display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover;
-      border-radius: 16px; background: var(--fill); margin-bottom: 28px;
+      border-radius: 16px; background: var(--fill);
     }
+    .reading-figure.wide .reading-illustration { aspect-ratio: auto; object-fit: contain; }
+    .reading-credit, .reading-sources { color: var(--muted); font-size: .82rem; line-height: 1.55; }
+    .reading-credit { display: grid; gap: 4px; margin-top: 8px; }
+    .reading-credit a, .reading-sources a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+    .reading-sources { clear: both; margin-top: 22px; }
     .passage { font: 1.22rem/1.85 var(--english); color: var(--ink); }
     .passage-block + .passage-block { margin-top: 1em; }
     .passage.bilingual .passage-block + .passage-block { margin-top: 1.5em; }
@@ -118,6 +124,8 @@
     }
     .word[aria-pressed="true"] { color: var(--accent); background: var(--accent-soft); }
     .inline-gloss { color: var(--muted); font: .7em var(--chinese); overflow-wrap: anywhere; margin-left: .15em; }
+    .inline-gloss[data-fixed-gloss] { white-space: nowrap; }
+    .word-keep { white-space: nowrap; }
     .word.located { outline: 2px solid var(--accent); outline-offset: 2px; }
 
     .reading-foot {
@@ -163,7 +171,8 @@
 
     @media (min-width: 1000px) {
       .reading-body::after { content: ""; display: block; clear: both; }
-      .reading-illustration { float: right; width: 46%; margin: .45em 0 18px 28px; border-radius: 14px; }
+      .reading-figure { float: right; width: 46%; margin: .45em 0 18px 28px; }
+      .reading-illustration { border-radius: 14px; }
     }
 
     @media (max-width: 760px) {
@@ -175,10 +184,12 @@
       .pill .pill-text { display: none; }
       .pill { padding: 8px; }
       .reading-body { margin-top: 20px; }
-      .reading-illustration {
+      .reading-figure {
         margin-inline: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter)); max-width: none;
-        border-radius: 0; margin-bottom: 22px;
+        margin-bottom: 22px;
       }
+      .reading-illustration { border-radius: 0; }
+      .reading-credit { margin-inline: var(--gutter); }
       .passage { font-size: 1.16rem; line-height: 1.8; }
       .reading-foot { margin-top: 36px; }
       .foot-button { padding: 0 12px; }
@@ -242,8 +253,12 @@
             <p class="translated-title" id="translated-title" hidden></p>
           </header>
           <div class="reading-body">
-            <img class="reading-illustration" id="reading-illustration" width="960" height="640" alt="" decoding="async" hidden>
+            <figure class="reading-figure" id="reading-figure" hidden>
+              <img class="reading-illustration" id="reading-illustration" width="960" height="640" alt="" decoding="async">
+              <figcaption class="reading-credit" id="reading-credit" hidden></figcaption>
+            </figure>
             <div class="passage" id="passage"></div>
+            <p class="reading-sources" id="reading-sources" hidden></p>
           </div>
           <footer class="reading-foot">
             <button type="button" class="foot-button" id="previous">上一篇</button>
@@ -7477,6 +7492,7 @@
   <script src="reading-01.js"></script>
   <script src="reading-02-v3.js"></script>
   <script src="reading-03-v2.js"></script>
+  <script src="daily-news-01.js"></script>
   <script src="screening-illustrations.js"></script>
   <script>
     const previousLessons = [
@@ -7551,10 +7567,12 @@
       ["reading-01", { data: memoryReadingSet }],
       // A complete replacement of edition 02 starts a separate progress history.
       ["reading-02", { data: readingSet02, progressId: "reading-02-v3" }],
-      ["reading-03", { data: readingSet03, progressId: "reading-03-v2" }]
+      ["reading-03", { data: readingSet03, progressId: "reading-03-v2" }],
+      // News editions keep their own ids and progress files. Numbers do not replace 01–03.
+      ["daily-news-01", { data: dailyNews01, title: "daily news 01" }]
     ]);
     const setId = new URLSearchParams(location.search).get("set");
-    const { data: edition, progressId = setId } = editions.get(setId) ?? {};
+    const { data: edition, progressId = setId, title: editionTitle } = editions.get(setId) ?? {};
     const illustrationDirectory = edition ? setId : "screening";
     const screening = readData("screening-data");
     const bilingualText = edition
@@ -7577,6 +7595,26 @@
     const abbreviations = sourceWords.filter(key => key.includes("."));
     const abbreviatedWords = abbreviations.map(escapePattern).join("|");
     const wordPattern = new RegExp(abbreviatedWords + "|[\\p{L}]+(?:['’\\-][\\p{L}]+)*", "giu");
+    // Keep in step with readingPlainText in vocab-context.js.
+    function readingPlainText(text) {
+      const source = String(text);
+      if (!source.includes("（")) return source;
+      return source.replace(/（[^）]*）/g, " ").replace(/[ \t]{2,}/g, " ").replace(/ ([.,;:!?])/g, "$1");
+    }
+    function fixedGlossAnchors(text) {
+      const anchors = [];
+      const source = String(text);
+      if (!source.includes("（")) return anchors;
+      let plain = "";
+      let cursor = 0;
+      for (const match of source.matchAll(/（([^）]*)）/g)) {
+        plain += source.slice(cursor, match.index);
+        const surface = plain.match(/[\p{L}]+(?:['’\-][\p{L}]+)*$/u)?.[0] ?? "";
+        if (match[1]) anchors.push({ after: surface, text: match[1] });
+        cursor = match.index + match[0].length;
+      }
+      return anchors;
+    }
     const sentencePattern = /[^.!?]+[.!?]+(?:["”'’])?|[^.!?]+$/g;
     const storageKey = edition ? "zhongkao-reading-lab-" + progressId : "zhongkao-reading-lab-v3";
     const sourceGlossary = Object.fromEntries(Object.entries(screening.forms).map(([surface, key]) => {
@@ -7625,6 +7663,7 @@
       const pattern = new RegExp([...phrasePatterns, wordPattern.source].join("|"), "giu");
 
       function tokenize(text) {
+        text = readingPlainText(text);
         const segments = [];
         let position = 0;
         for (const match of text.matchAll(pattern)) {
@@ -7652,9 +7691,11 @@
       }
 
       const title = tokenize(lesson.title);
-      const sentences = lesson.sentences ?? lesson.paragraphs.map(splitSentences);
+      const sourceSentences = lesson.sentences ?? lesson.paragraphs.map(splitSentences);
+      const fixedGlosses = sourceSentences.map(paragraph => paragraph.map(fixedGlossAnchors));
+      const sentences = sourceSentences.map(paragraph => paragraph.map(readingPlainText));
       const paragraphs = sentences.map(paragraph => paragraph.map(tokenize));
-      return { ...lesson, title, paragraphs, terms };
+      return { ...lesson, title, paragraphs, terms, fixedGlosses };
     }
 
     const readings = edition
@@ -7663,6 +7704,8 @@
         title: story.title,
         topic: story.topic,
         illustration: story.illustration,
+        figure: story.figure,
+        sources: story.sources,
         primary: [],
         targets: edition.words,
         sentences: story.paragraphs.map(paragraph => paragraph.map(([english]) => english))
@@ -7719,7 +7762,7 @@
     const byId = id => document.getElementById(id);
     if (edition) {
       const editionNumber = setId.slice("reading-".length);
-      document.title = byId("site-title").textContent = "初中阅读资料 " + editionNumber + "｜生词复现";
+      document.title = byId("site-title").textContent = editionTitle || ("初中阅读资料 " + editionNumber + "｜生词复现");
       byId("open-vocabulary").textContent = "重点词索引";
       byId("full-vocabulary-title").textContent = "重点词索引";
     }
@@ -7873,22 +7916,121 @@
 
     function renderInlineGlosses() {
       const lesson = readings[activeIndex];
-      reader.querySelectorAll(".inline-gloss").forEach(gloss => gloss.remove());
+      reader.querySelectorAll(".inline-gloss:not([data-fixed-gloss])").forEach(gloss => gloss.remove());
       for (const [key, exampleIndex] of marks[activeIndex]) {
         const word = visibleWords.get(key)[exampleIndex];
+        const meaning = lesson.terms.get(key).meaning || "暂无中文释义";
+        const fixed = word.nextElementSibling?.hasAttribute("data-fixed-gloss") ? word.nextElementSibling : null;
+        if (fixed?.textContent === "（" + meaning + "）") continue;
         const gloss = document.createElement("span");
         gloss.className = "inline-gloss";
         gloss.lang = "zh-CN";
-        gloss.textContent = "（" + (lesson.terms.get(key).meaning || "暂无中文释义") + "）";
-        word.after(gloss);
+        gloss.textContent = "（" + meaning + "）";
+        (fixed || word).after(gloss);
       }
+    }
+
+    function insertFixedGlosses(container, anchors) {
+      if (!anchors?.length) return;
+      const words = [...container.querySelectorAll(".word")];
+      const used = new Set();
+      for (const anchor of anchors) {
+        const target = words.find(word => !used.has(word) && (
+          word.textContent === anchor.after || word.textContent.endsWith(" " + anchor.after)
+        ));
+        if (!target) continue;
+        used.add(target);
+        const gloss = document.createElement("span");
+        gloss.className = "inline-gloss";
+        gloss.dataset.fixedGloss = "true";
+        gloss.lang = "zh-CN";
+        gloss.textContent = "（" + anchor.text + "）";
+        target.after(gloss);
+      }
+    }
+
+    function joinMeta(parts) {
+      const nodes = [];
+      parts.forEach((part, index) => {
+        if (index) nodes.push(document.createTextNode(" · "));
+        nodes.push(part);
+      });
+      return nodes;
+    }
+
+    function renderArticleMeta(lesson) {
+      const figure = byId("reading-figure");
+      const credit = byId("reading-credit");
+      const sources = byId("reading-sources");
+      const fig = lesson.figure;
+      figure.hidden = !lesson.illustration;
+      figure.classList.toggle("wide", Boolean(fig?.wide));
+      if (lesson.illustration) {
+        const [file, alt] = lesson.illustration;
+        readingIllustration.alt = alt;
+        readingIllustration.width = fig?.width || 960;
+        readingIllustration.height = fig?.height || 640;
+        readingIllustration.src = "images/" + illustrationDirectory + "/" + file;
+      }
+      credit.replaceChildren();
+      credit.hidden = !fig;
+      if (fig) {
+        const caption = document.createElement("span");
+        caption.textContent = fig.caption;
+        credit.append(caption);
+        const parts = [];
+        if (fig.note) parts.push(document.createTextNode(fig.note));
+        if (fig.date) {
+          const time = document.createElement("time");
+          time.dateTime = fig.date;
+          time.textContent = fig.date;
+          parts.push(time);
+        }
+        if (fig.credit) parts.push(document.createTextNode(fig.credit));
+        if (fig.sourceUrl) {
+          const link = document.createElement("a");
+          link.href = fig.sourceUrl;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.textContent = fig.sourceLabel || "来源";
+          parts.push(link);
+        }
+        const detail = document.createElement("span");
+        detail.append(...joinMeta(parts));
+        credit.append(detail);
+      }
+      const sourceList = lesson.sources || [];
+      const showSources = Boolean(edition?.columnTitle) || sourceList.length > 0;
+      sources.replaceChildren();
+      sources.hidden = !showSources;
+      if (!showSources) return;
+      if (edition?.columnTitle) {
+        const kicker = document.createElement("span");
+        kicker.textContent = edition.columnTitle + (edition.editionDate ? " · " + edition.editionDate : "");
+        sources.append(kicker);
+      }
+      if (!sourceList.length) return;
+      const row = document.createElement("span");
+      row.append("来源：");
+      sourceList.forEach((source, index) => {
+        if (index) row.append(" · ");
+        const link = document.createElement("a");
+        link.href = source.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = source.label;
+        row.append(link);
+      });
+      if (sources.childNodes.length) sources.append(document.createElement("br"));
+      sources.append(row);
     }
 
     function textParts(segments, lesson) {
       const fragment = document.createDocumentFragment();
-      for (const token of segments) {
+      for (let index = 0; index < segments.length; index++) {
+        const token = segments[index];
         if (!token.key) {
-          fragment.append(token.text);
+          if (token.text) fragment.append(token.text);
           continue;
         }
         const button = document.createElement("button");
@@ -7911,7 +8053,17 @@
           saveProgress();
           renderInlineGlosses();
         });
-        fragment.append(button);
+        const next = segments[index + 1];
+        const punctuation = next && !next.key ? /^[.,!?;:]+/.exec(next.text) : null;
+        if (!punctuation) {
+          fragment.append(button);
+          continue;
+        }
+        next.text = next.text.slice(punctuation[0].length);
+        const keep = document.createElement("span");
+        keep.className = "word-keep";
+        keep.append(button, punctuation[0]);
+        fragment.append(keep);
       }
       return fragment;
     }
@@ -7940,12 +8092,7 @@
       setView("reader");
       const lesson = readings[index];
       reader.classList.toggle("illustrated", Boolean(lesson.illustration));
-      readingIllustration.hidden = !lesson.illustration;
-      if (lesson.illustration) {
-        const [file, alt] = lesson.illustration;
-        readingIllustration.alt = alt;
-        readingIllustration.src = "images/" + illustrationDirectory + "/" + file;
-      }
+      renderArticleMeta(lesson);
       visibleWords = new Map();
       title.replaceChildren(textParts(lesson.title, lesson));
       byId("translated-title").textContent = bilingualTitles[lesson.id];
@@ -7961,6 +8108,7 @@
           const english = document.createElement("span");
           english.className = "aligned-sentence";
           english.append(textParts(segments, lesson));
+          insertFixedGlosses(english, lesson.fixedGlosses?.[paragraphIndex]?.[sentenceIndex]);
           const chinese = document.createElement("span");
           chinese.className = "aligned-sentence";
           chinese.textContent = bilingualText[lesson.id][paragraphIndex][sentenceIndex];

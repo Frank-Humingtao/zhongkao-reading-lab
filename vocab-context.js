@@ -56,6 +56,7 @@ function buildIndexedLesson(lesson, definitions, wordPattern, extraMeanings, dic
   const pattern = new RegExp([...phrasePatterns, wordPattern.source].join("|"), "giu");
 
   function tokenize(text, chinese) {
+    text = readingPlainText(text);
     for (const match of text.matchAll(pattern)) {
       const surface = match[0];
       const normalized = surface.toLowerCase().replaceAll("’", "'");
@@ -79,7 +80,7 @@ function buildIndexedLesson(lesson, definitions, wordPattern, extraMeanings, dic
     }
   }
 
-  tokenize(lesson.title || "", "");
+  tokenize(readingPlainText(lesson.title || ""), "");
   const paragraphs = lesson.sentences || (lesson.paragraphs || []).map(splitSentences);
   paragraphs.forEach((sentences, paragraphIndex) => {
     sentences.forEach((sentence, sentenceIndex) => {
@@ -107,6 +108,15 @@ export function embeddedJson(html, id) {
 export function editionFromSource(source, binding) {
   if (!/^[A-Za-z_$][\w$]*$/.test(binding)) throw new Error("invalid binding");
   return new Function(`${source}\nreturn ${binding};`)();
+}
+
+// Full-width parenthetical glosses, like spacecraft（航天器）, are reading aids.
+// They are removed before tokenization so Chinese does not become a word and
+// does not shift example indexes. Text with no gloss is returned unchanged.
+export function readingPlainText(text) {
+  const source = String(text);
+  if (!source.includes("（")) return source;
+  return source.replace(/（[^）]*）/g, " ").replace(/[ \t]{2,}/g, " ").replace(/ ([.,;:!?])/g, "$1");
 }
 
 export function buildCatalog({
@@ -211,5 +221,6 @@ export const EDITION_SCRIPTS = [
   ["reading-02-v3", "reading-02-v3.js", "readingSet02"],
   ["reading-02", "reading-02.js", "readingSet02"],
   ["reading-03", "reading-03.js", "readingSet03"],
-  ["reading-03-v2", "reading-03-v2.js", "readingSet03"]
+  ["reading-03-v2", "reading-03-v2.js", "readingSet03"],
+  ["daily-news-01", "daily-news-01.js", "dailyNews01"]
 ];
