@@ -1000,6 +1000,22 @@ const readingSet04 = {
           ["The bright cloth on the rope moved in the wind.","绳子上那块明亮的布在风里动着。"],
         ]
       ]
+    },
+    {
+      id: "memory-04-illustration-test",
+      title: "A Blank Frame",
+      topic: "配图测试",
+      illustration: ["memory-04-illustration-test.jpg","清晨还没亮，学生把一个空画框立在书桌正中，旁边放着一小盘颜料和一支铅笔，他坐着等明天才会出现的那幅画。"],
+      paragraphs: [
+        [
+          ["Early in the morning, a student put an empty picture frame on his desk.","清晨，一个学生把一个空画框放在书桌上。"],
+          ["The frame had no painting yet, and a small tray of paint sat beside it.","画框里还没有画，旁边放着一小盘颜料。"],
+          ["He sat still and waited for a new picture to appear the next morning.","他坐着不动，等着第二天早晨出现一幅新的画。"],
+        ],
+        [
+          ["This is only a test for missing pictures.","这只是一篇用来测试缺图配图的短文。"],
+        ]
+      ]
     }
   ]
 };
