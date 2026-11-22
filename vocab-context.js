@@ -222,5 +222,6 @@ export const EDITION_SCRIPTS = [
   ["reading-02", "reading-02.js", "readingSet02"],
   ["reading-03", "reading-03.js", "readingSet03"],
   ["reading-03-v2", "reading-03-v2.js", "readingSet03"],
+  ["reading-04", "reading-04.js", "readingSet04"],
   ["daily-news-01", "daily-news-01.js", "dailyNews01"]
 ];

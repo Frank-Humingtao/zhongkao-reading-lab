@@ -3,7 +3,7 @@ A mobile-friendly English reading lab
 
 ## 生词看板
 
-`vocab.html` shows every current 生词 from the screening passages, the 01/02/03 sets, and daily news editions, grouped by the Beijing day each word first became current. News editions keep their own numbers and progress files, and their marks join the same word pool. Progress stays in the browser and the private progress repo; this repo holds no word lists.
+`vocab.html` shows every current 生词 from the screening passages, the 01/02/03/04 sets, and daily news editions, grouped by the Beijing day each word first became current. News editions keep their own numbers and progress files, and their marks join the same word pool. Progress stays in the browser and the private progress repo; this repo holds no word lists.
 
 Words are grouped and shown in their base form (原型): "slipped" and "slip" are one word, "sleeves" shows as "sleeve" (`base-form.js`).
 

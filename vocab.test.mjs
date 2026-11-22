@@ -567,3 +567,120 @@ test("daily news 01 joins the vocabulary pool without replacing reading sets", (
   assert.equal(readFileSync("daily-news-01.js", "utf8").includes("github_pat_"), false);
   assert.equal(readFileSync("daily-news-01.md", "utf8").includes("github_pat_"), false);
 });
+
+test("reading set 04 is its own edition in the shared vocabulary pool", () => {
+  const source = VOCAB_SOURCES.find(item => item.id === "reading-04");
+  assert.ok(source);
+  assert.equal(source.label, "04");
+  assert.equal(source.progressKey, "zhongkao-reading-lab-reading-04");
+  assert.equal(source.file, "progress-reading-04.json");
+  assert.equal(source.recordsKey, "zhongkao-github-sync-records-reading-04-v1");
+  for (const id of ["screening", "reading-01", "reading-02-v3", "reading-03-v2", "daily-news-01"]) {
+    assert.notEqual(source.id, id);
+    assert.notEqual(source.progressKey, "zhongkao-reading-lab-" + id);
+  }
+  assert.deepEqual(
+    EDITION_SCRIPTS.find(row => row[0] === "reading-04"),
+    ["reading-04", "reading-04.js", "readingSet04"]
+  );
+
+  const edition = editionFromSource(readFileSync("reading-04.js", "utf8"), "readingSet04");
+  const wordKeys = Object.keys(edition.words);
+  assert.equal(wordKeys.length, 132);
+  assert.equal(new Set(wordKeys).size, 132);
+  assert.equal(edition.words.harvest[0], "收割，收获");
+  assert.equal(edition.words.plasma[0], "等离子体");
+  assert.equal(edition.words.voyager[0], "旅行者（此处指旅行者1号）");
+  assert.equal(edition.words["kind-hearted"][0], "好心的");
+  assert.deepEqual(edition.words.wipe, ["擦掉", "wiped"]);
+  assert.deepEqual(edition.words.shake, ["摇动；晃动", "shook"]);
+  assert.equal(edition.words.bit.includes("bite"), false);
+  assert.equal(edition.words.bite.includes("bit"), false);
+  assert.equal(wordKeys.includes("flower"), false);
+
+  assert.equal(edition.stories.length, 39);
+  const ids = edition.stories.map(story => story.id);
+  assert.equal(new Set(ids).size, 39);
+  assert.equal(ids[0], "memory-04-tractor-bend");
+  assert.equal(ids[38], "memory-04-path-bend");
+  assert.equal(edition.stories[0].title, "The Tractor on the Bend");
+  assert.equal(edition.stories[0].topic, "转弯处的拖拉机");
+  assert.equal(
+    edition.stories[0].paragraphs[0][0][0],
+    "After the harvest, a tractor stopped on a steep bend."
+  );
+  assert.equal(
+    edition.stories[0].paragraphs[0][0][1],
+    "收割结束后，一辆拖拉机停在一段陡峭的转弯处。"
+  );
+  assert.equal(
+    edition.stories[1].paragraphs.at(-1).at(-1)[0],
+    "\"These will keep,\" he said, \"if I take them home today.\""
+  );
+  assert.equal(
+    edition.stories[38].paragraphs.at(-1)[0][0],
+    "The bright cloth on the rope moved in the wind."
+  );
+  assert.equal(
+    edition.stories[38].paragraphs.at(-1)[0][1],
+    "绳子上那块明亮的布在风里动着。"
+  );
+  for (const story of edition.stories) {
+    assert.equal(story.illustration, undefined, story.id);
+    assert.equal(story.figure, undefined, story.id);
+    assert.equal(story.paragraphs.length > 0, true, story.id);
+    for (const paragraph of story.paragraphs) {
+      for (const [english, chinese] of paragraph) {
+        assert.equal(typeof english, "string");
+        assert.equal(typeof chinese, "string");
+        assert.ok(english.length > 0, story.id);
+        assert.ok(chinese.length > 0, story.id);
+        assert.doesNotMatch(english, /\p{Script=Han}/u);
+        assert.match(chinese, /\p{Script=Han}/u);
+      }
+    }
+  }
+
+  const catalog = buildCatalog({ editions: { "reading-04": edition } });
+  const titleTractor = catalog.lookup("reading-04", "memory-04-tractor-bend", "tractor", 0);
+  assert.equal(titleTractor.meaning, "拖拉机");
+  assert.equal(titleTractor.sentence, "The Tractor on the Bend");
+  const tractor = catalog.lookup("reading-04", "memory-04-tractor-bend", "tractor", 1);
+  assert.equal(tractor.meaning, "拖拉机");
+  assert.match(tractor.sentence, /\btractor\b/i);
+  assert.match(tractor.chinese, /拖拉机/);
+  assert.equal(tractor.offset, tractor.sentence.toLowerCase().indexOf("tractor"));
+
+  let wiped = null;
+  let shook = null;
+  for (const story of edition.stories) {
+    for (let index = 0; index < 20; index += 1) {
+      const wipe = catalog.lookup("reading-04", story.id, "wipe", index);
+      if (wipe?.surface?.toLowerCase() === "wiped" && wipe.sentence) wiped = wipe;
+      const shake = catalog.lookup("reading-04", story.id, "shake", index);
+      if (shake?.surface?.toLowerCase() === "shook" && shake.sentence) shook = shake;
+    }
+  }
+  assert.equal(wiped.meaning, "擦掉");
+  assert.match(wiped.sentence, /\bwiped\b/);
+  assert.equal(shook.meaning, "摇动；晃动");
+  assert.match(shook.sentence, /\bshook\b/);
+  const heart = catalog.lookup("reading-04", "memory-04-granny-kitchen", "kind-hearted", 0);
+  assert.equal(heart.meaning, "好心的");
+  assert.match(heart.sentence, /Kind-hearted/);
+  const voyager = catalog.lookup("reading-04", "memory-04-broadcast-voyager", "voyager", 0);
+  assert.equal(voyager.meaning, "旅行者（此处指旅行者1号）");
+  assert.match(voyager.sentence, /Voyager/);
+
+  const index = readFileSync("index.html", "utf8");
+  const nav = readFileSync("site-nav.js", "utf8");
+  assert.match(index, /src="reading-04\.js"/);
+  assert.match(index, /\["reading-04", \{ data: readingSet04 \}\]/);
+  assert.match(index, /figure\.hidden = !lesson\.illustration/);
+  assert.match(index, /\.word\[aria-pressed="true"\] \{ color: var\(--accent\)/);
+  assert.match(nav, /id: "reading-04", number: "04", name: "生词复现"/);
+  assert.match(index, /progressId: "reading-02-v3"/);
+  assert.match(index, /progressId: "reading-03-v2"/);
+  assert.equal(readFileSync("reading-04.js", "utf8").includes("github_pat_"), false);
+  assert.equal(readFileSync("reading-04.js", "utf8").includes("progress-reading-04.json"), false);
+});
