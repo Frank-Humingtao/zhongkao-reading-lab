@@ -5,7 +5,8 @@
   const READING_SETS = [
     { id: "reading-01", number: "01", name: "生词复现" },
     { id: "reading-02", number: "02", name: "生词复现" },
-    { id: "reading-03", number: "03", name: "生词复现" }
+    { id: "reading-03", number: "03", name: "生词复现" },
+    { id: "reading-04", number: "04", name: "生词复现" }
   ];
   const NEWS_EDITIONS = [
     { id: "daily-news-01", number: "01", name: "daily news", title: "daily news 01" }

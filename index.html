@@ -7492,6 +7492,7 @@
   <script src="reading-01.js"></script>
   <script src="reading-02-v3.js"></script>
   <script src="reading-03-v2.js"></script>
+  <script src="reading-04.js"></script>
   <script src="daily-news-01.js"></script>
   <script src="screening-illustrations.js"></script>
   <script>
@@ -7568,7 +7569,8 @@
       // A complete replacement of edition 02 starts a separate progress history.
       ["reading-02", { data: readingSet02, progressId: "reading-02-v3" }],
       ["reading-03", { data: readingSet03, progressId: "reading-03-v2" }],
-      // News editions keep their own ids and progress files. Numbers do not replace 01–03.
+      ["reading-04", { data: readingSet04 }],
+      // News editions keep their own ids and progress files. Numbers do not replace 01–04.
       ["daily-news-01", { data: dailyNews01, title: "daily news 01" }]
     ]);
     const setId = new URLSearchParams(location.search).get("set");
