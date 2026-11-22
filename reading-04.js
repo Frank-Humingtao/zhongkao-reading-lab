@@ -138,6 +138,7 @@ const readingSet04 = {
       id: "memory-04-tractor-bend",
       title: "The Tractor on the Bend",
       topic: "转弯处的拖拉机",
+      illustration: ["memory-04-tractor-bend.jpg","收割后的陡坡弯道上，司机坐在停着的拖拉机驾驶室里擦车窗上的泥，山脊上立着小麦和棉花的麻袋，前轮旁散着少量谷粒。"],
       paragraphs: [
         [
           ["After the harvest, a tractor stopped on a steep bend.","收割结束后，一辆拖拉机停在一段陡峭的转弯处。"],
@@ -159,6 +160,7 @@ const readingSet04 = {
       id: "memory-04-ripe-grapes",
       title: "Ripe Grapes in the Cab",
       topic: "驾驶室里的熟葡萄",
+      illustration: ["memory-04-ripe-grapes.jpg","收割后的空麦田上方，农夫把一盘擦干净的熟葡萄端进暖融融的拖拉机驾驶室。"],
       paragraphs: [
         [
           ["The farmer carried a plate of ripe grapes into the cab.","农夫把一盘成熟的葡萄端进驾驶室。"],
@@ -180,6 +182,7 @@ const readingSet04 = {
       id: "memory-04-lunch-sacks",
       title: "Lunch on the Sacks",
       topic: "粮袋上的午饭",
+      illustration: ["memory-04-lunch-sacks.jpg","田边的粮袋上，奶奶给围坐野餐的孩子盛粥，每只碗里放一把勺，旁边摆着饼干、一只酸梨和一盘羊肉。"],
       paragraphs: [
         [
           ["We had a picnic on the grain sacks.","我们在粮袋上野餐。"],
@@ -201,6 +204,7 @@ const readingSet04 = {
       id: "memory-04-dig-ridge",
       title: "A Dig by the Ridge",
       topic: "山脊旁挖路",
+      illustration: ["memory-04-dig-ridge.jpg","陡峭山脊上，孩子站在刚挖开的土路上握紧绳子，朋友朝岩石旁的遮棚攀爬，岩石后露出一顶小帐篷。"],
       paragraphs: [
         [
           ["We had to dig a short path up the steep ridge.","我们得在陡峭的山脊上挖出一小段路。"],
@@ -222,6 +226,7 @@ const readingSet04 = {
       id: "memory-04-after-harvest",
       title: "After the Harvest",
       topic: "收割之后",
+      illustration: ["memory-04-after-harvest.jpg","收割后，孩子把最后一袋粮食扛进农家储藏间，其他麻袋靠墙码放，一盘擦干净的熟葡萄搁在高架上。"],
       paragraphs: [
         [
           ["After the harvest, we filled sacks with wheat and grain.","收割结束后，我们把小麦和粮食装进麻袋。"],
@@ -243,6 +248,7 @@ const readingSet04 = {
       id: "memory-04-vet-shelter",
       title: "The Vet by the Shelter",
       topic: "遮棚边的兽医",
+      illustration: ["memory-04-vet-shelter.jpg","暖和的早晨，兽医蹲在遮棚入口，轻轻擦去一只害怕的小动物腿上的泥，帐篷门边垂着一根绳。"],
       paragraphs: [
         [
           ["The vet came to the shelter on a mild morning.","兽医在一个暖和的早晨来到遮棚。"],
@@ -264,6 +270,7 @@ const readingSet04 = {
       id: "memory-04-chalk-dictation",
       title: "Chalk and Dictation",
       topic: "粉笔和听写",
+      illustration: ["memory-04-chalk-dictation.jpg","学校走廊里，指导老师拿粉笔在黑板上写简短的对话，几名学生捧着听写本看着她。"],
       paragraphs: [
         [
           ["Our instructor stood in the corridor with a piece of chalk.","指导老师拿着一支粉笔，站在走廊里。"],
@@ -285,6 +292,7 @@ const readingSet04 = {
       id: "memory-04-concert-stage",
       title: "The Concert Stage",
       topic: "音乐会舞台",
+      illustration: ["memory-04-concert-stage.jpg","音乐会开场前，舞台上的指挥举起乐谱，朝先到的乐手点头，一只气球正飘到舞台灯上方。"],
       paragraphs: [
         [
           ["Before the concert, a balloon flew above the stage.","音乐会开始前，一只气球飞到了舞台上方。"],
@@ -306,6 +314,7 @@ const readingSet04 = {
       id: "memory-04-score-paper",
       title: "A Score on Paper",
       topic: "纸上的分数",
+      illustration: ["memory-04-score-paper.jpg","学校办公室里，孩子俯身核对自己的作文，秘书用粉笔在纸页底端标出一行，桌上摊着成绩单。"],
       paragraphs: [
         [
           ["The secretary asked for my essay and my composition result.","秘书要走了我的文章和作文成绩。"],
@@ -327,6 +336,7 @@ const readingSet04 = {
       id: "memory-04-instructor-demo",
       title: "The Instructor's Demonstration",
       topic: "指导老师的示范",
+      illustration: ["memory-04-instructor-demo.jpg","学校讨论会上，指导老师举起讲义，面向前排一位学生慢慢示范对话，全班注视着他手里的纸。"],
       paragraphs: [
         [
           ["The instructor gave a demonstration in the school forum.","指导老师在学校讨论会上做了一次示范。"],
@@ -348,6 +358,7 @@ const readingSet04 = {
       id: "memory-04-drawer-ribbon",
       title: "The Drawer and the Ribbon",
       topic: "抽屉里的丝带",
+      illustration: ["memory-04-drawer-ribbon.jpg","敞开的抽屉前，孩子用剪刀剪下一段丝带，抽屉里的小玩偶袖口沾着一滴油漆。"],
       paragraphs: [
         [
           ["I opened the drawer and found a ribbon, a pair of scissors, and a small doll.","我打开抽屉，看见一根丝带、一把剪刀，还有一个小玩偶。"],
@@ -369,6 +380,7 @@ const readingSet04 = {
       id: "memory-04-downtown-repair",
       title: "Downtown Repair",
       topic: "市中心的修理",
+      illustration: ["memory-04-downtown-repair.jpg","市中心正在修理的旧店旁，隔壁的理发师指着花园掉漆的墙和几个人商量，店门口挂着修理告示。"],
       paragraphs: [
         [
           ["Downtown, a sign announced that the old shop was under repair.","市中心有一块牌子宣布，那家旧店正在修理。"],
@@ -390,6 +402,7 @@ const readingSet04 = {
       id: "memory-04-granny-kitchen",
       title: "Granny's Kitchen",
       topic: "奶奶的厨房",
+      illustration: ["memory-04-granny-kitchen.jpg","农家厨房的桌边，奶奶往粥碗里添一勺奶油，桌中央放着一盘羊肉和几块饼干。"],
       paragraphs: [
         [
           ["Kind-hearted Granny carried a plate to the table.","好心的奶奶把一个盘子端到桌上。"],
@@ -411,6 +424,7 @@ const readingSet04 = {
       id: "memory-04-kind-hairdresser",
       title: "The Kind-hearted Hairdresser",
       topic: "好心的理发师",
+      illustration: ["memory-04-kind-hairdresser.jpg","理发店的大镜子前，理发师手持剪刀微笑着等坐在椅上的孩子准备好，袖口掖着一根与店墙同色的丝带。"],
       paragraphs: [
         [
           ["The kind-hearted hairdresser smiled at me and offered a front seat.","好心的理发师对我笑了笑，并给我让了一个靠前的座位。"],
@@ -432,6 +446,7 @@ const readingSet04 = {
       id: "memory-04-garden-vase",
       title: "The Garden Vase",
       topic: "花园里的花瓶",
+      illustration: ["memory-04-garden-vase.jpg","雨后的花园里，孩子一手扶着差点滑落的花瓶，一手慢慢往里倒水，花瓶底下垫着一块湿木板。"],
       paragraphs: [
         [
           ["I carried a clear vase into the garden and set it on a board.","我把一只干净的花瓶带进花园，放在木板上。"],
@@ -453,6 +468,7 @@ const readingSet04 = {
       id: "memory-04-tide-shore",
       title: "Tide and Shore",
       topic: "岸边的潮汐",
+      illustration: ["memory-04-tide-shore.jpg","暖和的清晨，孩子在岸边抓着系在高处石头上的帐篷绳，看潮水涌向停在岸边的独木舟。"],
       paragraphs: [
         [
           ["On a mild morning we made camp by the shore.","在一个暖和的早晨，我们在岸边扎营。"],
@@ -474,6 +490,7 @@ const readingSet04 = {
       id: "memory-04-skate-shore",
       title: "Skate by the Shore",
       topic: "岸边的滑板",
+      illustration: ["memory-04-skate-shore.jpg","暖和的下午，孩子的滑板在岸边陡路的湿石上打滑，旁边的朋友把绳子递过来，潮水正在漫上湿沙。"],
       paragraphs: [
         [
           ["The shore path was steep, and my skateboard slipped on a wet stone.","岸边的路很陡，我的滑板在一块湿石头上滑了一下。"],
@@ -495,6 +512,7 @@ const readingSet04 = {
       id: "memory-04-trip-march",
       title: "A Trip in March",
       topic: "三月的旅行",
+      illustration: ["memory-04-trip-march.jpg","三月的旅途中，向导在一座石砌古墓旁给学生指看旅行图表上标出的金字塔位置。"],
       paragraphs: [
         [
           ["Our trip in March took us across Europe, then south toward the Arab lands.","我们三月的旅行先穿过欧洲，再往南走向阿拉伯地区。"],
@@ -516,6 +534,7 @@ const readingSet04 = {
       id: "memory-04-chart-tomb",
       title: "The Chart by the Tomb",
       topic: "坟墓旁的图表",
+      illustration: ["memory-04-chart-tomb.jpg","烈日下的古墓旁，孩子把画有金字塔、坟墓和细河的图展平，一个当地孩子笑着指向远处的金字塔，岸边泊着独木舟。"],
       paragraphs: [
         [
           ["The Arab chart showed a pyramid, a tomb, and a thin river to the shore.","那张阿拉伯图表上画着一座金字塔、一座坟墓，还有一条通向岸边的细河。"],
@@ -537,6 +556,7 @@ const readingSet04 = {
       id: "memory-04-camp-ridge",
       title: "Camp on the Ridge",
       topic: "山脊上的营地",
+      illustration: ["memory-04-camp-ridge.jpg","暖和的山脊营地上，孩子拽着绳子放飞帐篷上方的玩具，旁边单独系着一只红气球，帐篷绳在风里绷得笔直。"],
       paragraphs: [
         [
           ["We made camp on the steep ridge under a clear, mild sky.","我们在陡峭的山脊上扎营，天空清亮又暖和。"],
@@ -558,6 +578,7 @@ const readingSet04 = {
       id: "memory-04-broadcast-voyager",
       title: "A Broadcast about Voyager",
       topic: "旅行者号的广播",
+      illustration: ["memory-04-broadcast-voyager.jpg","晚间，孩子坐在桌边听广播里的旅行者号消息，提笔把听到的词记在本子上，父亲坐在收音机旁安静地听。"],
       paragraphs: [
         [
           ["The evening broadcast announced new news from a federal science office in Europe.","晚间广播宣布了欧洲一家联邦科学机构的新消息。"],
@@ -579,6 +600,7 @@ const readingSet04 = {
       id: "memory-04-spacecraft-supply",
       title: "Supplies for a Spacecraft",
       topic: "航天器的补给",
+      illustration: ["memory-04-spacecraft-supply.jpg","听完航天补给新闻后，老师在教室里向学生解释冷冻肿瘤模型的研究用途，手边的报道配着航天器小图，旁边摊着补给清单。"],
       paragraphs: [
         [
           ["A federal office announced that a spacecraft had carried a new supply of medicine.","一家联邦机构宣布，一艘航天器运去了新的药物补给。"],
@@ -600,6 +622,7 @@ const readingSet04 = {
       id: "memory-04-federal-forum",
       title: "The Federal Forum",
       topic: "联邦讨论会",
+      illustration: ["memory-04-federal-forum.jpg","河岸议题的讨论会上，发言人正提醒听众防止脏水流入河里，孩子坐在台下，手边摊着笔记本。"],
       paragraphs: [
         [
           ["The federal forum opened with a broadcast of the week's forecast.","联邦讨论会一开始，先广播了本周预报。"],
@@ -621,6 +644,7 @@ const readingSet04 = {
       id: "memory-04-prevent-pollution",
       title: "How to Prevent Pollution",
       topic: "防止污染",
+      illustration: ["memory-04-prevent-pollution.jpg","花园里的小溪旁，孩子用木棒抵住一块挡泥水的木板，小路上排着别的板子，花园门上贴着防雨通知。"],
       paragraphs: [
         [
           ["The forecast demanded that we prevent dirt from reaching the garden stream.","预报要求我们防止泥土进入花园里的小溪。"],
@@ -642,6 +666,7 @@ const readingSet04 = {
       id: "memory-04-chess-corridor",
       title: "Chess in the Corridor",
       topic: "走廊里的棋局",
+      illustration: ["memory-04-chess-corridor.jpg","明亮的学校走廊里，两名学生坐在相似的椅子上对弈，其中一人捏着棋子迟迟没有落子，几名同学围在棋桌旁。"],
       paragraphs: [
         [
           ["A chess match was the afternoon activity in the front corridor.","下午的活动是在明亮的走廊里下一盘国际象棋。"],
@@ -663,6 +688,7 @@ const readingSet04 = {
       id: "memory-04-cannon-tale",
       title: "A Tale of a Cannon",
       topic: "大炮的故事",
+      illustration: ["memory-04-cannon-tale.jpg","音乐会开场时，指挥面对台下的孩子讲故事，舞台后方露出一门旧炮道具，一只气球正从舞台灯上方飘过。"],
       paragraphs: [
         [
           ["The concert opened with a tale about an old cannon behind the stage.","音乐会以一个故事开场，说的是舞台后面一门旧大炮。"],
@@ -684,6 +710,7 @@ const readingSet04 = {
       id: "memory-04-cotton-trade",
       title: "Cotton and Trade",
       topic: "棉花交易",
+      illustration: ["memory-04-cotton-trade.jpg","市中心的店里，买主在签字前请秘书指给他看墙上图表的数字，敞开的后门旁堆着几袋棉花。"],
       paragraphs: [
         [
           ["Downtown, the secretary announced a new cotton trade and put a chart on the wall.","在市中心，秘书宣布了一笔新的棉花交易，还把一张图表贴在墙上。"],
@@ -705,6 +732,7 @@ const readingSet04 = {
       id: "memory-04-old-house-tray",
       title: "The Tray in the Old House",
       topic: "老房子里的托盘",
+      illustration: ["memory-04-old-house-tray.jpg","老房子博物馆里，穿旧式服装的仆人站在门边双手托着盘子，向导示意孩子看过去，近旁抽屉下搁着小花瓶，勺子半掖在布里。"],
       paragraphs: [
         [
           ["In the old house museum, a servant stood by the door with a plate, separate from the other dishes.","在老房子博物馆里，一名仆人站在门边，手里端着一个盘子，和其他餐具分开。"],
@@ -726,6 +754,7 @@ const readingSet04 = {
       id: "memory-04-match-score",
       title: "A Match and a Score",
       topic: "舞台上的棋赛",
+      illustration: ["memory-04-match-score.jpg","音乐会开场前，两名学生在舞台中央下国际象棋，指导老师俯身提醒一名选手握稳棋子，台侧的学生在纸上记录。"],
       paragraphs: [
         [
           ["The instructor started a chess match on the concert stage, just before the first tune.","指导老师在音乐会开场曲之前，在舞台上安排了一盘国际象棋比赛。"],
@@ -747,6 +776,7 @@ const readingSet04 = {
       id: "memory-04-picnic-forecast",
       title: "Forecast for the Picnic",
       topic: "野餐的预报",
+      illustration: ["memory-04-picnic-forecast.jpg","暖和的营地上，孩子在支好的帐篷前放风筝，家人正把饼干和奶油摆在野餐布上。"],
       paragraphs: [
         [
           ["The forecast promised a mild day, so we packed a picnic for the camp.","预报说天气暖和，我们就带着野餐去了营地。"],
@@ -768,6 +798,7 @@ const readingSet04 = {
       id: "memory-04-exact-chart",
       title: "The Exact Chart",
       topic: "准确的成绩表",
+      illustration: ["memory-04-exact-chart.jpg","学校办公室里，秘书等着学生补记一篇作文的分数，桌上摊着成绩图表、作文纸和文件夹。"],
       paragraphs: [
         [
           ["The secretary demanded a full record of every composition result.","秘书要求把每篇作文的成绩做成一份完整的记录。"],
@@ -789,6 +820,7 @@ const readingSet04 = {
       id: "memory-04-kite-downtown",
       title: "A Kite Downtown",
       topic: "市中心的风筝",
+      illustration: ["memory-04-kite-downtown.jpg","清朗的早晨，孩子在市中心的小花园旁握着线放飞彩色风筝，一只气球已飘在花园上空，店门口有人停步抬头。"],
       paragraphs: [
         [
           ["I took a toy downtown on a clear morning.","一个清朗的早晨，我把一个玩具带到了市中心。"],
@@ -810,6 +842,7 @@ const readingSet04 = {
       id: "memory-04-forum-dictation",
       title: "Dictation in the Forum",
       topic: "讨论会上的听写",
+      illustration: ["memory-04-forum-dictation.jpg","学校讨论会的听写示范上，指导老师用粉笔在黑板上逐字书写对话，前排两个长得很像的学生抬头看。"],
       paragraphs: [
         [
           ["The school forum opened with a demonstration of dictation.","学校讨论会以一次听写示范开始。"],
@@ -831,6 +864,7 @@ const readingSet04 = {
       id: "memory-04-harvest-picnic",
       title: "A Picnic after the Harvest",
       topic: "收割后的野餐",
+      illustration: ["memory-04-harvest-picnic.jpg","收割后的田边，孩子坐在停着的拖拉机旁咬了一口酸梨，奶奶刚在野餐布上摆好粥、羊肉和饼干。"],
       paragraphs: [
         [
           ["At the end of the harvest, the tractor stopped beside our picnic cloth.","收割结束时，拖拉机停在我们的野餐布旁边。"],
@@ -852,6 +886,7 @@ const readingSet04 = {
       id: "memory-04-canoe-surf",
       title: "A Canoe beyond the Surf",
       topic: "浪头外的独木舟",
+      illustration: ["memory-04-canoe-surf.jpg","浪后，一对朋友正划着独木舟转向岸边，湿沙上留着一块底下绑了木棒的粗面滑板。"],
       paragraphs: [
         [
           ["We pushed the canoe out to sail beyond the surf.","我们把独木舟推出去，航行到浪头以外。"],
@@ -873,6 +908,7 @@ const readingSet04 = {
       id: "memory-04-servant-europe",
       title: "The Servant and News from Europe",
       topic: "欧洲来的两封信",
+      illustration: ["memory-04-servant-europe.jpg","三月的欧洲旧旅游事务所里，一位仆人在桌上分开摆放两封信，信下压着补给清单，隔壁理发店的椅子上落着一个玩偶。"],
       paragraphs: [
         [
           ["In March, a kind-hearted servant in an old tourism office in Europe laid out two separate letters.","三月里，欧洲一家旧旅游事务所里，一位好心的仆人摆出两封分开的信。"],
@@ -894,6 +930,7 @@ const readingSet04 = {
       id: "memory-04-bright-kite",
       title: "A Bright Kite and a Rope",
       topic: "明亮的风筝",
+      illustration: ["memory-04-bright-kite.jpg","空地上，孩子握紧长绳，明亮的风筝刚越过屋顶，几位走来的朋友抬手向他打招呼。"],
       paragraphs: [
         [
           ["I brought a bright kite and a long rope to the open ground.","我带了一只明亮的风筝和一根长绳子，来到空地上。"],
@@ -915,6 +952,7 @@ const readingSet04 = {
       id: "memory-04-tray-score",
       title: "The Exact Score on a Tray",
       topic: "托盘上的分数",
+      illustration: ["memory-04-tray-score.jpg","秘书办公室里，孩子把最后一张成绩纸举到台灯下核对，秘书低头看着托盘上的其余纸页，旁边放着一只水杯。"],
       paragraphs: [
         [
           ["The secretary greeted me and asked me to examine the exact score on a tray of papers I had brought.","秘书向我问好，让我检查托盘上那些我带来的纸，核对准确的分数。"],
@@ -936,6 +974,7 @@ const readingSet04 = {
       id: "memory-04-path-bend",
       title: "At the Bend in the Path",
       topic: "小路的转弯处",
+      illustration: ["memory-04-path-bend.jpg","小路急转弯的储藏间门口，孩子把麻袋里最后一点粮食倒进托盘，两位长相相似的姐妹停下来低头看着，路边有刚挖好的浅坑。"],
       paragraphs: [
         [
           ["At a sharp bend in the path I poured grain from a sack into a tray, hoping to preserve it.","在小路一处急转弯，我把麻袋里的粮食倒进托盘，想保存起来。"],
