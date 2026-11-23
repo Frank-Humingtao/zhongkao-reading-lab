@@ -8096,10 +8096,15 @@
 
     function textParts(segments, lesson) {
       const fragment = document.createDocumentFragment();
+      // Punctuation kept with the word before it is skipped here, never cut from the
+      // shared segments, so the story renders the same every time it is shown.
+      let skip = 0;
       for (let index = 0; index < segments.length; index++) {
         const token = segments[index];
         if (!token.key) {
-          if (token.text) fragment.append(token.text);
+          const text = token.text.slice(skip);
+          skip = 0;
+          if (text) fragment.append(text);
           continue;
         }
         const button = document.createElement("button");
@@ -8128,7 +8133,7 @@
           fragment.append(button);
           continue;
         }
-        next.text = next.text.slice(punctuation[0].length);
+        skip = punctuation[0].length;
         const keep = document.createElement("span");
         keep.className = "word-keep";
         keep.append(button, punctuation[0]);
