@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import { editionFromSource, embeddedJson } from "./vocab-context.js";
-import { availabilityRequest, inApp, listenable, listeningRun, pageView } from "./listening.js";
+import { availabilityRequest, barView, inApp, listenable, listeningRun, nextSetting, pageView, storyToFollow } from "./listening.js";
 
 const html = readFileSync("index.html", "utf8");
 const edition = (file, binding) => editionFromSource(readFileSync(file, "utf8"), binding);
@@ -81,4 +81,49 @@ test("听 is greyed for a story whose tracks are not published, and stays usable
   assert.equal(listenable(answer, "0000000000000000", false), false);
   assert.equal(listenable(null, "2a5f5df5d757c8e8", false), false);
   assert.equal(listenable(null, "0000000000000000", true), true);
+});
+
+const DEFAULTS = { narration: "interleaved", speed: 1, doubleRead: false, timer: "off" };
+
+test("each bar control changes with one tap, cycling through its choices", () => {
+  const cycle = (control, settings, taps) => {
+    const seen = [];
+    for (let i = 0; i < taps; i += 1) {
+      settings = { ...settings, ...nextSetting(control, settings) };
+      seen.push(settings[control]);
+    }
+    return seen;
+  };
+  assert.deepEqual(cycle("narration", DEFAULTS, 2), ["englishOnly", "interleaved"]);
+  assert.deepEqual(cycle("speed", DEFAULTS, 3), [1.2, 0.8, 1]);
+  assert.deepEqual(cycle("doubleRead", DEFAULTS, 2), [true, false]);
+  assert.deepEqual(cycle("timer", DEFAULTS, 5), ["story", "15", "30", "60", "off"]);
+  assert.deepEqual(nextSetting("speed", DEFAULTS), { speed: 1.2 }, "a tap sends only what it changes");
+});
+
+test("the bar shows each setting the way the mockup draws it", () => {
+  assert.deepEqual(barView(DEFAULTS), { narration: "中英", speed: "1.0×", doubleRead: false, timer: "", timerOn: false });
+  assert.deepEqual(barView({ narration: "englishOnly", speed: 0.8, doubleRead: true, timer: "30" }),
+    { narration: "英", speed: "0.8×", doubleRead: true, timer: "30′", timerOn: true });
+  assert.equal(barView({ ...DEFAULTS, timer: "story" }).timer, "本篇");
+  assert.equal(barView({ ...DEFAULTS, speed: 1.2 }).speed, "1.2×");
+  assert.deepEqual(barView(undefined), barView(DEFAULTS), "before the app has said, the defaults");
+});
+
+test("the page follows a run onto the next story, but leaves a story the reader picked alone", () => {
+  const update = { listening: true, storyId: "memory-01-books" };
+  assert.equal(storyToFollow(update, "memory-01-film", "memory-01-film"), "memory-01-books", "the run moved on");
+  assert.equal(storyToFollow(update, null, "memory-01-film"), "memory-01-books", "the page reloaded mid-run");
+  assert.equal(storyToFollow(update, "memory-01-books", "memory-01-pen"), null, "the reader looked at another story");
+  assert.equal(storyToFollow(update, "memory-01-film", "memory-01-books"), null, "already on screen");
+  assert.equal(storyToFollow({ listening: false, storyId: null }, "memory-01-film", "memory-01-film"), null);
+});
+
+test("while listening the Chinese sits under each sentence, and the bar has every control", () => {
+  const bar = html.slice(html.indexOf('<div class="player-bar"'), html.indexOf("</div>", html.indexOf('<div class="player-bar"')));
+  const order = ["player-toggle", "player-narration", "player-speed", "player-double", "player-timer"].map(id => bar.indexOf(`id="${id}"`));
+  assert.ok(order.every(index => index > 0), "every control is on the bar");
+  assert.deepEqual([...order].sort((a, b) => a - b), order, "left to right as approved");
+  assert.match(html, /\.passage\.listening \.translation \{[^}]*display: none/);
+  assert.match(html, /\.listening-zh \{[^}]*display: block/);
 });

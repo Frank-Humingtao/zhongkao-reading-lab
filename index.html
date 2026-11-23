@@ -183,10 +183,15 @@
       -webkit-box-decoration-break: clone; box-decoration-break: clone;
       transition: background-color .25s;
     }
-    .passage.listening .translation .aligned-sentence { color: var(--muted); }
     .passage.listening p[lang="en"] > .aligned-sentence.spoken { background: var(--accent-soft); color: var(--ink); }
-    .passage.listening .translation .aligned-sentence.spoken { color: var(--ink-2); }
     .passage.listening .aligned-sentence.matched { background: none; }
+    /* Each sentence's Chinese right under it, instead of the paragraph's translation. */
+    .passage.listening .translation { display: none; }
+    .listening-zh {
+      display: block; margin: 2px 0 10px; color: var(--muted); font: .8em/1.7 var(--chinese);
+      transition: color .25s;
+    }
+    .listening-zh.spoken { color: var(--ink-2); }
     body.listening .shell { padding-bottom: calc(132px + env(safe-area-inset-bottom)); }
     .player-bar {
       position: fixed; z-index: 6; left: 0; right: 0; bottom: 0;
@@ -205,6 +210,16 @@
     }
     .player-toggle .icon { width: 18px; height: 18px; stroke-width: 2.4; }
     .player-toggle .icon.filled { fill: currentColor; stroke-width: 1.4; }
+    .player-control {
+      display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 2px;
+      white-space: nowrap; color: var(--ink-2); -webkit-tap-highlight-color: transparent;
+    }
+    #player-narration { color: var(--ink); }
+    #player-speed { font-variant-numeric: tabular-nums; }
+    #player-double[aria-pressed="false"], #player-timer[aria-pressed="false"] { color: var(--muted); }
+    #player-double[aria-pressed="true"] { color: var(--ink); }
+    #player-timer { margin-left: auto; }
+    #player-timer .icon { width: 17px; height: 17px; }
 
     @media (max-width: 760px) {
       .layout { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 0; }
@@ -316,6 +331,12 @@
       <span class="player-progress" id="player-progress"></span>
       <button type="button" class="player-toggle" id="player-toggle" aria-label="暂停">
         <svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg>
+      </button>
+      <button type="button" class="player-control" id="player-narration" aria-label="朗读方式">中英</button>
+      <button type="button" class="player-control" id="player-speed" aria-label="语速">1.0×</button>
+      <button type="button" class="player-control" id="player-double" aria-pressed="false">两遍</button>
+      <button type="button" class="player-control" id="player-timer" aria-pressed="false" aria-label="睡眠定时">
+        <svg class="icon" aria-hidden="true"><use href="#i-moon"/></svg><span class="player-timer-value"></span>
       </button>
     </div>
     <dialog class="sheet" id="sync-dialog" aria-labelledby="sync-heading">
@@ -8418,8 +8439,8 @@
     });
     updateDirectory();
     selectLesson(activeIndex, false);
-    // What listening.js needs from the page. Listening only reads the page and
-    // switches 中英; it never saves progress.
+    // What listening.js needs from the page. Listening only reads the page,
+    // switches 中英 and follows a run to its next story; it never saves progress.
     window.readingPage = {
       edition, setId, screening, bilingualText, passage,
       setName: () => document.querySelector("#site-switch .switch-label")?.textContent.trim() ?? "",
@@ -8430,6 +8451,13 @@
       setBilingual(on) {
         showingBilingual = on;
         updateBilingual();
+      },
+      // Shows another story of this set without saving it as the one being read.
+      showStory(id) {
+        const index = readings.findIndex(lesson => lesson.id === id);
+        if (index < 0 || index === activeIndex) return false;
+        selectLesson(index, false);
+        return true;
       },
       onLessonShown: null
     };
