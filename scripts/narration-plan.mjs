@@ -4,7 +4,7 @@
 // to make the tracks; it never decides what is spoken itself.
 //
 //   node scripts/narration-plan.mjs                      # every story the site shows
-//   node scripts/narration-plan.mjs --edition reading-01 # one reading set / news edition / screening
+//   node scripts/narration-plan.mjs --set reading-01     # one reading set, news edition or "screening"
 
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
@@ -16,10 +16,10 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = file => readFile(join(root, file), "utf8");
 
 const args = process.argv.slice(2);
-const editionAt = args.indexOf("--edition");
-const only = editionAt >= 0 ? args[editionAt + 1] : null;
-if (editionAt >= 0 && !only) {
-  console.error("usage: node scripts/narration-plan.mjs [--edition <set or edition id>]");
+const setAt = args.indexOf("--set");
+const only = setAt >= 0 ? args[setAt + 1] : null;
+if (setAt >= 0 && !only) {
+  console.error("usage: node scripts/narration-plan.mjs [--set <reading set, news edition or screening>]");
   process.exit(2);
 }
 

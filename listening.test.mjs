@@ -2,15 +2,16 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import { editionFromSource, embeddedJson } from "./vocab-context.js";
-import { availabilityRequest, barView, inApp, listenable, listeningRun, nextSetting, pageView, storyToFollow } from "./listening.js";
+import { DEFAULT_SETTINGS, NARRATIONS, SPEEDS, TIMERS, availabilityRequest, barView, inApp, listenable, listeningRun, nextSetting,
+  pageView, storyToFollow, tapOnSentence } from "./listening.js";
 
 const html = readFileSync("index.html", "utf8");
-const edition = (file, binding) => editionFromSource(readFileSync(file, "utf8"), binding);
+const readSet = (file, binding) => editionFromSource(readFileSync(file, "utf8"), binding);
 const PAGE = "https://frank-humingtao.github.io/zhongkao-reading-lab/?set=reading-01";
 
 test("listening from a reading-set story runs to the end of the set, named by its published tracks", async () => {
-  const set = edition("reading-01.js", "memoryReadingSet");
-  const run = await listeningRun({ edition: set, setId: "reading-01", setName: "01 生词复现", startIndex: 0, pageURL: PAGE });
+  const set = readSet("reading-01.js", "memoryReadingSet");
+  const run = await listeningRun({ set, setId: "reading-01", setName: "01 生词复现", startIndex: 0, pageURL: PAGE });
   assert.equal(run.length, 10);
   assert.deepEqual(run[0], {
     key: "2a5f5df5d757c8e8", // Thunder for a Film, as published in tracks-001
@@ -20,14 +21,23 @@ test("listening from a reading-set story runs to the end of the set, named by it
     artwork: "https://frank-humingtao.github.io/zhongkao-reading-lab/images/reading-01/film.jpg",
     sentences: 12
   });
-  const later = await listeningRun({ edition: set, setId: "reading-01", setName: "01 生词复现", startIndex: 8, pageURL: PAGE });
+  const later = await listeningRun({ set, setId: "reading-01", setName: "01 生词复现", startIndex: 8, pageURL: PAGE });
   assert.deepEqual(later.map(story => story.id), set.stories.slice(8).map(story => story.id));
 });
 
 test("a replaced reading set keeps its illustrations under the set id", async () => {
-  const set = edition("reading-02-v3.js", "readingSet02");
-  const [first] = await listeningRun({ edition: set, setId: "reading-02", setName: "02 生词复现", startIndex: 0, pageURL: PAGE });
+  const set = readSet("reading-02-v3.js", "readingSet02");
+  const [first] = await listeningRun({ set, setId: "reading-02", setName: "02 生词复现", startIndex: 0, pageURL: PAGE });
   assert.match(first.artwork, /\/images\/reading-02\/[^/]+\.jpg$/);
+});
+
+test("a story without an illustration has no artwork", async () => {
+  const set = { stories: [
+    { id: "a", title: "A", paragraphs: [[["One.", "一。"]]] },
+    { id: "b", title: "B", illustration: [], paragraphs: [[["Two.", "二。"]]] }
+  ] };
+  const run = await listeningRun({ set, setId: "reading-09", setName: "09", startIndex: 0, pageURL: PAGE });
+  assert.deepEqual(run.map(story => story.artwork), [null, null]);
 });
 
 test("screening passages run with sentences counted the way the page splits them", async () => {
@@ -49,12 +59,12 @@ test("the page knows it is in the app only when the app has said so and can be r
 });
 
 test("an update highlights the spoken sentence only on the story being heard", () => {
-  const update = { type: "state", listening: true, playing: true, storyId: "memory-01-film", sentence: 3, progress: 0.25 };
-  assert.deepEqual(pageView(update, "memory-01-film"), { listening: true, playing: true, sentence: 3, progress: 0.25 });
-  assert.deepEqual(pageView(update, "memory-01-books"), { listening: true, playing: true, sentence: null, progress: 0.25 });
+  const update = { type: "state", listening: true, playing: true, storyId: "memory-01-film", sentence: 3, position: 0.25 };
+  assert.deepEqual(pageView(update, "memory-01-film"), { listening: true, playing: true, sentence: 3, position: 0.25 });
+  assert.deepEqual(pageView(update, "memory-01-books"), { listening: true, playing: true, sentence: null, position: 0.25 });
   assert.deepEqual(pageView({ ...update, listening: false, playing: false, storyId: null }, "memory-01-film"),
-    { listening: false, playing: false, sentence: null, progress: 0 });
-  assert.equal(pageView({ ...update, progress: 1.7 }, "memory-01-film").progress, 1);
+    { listening: false, playing: false, sentence: null, position: 0 });
+  assert.equal(pageView({ ...update, position: 1.7 }, "memory-01-film").position, 1);
 });
 
 test("the 听 control is in the view bar before 中英 and 目录, hidden until the app shows it", () => {
@@ -67,8 +77,8 @@ test("the 听 control is in the view bar before 中英 and 目录, hidden until 
 });
 
 test("the page asks the app which stories of the whole set have tracks", async () => {
-  const set = edition("reading-01.js", "memoryReadingSet");
-  const run = await listeningRun({ edition: set, setId: "reading-01", setName: "01 生词复现", startIndex: 0, pageURL: PAGE });
+  const set = readSet("reading-01.js", "memoryReadingSet");
+  const run = await listeningRun({ set, setId: "reading-01", setName: "01 生词复现", startIndex: 0, pageURL: PAGE });
   const request = availabilityRequest(run);
   assert.equal(request.type, "availability");
   assert.equal(request.keys.length, 10);
@@ -84,6 +94,22 @@ test("听 is greyed for a story whose tracks are not published, and stays usable
 });
 
 const DEFAULTS = { narration: "interleaved", speed: 1, doubleRead: false, timer: "off" };
+
+test("the setting values are the ones the app uses (fixtures/listening-settings.json)", () => {
+  const shared = JSON.parse(readFileSync("fixtures/listening-settings.json", "utf8"));
+  assert.deepEqual(NARRATIONS, shared.narrations);
+  assert.deepEqual(SPEEDS, shared.speeds);
+  assert.deepEqual(TIMERS, shared.timers);
+  assert.deepEqual(DEFAULT_SETTINGS, shared.defaults);
+});
+
+test("a sentence tapped before the app has said what is playing is kept until it does", () => {
+  const heard = { listening: true, playing: true, sentence: 2, position: 0.1 };
+  assert.deepEqual(tapOnSentence(heard, 5, false), { seek: 5 }, "the story on screen is being heard");
+  assert.deepEqual(tapOnSentence({ ...heard, sentence: null }, 5, true), { queue: 5 }, "a story just shown, the app not heard from yet");
+  assert.equal(tapOnSentence({ ...heard, sentence: null }, 5, false), null, "another story than the one being heard");
+  assert.equal(tapOnSentence(heard, -1, false), null, "not a sentence");
+});
 
 test("each bar control changes with one tap, cycling through its choices", () => {
   const cycle = (control, settings, taps) => {

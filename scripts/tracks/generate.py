@@ -11,7 +11,7 @@ Each sentence is synthesized on its own and the sentences are joined with a shor
 silence inside the track; timings exclude that silence, so the player can cut
 exact clips and add its own pauses.
 
-    node scripts/narration-plan.mjs --edition reading-01 > plan.json
+    node scripts/narration-plan.mjs --set reading-01 > plan.json
     uv run --project scripts/tracks python scripts/tracks/generate.py --plan plan.json --out out
     uv run --project scripts/tracks python scripts/tracks/generate.py --plan plan.json --out out \
         --publish --repo Frank-Humingtao/zhongkao-reading-lab

@@ -199,7 +199,7 @@
       padding: 14px var(--gutter) calc(18px + env(safe-area-inset-bottom));
       background: var(--bg); color: var(--ink-2); font-size: .9rem;
     }
-    .player-progress {
+    .player-position {
       position: absolute; top: 0; left: 0; right: 0; height: 2px;
       background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .4s linear;
     }
@@ -328,7 +328,7 @@
       </div>
     </main>
     <div class="player-bar" id="player-bar" hidden>
-      <span class="player-progress" id="player-progress"></span>
+      <span class="player-position" id="player-position"></span>
       <button type="button" class="player-toggle" id="player-toggle" aria-label="暂停">
         <svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg>
       </button>

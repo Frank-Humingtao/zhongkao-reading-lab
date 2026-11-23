@@ -40,6 +40,30 @@ export function screeningPairs(lesson, chineseParagraphs = []) {
     })));
 }
 
+// The stories of a reading set or news edition (`set`, as its script defines
+// it), with their illustrations under the set id the switcher uses (reading-02
+// for reading-02-v3): {id, title, artwork, pairs}. artwork is a site-relative
+// path, or null for a story without an illustration.
+export function setStories(set, setId) {
+  return (set?.stories || []).map(story => {
+    const illustration = Array.isArray(story.illustration) ? story.illustration[0] : null;
+    return {
+      id: story.id, title: story.title || "",
+      artwork: illustration ? `images/${setId}/${illustration}` : null,
+      pairs: storyPairs(story)
+    };
+  });
+}
+
+// The screening passages, the same way.
+export function screeningStories(screening, bilingualText = {}) {
+  return (screening?.lessons || []).map(lesson => ({
+    id: lesson.id, title: lesson.title || "",
+    artwork: `images/screening/${lesson.id}.jpg`,
+    pairs: screeningPairs(lesson, bilingualText?.[lesson.id])
+  }));
+}
+
 // The reading sets and news editions in the set switcher (site-nav.js), with
 // the label it shows: "01 生词复现" for a reading set, the title for news.
 function listedSets(siteNav) {
@@ -61,29 +85,15 @@ function shownEditions(html) {
 // text of an edition script.
 export async function narrationStories({ html, siteNav, load }) {
   const stories = [];
-  const screening = embeddedJson(html, "screening-data");
-  const bilingual = embeddedJson(html, "bilingual-text") || {};
-  for (const lesson of screening?.lessons || []) {
-    stories.push({
-      edition: "screening", set: "screening", setName: SCREENING_NAME,
-      id: lesson.id, title: lesson.title || "",
-      artwork: `images/screening/${lesson.id}.jpg`,
-      pairs: screeningPairs(lesson, bilingual[lesson.id])
-    });
+  for (const story of screeningStories(embeddedJson(html, "screening-data"), embeddedJson(html, "bilingual-text") || {})) {
+    stories.push({ edition: "screening", set: "screening", setName: SCREENING_NAME, ...story });
   }
   const sets = listedSets(siteNav);
   for (const [editionId, file, binding] of shownEditions(html)) {
     const set = sets.find(item => item.id === editionId || editionId.startsWith(item.id + "-v"));
     if (!set) continue;
-    const data = editionFromSource(await load(file), binding);
-    for (const story of data.stories || []) {
-      const illustration = Array.isArray(story.illustration) ? story.illustration[0] : null;
-      stories.push({
-        edition: editionId, set: set.id, setName: set.name,
-        id: story.id, title: story.title || "",
-        artwork: illustration ? `images/${set.id}/${illustration}` : null,
-        pairs: storyPairs(story)
-      });
+    for (const story of setStories(editionFromSource(await load(file), binding), set.id)) {
+      stories.push({ edition: editionId, set: set.id, setName: set.name, ...story });
     }
   }
   for (const story of stories) story.key = await narrationKey(story.pairs);

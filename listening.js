@@ -7,30 +7,24 @@
 //               | {type: "setting", narration? | speed? | doubleRead? | timer?}
 //               | {type: "availability", keys}   (every story of the set)
 //   app → page  window.zhongkaoListening.receive({type: "state", listening,
-//               playing, storyId, sentence, progress,
+//               playing, storyId, sentence, position,
 //               settings: {narration, speed, doubleRead, timer}})
 //               | {type: "availability", available}   (again whenever it changes)
 // The app remembers the settings; the page only shows them and sends taps.
-// Listening never writes progress and never marks a story read.
+// `position` is how far through the story the audio is (0...1), not reading
+// progress: listening never writes progress and never marks a story read.
 
-import { narrationKey, screeningPairs, storyPairs } from "./narration.js";
+import { narrationKey, screeningStories, setStories } from "./narration.js";
 
 export function inApp(win) {
   return Boolean(win?.zhongkaoApp && win.webkit?.messageHandlers?.listening);
 }
 
 // The run listening starts: the stories from `startIndex` to the end of the
-// reading set or news edition (`edition`), or of the screening passages.
-export async function listeningRun({ edition, setId, screening, bilingualText, setName, startIndex, pageURL }) {
-  const stories = edition
-    ? edition.stories.map(story => ({
-      id: story.id, title: story.title, pairs: storyPairs(story),
-      artwork: Array.isArray(story.illustration) ? `images/${setId}/${story.illustration[0]}` : null
-    }))
-    : screening.lessons.map(lesson => ({
-      id: lesson.id, title: lesson.title, pairs: screeningPairs(lesson, bilingualText[lesson.id]),
-      artwork: `images/screening/${lesson.id}.jpg`
-    }));
+// reading set or news edition (`set`, as its script defines it; `setId` names
+// its illustrations), or of the screening passages.
+export async function listeningRun({ set, setId, screening, bilingualText, setName, startIndex = 0, pageURL }) {
+  const stories = set ? setStories(set, setId) : screeningStories(screening, bilingualText);
   return Promise.all(stories.slice(startIndex).map(async story => ({
     key: await narrationKey(story.pairs),
     id: story.id,
@@ -60,22 +54,33 @@ export function pageView(update, storyId) {
     listening,
     playing: listening && Boolean(update.playing),
     sentence: listening && update.storyId === storyId && Number.isInteger(update.sentence) ? update.sentence : null,
-    progress: listening ? Math.min(1, Math.max(0, Number(update.progress) || 0)) : 0
+    position: listening ? Math.min(1, Math.max(0, Number(update.position) || 0)) : 0
   };
+}
+
+// A tap on sentence `index` while listening: seek to it when the story on
+// screen is the one being heard; keep it for the app's next update when a story
+// has just been shown and the app has not said yet (`waitingForApp`).
+export function tapOnSentence(view, index, waitingForApp) {
+  if (index < 0) return null;
+  if (view.sentence !== null) return { seek: index };
+  return waitingForApp ? { queue: index } : null;
 }
 
 // ---------- The player bar's settings ----------
 
-const DEFAULT_SETTINGS = { narration: "interleaved", speed: 1, doubleRead: false, timer: "off" };
-const SPEEDS = [0.8, 1, 1.2];
-const TIMERS = ["story", "15", "30", "60", "off"];
+// The values the app uses too (fixtures/listening-settings.json).
+export const NARRATIONS = ["interleaved", "englishOnly"];
+export const SPEEDS = [0.8, 1, 1.2];
+export const TIMERS = ["story", "15", "30", "60", "off"];
+export const DEFAULT_SETTINGS = { narration: "interleaved", speed: 1, doubleRead: false, timer: "off" };
 const after = (list, value) => list[(list.indexOf(value) + 1) % list.length];
 
 // One tap on a bar control: the change to send, the next of its choices.
 export function nextSetting(control, settings = DEFAULT_SETTINGS) {
   const current = { ...DEFAULT_SETTINGS, ...settings };
   switch (control) {
-    case "narration": return { narration: current.narration === "interleaved" ? "englishOnly" : "interleaved" };
+    case "narration": return { narration: after(NARRATIONS, current.narration) };
     case "speed": return { speed: after(SPEEDS, Number(current.speed)) };
     case "doubleRead": return { doubleRead: !current.doubleRead };
     case "timer": return { timer: after(TIMERS, current.timer) };
@@ -112,7 +117,7 @@ function attach(win, page) {
   const pill = byId("toggle-listening");
   const bar = byId("player-bar");
   const toggle = byId("player-toggle");
-  const progressLine = byId("player-progress");
+  const positionLine = byId("player-position");
   const controls = {
     narration: byId("player-narration"),
     speed: byId("player-speed"),
@@ -130,6 +135,10 @@ function attach(win, page) {
   let spoken = [];
   let availability = null;
   const keys = new Map(); // story id → narration key, for the whole set
+  // A story was just shown and the app has not said what is playing yet; a
+  // sentence tapped meanwhile waits in `queuedSeek` for its answer.
+  let waitingForApp = false;
+  let queuedSeek = null;
 
   // 听 is greyed until the story's tracks are published; the app answers
   // again on its own when they appear.
@@ -232,24 +241,39 @@ function attach(win, page) {
     const next = pageView(update, page.storyId());
     const sentenceChanged = next.sentence !== view.sentence;
     view = next;
+    waitingForApp = false;
+    if (queuedSeek !== null) {
+      if (next.listening && next.sentence !== null) post({ type: "seek", sentence: queuedSeek });
+      queuedSeek = null;
+    }
     if (next.listening) enter(); else leave();
     refreshPill();
     if (!listening) return;
     toggle.setAttribute("aria-label", next.playing ? "暂停" : "播放");
     toggle.querySelector("use").setAttribute("href", next.playing ? "#i-pause" : "#i-play");
     toggle.querySelector("svg").classList.toggle("filled", !next.playing);
-    progressLine.style.transform = `scaleX(${next.progress})`;
+    positionLine.style.transform = `scaleX(${next.position})`;
     if (sentenceChanged || !spoken.length) highlight(next.sentence);
   }
 
+  // Every story of the set with its narration key, worked out once. If the
+  // keys can't be worked out, 听 stays greyed.
+  const wholeSet = listeningRun({
+    set: page.edition, setId: page.setId, screening: page.screening, bilingualText: page.bilingualText,
+    setName: page.setName(), pageURL: win.location.href
+  });
+
   async function start() {
-    const run = await listeningRun({
-      edition: page.edition, setId: page.setId, screening: page.screening, bilingualText: page.bilingualText,
-      setName: page.setName(), startIndex: page.storyIndex(), pageURL: win.location.href
-    });
+    let run;
+    try {
+      run = (await wholeSet).slice(page.storyIndex());
+    } catch {
+      return refreshPill();
+    }
+    if (!run.length) return refreshPill();
     heardStory = page.storyId();
     post({ type: "start", run, story: 0, sentence: 0 });
-    show({ listening: true, playing: true, storyId: heardStory, sentence: 0, progress: 0, settings });
+    show({ listening: true, playing: true, storyId: heardStory, sentence: 0, position: 0, settings });
   }
 
   pill.hidden = false;
@@ -278,10 +302,12 @@ function attach(win, page) {
     if (!target) return;
     const index = Math.max(englishSentences().indexOf(target), underSentences().indexOf(target),
       chineseSentences().indexOf(target));
-    if (index < 0 || view.sentence === null) return;
+    const tap = tapOnSentence(view, index, waitingForApp);
+    if (!tap) return;
     event.preventDefault();
     event.stopPropagation();
-    post({ type: "seek", sentence: index });
+    if (tap.queue !== undefined) queuedSeek = tap.queue;
+    else post({ type: "seek", sentence: tap.seek });
   }, true);
 
   // A new story on screen: Chinese under its sentences, and find the spoken one.
@@ -292,6 +318,8 @@ function attach(win, page) {
     addChineseUnderSentences();
     spoken = [];
     view = { ...view, sentence: null };
+    waitingForApp = true;
+    queuedSeek = null;
     post({ type: "hello" });
   };
 
@@ -308,14 +336,11 @@ function attach(win, page) {
   showSettings(settings);
   post({ type: "hello" });
   refreshPill();
-  listeningRun({
-    edition: page.edition, setId: page.setId, screening: page.screening, bilingualText: page.bilingualText,
-    setName: page.setName(), startIndex: 0, pageURL: win.location.href
-  }).then(stories => {
+  wholeSet.then(stories => {
     stories.forEach(story => keys.set(story.id, story.key));
     refreshPill();
     post(availabilityRequest(stories));
-  });
+  }, () => refreshPill());
 }
 
 if (inApp(globalThis.window) && globalThis.window.readingPage) attach(globalThis.window, globalThis.window.readingPage);
