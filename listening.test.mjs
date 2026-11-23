@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import { editionFromSource, embeddedJson } from "./vocab-context.js";
-import { inApp, listeningRun, pageView } from "./listening.js";
+import { availabilityRequest, inApp, listenable, listeningRun, pageView } from "./listening.js";
 
 const html = readFileSync("index.html", "utf8");
 const edition = (file, binding) => editionFromSource(readFileSync(file, "utf8"), binding);
@@ -64,4 +64,21 @@ test("the 听 control is in the view bar before 中英 and 目录, hidden until 
   assert.match(viewbar, /<button[^>]*id="toggle-listening"[^>]*\bhidden\b/);
   assert.match(html, /<div class="player-bar" id="player-bar"[^>]*\bhidden\b/);
   assert.match(html, /<script type="module" src="listening\.js"><\/script>/);
+});
+
+test("the page asks the app which stories of the whole set have tracks", async () => {
+  const set = edition("reading-01.js", "memoryReadingSet");
+  const run = await listeningRun({ edition: set, setId: "reading-01", setName: "01 生词复现", startIndex: 0, pageURL: PAGE });
+  const request = availabilityRequest(run);
+  assert.equal(request.type, "availability");
+  assert.equal(request.keys.length, 10);
+  assert.equal(request.keys[0], "2a5f5df5d757c8e8");
+});
+
+test("听 is greyed for a story whose tracks are not published, and stays usable while listening", () => {
+  const answer = { type: "availability", available: ["2a5f5df5d757c8e8"] };
+  assert.equal(listenable(answer, "2a5f5df5d757c8e8", false), true);
+  assert.equal(listenable(answer, "0000000000000000", false), false);
+  assert.equal(listenable(null, "2a5f5df5d757c8e8", false), false);
+  assert.equal(listenable(null, "0000000000000000", true), true);
 });

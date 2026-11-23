@@ -4,8 +4,10 @@
 //   page → app  window.webkit.messageHandlers.listening.postMessage(message)
 //               {type: "start", run, story, sentence, settings} | {type: "toggle"}
 //               | {type: "seek", sentence} | {type: "stop"} | {type: "hello"}
+//               | {type: "availability", keys}   (every story of the set)
 //   app → page  window.zhongkaoListening.receive({type: "state", listening,
 //               playing, storyId, sentence, progress})
+//               | {type: "availability", available}   (again whenever it changes)
 // Listening never writes progress and never marks a story read.
 
 import { narrationKey, screeningPairs, storyPairs } from "./narration.js";
@@ -36,6 +38,18 @@ export async function listeningRun({ edition, setId, screening, bilingualText, s
   })));
 }
 
+// Which of these stories have published tracks? Asked for the whole reading
+// set or news edition, so the app can also keep all of it for offline use.
+export function availabilityRequest(stories) {
+  return { type: "availability", keys: stories.map(story => story.key) };
+}
+
+// Whether 听 can be tapped: the story's tracks are published (per the app's
+// latest availability answer), or listening is on and 听 would stop it.
+export function listenable(answer, key, listening) {
+  return Boolean(listening || (Array.isArray(answer?.available) && answer.available.includes(key)));
+}
+
 // What the page shows for an app update while `storyId` is on screen.
 export function pageView(update, storyId) {
   const listening = Boolean(update?.listening);
@@ -63,6 +77,14 @@ function attach(win, page) {
   let bilingualBefore = false;
   let view = pageView(null);
   let spoken = [];
+  let availability = null;
+  const keys = new Map(); // story id → narration key, for the whole set
+
+  // 听 is greyed until the story's tracks are published; the app answers
+  // again on its own when they appear.
+  function refreshPill() {
+    pill.disabled = !listenable(availability, keys.get(page.storyId()), listening);
+  }
 
   const englishSentences = () => [...page.passage.querySelectorAll('p[lang="en"] > .aligned-sentence')];
   const chineseSentences = () => [...page.passage.querySelectorAll("p.translation > .aligned-sentence")];
@@ -114,6 +136,7 @@ function attach(win, page) {
     const sentenceChanged = next.sentence !== view.sentence;
     view = next;
     if (next.listening) enter(); else leave();
+    refreshPill();
     if (!listening) return;
     toggle.setAttribute("aria-label", next.playing ? "暂停" : "播放");
     toggle.querySelector("use").setAttribute("href", next.playing ? "#i-pause" : "#i-play");
@@ -157,6 +180,7 @@ function attach(win, page) {
 
   // A new story on screen: keep Chinese showing and find the spoken sentence.
   page.onLessonShown = () => {
+    refreshPill();
     if (!listening) return;
     page.setBilingual(true);
     spoken = [];
@@ -164,8 +188,26 @@ function attach(win, page) {
     post({ type: "hello" });
   };
 
-  win.zhongkaoListening = { receive: update => show(pageView(update, page.storyId())) };
+  win.zhongkaoListening = {
+    receive(update) {
+      if (update?.type === "availability") {
+        availability = update;
+        refreshPill();
+      } else {
+        show(pageView(update, page.storyId()));
+      }
+    }
+  };
   post({ type: "hello" });
+  refreshPill();
+  listeningRun({
+    edition: page.edition, setId: page.setId, screening: page.screening, bilingualText: page.bilingualText,
+    setName: page.setName(), startIndex: 0, pageURL: win.location.href
+  }).then(stories => {
+    stories.forEach(story => keys.set(story.id, story.key));
+    refreshPill();
+    post(availabilityRequest(stories));
+  });
 }
 
 if (inApp(globalThis.window) && globalThis.window.readingPage) attach(globalThis.window, globalThis.window.readingPage);
