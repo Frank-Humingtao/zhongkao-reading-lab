@@ -23,10 +23,19 @@ node scripts/daily-words.mjs --progress-dir ../zhongkao-reading-progress …
 
 A mark's time is its last change, so clearing and re-marking a word, or picking another example, in the same article moves it to that later day. Marks from before sync have no day and never fall in a range.
 
-Run the tests with `node --test vocab.test.mjs`.
+Run the tests with `node --test vocab.test.mjs narration.test.mjs`.
+
+## Listening tracks
+
+`narration.js` turns every story the site shows (screening passages, reading sets, news editions) into its sentence pairs, with Chinese glosses left out of the English, and a narration key that names its tracks. The **Listening tracks** Action (`.github/workflows/tracks.yml`, run by hand, optionally for one set such as `reading-01`) makes the missing tracks with Kokoro (`am_michael` / `zm_yunjian`) and publishes them to the `tracks-NNN` releases, with `catalog.json` in the `tracks-catalog` release. It never commits. To make tracks locally:
+
+```
+node scripts/narration-plan.mjs --edition reading-01 > plan.json
+uv run --project scripts/tracks python scripts/tracks/generate.py --plan plan.json --out out   # needs espeak-ng
+```
 
 ## Adding a reading set
 
-Add the set to the `editions` map in `index.html` (as before) and one line to `READING_SETS` in `site-nav.js`; the set switcher on every page picks it up. Shared styles live in `site.css`.
+Add the set to the `editions` map in `index.html` (as before), one line to `READING_SETS` in `site-nav.js`, and its file to `EDITION_SCRIPTS` in `vocab-context.js` (listening finds stories there; `narration.test.mjs` fails if a listed set has none); the set switcher on every page picks it up. Shared styles live in `site.css`.
 
 A news edition goes in `NEWS_EDITIONS` instead, with its own id such as `daily-news-01`. Add the same id to `VOCAB_SOURCES` in `vocab-core.js` and `EDITION_SCRIPTS` in `vocab-context.js` so the 生词 board and `scripts/daily-words.mjs` discover its marks. See `daily-news-01.md` for the first edition's sources and image credits.
