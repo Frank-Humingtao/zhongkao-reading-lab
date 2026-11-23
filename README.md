@@ -23,7 +23,7 @@ node scripts/daily-words.mjs --progress-dir ../zhongkao-reading-progress …
 
 A mark's time is its last change, so clearing and re-marking a word, or picking another example, in the same article moves it to that later day. Marks from before sync have no day and never fall in a range.
 
-Run the tests with `node --test vocab.test.mjs narration.test.mjs listening.test.mjs`.
+Run the tests with `node --test vocab.test.mjs narration.test.mjs listening.test.mjs word-press.test.mjs progress-sync.test.mjs`.
 
 ## Listening tracks
 
