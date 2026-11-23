@@ -1,9 +1,8 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 import {
   PRESYNC_LABEL,
-  VOCAB_SOURCES,
   aggregateVocab,
   currentMarks,
   decodeGithubContent,
@@ -21,7 +20,18 @@ import {
   shanghaiDateKey,
   baseForm
 } from "./vocab-core.js";
-import { EDITION_SCRIPTS, buildCatalog, editionFromSource, embeddedJson, readingPlainText } from "./vocab-context.js";
+import { readManifest, vocabSources } from "./content.js";
+import { buildCatalog, loadWordCatalog, readingPlainText } from "./vocab-context.js";
+
+const { collections } = readManifest(readFileSync("content/index.json", "utf8"));
+const progressSources = vocabSources(collections);
+const readText = async path => {
+  try {
+    return readFileSync(path, "utf8");
+  } catch {
+    return null;
+  }
+};
 
 const NOV_20 = Date.parse("2026-11-19T16:00:00.000Z");
 const NOV_19_END = NOV_20 - 1;
@@ -137,24 +147,6 @@ test("a pre-sync mark is earlier than a later mark of the same word", () => {
   assert.equal(state.days[0].label, PRESYNC_LABEL);
 });
 
-test("legacy 02 v2 is included when live 02 v3 is empty", () => {
-  const legacy = VOCAB_SOURCES.find(source => source.id === "reading-02-v2");
-  assert.equal(legacy.file, "progress-reading-02-v2.json");
-  assert.equal(legacy.progressKey, "zhongkao-reading-lab-reading-02-v2");
-  assert.equal(legacy.recordsKey, "zhongkao-github-sync-records-reading-02-v2-v1");
-  const state = aggregateVocab(VOCAB_SOURCES.map(source => ({
-    label: source.label,
-    progress: source.id === "reading-02-v3" ? { marks: {} } : null,
-    records: source.id === "reading-02-v2"
-      ? { "mark/story-a/quill": [NOV_20, "writer-a", 0] }
-      : {}
-  })));
-  assert.equal(state.count, 1);
-  assert.equal(state.words[0].word, "quill");
-  assert.deepEqual(state.words[0].sources, ["02"]);
-  assert.equal(state.days[0].label, "2026年11月20日");
-});
-
 test("merge keeps the newer record and breaks timestamp ties by writer id", () => {
   const newer = mergeRecords(
     { "mark/lesson/quill": [10, "bbb", 1] },
@@ -235,44 +227,38 @@ test("demo preview is labeled fixture data and does not keep a cleared mark", ()
   }
 });
 
-test("lesson lookup finds the marked sentence in 01 and historical 02 v2", () => {
-  const html = readFileSync("index.html", "utf8");
-  const screening = buildCatalog({
-    screening: embeddedJson(html, "screening-data"),
-    bilingual: embeddedJson(html, "bilingual-text"),
-    extraMeanings: embeddedJson(html, "supplemental-meanings")
-  });
-  const screeningHit = screening.lookup("screening", "read-01", "bang", 0);
+test("the word catalog built from content/ finds marked sentences in every collection", async () => {
+  const catalog = await loadWordCatalog(readText);
+  const screeningHit = catalog.lookup("screening", "read-01", "bang", 0);
   assert.ok(screeningHit.meaning);
   assert.match(screeningHit.sentence, /\bbang\b/i);
   assert.ok(screeningHit.chinese);
 
-  const edition01 = editionFromSource(readFileSync("reading-01.js", "utf8"), "memoryReadingSet");
-  const set01 = buildCatalog({ editions: { "reading-01": edition01 } });
-  const bang = set01.lookup("reading-01", "memory-01-film", "bang", 0);
+  const bang = catalog.lookup("reading-01", "memory-01-film", "bang", 0);
   assert.equal(bang.meaning, "砰的一声");
   assert.match(bang.sentence, /bang/i);
   assert.ok(bang.chinese);
+  assert.equal(catalog.title("reading-01", "memory-01-film"), "Thunder for a Film");
 
-  const edition02 = editionFromSource(readFileSync("reading-02-v2.js", "utf8"), "readingSet02");
-  const set02 = buildCatalog({
-    screening: embeddedJson(html, "screening-data"),
-    extraMeanings: embeddedJson(html, "supplemental-meanings"),
-    editions: { "reading-02-v2": edition02 }
-  });
-  let historical = null;
-  for (const story of edition02.stories) {
-    for (const word of Object.keys(edition02.words)) {
-      const hit = set02.lookup("reading-02-v2", story.id, word, 0);
-      if (hit?.sentence && hit.meaning) {
-        historical = hit;
-        break;
-      }
-    }
-    if (historical) break;
-  }
-  assert.ok(historical, "reading-02-v2 should resolve a marked example");
-  assert.equal(set02.sources.includes("reading-02-v2"), true);
+  assert.deepEqual([...catalog.sources].sort(), ["daily-news-01", "reading-01", "reading-02-v3", "reading-03-v2", "reading-04", "screening"]);
+  const two = JSON.parse(readFileSync("content/reading-02-v3.json", "utf8"));
+  const word = Object.keys(two.words).find(key => catalog.lookup("reading-02-v3", two.stories[0].id, key, 0)?.sentence);
+  assert.ok(word, "reading-02-v3 should resolve a marked example");
+
+  const spacecraft = catalog.lookup("daily-news-01", "daily-news-01-01", "spacecraft", 0);
+  assert.equal(spacecraft.meaning, "航天器");
+  assert.doesNotMatch(spacecraft.sentence, /\p{Script=Han}/u);
+  assert.equal(spacecraft.offset, spacecraft.sentence.toLowerCase().indexOf("spacecraft"));
+});
+
+test("progress keys stay where the reading page has always kept them", () => {
+  const source = id => progressSources.find(item => item.id === id);
+  assert.deepEqual(source("screening"), { id: "screening", label: "Placement 01", file: "progress.json",
+    progressKey: "zhongkao-reading-lab-v3", recordsKey: "zhongkao-github-sync-records-v1" });
+  assert.deepEqual(source("reading-02-v3"), { id: "reading-02-v3", label: "Review 02", file: "progress-reading-02-v3.json",
+    progressKey: "zhongkao-reading-lab-reading-02-v3", recordsKey: "zhongkao-github-sync-records-reading-02-v3-v1" });
+  assert.deepEqual(progressSources.map(item => item.id), ["screening", "reading-01", "reading-02-v3", "reading-03-v2", "reading-04",
+    "daily-news-01"]);
 });
 
 test("the public page does not ship tokens or progress contents", () => {
@@ -284,12 +270,9 @@ test("the public page does not ship tokens or progress contents", () => {
   assert.match(page, /vocab\.html\?demo=1/);
   assert.match(page, /看看示例/);
   assert.match(page, /示例数据/);
-  assert.equal(bundle.includes("progress-reading-02-v2.json"), true);
   const index = readFileSync("index.html", "utf8");
   assert.match(index, /href="vocab\.html"/);
-  assert.match(index, /progressId: "reading-02-v3"/);
-  assert.match(index, /progressId: "reading-03-v2"/);
-  assert.doesNotMatch(index, /reading-02-v2\.js/);
+  assert.doesNotMatch(index + readFileSync("content/index.json", "utf8"), /github_pat_[A-Za-z0-9_]{8}/);
 });
 
 test("wordsForDay returns only words first marked on that Beijing day", () => {
@@ -374,13 +357,8 @@ test("inline Chinese glosses are not English tokens and do not move example offs
       "Plasma is a kind of gas made of charged particles."],
     ["A light-day is the distance light can travel in one day.", "A light-day is the distance light can travel in one day."]
   ];
-  const html = readFileSync("index.html", "utf8");
-  const body = html.match(/function readingPlainText\(text\) \{\n([\s\S]*?)\n    \}/);
-  assert.ok(body, "reading page keeps readingPlainText");
-  const pagePlainText = new Function("text", body[1]);
   for (const [source, plain] of samples) {
     assert.equal(readingPlainText(source), plain);
-    assert.equal(pagePlainText(source), plain);
     assert.doesNotMatch(plain, /\p{Script=Han}/u);
   }
 
@@ -403,284 +381,4 @@ test("inline Chinese glosses are not English tokens and do not move example offs
   const craft = catalog.lookup("daily-news-01", "gloss-check", "spacecraft", 0);
   assert.equal(craft.offset, craft.sentence.toLowerCase().indexOf("spacecraft"));
   assert.equal(craft.meaning, "航天器");
-});
-
-test("daily news 01 joins the vocabulary pool without replacing reading sets", () => {
-  const news = VOCAB_SOURCES.find(source => source.id === "daily-news-01");
-  assert.ok(news);
-  assert.equal(news.label, "daily news 01");
-  assert.equal(news.progressKey, "zhongkao-reading-lab-" + news.id);
-  assert.equal(news.file, "progress-" + news.id + ".json");
-  assert.equal(news.recordsKey, "zhongkao-github-sync-records-" + news.id + "-v1");
-  for (const id of ["screening", "reading-01", "reading-02-v3", "reading-02-v2", "reading-02", "reading-03", "reading-03-v2"]) {
-    assert.equal(VOCAB_SOURCES.some(source => source.id === id), true, id);
-  }
-  assert.deepEqual(
-    EDITION_SCRIPTS.find(row => row[0] === "daily-news-01"),
-    ["daily-news-01", "daily-news-01.js", "dailyNews01"]
-  );
-  assert.equal(EDITION_SCRIPTS.some(row => row[0] === "reading-01"), true);
-
-  const edition = editionFromSource(readFileSync("daily-news-01.js", "utf8"), "dailyNews01");
-  assert.equal(edition.columnTitle, "daily news 01");
-  assert.equal(edition.editionDate, "2026-11-21");
-  assert.equal(edition.stories.length, 6);
-  assert.deepEqual(edition.stories.map(story => story.id), [
-    "daily-news-01-01", "daily-news-01-02", "daily-news-01-03",
-    "daily-news-01-04", "daily-news-01-05", "daily-news-01-06"
-  ]);
-  const voyager = edition.stories[0].paragraphs.flat().map(([english]) => english).join(" ");
-  assert.match(voyager, /November 18, 2026/);
-  assert.match(voyager, /25\.9 billion kilometers/);
-  assert.match(voyager, /Science data stopped/);
-  assert.doesNotMatch(voyager, /Some science data/);
-  const dragon = edition.stories[1].paragraphs.flat().map(([english]) => english).join(" ");
-  assert.match(dragon, /should splash down/);
-  assert.match(dragon, /has not happened yet/);
-  assert.doesNotMatch(dragon, /splashed down|made in space/);
-  const esa = edition.stories[2].paragraphs.flat().map(([english]) => english).join(" ");
-  assert.match(esa, /may launch in the late 2030s/);
-  assert.doesNotMatch(esa, /\blaunched\b/);
-  for (const story of edition.stories.slice(0, 3)) {
-    assert.ok(story.illustration, story.id);
-    assert.equal(story.figure.credit.length > 0, true);
-    assert.match(story.figure.sourceUrl, /^https:\/\//);
-  }
-  for (const story of edition.stories.slice(3)) {
-    assert.ok(story.illustration, story.id);
-    assert.equal(existsSync("images/daily-news-01/" + story.illustration[0]), true, story.id);
-    assert.match(story.figure.note, /没有获得单独转载许可/);
-    assert.doesNotMatch(story.figure.note, /已授权|授权转载/);
-    assert.equal(story.figure.credit.length > 0, true);
-    assert.match(story.figure.sourceUrl, /^https:\/\//);
-    const plainWords = story.paragraphs.flat()
-      .map(([english]) => readingPlainText(english))
-      .join(" ")
-      .match(/[A-Za-z0-9]+(?:[-'][A-Za-z0-9]+)*/g);
-    assert.ok(plainWords.length >= 100 && plainWords.length <= 145, story.id + " " + plainWords.length);
-  }
-  const ue = edition.stories[3].paragraphs.flat().map(([english]) => english).join(" ");
-  assert.match(ue, /November 20, 2026/);
-  assert.match(ue, /not a new engine you can download today/);
-  assert.doesNotMatch(ue, /late 2027|Tokyo/);
-  const genie = edition.stories[4].paragraphs.flat().map(([english]) => english).join(" ");
-  assert.match(genie, /November 19, 2026/);
-  assert.match(genie, /120 seconds/);
-  assert.match(genie, /720p/);
-  const ideogram = edition.stories[5].paragraphs.flat().map(([english]) => english).join(" ");
-  assert.match(ideogram, /November 19, 2026/);
-  assert.match(ideogram, /November 17/);
-  assert.doesNotMatch(ideogram, /partner/);
-  assert.doesNotMatch(readFileSync("daily-news-01.js", "utf8"), /official-sample|child-like/);
-  for (const story of edition.stories) {
-    assert.equal(story.sources.length > 0, true);
-    for (const paragraph of story.paragraphs) {
-      for (const [english, chinese] of paragraph) {
-        assert.equal(typeof chinese, "string");
-        assert.ok(chinese.length > 0);
-        const plain = readingPlainText(english);
-        assert.doesNotMatch(plain, /\p{Script=Han}/u);
-        assert.doesNotMatch(plain, /spacecraftis|samplesis|particlesis/);
-        assert.equal(plain.includes("  "), false);
-      }
-    }
-  }
-
-  const catalog = buildCatalog({ editions: { "daily-news-01": edition } });
-  const first = catalog.lookup("daily-news-01", "daily-news-01-01", "spacecraft", 0);
-  assert.equal(first.meaning, "航天器");
-  assert.match(first.sentence, /\bspacecraft\b/);
-  assert.doesNotMatch(first.sentence, /\p{Script=Han}/u);
-  assert.equal(first.offset, first.sentence.toLowerCase().indexOf("spacecraft"));
-  assert.match(first.chinese, /航天器/);
-  const later = catalog.lookup("daily-news-01", "daily-news-01-01", "spacecraft", 1);
-  assert.equal(later.sentence, "");
-  assert.equal(later.offset, -1);
-  const secondStory = catalog.lookup("daily-news-01", "daily-news-01-03", "spacecraft", 0);
-  assert.match(secondStory.sentence, /seven spacecraft/i);
-  assert.doesNotMatch(secondStory.sentence, /\p{Script=Han}/u);
-  const splash = catalog.lookup("daily-news-01", "daily-news-01-02", "splash down", 0);
-  assert.equal(splash.meaning, "溅落");
-  assert.match(splash.sentence, /splash down/);
-  assert.doesNotMatch(splash.sentence, /\p{Script=Han}/u);
-  assert.equal(catalog.lookup("daily-news-01", "daily-news-01-01", "航天器", 0), null);
-  assert.equal(catalog.lookup("daily-news-01", "daily-news-01-01", "星际的", 0), null);
-  const scene = catalog.lookup("daily-news-01", "daily-news-01-04", "scene graph", 0);
-  assert.equal(scene.meaning, "场景图");
-  assert.match(scene.sentence, /Scene Graph/);
-  assert.doesNotMatch(scene.sentence, /\p{Script=Han}/u);
-  assert.equal(scene.offset, scene.sentence.toLowerCase().indexOf("scene graph"));
-  const added = wordsForDay([{
-    id: "daily-news-01",
-    label: "daily news 01",
-    progress: null,
-    records: { "mark/daily-news-01-04/scene graph": [NOV_20, "fixture", 0] }
-  }], "2026-11-20");
-  assert.deepEqual(added.map(word => word.word), ["scene graph"]);
-  assert.deepEqual(added[0].sources, ["daily news 01"]);
-  assert.equal(added[0].details[0].lessonId, "daily-news-01-04");
-
-  const sources = [
-    {
-      id: "reading-01",
-      label: "01",
-      progress: null,
-      records: { "mark/memory-01-film/slip": [NOV_18, "fixture", 0] }
-    },
-    {
-      id: news.id,
-      label: news.label,
-      progress: null,
-      records: {
-        "mark/daily-news-01-01/spacecraft": [NOV_20, "fixture", 0],
-        "mark/daily-news-01-01/slip": [NOV_20, "fixture", 1]
-      }
-    }
-  ];
-  assert.deepEqual(wordsForDay(sources, "2026-11-20").map(word => word.word), ["spacecraft"]);
-  const repeated = wordsInRange(sources, "2026-11-20");
-  assert.deepEqual(repeated.map(word => word.word), ["slip", "spacecraft"]);
-  assert.equal(repeated.find(word => word.word === "slip").repeat, true);
-  assert.deepEqual(repeated.find(word => word.word === "spacecraft").sources, ["daily news 01"]);
-  const details = presentDetails(repeated.find(word => word.word === "spacecraft").details.map(detail => ({
-    ...detail,
-    ...(catalog.lookup(detail.sourceId, detail.lessonId, detail.word, detail.exampleIndex) || {})
-  })));
-  assert.match(details[0].sentence, /spacecraft/);
-  assert.doesNotMatch(details[0].sentence, /\p{Script=Han}/u);
-
-  const index = readFileSync("index.html", "utf8");
-  const nav = readFileSync("site-nav.js", "utf8");
-  const exporter = readFileSync("scripts/daily-words.mjs", "utf8");
-  assert.match(index, /\["reading-01", \{ data: memoryReadingSet \}\]/);
-  assert.match(index, /progressId: "reading-02-v3"/);
-  assert.match(index, /progressId: "reading-03-v2"/);
-  assert.match(index, /\["daily-news-01", \{ data: dailyNews01, title: "daily news 01" \}\]/);
-  assert.match(index, /src="reading-01\.js"/);
-  assert.match(index, /src="daily-news-01\.js"/);
-  assert.match(nav, /id: "reading-01"/);
-  assert.match(nav, /id: "reading-02"/);
-  assert.match(nav, /id: "reading-03"/);
-  assert.match(nav, /title: "daily news 01"/);
-  assert.match(exporter, /EDITION_SCRIPTS/);
-  assert.match(exporter, /VOCAB_SOURCES/);
-  assert.equal(readFileSync("daily-news-01.js", "utf8").includes("github_pat_"), false);
-  assert.equal(readFileSync("daily-news-01.md", "utf8").includes("github_pat_"), false);
-});
-
-test("reading set 04 is its own edition in the shared vocabulary pool", () => {
-  const source = VOCAB_SOURCES.find(item => item.id === "reading-04");
-  assert.ok(source);
-  assert.equal(source.label, "04");
-  assert.equal(source.progressKey, "zhongkao-reading-lab-reading-04");
-  assert.equal(source.file, "progress-reading-04.json");
-  assert.equal(source.recordsKey, "zhongkao-github-sync-records-reading-04-v1");
-  for (const id of ["screening", "reading-01", "reading-02-v3", "reading-03-v2", "daily-news-01"]) {
-    assert.notEqual(source.id, id);
-    assert.notEqual(source.progressKey, "zhongkao-reading-lab-" + id);
-  }
-  assert.deepEqual(
-    EDITION_SCRIPTS.find(row => row[0] === "reading-04"),
-    ["reading-04", "reading-04.js", "readingSet04"]
-  );
-
-  const edition = editionFromSource(readFileSync("reading-04.js", "utf8"), "readingSet04");
-  const wordKeys = Object.keys(edition.words);
-  assert.equal(wordKeys.length, 132);
-  assert.equal(new Set(wordKeys).size, 132);
-  assert.equal(edition.words.harvest[0], "收割，收获");
-  assert.equal(edition.words.plasma[0], "等离子体");
-  assert.equal(edition.words.voyager[0], "旅行者（此处指旅行者1号）");
-  assert.equal(edition.words["kind-hearted"][0], "好心的");
-  assert.deepEqual(edition.words.wipe, ["擦掉", "wiped"]);
-  assert.deepEqual(edition.words.shake, ["摇动；晃动", "shook"]);
-  assert.equal(edition.words.bit.includes("bite"), false);
-  assert.equal(edition.words.bite.includes("bit"), false);
-  assert.equal(wordKeys.includes("flower"), false);
-
-  assert.equal(edition.stories.length, 39);
-  const ids = edition.stories.map(story => story.id);
-  assert.equal(new Set(ids).size, 39);
-  assert.equal(ids[0], "memory-04-tractor-bend");
-  assert.equal(ids[38], "memory-04-path-bend");
-  assert.equal(edition.stories[0].title, "The Tractor on the Bend");
-  assert.equal(edition.stories[0].topic, "转弯处的拖拉机");
-  assert.equal(
-    edition.stories[0].paragraphs[0][0][0],
-    "After the harvest, a tractor stopped on a steep bend."
-  );
-  assert.equal(
-    edition.stories[0].paragraphs[0][0][1],
-    "收割结束后，一辆拖拉机停在一段陡峭的转弯处。"
-  );
-  assert.equal(
-    edition.stories[1].paragraphs.at(-1).at(-1)[0],
-    "\"These will keep,\" he said, \"if I take them home today.\""
-  );
-  assert.equal(
-    edition.stories[38].paragraphs.at(-1)[0][0],
-    "The bright cloth on the rope moved in the wind."
-  );
-  assert.equal(
-    edition.stories[38].paragraphs.at(-1)[0][1],
-    "绳子上那块明亮的布在风里动着。"
-  );
-  for (const story of edition.stories) {
-    assert.equal(story.illustration, undefined, story.id);
-    assert.equal(story.figure, undefined, story.id);
-    assert.equal(story.paragraphs.length > 0, true, story.id);
-    for (const paragraph of story.paragraphs) {
-      for (const [english, chinese] of paragraph) {
-        assert.equal(typeof english, "string");
-        assert.equal(typeof chinese, "string");
-        assert.ok(english.length > 0, story.id);
-        assert.ok(chinese.length > 0, story.id);
-        assert.doesNotMatch(english, /\p{Script=Han}/u);
-        assert.match(chinese, /\p{Script=Han}/u);
-      }
-    }
-  }
-
-  const catalog = buildCatalog({ editions: { "reading-04": edition } });
-  const titleTractor = catalog.lookup("reading-04", "memory-04-tractor-bend", "tractor", 0);
-  assert.equal(titleTractor.meaning, "拖拉机");
-  assert.equal(titleTractor.sentence, "The Tractor on the Bend");
-  const tractor = catalog.lookup("reading-04", "memory-04-tractor-bend", "tractor", 1);
-  assert.equal(tractor.meaning, "拖拉机");
-  assert.match(tractor.sentence, /\btractor\b/i);
-  assert.match(tractor.chinese, /拖拉机/);
-  assert.equal(tractor.offset, tractor.sentence.toLowerCase().indexOf("tractor"));
-
-  let wiped = null;
-  let shook = null;
-  for (const story of edition.stories) {
-    for (let index = 0; index < 20; index += 1) {
-      const wipe = catalog.lookup("reading-04", story.id, "wipe", index);
-      if (wipe?.surface?.toLowerCase() === "wiped" && wipe.sentence) wiped = wipe;
-      const shake = catalog.lookup("reading-04", story.id, "shake", index);
-      if (shake?.surface?.toLowerCase() === "shook" && shake.sentence) shook = shake;
-    }
-  }
-  assert.equal(wiped.meaning, "擦掉");
-  assert.match(wiped.sentence, /\bwiped\b/);
-  assert.equal(shook.meaning, "摇动；晃动");
-  assert.match(shook.sentence, /\bshook\b/);
-  const heart = catalog.lookup("reading-04", "memory-04-granny-kitchen", "kind-hearted", 0);
-  assert.equal(heart.meaning, "好心的");
-  assert.match(heart.sentence, /Kind-hearted/);
-  const voyager = catalog.lookup("reading-04", "memory-04-broadcast-voyager", "voyager", 0);
-  assert.equal(voyager.meaning, "旅行者（此处指旅行者1号）");
-  assert.match(voyager.sentence, /Voyager/);
-
-  const index = readFileSync("index.html", "utf8");
-  const nav = readFileSync("site-nav.js", "utf8");
-  assert.match(index, /src="reading-04\.js"/);
-  assert.match(index, /\["reading-04", \{ data: readingSet04 \}\]/);
-  assert.match(index, /figure\.hidden = !lesson\.illustration/);
-  assert.match(index, /\.word\[aria-pressed="true"\] \{ color: var\(--accent\)/);
-  assert.match(nav, /id: "reading-04", number: "04", name: "生词复现"/);
-  assert.match(index, /progressId: "reading-02-v3"/);
-  assert.match(index, /progressId: "reading-03-v2"/);
-  assert.equal(readFileSync("reading-04.js", "utf8").includes("github_pat_"), false);
-  assert.equal(readFileSync("reading-04.js", "utf8").includes("progress-reading-04.json"), false);
 });

@@ -1,0 +1,30 @@
+# The content check (CONTENT.md) on every push that touches content or pictures.
+# A red run means some content is malformed: the job summary says, in plain
+# words, which file and field to fix. The site skips a malformed collection, so
+# nothing else breaks meanwhile.
+name: Content check
+
+on:
+  push:
+    paths:
+      - "content/**"
+      - "images/**"
+      - content.js
+      - scripts/check-content.mjs
+      - .github/workflows/content.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check content
+        run: node scripts/check-content.mjs

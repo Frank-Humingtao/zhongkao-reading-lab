@@ -2,20 +2,18 @@
 # See scripts/tracks/generate.py. Never commits to the repository: tracks go to
 # the tracks-NNN releases and catalog.json to the tracks-catalog release.
 #
-# On every push to main that touches story data it makes tracks for each story
+# On every push to main that touches content/ it makes tracks for each story
 # whose narration key is not in the catalog yet (new or edited stories) and
 # skips everything already published. Run it by hand to backfill everything,
-# or one reading set / news edition / "screening".
+# or one collection (an id from content/index.json, such as reading-01 or screening).
 name: Listening tracks
 
 on:
   push:
     branches: [main]
     paths:
-      - "reading-*.js"
-      - "daily-news-*.js"
-      - index.html
-      - site-nav.js
+      - "content/**"
+      - content.js
       - narration.js
       - vocab-context.js
       - scripts/narration-plan.mjs
@@ -24,7 +22,7 @@ on:
   workflow_dispatch:
     inputs:
       set:
-        description: Only this reading set, news edition or "screening" (empty for every story)
+        description: Only this collection, an id from content/index.json (empty for every story)
         required: false
         default: ""
 

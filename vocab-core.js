@@ -16,71 +16,8 @@ export const TOKEN_KEY = "zhongkao-github-sync-token-v1";
 export const PROGRESS_API = "https://api.github.com/repos/Frank-Humingtao/zhongkao-reading-progress/contents/";
 export const PRESYNC_LABEL = "更早";
 
-export const VOCAB_SOURCES = [
-  {
-    id: "screening",
-    label: "筛选",
-    file: "progress.json",
-    progressKey: "zhongkao-reading-lab-v3",
-    recordsKey: "zhongkao-github-sync-records-v1"
-  },
-  {
-    id: "reading-01",
-    label: "01",
-    file: "progress-reading-01.json",
-    progressKey: "zhongkao-reading-lab-reading-01",
-    recordsKey: "zhongkao-github-sync-records-reading-01-v1"
-  },
-  {
-    id: "reading-02-v3",
-    label: "02",
-    file: "progress-reading-02-v3.json",
-    progressKey: "zhongkao-reading-lab-reading-02-v3",
-    recordsKey: "zhongkao-github-sync-records-reading-02-v3-v1"
-  },
-  {
-    id: "reading-02-v2",
-    label: "02",
-    file: "progress-reading-02-v2.json",
-    progressKey: "zhongkao-reading-lab-reading-02-v2",
-    recordsKey: "zhongkao-github-sync-records-reading-02-v2-v1"
-  },
-  {
-    id: "reading-02",
-    label: "02",
-    file: "progress-reading-02.json",
-    progressKey: "zhongkao-reading-lab-reading-02",
-    recordsKey: "zhongkao-github-sync-records-reading-02-v1"
-  },
-  {
-    id: "reading-03",
-    label: "03",
-    file: "progress-reading-03.json",
-    progressKey: "zhongkao-reading-lab-reading-03",
-    recordsKey: "zhongkao-github-sync-records-reading-03-v1"
-  },
-  {
-    id: "reading-03-v2",
-    label: "03",
-    file: "progress-reading-03-v2.json",
-    progressKey: "zhongkao-reading-lab-reading-03-v2",
-    recordsKey: "zhongkao-github-sync-records-reading-03-v2-v1"
-  },
-  {
-    id: "reading-04",
-    label: "04",
-    file: "progress-reading-04.json",
-    progressKey: "zhongkao-reading-lab-reading-04",
-    recordsKey: "zhongkao-github-sync-records-reading-04-v1"
-  },
-  {
-    id: "daily-news-01",
-    label: "daily news 01",
-    file: "progress-daily-news-01.json",
-    progressKey: "zhongkao-reading-lab-daily-news-01",
-    recordsKey: "zhongkao-github-sync-records-daily-news-01-v1"
-  }
-];
+// Which progress files and storage keys hold marks is content.js's vocabSources:
+// one per collection and per earlier version of a replaced one.
 
 const VISITOR_NOTE = "还没有生词";
 const EMPTY_NOTE = "还没有生词";

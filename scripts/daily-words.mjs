@@ -22,10 +22,10 @@
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { EDITION_SCRIPTS, buildCatalog, editionFromSource, embeddedJson } from "../vocab-context.js";
+import { loadManifest, vocabSources } from "../content.js";
+import { loadWordCatalog } from "../vocab-context.js";
 import {
   PROGRESS_API,
-  VOCAB_SOURCES,
   decodeGithubContent,
   decodeRecords,
   presentDetails,
@@ -79,24 +79,13 @@ async function recordsFromGithub(token, file) {
   return decodeGithubContent((await response.json()).content);
 }
 
-async function loadCatalog() {
-  const html = await readFile(join(root, "index.html"), "utf8");
-  const editions = {};
-  for (const [id, file, binding] of EDITION_SCRIPTS) {
-    try {
-      editions[id] = editionFromSource(await readFile(join(root, file), "utf8"), binding);
-    } catch {
-      // A missing historical set only loses meanings and sentences, not words.
-    }
+// A file of this repository, or null when it is not there.
+async function readRepoFile(path) {
+  try {
+    return await readFile(join(root, path), "utf8");
+  } catch {
+    return null;
   }
-  return buildCatalog({
-    screening: embeddedJson(html, "screening-data"),
-    bilingual: embeddedJson(html, "bilingual-text") || {},
-    extraMeanings: embeddedJson(html, "supplemental-meanings") || {},
-    trialLessons: embeddedJson(html, "lesson-data") || [],
-    trialGlossary: embeddedJson(html, "new-glossary"),
-    editions
-  });
 }
 
 async function main() {
@@ -108,7 +97,7 @@ async function main() {
   const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
   if (!options.progressDir && !token) throw new Error("set GITHUB_TOKEN (read access to zhongkao-reading-progress) or pass --progress-dir");
 
-  const sources = await Promise.all(VOCAB_SOURCES.map(async source => ({
+  const sources = await Promise.all(vocabSources((await loadManifest(readRepoFile)).collections).map(async source => ({
     id: source.id,
     label: source.label,
     progress: null,
@@ -116,7 +105,7 @@ async function main() {
       ? await recordsFromDir(options.progressDir, source.file)
       : await recordsFromGithub(token, source.file)
   })));
-  const catalog = await loadCatalog();
+  const catalog = await loadWordCatalog(readRepoFile);
   const known = catalog.headwords;
   const range = Boolean(options.from);
   const date = options.date || previousShanghaiDay();
