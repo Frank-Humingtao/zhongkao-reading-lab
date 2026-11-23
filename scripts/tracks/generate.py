@@ -27,6 +27,7 @@ import ctypes.util
 import datetime
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -89,12 +90,16 @@ def kokoro_voices(voices):
     model = KModel(repo_id=REPO_ID).eval()
     english = KPipeline(lang_code="a", repo_id=REPO_ID, model=model)
 
-    # English words inside Chinese sentences (Genie 4, SynthID, 3D) are spoken
-    # with the English phonemizer instead of being dropped.
     def english_phonemes(text):
-        return next(english(text)).phonemes
+        return english.g2p(text)[0]
 
-    chinese = KPipeline(lang_code="z", repo_id=REPO_ID, model=model, en_callable=english_phonemes)
+    # Kokoro-82M's Chinese phonemizer ignores en_callable and passes Latin
+    # letters through as they are, so （NASA） came out as "EZ" and CD or X
+    # were dropped. Latin words get English phonemes instead (acronyms are
+    # spelled letter by letter by the English phonemizer, NASA said as a word).
+    chinese = KPipeline(lang_code="z", repo_id=REPO_ID, model=model)
+    chinese_g2p = chinese.g2p
+    chinese.g2p = lambda text: (mixed_phonemes(text, lambda part: chinese_g2p(part)[0], english_phonemes), None)
     pipelines = {"en": (english, voices["en"]), "zh": (chinese, voices["zh"])}
 
     def speak(language, text):
@@ -106,6 +111,23 @@ def kokoro_voices(voices):
         return trim(np.concatenate(chunks))
 
     return speak
+
+
+LATIN_RUN = re.compile(r"[A-Za-z]+(?:[ '\-]+[A-Za-z]+)*")
+
+
+def mixed_phonemes(text, chinese, english):
+    """Phonemes for a Chinese sentence: Latin words (NASA, Unreal Engine, CD)
+    through `english`, everything else (Chinese, digits, punctuation) through
+    `chinese`, joined by spaces."""
+    parts, cursor = [], 0
+    for match in LATIN_RUN.finditer(text):
+        parts.append(("zh", text[cursor:match.start()]))
+        parts.append(("en", match.group()))
+        cursor = match.end()
+    parts.append(("zh", text[cursor:]))
+    speak = {"zh": chinese, "en": english}
+    return " ".join(speak[language](part.strip()) for language, part in parts if part.strip())
 
 
 def trim(audio, threshold=0.004):
@@ -208,8 +230,28 @@ def publish_catalog(repo, catalog):
         gh("release", "upload", CATALOG_TAG, path, "-R", repo, "--clobber")
 
 
+class ReleaseShelf:
+    """Which tracks-NNN release the next story's files go into: the current one
+    while it stays within MAX_ASSETS_PER_RELEASE, else the next one."""
+
+    def __init__(self, number, count):
+        self.number = number
+        self.count = count
+
+    @property
+    def tag(self):
+        return f"{TRACKS_PREFIX}{self.number:03d}"
+
+    def place(self, assets):
+        if self.count + assets > MAX_ASSETS_PER_RELEASE:
+            self.number += 1
+            self.count = 0
+        self.count += assets
+        return self.tag
+
+
 class Releases:
-    """The rotating track releases: tracks-001, tracks-002, … each under the asset limit."""
+    """The rotating track releases on GitHub: tracks-001, tracks-002, …"""
 
     def __init__(self, repo, catalog):
         self.repo = repo
@@ -218,12 +260,9 @@ class Releases:
         tags |= {entry["release"] for entry in catalog["tracks"].values()}
         numbers = [int(tag[len(TRACKS_PREFIX):]) for tag in tags
                    if tag.startswith(TRACKS_PREFIX) and tag[len(TRACKS_PREFIX):].isdigit()]
-        self.number = max(numbers, default=1)
-        self.count = self.assets(self.tag) if release_exists(repo, self.tag) else 0
-
-    @property
-    def tag(self):
-        return f"{TRACKS_PREFIX}{self.number:03d}"
+        number = max(numbers, default=1)
+        tag = f"{TRACKS_PREFIX}{number:03d}"
+        self.shelf = ReleaseShelf(number, self.assets(tag) if release_exists(repo, tag) else 0)
 
     def assets(self, tag):
         release = gh("api", f"repos/{self.repo}/releases/tags/{tag}", "--jq", ".id").stdout.strip()
@@ -231,17 +270,47 @@ class Releases:
         return sum(int(line) for line in result.stdout.split())
 
     def upload(self, paths):
-        if self.count + len(paths) > MAX_ASSETS_PER_RELEASE:
-            self.number += 1
-            self.count = 0
-        ensure_release(self.repo, self.tag, f"Listening tracks {self.number:03d}",
+        tag = self.shelf.place(len(paths))
+        ensure_release(self.repo, tag, f"Listening tracks {self.shelf.number:03d}",
                        "Kokoro tracks for listening in the app. Indexed by catalog.json in tracks-catalog.")
-        gh("release", "upload", self.tag, *paths, "-R", self.repo, "--clobber")
-        self.count += len(paths)
-        return self.tag
+        gh("release", "upload", tag, *paths, "-R", self.repo, "--clobber")
+        return tag
 
 
 # --- run ---------------------------------------------------------------------
+
+def make_stories(todo, make, publish, log):
+    """make(story) -> catalog entry, then publish(story, entry), for each story.
+    A story that fails is logged with its traceback and skipped; the others
+    still publish. Returns (made, failed story names)."""
+    failures, made = [], 0
+    for story in todo:
+        name = f"{story['edition']}/{story['id']}"
+        try:
+            publish(story, make(story))
+            made += 1
+        except Exception:
+            failures.append(name)
+            log(f"FAILED {story['key']} {name}\n{traceback.format_exc()}")
+    return made, failures
+
+
+def summary(planned, skipped, made, failures):
+    """Markdown for the Action's job summary."""
+    lines = ["### Listening tracks", "",
+             f"{planned} stories in the plan, {skipped} already published, {made} made."]
+    if failures:
+        lines += ["", f"**{len(failures)} failed** and were skipped (tracebacks in the log):", ""]
+        lines += [f"- `{name}`" for name in failures]
+    return "\n".join(lines) + "\n"
+
+
+def write_summary(text):
+    path = os.environ.get("GITHUB_STEP_SUMMARY")
+    if path:
+        with open(path, "a", encoding="utf-8") as handle:
+            handle.write(text)
+
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -270,43 +339,43 @@ def main():
         if story["key"] not in seen:
             seen.add(story["key"])
             todo.append(story)
-    log(f"{len(plan['stories'])} stories in the plan, {len(plan['stories']) - len(todo)} already published, "
-        f"{len(todo)} to make")
+    planned, skipped = len(plan["stories"]), len(plan["stories"]) - len(todo)
+    log(f"{planned} stories in the plan, {skipped} already published, {len(todo)} to make")
     if args.limit is not None:
         todo = todo[:args.limit]
     if not todo:
+        write_summary(summary(planned, skipped, 0, []))
         return 0
 
     speak = kokoro_voices(plan["voices"])
     releases = Releases(args.repo, catalog) if args.publish else None
-    failures, made = [], 0
-    for story in todo:
-        name = f"{story['edition']}/{story['id']}"
-        try:
-            timings = make_tracks(story, plan, speak, args.out)
-            entry = {
-                "story": name,
-                "en": f"{story['key']}.en.m4a",
-                "zh": f"{story['key']}.zh.m4a",
-                "timings": f"{story['key']}.json",
-                "durationEn": timings["durationEn"],
-                "durationZh": timings["durationZh"],
-                "sentences": len(timings["sentences"]),
-            }
-            if releases:
-                entry["release"] = releases.upload([os.path.join(args.out, entry[field])
-                                                    for field in ("en", "zh", "timings")])
-            catalog["tracks"][story["key"]] = entry
-            made += 1
-            log(f"ok {story['key']} {name} ({entry['sentences']} sentences, "
-                f"{entry['durationEn']:.0f}s en, {entry['durationZh']:.0f}s zh)")
-            if releases and made % CATALOG_EVERY == 0:
-                publish_catalog(args.repo, catalog)
-        except Exception:
-            failures.append(name)
-            log(f"FAILED {story['key']} {name}")
-            traceback.print_exc()
-            sys.stdout.flush()
+    published = 0
+
+    def make(story):
+        timings = make_tracks(story, plan, speak, args.out)
+        return {
+            "story": f"{story['edition']}/{story['id']}",
+            "en": f"{story['key']}.en.m4a",
+            "zh": f"{story['key']}.zh.m4a",
+            "timings": f"{story['key']}.json",
+            "durationEn": timings["durationEn"],
+            "durationZh": timings["durationZh"],
+            "sentences": len(timings["sentences"]),
+        }
+
+    def publish(story, entry):
+        nonlocal published
+        if releases:
+            entry["release"] = releases.upload([os.path.join(args.out, entry[field])
+                                                for field in ("en", "zh", "timings")])
+        catalog["tracks"][story["key"]] = entry
+        published += 1
+        log(f"ok {story['key']} {entry['story']} ({entry['sentences']} sentences, "
+            f"{entry['durationEn']:.0f}s en, {entry['durationZh']:.0f}s zh)")
+        if releases and published % CATALOG_EVERY == 0:
+            publish_catalog(args.repo, catalog)
+
+    made, failures = make_stories(todo, make, publish, log)
 
     if releases and made:
         publish_catalog(args.repo, catalog)
@@ -314,6 +383,7 @@ def main():
         with open(os.path.join(args.out, CATALOG_ASSET), "w", encoding="utf-8") as handle:
             json.dump(catalog, handle, ensure_ascii=False, indent=1, sort_keys=True)
     log(f"made {made}, failed {len(failures)}" + (": " + ", ".join(failures) if failures else ""))
+    write_summary(summary(planned, skipped, made, failures))
     return 1 if failures else 0
 
 
