@@ -89,6 +89,7 @@ async function boot() {
 
   try {
     githubToken = sessionStorage.getItem(TOKEN_KEY) || localStorage.getItem(TOKEN_KEY) || "";
+    if (githubToken && window.zhongkaoApp) localStorage.setItem(TOKEN_KEY, githubToken);
   } catch {
     githubToken = "";
   }
@@ -430,7 +431,8 @@ async function boot() {
     }
     githubToken = entered;
     try {
-      if ($("remember-sync").checked) localStorage.setItem(TOKEN_KEY, entered);
+      // Every launch of the app is a new browser session, so the app always remembers the token.
+      if (window.zhongkaoApp || $("remember-sync").checked) localStorage.setItem(TOKEN_KEY, entered);
       else sessionStorage.setItem(TOKEN_KEY, entered);
     } catch {
       // The token remains usable in memory for this page.

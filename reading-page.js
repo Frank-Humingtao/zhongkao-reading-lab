@@ -461,10 +461,15 @@ function renderArticleMeta(lesson) {
 
 function textParts(segments, lesson) {
   const fragment = document.createDocumentFragment();
+  // Punctuation kept with the word before it is skipped here, never cut from the
+  // shared segments, so the story renders the same every time it is shown.
+  let skip = 0;
   for (let index = 0; index < segments.length; index++) {
     const token = segments[index];
     if (!token.key) {
-      if (token.text) fragment.append(token.text);
+      const text = token.text.slice(skip);
+      skip = 0;
+      if (text) fragment.append(text);
       continue;
     }
     const button = document.createElement("button");
@@ -493,7 +498,7 @@ function textParts(segments, lesson) {
       fragment.append(button);
       continue;
     }
-    next.text = next.text.slice(punctuation[0].length);
+    skip = punctuation[0].length;
     const keep = document.createElement("span");
     keep.className = "word-keep";
     keep.append(button, punctuation[0]);
@@ -624,7 +629,7 @@ function closeWordMenu(restoreFocus = false) {
   menuTrigger = undefined;
 }
 
-function openWordMenu(key, trigger, point) {
+function openWordMenu(key, trigger, point, byTouch = false) {
   const occurrences = articleLocations.get(key);
   if (!occurrences?.length) return;
   const primary = primaryLocations.get(key);
@@ -665,16 +670,61 @@ function openWordMenu(key, trigger, point) {
   const viewport = document.documentElement;
   wordMenu.style.left = Math.max(8, Math.min(left, viewport.clientWidth - rect.width - 8)) + "px";
   wordMenu.style.top = Math.max(8, Math.min(top, viewport.clientHeight - rect.height - 8)) + "px";
-  options[0].focus({ preventScroll: true });
+  // A finger needs no focus ring; keyboard and mouse users start on the first option.
+  if (!byTouch) options[0].focus({ preventScroll: true });
 }
 
-document.addEventListener("contextmenu", event => {
-  const source = event.target.closest("[data-word-key]");
-  if (!source || !articleLocations.has(source.dataset.wordKey)) return;
-  event.preventDefault();
+function menuWordAt(target) {
+  const source = target?.closest?.("[data-word-key]");
+  if (!source || !articleLocations.has(source.dataset.wordKey)) return null;
   const trigger = source.closest("button") ?? source.querySelector(".entry-word") ?? source;
+  return { key: source.dataset.wordKey, trigger };
+}
+
+// Phones send no right-click: holding a finger on a word opens the same menu
+// (word-press.js decides; the page only feeds it events and does what it says).
+let pressState;
+let pressTimer;
+let pressWord;
+function press(event) {
+  const step = wordPress.pressStep(pressState, { ...event, time: performance.now() });
+  pressState = step.state;
+  if (pressState.phase !== "pressing") clearTimeout(pressTimer);
+  return step.effect;
+}
+document.addEventListener("pointerdown", event => {
+  if (!event.isPrimary) return;
+  pressWord = menuWordAt(event.target);
+  press({ type: "down", touch: event.pointerType === "touch", onWord: Boolean(pressWord), x: event.clientX, y: event.clientY });
+  if (pressState.phase !== "pressing") return;
+  clearTimeout(pressTimer);
+  pressTimer = setTimeout(() => {
+    const effect = press({ type: "timer" });
+    if (effect?.open && pressWord?.trigger.isConnected) openWordMenu(pressWord.key, pressWord.trigger, effect.open, true);
+  }, wordPress.LONG_PRESS_MS);
+});
+document.addEventListener("pointermove", event => {
+  if (event.isPrimary) press({ type: "move", x: event.clientX, y: event.clientY });
+}, { passive: true });
+document.addEventListener("pointerup", event => { if (event.isPrimary) press({ type: "up" }); });
+document.addEventListener("pointercancel", () => press({ type: "cancel" }));
+window.addEventListener("scroll", () => press({ type: "scroll" }), { capture: true, passive: true });
+// Capturing on the document runs before the word's own click and before
+// listening's sentence tap, so a long-press neither marks nor seeks.
+document.addEventListener("click", event => {
+  if (press({ type: "click" })?.swallowClick) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+}, true);
+
+document.addEventListener("contextmenu", event => {
+  const word = menuWordAt(event.target);
+  if (!word) return;
+  event.preventDefault();
+  if (press({ type: "contextmenu" })?.ignoreContextMenu) return;
   const point = event.clientX || event.clientY ? { x: event.clientX, y: event.clientY } : undefined;
-  openWordMenu(source.dataset.wordKey, trigger, point);
+  openWordMenu(word.key, word.trigger, point);
 });
 document.addEventListener("keydown", event => {
   if (event.key === "Escape" && !wordMenu.hidden) {
@@ -831,19 +881,37 @@ window.readingPage = {
 };
 
 // Older readers only keep records for lessons they know, so each collection has its own file.
-const githubProgressUrl = "https://api.github.com/repos/Frank-Humingtao/zhongkao-reading-progress/contents/" + collection.progressFile;
+const githubProgressFile = collection.progressFile;
+const githubProgressApi = "https://api.github.com/repos/Frank-Humingtao/zhongkao-reading-progress/contents/";
 const githubRecordsKey = collection.recordsKey;
 const githubTokenKey = "zhongkao-github-sync-token-v1";
+// Every launch of the app is a new browser session, so the app always remembers the token.
+const alwaysRememberToken = Boolean(window.zhongkaoApp);
 const syncIndices = new Map(allReadings.map((lesson, index) => [lesson.id, index]));
 const syncWriter = globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2);
 const syncDialog = byId("sync-dialog");
 const syncMessage = byId("sync-status");
+const { mergeRecords: mergeReadingRecords, sameRecords: sameReadingRecords } = progressSync;
 let githubToken;
 try {
   githubToken = sessionStorage.getItem(githubTokenKey) ?? localStorage.getItem(githubTokenKey);
+  if (githubToken && alwaysRememberToken) localStorage.setItem(githubTokenKey, githubToken);
 } catch {
   // A token can still be used for the current page.
 }
+function syncStorage() {
+  try {
+    return localStorage;
+  } catch {
+    return null;
+  }
+}
+function notePending(file, recordsKey, pending) {
+  const storage = syncStorage();
+  if (storage) progressSync.markPending(storage, file, recordsKey, pending);
+}
+// Whether this page has changes GitHub does not have yet.
+let pendingHere = Boolean(syncStorage() && progressSync.pendingFiles(syncStorage())[githubProgressFile]);
 
 function readingFields() {
   const fields = new Map([["active", readings[activeIndex].id]]);
@@ -905,28 +973,13 @@ function noteProgressChange() {
   lastReadingFields = current;
   readingRevision++;
   persistSyncRecords();
+  pendingHere = true;
+  notePending(githubProgressFile, githubRecordsKey, true);
   if (githubToken) {
     syncMessage.textContent = "待同步";
     clearTimeout(syncTimer);
-    syncTimer = setTimeout(() => requestSync(), 1500);
+    syncTimer = setTimeout(() => requestSync(), 1000);
   }
-}
-
-function mergeReadingRecords(left, right) {
-  const merged = new Map(left);
-  for (const [field, incoming] of right) {
-    const existing = merged.get(field);
-    if (!existing || incoming[0] > existing[0]
-      || (incoming[0] === existing[0] && incoming[1] > existing[1])) merged.set(field, incoming);
-  }
-  return merged;
-}
-
-function sameReadingRecords(left, right) {
-  return left.size === right.size && [...left].every(([field, record]) => {
-    const other = right.get(field);
-    return other && record.every((cell, index) => cell === other[index]);
-  });
 }
 
 function applySyncedProgress(remote, resume) {
@@ -958,81 +1011,91 @@ function applySyncedProgress(remote, resume) {
   persistSyncRecords();
 }
 
-function encodeSyncFile(records) {
-  const bytes = new TextEncoder().encode(JSON.stringify({ version: 1, records: Object.fromEntries(records) }));
-  let binary = "";
-  for (let offset = 0; offset < bytes.length; offset += 8192) {
-    binary += String.fromCharCode(...bytes.subarray(offset, offset + 8192));
-  }
-  return btoa(binary);
-}
-
-function githubRequest(token, options = {}) {
-  const headers = { Accept: "application/vnd.github+json", Authorization: "Bearer " + token };
-  if (options.body) headers["Content-Type"] = "application/json";
-  return fetch(githubProgressUrl, {
-    ...options, headers, credentials: "omit", redirect: "error", cache: "no-store",
-    signal: AbortSignal.timeout?.(15000)
-  });
-}
-
-function syncError(response) {
-  if (response.status === 401) return new Error("令牌已失效，请断开后重新连接。");
-  if (response.status === 403 || response.status === 404) return new Error("请检查令牌是否能读写私有进度仓库。");
-  return new Error("同步失败（GitHub " + response.status + "），进度已保留在设备上。");
-}
-
-async function mergeWithGitHub(token) {
-  for (let attempt = 0; attempt < 3; attempt++) {
-    const response = await githubRequest(token);
-    if (token !== githubToken) return;
-    if (!response.ok && response.status !== 404) throw syncError(response);
-    const file = response.ok ? await response.json() : null;
-    let remote = new Map();
-    if (file) {
-      const binary = atob(file.content.replace(/\s/g, ""));
-      const data = JSON.parse(new TextDecoder().decode(Uint8Array.from(binary, byte => byte.charCodeAt(0))));
-      if (data.version !== 1 || !data.records || Array.isArray(data.records) || typeof data.records !== "object") {
-        throw new Error("GitHub 上的进度文件格式不正确。");
-      }
-      remote = decodeSyncRecords(data.records);
-    }
-    const merged = mergeReadingRecords(progressRecords, remote);
-    if (file && sameReadingRecords(merged, remote)) return merged;
-    if (token !== githubToken) return;
-    const result = await githubRequest(token, {
-      method: "PUT",
-      body: JSON.stringify({
-        message: "Sync reading progress", content: encodeSyncFile(merged), ...(file && { sha: file.sha })
-      })
-    });
-    if (result.ok) return merged;
-    if (result.status !== 409 && result.status !== 422) throw syncError(result);
-  }
-  throw new Error("有其他设备正在同步，请稍后再试。");
-}
+const syncer = progressSync.createSyncer({
+  fetch: (...args) => fetch(...args), url: githubProgressApi + githubProgressFile, decode: decodeSyncRecords
+});
+let syncAbort;
+let syncStartedAt = 0;
+let hiddenAt = -1;
+let requestedRevision = -1;
 
 function requestSync(resume = false) {
   const token = githubToken;
   if (!token) return;
   const revision = readingRevision;
+  requestedRevision = revision;
   clearTimeout(syncTimer);
   syncQueue = syncQueue.then(async () => {
     if (token !== githubToken) return;
     syncMessage.textContent = "正在同步…";
+    const controller = new AbortController();
+    syncAbort = controller;
+    syncStartedAt = Date.now();
     try {
-      const merged = await mergeWithGitHub(token);
+      const merged = await syncer.sync(token, () => progressRecords, {
+        isCurrent: () => token === githubToken, abort: controller.signal
+      });
       if (!merged || token !== githubToken) return;
       const hasPendingChanges = !sameReadingRecords(mergeReadingRecords(merged, progressRecords), merged);
       applySyncedProgress(merged, resume && revision === readingRevision);
+      if (!hasPendingChanges) {
+        pendingHere = false;
+        notePending(githubProgressFile, githubRecordsKey, false);
+      }
       syncMessage.textContent = hasPendingChanges ? "待同步" : "已同步";
     } catch (error) {
-      if (token !== githubToken) return;
+      // A sync the phone froze was ended for a fresh one, which follows.
+      if (token !== githubToken || controller.signal.aborted) return;
       syncMessage.textContent = error instanceof TypeError || error.name === "TimeoutError"
         ? "暂时连不上 GitHub，联网后可重试。" : error.message;
+    } finally {
+      if (syncAbort === controller) syncAbort = undefined;
     }
   });
   return syncQueue;
+}
+
+// Changes made on another reading set's page that left before its sync finished.
+// They are merged into that set's file as they are, without reading them here.
+let pushingOtherSets = false;
+async function syncOtherSets() {
+  const token = githubToken;
+  const storage = syncStorage();
+  if (!token || !storage || pushingOtherSets) return;
+  pushingOtherSets = true;
+  try {
+    for (const [file, recordsKey] of Object.entries(progressSync.pendingFiles(storage))) {
+      if (file === githubProgressFile || typeof recordsKey !== "string") continue;
+      const saved = storage.getItem(recordsKey);
+      const local = progressSync.wellFormedRecords(readMarks(recordsKey, {}));
+      const other = progressSync.createSyncer({
+        fetch: (...args) => fetch(...args), url: githubProgressApi + file, decode: progressSync.wellFormedRecords
+      });
+      try {
+        await other.sync(token, () => local, { isCurrent: () => token === githubToken });
+      } catch {
+        continue;
+      }
+      if (token !== githubToken) return;
+      // Changed again meanwhile: leave it for that set's own page.
+      if (storage.getItem(recordsKey) === saved) notePending(file, recordsKey, false);
+    }
+  } finally {
+    pushingOtherSets = false;
+  }
+}
+
+// Leaving: send what is waiting now (the write uses keepalive).
+function flushSync() {
+  if (pendingHere && requestedRevision !== readingRevision) requestSync();
+}
+
+// Back on screen: a sync started before the phone suspended the page may be
+// stuck on a request that will never answer, so it is ended and run afresh.
+function resumeSync() {
+  if (syncAbort && syncStartedAt <= hiddenAt) syncAbort.abort();
+  requestSync(true);
+  syncOtherSets();
 }
 
 function showSyncConnection() {
@@ -1052,7 +1115,7 @@ byId("sync-form").addEventListener("submit", event => {
   }
   githubToken = entered;
   try {
-    if (byId("remember-sync").checked) localStorage.setItem(githubTokenKey, entered);
+    if (alwaysRememberToken || byId("remember-sync").checked) localStorage.setItem(githubTokenKey, entered);
     else sessionStorage.setItem(githubTokenKey, entered);
   } catch {
     // The selected credential remains usable in memory.
@@ -1060,8 +1123,12 @@ byId("sync-form").addEventListener("submit", event => {
   field.value = "";
   showSyncConnection();
   requestSync(true);
+  syncOtherSets();
 });
-byId("sync-now").addEventListener("click", () => requestSync(true));
+byId("sync-now").addEventListener("click", () => {
+  requestSync(true);
+  syncOtherSets();
+});
 byId("disconnect-sync").addEventListener("click", () => {
   githubToken = undefined;
   clearTimeout(syncTimer);
@@ -1074,13 +1141,24 @@ byId("disconnect-sync").addEventListener("click", () => {
   syncMessage.textContent = "";
   showSyncConnection();
 });
-window.addEventListener("online", () => requestSync(true));
+window.addEventListener("online", () => {
+  requestSync(true);
+  syncOtherSets();
+});
 document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible") requestSync(true);
-  else requestSync();
+  if (document.visibilityState === "visible") return resumeSync();
+  hiddenAt = Date.now();
+  flushSync();
+});
+// Safari leaving for another page or keeping this one in its back cache; Chrome freezing it.
+window.addEventListener("pagehide", flushSync);
+document.addEventListener("freeze", flushSync);
+window.addEventListener("pageshow", event => {
+  if (event.persisted) resumeSync();
 });
 showSyncConnection();
 requestSync(true);
+syncOtherSets();
 
 // listening.js attaches once the page is ready.
 window.dispatchEvent(new Event("readingpage"));
