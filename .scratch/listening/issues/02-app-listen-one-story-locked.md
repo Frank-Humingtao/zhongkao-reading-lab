@@ -26,3 +26,5 @@ Resolved by the implementer (2026-11-23).
 - Chinese shows in the site's existing 中英 layout (per-paragraph rendering under each paragraph), with the spoken Chinese sentence in `--ink-2` and the rest `--muted`, rather than the mockup's line under each sentence.
 - Pending: the reader's on-device check (last box). TestFlight needs the reader to sign in to Xcode with the team's Apple ID and create the App Store Connect record; the archive builds, export stops at "No Accounts".
 - `node --test` has the one pre-existing failure ("reading set 04 ... 39 stories", from 36dd7a2).
+
+Note (2026-11-23): the install path changed. The app is installed on the reader's iPhone straight from Xcode (development signing, home-screen name iReading), not through TestFlight; the TestFlight mentions above are kept as written at the time. See ADR-0001 and the app README.

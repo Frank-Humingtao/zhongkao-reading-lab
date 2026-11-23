@@ -8,7 +8,7 @@ The reader studies English through the stories on this site, but can only do so 
 
 ## Solution
 
-An iPhone app, installed on the reader's own phone through TestFlight, that shows this site exactly as it is today and adds **listening**. Inside the app the reading page gains a 听 control beside 中英 and 目录. Tapping it starts listening from the current story: either **interleaved narration** (English, then Chinese, sentence by sentence) or **English-only narration**. Listening carries on with the screen locked, shows the story on the lock screen, continues through the rest of the reading set or news edition, and can be ended by a **sleep timer** that fades out at the end of a sentence. The voices are natural-sounding, pre-generated **tracks** (Kokoro: Michael for English, 云健 for Chinese) produced automatically whenever a story is published, so the agents that write stories never deal with audio. Outside the app, in an ordinary browser, the site looks and behaves exactly as before.
+An iPhone app, installed on the reader's own phone straight from Xcode (home-screen name iReading), that shows this site exactly as it is today and adds **listening**. Inside the app the reading page gains a 听 control beside 中英 and 目录. Tapping it starts listening from the current story: either **interleaved narration** (English, then Chinese, sentence by sentence) or **English-only narration**. Listening carries on with the screen locked, shows the story on the lock screen, continues through the rest of the reading set or news edition, and can be ended by a **sleep timer** that fades out at the end of a sentence. The voices are natural-sounding, pre-generated **tracks** (Kokoro: Michael for English, 云健 for Chinese) produced automatically whenever a story is published, so the agents that write stories never deal with audio. Outside the app, in an ordinary browser, the site looks and behaves exactly as before.
 
 ## User Stories
 
@@ -135,7 +135,7 @@ An iPhone app, installed on the reader's own phone through TestFlight, that show
   - The spoken sentence is highlighted with the accent-soft tint; other sentences recede to the secondary ink.
   - Chinese renderings are shown while listening, and the prior 中英 state is restored on stop.
   - Uses the existing colour tokens, light and dark themes, and the Huiwen Zhengkai and English font stacks.
-- **App shell.** The web view uses persistent storage so the sync token and theme survive restarts. Any native text bundles Huiwen Zhengkai. The app is distributed through TestFlight internal testing on the reader's own Apple Developer account.
+- **App shell.** The web view uses persistent storage so the sync token and theme survive restarts. Any native text bundles Huiwen Zhengkai. The app is installed on the reader's iPhone straight from Xcode with development signing on the reader's own Apple Developer account; there is no TestFlight or App Store Connect. On the home screen it is called iReading.
 - **Progress.** Listening never writes progress and never marks a story read.
 
 ## Testing Decisions
