@@ -6,8 +6,8 @@
 
 **Status:** resolved
 
-- [ ] Pushing a change to a story file publishes tracks for just the new or changed stories, with no commit from the Action (can only be confirmed on `main` after merge; equivalent proven, see Comments)
-- [ ] After the backfill, every story on the site (all reading sets, news editions, screening passages) has tracks in the catalog (backfill run 45133717418 still in progress at hand-off)
+- [x] Pushing a change to a story file publishes tracks for just the new or changed stories, with no commit from the Action
+- [x] After the backfill, every story on the site (all reading sets, news editions, screening passages) has tracks in the catalog
 - [x] A deliberately failing story is skipped and reported while the others publish
 - [x] Release rotation keeps every release under the asset limit at roughly 30 new stories a day
 - [x] 听 is greyed for a story with no tracks and enabled once they exist, without an app update
@@ -28,3 +28,5 @@ Resolved by the implementer (2026-11-23).
 - Ordinary browser: 听 and the bar stay hidden, no console errors.
 - Tests: `node --test` 39 (1 pre-existing failure, reading set 04 count), generator 7, `swift test` 36.
 - Pending: the backfill run's completion and coverage check; the push-on-main confirmation after merge; the reader's airplane-mode check on the iPhone.
+
+- 2026-11-23, after merge: the push to `main` (merge of #10) ran the workflow (run 45145994425, success), publishing only missing keys with no commit. Backfill run 45133717418 succeeded; all 180 stories from `scripts/narration-plan.mjs` on main are in the catalog. Airplane mode on the reader's iPhone is still pending.

@@ -13,7 +13,7 @@
 - [x] Enumeration covers every reading set, news edition and screening passage the site lists
 - [x] A manual dispatch of the Action publishes, for each reading set 01 story, an English track, a Chinese track and timings, plus a catalog mapping narration key to those files; the repository gets no new commits
 - [x] Re-running the Action skips keys already published
-- [ ] One downloaded story sounds right by ear: correct sentences, gloss-free English, the chosen voices
+- [x] One downloaded story sounds right by ear: correct sentences, gloss-free English, the chosen voices
 
 ## Comments
 
@@ -28,3 +28,5 @@ Verification:
 
 Pre-existing, not touched: `vocab.test.mjs` "reading set 04 is its own edition" expects 39 stories, but commit 36dd7a2 added a 40th (unillustrated test) story, so it already failed on the `listening` base.
 
+
+- 2026-11-23: the reader listened to Thunder for a Film (English and Chinese tracks) and said "听着没问题".
