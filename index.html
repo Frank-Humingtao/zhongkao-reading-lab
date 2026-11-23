@@ -65,7 +65,8 @@
     .pill:hover { background: var(--fill); color: var(--ink); }
     .pill[aria-pressed="true"] { background: var(--solid); color: var(--on-solid); }
     .pill .icon { width: 18px; height: 18px; }
-    body:has(#reader[hidden]) #toggle-bilingual { display: none; }
+    body:has(#reader[hidden]) #toggle-bilingual,
+    body:has(#reader[hidden]) #toggle-listening { display: none; }
     .storage-error { margin-top: 8px; color: var(--accent); font-size: .9rem; }
 
     /* ---------- Layout ---------- */
@@ -175,6 +176,35 @@
       .reading-illustration { border-radius: 14px; }
     }
 
+    /* ---------- Listening (in the app only, see listening.js) ---------- */
+    .passage.listening .aligned-sentence {
+      color: var(--ink-2); border-radius: 4px; padding: 1px 2px; margin: 0 -2px;
+      -webkit-box-decoration-break: clone; box-decoration-break: clone;
+      transition: background-color .25s;
+    }
+    .passage.listening .translation .aligned-sentence { color: var(--muted); }
+    .passage.listening p[lang="en"] > .aligned-sentence.spoken { background: var(--accent-soft); color: var(--ink); }
+    .passage.listening .translation .aligned-sentence.spoken { color: var(--ink-2); }
+    .passage.listening .aligned-sentence.matched { background: none; }
+    body.listening .shell { padding-bottom: calc(132px + env(safe-area-inset-bottom)); }
+    .player-bar {
+      position: fixed; z-index: 6; left: 0; right: 0; bottom: 0;
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px var(--gutter) calc(18px + env(safe-area-inset-bottom));
+      background: var(--bg); color: var(--ink-2); font-size: .9rem;
+    }
+    .player-progress {
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .4s linear;
+    }
+    .player-toggle {
+      display: inline-flex; align-items: center; justify-content: center; flex: none;
+      width: 40px; height: 40px; border-radius: 999px; background: var(--solid); color: var(--on-solid);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .player-toggle .icon { width: 18px; height: 18px; stroke-width: 2.4; }
+    .player-toggle .icon.filled { fill: currentColor; stroke-width: 1.4; }
+
     @media (max-width: 760px) {
       .layout { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 0; }
       .navigation { position: static; margin: 4px 0 18px; }
@@ -206,6 +236,9 @@
     <symbol id="i-translate" viewBox="0 0 24 24"><path d="M3.5 5.5h9M8 3.5v2M10.5 5.5c-.8 3.6-3.2 6.4-6.5 8M5.5 8.5c1 2.2 2.8 3.9 5 5"/><path d="m12.5 20.5 4-9 4 9M14 17.5h5"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
     <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9.5 6 6 6-6"/></symbol>
+    <symbol id="i-headphones" viewBox="0 0 24 24"><path d="M4.5 17.5V13a7.5 7.5 0 0 1 15 0v4.5"/><path d="M4.5 14.5h1.2a1.8 1.8 0 0 1 1.8 1.8v2.4a1.8 1.8 0 0 1-1.8 1.8h-.2a1 1 0 0 1-1-1Zm15 0h-1.2a1.8 1.8 0 0 0-1.8 1.8v2.4a1.8 1.8 0 0 0 1.8 1.8h.2a1 1 0 0 0 1-1Z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6.5v11M15 6.5v11"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8.5 6.6v10.8a1 1 0 0 0 1.5.86l8.6-5.4a1 1 0 0 0 0-1.72L10 5.74a1 1 0 0 0-1.5.86Z"/></symbol>
   </svg>
   <div class="shell">
     <header class="topbar">
@@ -233,6 +266,9 @@
         <button type="button" class="tab" id="open-vocabulary" aria-controls="full-vocabulary" aria-expanded="false">完整词汇表</button>
       </div>
       <div class="viewbar-end">
+        <button type="button" class="pill" id="toggle-listening" aria-controls="player-bar" aria-pressed="false" aria-label="听" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#i-headphones"/></svg><span class="pill-text">听</span>
+        </button>
         <button type="button" class="pill" id="toggle-bilingual" aria-controls="passage" aria-pressed="false" aria-label="中英对照">
           <svg class="icon" aria-hidden="true"><use href="#i-translate"/></svg><span class="pill-text">中英</span>
         </button>
@@ -275,6 +311,12 @@
         </section>
       </div>
     </main>
+    <div class="player-bar" id="player-bar" hidden>
+      <span class="player-progress" id="player-progress"></span>
+      <button type="button" class="player-toggle" id="player-toggle" aria-label="暂停">
+        <svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg>
+      </button>
+    </div>
     <dialog class="sheet" id="sync-dialog" aria-labelledby="sync-heading">
       <div class="sheet-head">
         <h2 id="sync-heading">GitHub 同步</h2>
@@ -8134,6 +8176,7 @@
         saveProgress();
       }
       renderInlineGlosses();
+      window.readingPage?.onLessonShown?.();
     }
 
     const directoryItems = readings.map((lesson, index) => {
@@ -8374,7 +8417,23 @@
     });
     updateDirectory();
     selectLesson(activeIndex, false);
+    // What listening.js needs from the page. Listening only reads the page and
+    // switches 中英; it never saves progress.
+    window.readingPage = {
+      edition, setId, screening, bilingualText, passage,
+      setName: () => document.querySelector("#site-switch .switch-label")?.textContent.trim() ?? "",
+      storyIndex: () => activeIndex,
+      storyId: () => readings[activeIndex].id,
+      inReader: () => currentView === "reader",
+      bilingual: () => showingBilingual,
+      setBilingual(on) {
+        showingBilingual = on;
+        updateBilingual();
+      },
+      onLessonShown: null
+    };
   </script>
+  <script type="module" src="listening.js"></script>
   <script id="github-sync">
     // Older readers only keep records for lessons they know, so each reading set needs its own file.
     const githubProgressFile = edition ? "progress-" + progressId + ".json" : "progress.json";

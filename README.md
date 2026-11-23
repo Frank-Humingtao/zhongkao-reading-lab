@@ -23,7 +23,7 @@ node scripts/daily-words.mjs --progress-dir ../zhongkao-reading-progress …
 
 A mark's time is its last change, so clearing and re-marking a word, or picking another example, in the same article moves it to that later day. Marks from before sync have no day and never fall in a range.
 
-Run the tests with `node --test vocab.test.mjs narration.test.mjs`.
+Run the tests with `node --test vocab.test.mjs narration.test.mjs listening.test.mjs`.
 
 ## Listening tracks
 
@@ -33,6 +33,8 @@ Run the tests with `node --test vocab.test.mjs narration.test.mjs`.
 node scripts/narration-plan.mjs --edition reading-01 > plan.json
 uv run --project scripts/tracks python scripts/tracks/generate.py --plan plan.json --out out   # needs espeak-ng
 ```
+
+In the iPhone app (private repository `zhongkao-reading-app`), `listening.js` adds the 听 control and the player bar to the reading page; it talks to the app's native player over the bridge described at its top, and stays hidden in ordinary browsers.
 
 ## Adding a reading set
 
