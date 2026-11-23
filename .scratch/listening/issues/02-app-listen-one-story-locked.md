@@ -4,13 +4,25 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** resolved
 
-- [ ] The site in an ordinary browser is unchanged: no 听 control, nothing else different
-- [ ] In the app, reading, 中英, 目录, the vocabulary list, the 生词 board, marking words, 标为已读 and the set switcher all work, and the sync token survives an app restart
-- [ ] Tapping 听 on a reading set 01 story plays interleaved narration with the specified pauses
-- [ ] Player tests (XCTest, fake clock and audio) cover the interleaved clip order and pauses, and seeking to a sentence
-- [ ] Highlight, scrolling, Chinese shown and 中英 restored, and tap-to-seek work on the page
-- [ ] Player bar and 听 pill match the mockup in light and dark themes at phone width, with no explanatory text
-- [ ] Listening never marks a story read
+- [x] The site in an ordinary browser is unchanged: no 听 control, nothing else different
+- [x] In the app, reading, 中英, 目录, the vocabulary list, the 生词 board, marking words, 标为已读 and the set switcher all work, and the sync token survives an app restart
+- [x] Tapping 听 on a reading set 01 story plays interleaved narration with the specified pauses
+- [x] Player tests (XCTest, fake clock and audio) cover the interleaved clip order and pauses, and seeking to a sentence
+- [x] Highlight, scrolling, Chinese shown and 中英 restored, and tap-to-seek work on the page
+- [x] Player bar and 听 pill match the mockup in light and dark themes at phone width, with no explanatory text
+- [x] Listening never marks a story read
 - [ ] The reader confirms on their iPhone: playback continues locked, lock screen shows title and set name, play/pause works there, a call and a headphone unplug both pause
+
+## Comments
+
+Resolved by the implementer (2026-11-23).
+
+- Site repo, branch `ticket-02-app`: `cc07502` Show 听 and the player bar inside the app (`listening.js`, `listening.test.mjs`, `index.html`, README).
+- App repo `Frank-Humingtao/zhongkao-reading-app`, branch `ticket-02-app` (pushed): `8137432` Add the app: the site in a web view, and listening to one story locked.
+- Verified in the iOS Simulator (iPhone 17, iOS 27.0) against a local `python3 -m http.server` of this branch with tracks from the published `tracks-001` release: 听 plays "Thunder for a Film" in interleaved narration, the highlight follows and scrolls, Chinese shows and 中英 returns to off on stop, tapping a sentence continues from it, pause/play, lock screen shows title and "01 生词复现" while playback carries on locked; light and dark bars match the mockup. In a regular browser 听 and the bar stay hidden. Theme in localStorage survived an app relaunch and a simulator reboot (the sync token uses the same store when 记住令牌 is ticked; no real token was entered).
+- While listening, a tap on a sentence seeks and does not mark the word under it (listening never writes progress); when another story is on screen, taps mark words as usual.
+- Chinese shows in the site's existing 中英 layout (per-paragraph rendering under each paragraph), with the spoken Chinese sentence in `--ink-2` and the rest `--muted`, rather than the mockup's line under each sentence.
+- Pending: the reader's on-device check (last box). TestFlight needs the reader to sign in to Xcode with the team's Apple ID and create the App Store Connect record; the archive builds, export stops at "No Accounts".
+- `node --test` has the one pre-existing failure ("reading set 04 ... 39 stories", from 36dd7a2).
