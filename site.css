@@ -117,7 +117,7 @@ button:disabled { opacity: .4; cursor: default; }
 }
 .switch-menu a:hover { background: var(--fill); color: var(--ink); }
 .switch-menu a[aria-current="page"] { background: var(--fill); color: var(--ink); }
-.switch-menu .set-number { flex: 0 0 1.6em; font-family: var(--english); color: var(--muted); font-variant-numeric: tabular-nums; }
+.switch-menu .set-number { flex: 0 0 auto; min-width: 1.6em; white-space: nowrap; font-family: var(--english); color: var(--muted); font-variant-numeric: tabular-nums; }
 .switch-menu .set-gap { height: 1px; margin: 6px 12px; background: var(--hair); }
 
 /* ---------- Sync sheet ---------- */

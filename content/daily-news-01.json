@@ -1,60 +1,54 @@
-// daily news 01 — 2026-11-21. Separate from 生词复现 01–03.
-// Inline （中文） notes are display glosses. The reader strips them before
-// word indexing so they never become English tokens.
-// Licenses, credits, and source checks: daily-news-01.md
-// Articles 04–06 show official news art with credit and a source link.
-// That display is not a claim that a separate republication license was granted.
-const newsImageNote = "官方新闻配图，只随这篇报道展示。本站没有获得单独转载许可，也不表示与版权方有关。";
-const dailyNews01 = {
-  columnTitle: "daily news 01",
-  editionDate: "2026-11-21",
-  words: {
-    spacecraft: ["航天器"],
-    interstellar: ["星际的"],
-    sample: ["样品", "samples"],
-    vessel: ["血管"],
-    tumor: ["肿瘤"],
+{
+  "columnTitle": "daily news 01",
+  "editionDate": "2026-11-21",
+  "words": {
+    "spacecraft": ["航天器"],
+    "interstellar": ["星际的"],
+    "sample": ["样品", "samples"],
+    "vessel": ["血管"],
+    "tumor": ["肿瘤"],
     "splash down": ["溅落"],
-    mission: ["任务"],
-    plasma: ["等离子体"],
+    "mission": ["任务"],
+    "plasma": ["等离子体"],
     "charged particles": ["带电粒子"],
     "solar wind": ["太阳风"],
     "magnetic field": ["磁场"],
-    aurora: ["极光", "auroras"],
-    blueprint: ["蓝图", "blueprints"],
+    "aurora": ["极光", "auroras"],
+    "blueprint": ["蓝图", "blueprints"],
     "scene graph": ["场景图"],
     "early access": ["抢先体验版"],
     "world model": ["世界模型"],
-    synthid: ["隐形水印"],
+    "synthid": ["隐形水印"],
     "precise edit": ["精确编辑"]
   },
-  stories: [
+  "stories": [
     {
-      id: "daily-news-01-01",
-      title: "Voyager 1 Reaches One Light-Day from Earth",
-      topic: "旅行者1号飞到了“一光日”之外",
-      illustration: ["01-voyager-1-light-day-nasa-jpl.jpg", "艺术想象图：旅行者1号在星空中，一条光伸向远方。"],
-      figure: {
-        wide: true,
-        width: 2000,
-        height: 1125,
-        caption: "艺术想象图：旅行者1号于2026年11月18日到达距离地球一光日的位置。不是实拍。",
-        credit: "NASA/JPL-Caltech",
-        date: "2026-11-18",
-        sourceUrl: "https://www.nasa.gov/news-release/nasas-voyager-1-makes-history-reaching-one-light-day-from-earth/",
-        sourceLabel: "NASA 新闻稿"
+      "id": "daily-news-01-01",
+      "title": "Voyager 1 Reaches One Light-Day from Earth",
+      "topic": "旅行者1号飞到了“一光日”之外",
+      "picture": "艺术想象图：旅行者1号在星空中，一条光伸向远方。",
+      "image": "01-voyager-1-light-day-nasa-jpl.jpg",
+      "figure": {
+        "wide": true,
+        "width": 2000,
+        "height": 1125,
+        "caption": "艺术想象图：旅行者1号于2026年11月18日到达距离地球一光日的位置。不是实拍。",
+        "credit": "NASA/JPL-Caltech",
+        "date": "2026-11-18",
+        "sourceUrl": "https://www.nasa.gov/news-release/nasas-voyager-1-makes-history-reaching-one-light-day-from-earth/",
+        "sourceLabel": "NASA 新闻稿"
       },
-      sources: [
+      "sources": [
         {
-          label: "NASA 新闻稿，2026-11-19",
-          url: "https://www.nasa.gov/news-release/nasas-voyager-1-makes-history-reaching-one-light-day-from-earth/"
+          "label": "NASA 新闻稿，2026-11-19",
+          "url": "https://www.nasa.gov/news-release/nasas-voyager-1-makes-history-reaching-one-light-day-from-earth/"
         },
         {
-          label: "NASA Science：什么是一光日",
-          url: "https://science.nasa.gov/mission/voyager/voyager-1/voyager-1-what-is-a-light-day/"
+          "label": "NASA Science：什么是一光日",
+          "url": "https://science.nasa.gov/mission/voyager/voyager-1/voyager-1-what-is-a-light-day/"
         }
       ],
-      paragraphs: [
+      "paragraphs": [
         [
           ["Voyager 1 left Earth in 1977.", "旅行者1号在1977年离开地球。"],
           ["On November 18, 2026, it reached a new mark: one light-day from Earth.", "2026年11月18日，它到达了一个新纪录：距离地球一光日。"],
@@ -76,31 +70,32 @@ const dailyNews01 = {
       ]
     },
     {
-      id: "daily-news-01-02",
-      title: "A Dragon Ship Leaves the Space Station with Science",
-      topic: "龙飞船带着科学样品离开空间站",
-      illustration: ["02-dragon-approaches-iss-iss075e0226575.jpg", "白色龙飞船的照片，舱门打开，背景是黑色的太空。"],
-      figure: {
-        wide: true,
-        width: 2000,
-        height: 1123,
-        caption: "2026年10月15日，这艘龙飞船到达国际空间站时的照片。不是11月20日离开的瞬间。",
-        credit: "NASA",
-        date: "2026-10-15",
-        sourceUrl: "https://www.nasa.gov/blogs/general-blog/2026/11/20/dragon-prepares-to-depart-station-for-earth-return/",
-        sourceLabel: "NASA 博客"
+      "id": "daily-news-01-02",
+      "title": "A Dragon Ship Leaves the Space Station with Science",
+      "topic": "龙飞船带着科学样品离开空间站",
+      "picture": "白色龙飞船的照片，舱门打开，背景是黑色的太空。",
+      "image": "02-dragon-approaches-iss-iss075e0226575.jpg",
+      "figure": {
+        "wide": true,
+        "width": 2000,
+        "height": 1123,
+        "caption": "2026年10月15日，这艘龙飞船到达国际空间站时的照片。不是11月20日离开的瞬间。",
+        "credit": "NASA",
+        "date": "2026-10-15",
+        "sourceUrl": "https://www.nasa.gov/blogs/general-blog/2026/11/20/dragon-prepares-to-depart-station-for-earth-return/",
+        "sourceLabel": "NASA 博客"
       },
-      sources: [
+      "sources": [
         {
-          label: "NASA：龙飞船离开空间站，2026-11-20",
-          url: "https://www.nasa.gov/blogs/general-blog/2026/11/20/dragon-undocks-from-station-packed-with-science-and-cargo/"
+          "label": "NASA：龙飞船离开空间站，2026-11-20",
+          "url": "https://www.nasa.gov/blogs/general-blog/2026/11/20/dragon-undocks-from-station-packed-with-science-and-cargo/"
         },
         {
-          label: "NASA：离开前的准备，2026-11-20",
-          url: "https://www.nasa.gov/blogs/general-blog/2026/11/20/dragon-prepares-to-depart-station-for-earth-return/"
+          "label": "NASA：离开前的准备，2026-11-20",
+          "url": "https://www.nasa.gov/blogs/general-blog/2026/11/20/dragon-prepares-to-depart-station-for-earth-return/"
         }
       ],
-      paragraphs: [
+      "paragraphs": [
         [
           ["On November 20, 2026, a SpaceX Dragon ship left the International Space Station.", "2026年11月20日，一艘SpaceX“龙”飞船离开了国际空间站。"],
           ["No people were on board.", "船上没有人。"],
@@ -120,27 +115,28 @@ const dailyNews01 = {
       ]
     },
     {
-      id: "daily-news-01-03",
-      title: "Europe Chooses a Seven-Ship Mission to Study Space Plasma",
-      topic: "欧洲选定七星任务，研究太空中的等离子体",
-      illustration: ["03-earth-plasma-environment-esa.jpg", "艺术想象图：地球被彩色的等离子体流包围，角落有 ESA 标志。"],
-      figure: {
-        wide: true,
-        width: 2000,
-        height: 1125,
-        caption: "艺术想象图：地球磁层以及等离子体在其中和周围的运动。",
-        note: "图中有 ESA 标志。仅供学习阅读，不表示 ESA 认可本站。",
-        credit: "©ESA",
-        sourceUrl: "https://www.esa.int/articles/about-us/directorates/science/seven-spacecraft-observatory-to-study-plasma-universe",
-        sourceLabel: "ESA 文章"
+      "id": "daily-news-01-03",
+      "title": "Europe Chooses a Seven-Ship Mission to Study Space Plasma",
+      "topic": "欧洲选定七星任务，研究太空中的等离子体",
+      "picture": "艺术想象图：地球被彩色的等离子体流包围，角落有 ESA 标志。",
+      "image": "03-earth-plasma-environment-esa.jpg",
+      "figure": {
+        "wide": true,
+        "width": 2000,
+        "height": 1125,
+        "caption": "艺术想象图：地球磁层以及等离子体在其中和周围的运动。",
+        "note": "图中有 ESA 标志。仅供学习阅读，不表示 ESA 认可本站。",
+        "credit": "©ESA",
+        "sourceUrl": "https://www.esa.int/articles/about-us/directorates/science/seven-spacecraft-observatory-to-study-plasma-universe",
+        "sourceLabel": "ESA 文章"
       },
-      sources: [
+      "sources": [
         {
-          label: "ESA：七艘航天器观测等离子体，2026-11-19",
-          url: "https://www.esa.int/articles/about-us/directorates/science/seven-spacecraft-observatory-to-study-plasma-universe"
+          "label": "ESA：七艘航天器观测等离子体，2026-11-19",
+          "url": "https://www.esa.int/articles/about-us/directorates/science/seven-spacecraft-observatory-to-study-plasma-universe"
         }
       ],
-      paragraphs: [
+      "paragraphs": [
         [
           ["On November 19, 2026, European countries chose a new space mission（任务）.", "2026年11月19日，欧洲各国选定了一项新的太空任务。"],
           ["It is called Plasma Observatory.", "它的名字是Plasma Observatory（等离子体观测站）。"],
@@ -161,32 +157,33 @@ const dailyNews01 = {
       ]
     },
     {
-      id: "daily-news-01-04",
-      title: "Epic Updates the Plan for Unreal Engine 6",
-      topic: "虚幻引擎6更新计划：将不再使用蓝图",
-      illustration: ["04-unreal-ue6-official-cms.jpg", "紫蓝色玻璃状几何图形，是虚幻引擎这篇新闻的官方配图。"],
-      figure: {
-        wide: true,
-        width: 1920,
-        height: 1080,
-        caption: "虚幻引擎 2026-11-20 新闻《An update on Blueprints and the path to UE6》的官方配图。",
-        note: newsImageNote,
-        credit: "Epic Games / Unreal Engine",
-        date: "2026-11-20",
-        sourceUrl: "https://www.unrealengine.com/news/an-update-on-blueprints-and-the-path-to-ue6",
-        sourceLabel: "Unreal Engine 新闻"
+      "id": "daily-news-01-04",
+      "title": "Epic Updates the Plan for Unreal Engine 6",
+      "topic": "虚幻引擎6更新计划：将不再使用蓝图",
+      "picture": "紫蓝色玻璃状几何图形，是虚幻引擎这篇新闻的官方配图。",
+      "image": "04-unreal-ue6-official-cms.jpg",
+      "figure": {
+        "wide": true,
+        "width": 1920,
+        "height": 1080,
+        "caption": "虚幻引擎 2026-11-20 新闻《An update on Blueprints and the path to UE6》的官方配图。",
+        "note": "官方新闻配图，只随这篇报道展示。本站没有获得单独转载许可，也不表示与版权方有关。",
+        "credit": "Epic Games / Unreal Engine",
+        "date": "2026-11-20",
+        "sourceUrl": "https://www.unrealengine.com/news/an-update-on-blueprints-and-the-path-to-ue6",
+        "sourceLabel": "Unreal Engine 新闻"
       },
-      sources: [
+      "sources": [
         {
-          label: "Unreal Engine 官方说明，2026-11-20",
-          url: "https://www.unrealengine.com/news/an-update-on-blueprints-and-the-path-to-ue6"
+          "label": "Unreal Engine 官方说明，2026-11-20",
+          "url": "https://www.unrealengine.com/news/an-update-on-blueprints-and-the-path-to-ue6"
         },
         {
-          label: "Unreal Engine 5.9 Preview 说明，更新于 2026-11-19",
-          url: "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-9-release-notes"
+          "label": "Unreal Engine 5.9 Preview 说明，更新于 2026-11-19",
+          "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-9-release-notes"
         }
       ],
-      paragraphs: [
+      "paragraphs": [
         [
           ["On November 20, 2026, Unreal Engine published an official update about Unreal Engine 6, called UE6.", "2026年11月20日，虚幻引擎发布了关于 Unreal Engine 6（简称 UE6）的官方更新。"],
           ["UE6 projects will not include Blueprints（蓝图）or the Actor gameplay system.", "UE6 项目将不再包含蓝图，也不再包含 Actor 游戏玩法系统。"],
@@ -205,36 +202,37 @@ const dailyNews01 = {
       ]
     },
     {
-      id: "daily-news-01-05",
-      title: "Google Opens Genie 4 to Developers",
-      topic: "谷歌向开发者开放 Genie 4",
-      illustration: ["05-genie-4-google-blog-social.jpg", "官方博客图，写着 Genie 4，以及 Now available in the Gemini API and Google AI Studio。"],
-      figure: {
-        wide: true,
-        width: 1440,
-        height: 810,
-        caption: "谷歌 2026-11-19 博客配图：Genie 4 已可在 Gemini API 和 Google AI Studio 使用。",
-        note: newsImageNote,
-        credit: "Source: Google",
-        date: "2026-11-19",
-        sourceUrl: "https://blog.google/innovation-and-ai/technology/developers-tools/genie-4-in-gemini-api/",
-        sourceLabel: "Google 博客"
+      "id": "daily-news-01-05",
+      "title": "Google Opens Genie 4 to Developers",
+      "topic": "谷歌向开发者开放 Genie 4",
+      "picture": "官方博客图，写着 Genie 4，以及 Now available in the Gemini API and Google AI Studio。",
+      "image": "05-genie-4-google-blog-social.jpg",
+      "figure": {
+        "wide": true,
+        "width": 1440,
+        "height": 810,
+        "caption": "谷歌 2026-11-19 博客配图：Genie 4 已可在 Gemini API 和 Google AI Studio 使用。",
+        "note": "官方新闻配图，只随这篇报道展示。本站没有获得单独转载许可，也不表示与版权方有关。",
+        "credit": "Source: Google",
+        "date": "2026-11-19",
+        "sourceUrl": "https://blog.google/innovation-and-ai/technology/developers-tools/genie-4-in-gemini-api/",
+        "sourceLabel": "Google 博客"
       },
-      sources: [
+      "sources": [
         {
-          label: "Google：开发者可用，2026-11-19",
-          url: "https://blog.google/innovation-and-ai/technology/developers-tools/genie-4-in-gemini-api/"
+          "label": "Google：开发者可用，2026-11-19",
+          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/genie-4-in-gemini-api/"
         },
         {
-          label: "Google：Project Genie，2026-11-18",
-          url: "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/genie-4-now-available-project-genie/"
+          "label": "Google：Project Genie，2026-11-18",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/genie-4-now-available-project-genie/"
         },
         {
-          label: "Gemini API 文档：Genie 4 的限制",
-          url: "https://aistudio.google.com/docs/genie"
+          "label": "Gemini API 文档：Genie 4 的限制",
+          "url": "https://aistudio.google.com/docs/genie"
         }
       ],
-      paragraphs: [
+      "paragraphs": [
         [
           ["On November 19, 2026, Google opened Genie 4 to developers through the Gemini API and Google AI Studio.", "2026年11月19日，谷歌通过 Gemini API 和 Google AI Studio，向开发者开放了 Genie 4。"],
           ["One day earlier, on November 18, eligible Google AI Ultra users could try it in Project Genie.", "再早一天，也就是 11月18日，符合条件的 Google AI Ultra 用户已可以在 Project Genie 里试用。"]
@@ -256,28 +254,29 @@ const dailyNews01 = {
       ]
     },
     {
-      id: "daily-news-01-06",
-      title: "Ideogram 4.6 Arrives with Native 4K Edits",
-      topic: "Ideogram 4.6 上线，可直接生成和修改 4K 图片",
-      illustration: ["06-ideogram-46-official-og.jpg", "一只粉色的鸟，旁边有 Ideogram 标志和标语 Think it. Make it. Own it."],
-      figure: {
-        wide: true,
-        width: 1200,
-        height: 630,
-        caption: "Ideogram 4.6 官方产品页社交图，标语为 Think it. Make it. Own it.",
-        note: newsImageNote,
-        credit: "Ideogram",
-        date: "2026-11-19",
-        sourceUrl: "https://ideogram.ai/models/4.6/",
-        sourceLabel: "Ideogram 4.6"
+      "id": "daily-news-01-06",
+      "title": "Ideogram 4.6 Arrives with Native 4K Edits",
+      "topic": "Ideogram 4.6 上线，可直接生成和修改 4K 图片",
+      "picture": "一只粉色的鸟，旁边有 Ideogram 标志和标语 Think it. Make it. Own it.",
+      "image": "06-ideogram-46-official-og.jpg",
+      "figure": {
+        "wide": true,
+        "width": 1200,
+        "height": 630,
+        "caption": "Ideogram 4.6 官方产品页社交图，标语为 Think it. Make it. Own it.",
+        "note": "官方新闻配图，只随这篇报道展示。本站没有获得单独转载许可，也不表示与版权方有关。",
+        "credit": "Ideogram",
+        "date": "2026-11-19",
+        "sourceUrl": "https://ideogram.ai/models/4.6/",
+        "sourceLabel": "Ideogram 4.6"
       },
-      sources: [
+      "sources": [
         {
-          label: "Ideogram 4.6 官方页，2026-11-19",
-          url: "https://ideogram.ai/models/4.6/"
+          "label": "Ideogram 4.6 官方页，2026-11-19",
+          "url": "https://ideogram.ai/models/4.6/"
         }
       ],
-      paragraphs: [
+      "paragraphs": [
         [
           ["On November 19, 2026, Ideogram released version 4.6.", "2026年11月19日，Ideogram 发布了 4.6 版本。"],
           ["The company says it is now live in its app and its API.", "公司表示，它已在自己的应用和 API 里上线。"],
@@ -297,4 +296,4 @@ const dailyNews01 = {
       ]
     }
   ]
-};
+}

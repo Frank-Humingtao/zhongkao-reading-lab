@@ -2,11 +2,11 @@
 // scripts/daily-words.mjs); this file only reads storage, syncs and draws.
 // The demo preview is fictional and stays in memory. It is never stored or synced.
 
-import { EDITION_SCRIPTS, buildCatalog, editionFromSource, embeddedJson } from "./vocab-context.js";
+import { loadManifest, vocabSources } from "./content.js";
+import { loadWordCatalog } from "./vocab-context.js";
 import {
   PROGRESS_API,
   TOKEN_KEY,
-  VOCAB_SOURCES,
   aggregateVocab,
   dayCopyText,
   decodeGithubContent,
@@ -23,28 +23,10 @@ import {
 const WEEKDAYS = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
 const SVG_NS = "http://www.w3.org/2000/svg";
 
-async function loadLessonCatalog() {
-  const response = await fetch("index.html", { cache: "no-store" });
-  if (!response.ok) return null;
-  const html = await response.text();
-  const editions = {};
-  await Promise.all(EDITION_SCRIPTS.map(async ([id, file, binding]) => {
-    try {
-      const fileResponse = await fetch(file);
-      if (!fileResponse.ok) return;
-      editions[id] = editionFromSource(await fileResponse.text(), binding);
-    } catch {
-      // A missing historical set still leaves the word and its source.
-    }
-  }));
-  return buildCatalog({
-    screening: embeddedJson(html, "screening-data"),
-    bilingual: embeddedJson(html, "bilingual-text") || {},
-    extraMeanings: embeddedJson(html, "supplemental-meanings") || {},
-    trialLessons: embeddedJson(html, "lesson-data") || [],
-    trialGlossary: embeddedJson(html, "new-glossary"),
-    editions
-  });
+// Site files, read fresh so a collection published a minute ago shows up.
+async function readSiteFile(path) {
+  const response = await fetch(path, { cache: "no-cache" });
+  return response.ok ? response.text() : null;
 }
 
 function readJson(key) {
@@ -86,7 +68,8 @@ function dayNames(key, now = Date.now()) {
   return { short: relative || date, long: relative ? relative + " · " + date : date, weekday };
 }
 
-function boot() {
+async function boot() {
+  const progressSources = vocabSources((await loadManifest(readSiteFile)).collections);
   const demoMode = isDemoSearch(location.search);
   const recordOverlays = new Map();
   let githubToken = "";
@@ -133,14 +116,14 @@ function boot() {
   function hasStoredPayload() {
     if ([...recordOverlays.values()].some(records => records.size > 0)) return true;
     try {
-      return VOCAB_SOURCES.some(source => hasVocabPayload(readJson(source.progressKey), readJson(source.recordsKey)));
+      return progressSources.some(source => hasVocabPayload(readJson(source.progressKey), readJson(source.recordsKey)));
     } catch {
       return false;
     }
   }
 
   function loadSources() {
-    return VOCAB_SOURCES.map(source => ({
+    return progressSources.map(source => ({
       id: source.id,
       label: source.label,
       progress: readJson(source.progressKey),
@@ -159,7 +142,7 @@ function boot() {
 
   function ensureCatalog() {
     if (demoMode || catalogTask) return;
-    catalogTask = loadLessonCatalog().then(loaded => {
+    catalogTask = loadWordCatalog(readSiteFile).then(loaded => {
       catalog = loaded;
       render();
     }).catch(() => {
@@ -392,7 +375,7 @@ function boot() {
     render();
     const failures = [];
     let invalid = false;
-    await Promise.all(VOCAB_SOURCES.map(async source => {
+    await Promise.all(progressSources.map(async source => {
       try {
         const remote = await fetchRemoteRecords(token, source.file);
         if (!remote || token !== githubToken || generation !== syncGeneration) return;

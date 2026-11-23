@@ -1,6 +1,8 @@
 // Lesson lookup for the 生词 board. Tokenization matches the reading page so a
 // mark's example index points at the same sentence.
 
+import { loadCollection, loadDictionary, loadManifest } from "./content.js";
+
 const sentencePattern = /[^.!?]+[.!?]+(?:["”'’])?|[^.!?]+$/g;
 
 function escapePattern(text) {
@@ -95,19 +97,6 @@ function alignedChinese(sentences, chineseSentences) {
     return sentences.map(() => "");
   }
   return chineseSentences;
-}
-
-export function embeddedJson(html, id) {
-  const match = String(html).match(new RegExp(
-    `<script type="application/json" id="${id}">\\s*([\\s\\S]*?)\\s*</script>`
-  ));
-  if (!match) return null;
-  return JSON.parse(match[1]);
-}
-
-export function editionFromSource(source, binding) {
-  if (!/^[A-Za-z_$][\w$]*$/.test(binding)) throw new Error("invalid binding");
-  return new Function(`${source}\nreturn ${binding};`)();
 }
 
 // Full-width parenthetical glosses, like spacecraft（航天器）, are reading aids.
@@ -215,13 +204,25 @@ export function buildCatalog({
   };
 }
 
-export const EDITION_SCRIPTS = [
-  ["reading-01", "reading-01.js", "memoryReadingSet"],
-  ["reading-02-v2", "reading-02-v2.js", "readingSet02"],
-  ["reading-02-v3", "reading-02-v3.js", "readingSet02"],
-  ["reading-02", "reading-02.js", "readingSet02"],
-  ["reading-03", "reading-03.js", "readingSet03"],
-  ["reading-03-v2", "reading-03-v2.js", "readingSet03"],
-  ["reading-04", "reading-04.js", "readingSet04"],
-  ["daily-news-01", "daily-news-01.js", "dailyNews01"]
-];
+// Every collection's words and stories, keyed the way marks are stored: by
+// version id. A collection whose file is missing or malformed is left out; its
+// words still show, only without their sentence.
+export async function loadWordCatalog(readText) {
+  const [dictionary, { collections }] = await Promise.all([loadDictionary(readText), loadManifest(readText)]);
+  const editions = {};
+  let placement = null;
+  await Promise.all(collections.map(async collection => {
+    const { data } = await loadCollection(readText, collection);
+    if (!data) return;
+    if (collection.legacyScreening) placement = data;
+    else editions[collection.version] = data;
+  }));
+  return buildCatalog({
+    screening: { dictionary: dictionary.dictionary, forms: dictionary.forms, lessons: placement?.lessons },
+    bilingual: placement?.chinese || {},
+    extraMeanings: dictionary.extraMeanings || {},
+    trialLessons: placement?.legacy?.trialLessons || [],
+    trialGlossary: placement?.legacy?.trialGlossary || null,
+    editions
+  });
+}

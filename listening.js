@@ -14,17 +14,16 @@
 // `position` is how far through the story the audio is (0...1), not reading
 // progress: listening never writes progress and never marks a story read.
 
-import { narrationKey, screeningStories, setStories } from "./narration.js";
+import { collectionStories, narrationKey } from "./narration.js";
 
 export function inApp(win) {
   return Boolean(win?.zhongkaoApp && win.webkit?.messageHandlers?.listening);
 }
 
 // The run listening starts: the stories from `startIndex` to the end of the
-// reading set or news edition (`set`, as its script defines it; `setId` names
-// its illustrations), or of the screening passages.
-export async function listeningRun({ set, setId, screening, bilingualText, setName, startIndex = 0, pageURL }) {
-  const stories = set ? setStories(set, setId) : screeningStories(screening, bilingualText);
+// collection (content.js), whose file holds `data`.
+export async function listeningRun({ collection, data, setName, startIndex = 0, pageURL }) {
+  const stories = collectionStories(collection, data);
   return Promise.all(stories.slice(startIndex).map(async story => ({
     key: await narrationKey(story.pairs),
     id: story.id,
@@ -259,7 +258,7 @@ function attach(win, page) {
   // Every story of the set with its narration key, worked out once. If the
   // keys can't be worked out, 听 stays greyed.
   const wholeSet = listeningRun({
-    set: page.edition, setId: page.setId, screening: page.screening, bilingualText: page.bilingualText,
+    collection: page.collection, data: page.data,
     setName: page.setName(), pageURL: win.location.href
   });
 
@@ -343,4 +342,10 @@ function attach(win, page) {
   }, () => refreshPill());
 }
 
-if (inApp(globalThis.window) && globalThis.window.readingPage) attach(globalThis.window, globalThis.window.readingPage);
+// The reading page loads its collection before it can be read, and says so
+// with a "readingpage" event once window.readingPage is there.
+if (inApp(globalThis.window)) {
+  const win = globalThis.window;
+  if (win.readingPage) attach(win, win.readingPage);
+  else win.addEventListener("readingpage", () => attach(win, win.readingPage), { once: true });
+}

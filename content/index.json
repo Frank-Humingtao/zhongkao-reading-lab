@@ -1,0 +1,10 @@
+{
+  "collections": [
+    {"id": "screening", "kind": "placement", "number": "01"},
+    {"id": "reading-01", "kind": "review", "number": "01"},
+    {"id": "reading-02", "kind": "review", "number": "02", "version": "reading-02-v3"},
+    {"id": "reading-03", "kind": "review", "number": "03", "version": "reading-03-v2"},
+    {"id": "reading-04", "kind": "review", "number": "04"},
+    {"id": "daily-news-01", "kind": "news", "number": "01"}
+  ]
+}

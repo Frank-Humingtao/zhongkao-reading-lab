@@ -1,38 +1,39 @@
-const memoryReadingSet = {
-  words: {
-    bang: ["砰的一声"],
-    beneath: ["在……正下方"],
-    cupboard: ["柜子；橱柜", "cupboards"],
-    disturb: ["打扰；惊动", "disturbed", "disturbs"],
-    envelope: ["信封", "envelopes"],
-    equipment: ["设备；器材"],
-    explanation: ["解释；说明", "explanations"],
-    fence: ["围栏", "fences"],
-    mend: ["修补；修理", "mended", "mending"],
-    neat: ["整齐的；工整的"],
-    note: ["便条；音符", "notes"],
-    opposite: ["在……对面；相反的"],
-    pile: ["一堆", "piles"],
-    plain: ["朴素的；纯色的；未加调味的"],
-    proper: ["合适的；正规的"],
-    realise: ["意识到；明白", "realised"],
-    receipt: ["收据；小票", "receipts"],
-    separate: ["把……分开；各自独立的", "separated"],
-    shelf: ["搁板；架子", "shelves"],
-    silent: ["安静的；无声的"],
-    slip: ["滑倒；滑落；悄悄放入", "slipped", "slipping"],
-    string: ["细绳；弦", "strings"],
-    tape: ["胶带；用胶带粘；在 tape measure 中指卷尺或软尺", "taped"],
-    thick: ["厚的；浓的"],
-    tuck: ["塞进；掖好", "tucked", "tucking"]
+{
+  "words": {
+    "bang": ["砰的一声"],
+    "beneath": ["在……正下方"],
+    "cupboard": ["柜子；橱柜", "cupboards"],
+    "disturb": ["打扰；惊动", "disturbed", "disturbs"],
+    "envelope": ["信封", "envelopes"],
+    "equipment": ["设备；器材"],
+    "explanation": ["解释；说明", "explanations"],
+    "fence": ["围栏", "fences"],
+    "mend": ["修补；修理", "mended", "mending"],
+    "neat": ["整齐的；工整的"],
+    "note": ["便条；音符", "notes"],
+    "opposite": ["在……对面；相反的"],
+    "pile": ["一堆", "piles"],
+    "plain": ["朴素的；纯色的；未加调味的"],
+    "proper": ["合适的；正规的"],
+    "realise": ["意识到；明白", "realised"],
+    "receipt": ["收据；小票", "receipts"],
+    "separate": ["把……分开；各自独立的", "separated"],
+    "shelf": ["搁板；架子", "shelves"],
+    "silent": ["安静的；无声的"],
+    "slip": ["滑倒；滑落；悄悄放入", "slipped", "slipping"],
+    "string": ["细绳；弦", "strings"],
+    "tape": ["胶带；用胶带粘；在 tape measure 中指卷尺或软尺", "taped"],
+    "thick": ["厚的；浓的"],
+    "tuck": ["塞进；掖好", "tucked", "tucking"]
   },
-  stories: [
+  "stories": [
     {
-      id: "memory-01-film",
-      title: "Thunder for a Film",
-      topic: "为电影造雷",
-      illustration: ["film.jpg", "两人在家用金属托盘和厚坐垫尝试制造雷声，架子上的手机正录音。"],
-      paragraphs: [
+      "id": "memory-01-film",
+      "title": "Thunder for a Film",
+      "topic": "为电影造雷",
+      "picture": "两人在家用金属托盘和厚坐垫尝试制造雷声，架子上的手机正录音。",
+      "image": "film.jpg",
+      "paragraphs": [
         [
           ["My cousin and I made a film about two astronauts who hear thunder inside their spacecraft.", "我和表亲拍了一部短片，讲的是两名宇航员在航天器里听见雷声的故事。"],
           ["Our script called for a loud bang, but we had no proper sound equipment.", "剧本需要一声巨响，可我们没有合适的录音设备。"],
@@ -52,11 +53,12 @@ const memoryReadingSet = {
       ]
     },
     {
-      id: "memory-01-books",
-      title: "The Blue Door",
-      topic: "蓝门上的收据",
-      illustration: ["books.jpg", "街边的小书箱开着蓝门，门上系着细绳，里面整齐地叠着书。"],
-      paragraphs: [
+      "id": "memory-01-books",
+      "title": "The Blue Door",
+      "topic": "蓝门上的收据",
+      "picture": "街边的小书箱开着蓝门，门上系着细绳，里面整齐地叠着书。",
+      "image": "books.jpg",
+      "paragraphs": [
         [
           ["A little book box stood opposite our bus stop.", "公交车站对面有个小书箱。"],
           ["Its plain blue door had lost its handle, so nobody could open it.", "书箱有扇纯蓝色的门，门把手掉了，谁也打不开。"],
@@ -74,11 +76,12 @@ const memoryReadingSet = {
       ]
     },
     {
-      id: "memory-01-light",
-      title: "A Light on the Stairs",
-      topic: "楼梯间的一盏灯",
-      illustration: ["light.jpg", "昏暗的楼梯间里，搁板上的一盏小灯照亮了台阶。"],
-      paragraphs: [
+      "id": "memory-01-light",
+      "title": "A Light on the Stairs",
+      "topic": "楼梯间的一盏灯",
+      "picture": "昏暗的楼梯间里，搁板上的一盏小灯照亮了台阶。",
+      "image": "light.jpg",
+      "paragraphs": [
         [
           ["One evening, all the lights in our building went out.", "一天晚上，我们楼里的灯全灭了。"],
           ["I heard a bang in the corridor and found my neighbour sitting on the stairs.", "我听见走廊里砰的一声，发现邻居坐在楼梯上。"],
@@ -95,11 +98,12 @@ const memoryReadingSet = {
       ]
     },
     {
-      id: "memory-01-photo",
-      title: "A Photograph at Six",
-      topic: "六点钟的照片",
-      illustration: ["photo.jpg", "傍晚，围栏旁的女孩拉着细绳，把小篮子升向二楼窗户。"],
-      paragraphs: [
+      "id": "memory-01-photo",
+      "title": "A Photograph at Six",
+      "topic": "六点钟的照片",
+      "picture": "傍晚，围栏旁的女孩拉着细绳，把小篮子升向二楼窗户。",
+      "image": "photo.jpg",
+      "paragraphs": [
         [
           ["I was assigned to take a photograph for a local exhibition.", "我分到的任务是给本地展览拍一张照片。"],
           ["Every evening at six, a girl by the fence opposite my window pulled on a long piece of string.", "每天傍晚六点，我窗户对面的围栏旁都有个女孩在拉一根长细绳。"],
@@ -118,11 +122,12 @@ const memoryReadingSet = {
       ]
     },
     {
-      id: "memory-01-jacket",
-      title: "The Jacket That Grew",
-      topic: "会长大的外套",
-      illustration: ["jacket.jpg", "裁缝帮女孩检查绿外套接长的黄袖口，口袋上缝着一颗黄星星。"],
-      paragraphs: [
+      "id": "memory-01-jacket",
+      "title": "The Jacket That Grew",
+      "topic": "会长大的外套",
+      "picture": "裁缝帮女孩检查绿外套接长的黄袖口，口袋上缝着一颗黄星星。",
+      "image": "jacket.jpg",
+      "paragraphs": [
         [
           ["My niece loved a plain green jacket that had once belonged to her brother.", "我外甥女喜欢一件纯绿色的外套，那是她哥哥以前穿过的。"],
           ["By winter, its sleeves were too short, and one pocket had a hole.", "到了冬天，袖子已经太短了，其中一个口袋也破了个洞。"],
@@ -141,11 +146,12 @@ const memoryReadingSet = {
       ]
     },
     {
-      id: "memory-01-shop",
-      title: "The Shop That Sold Nothing",
-      topic: "不收钱的小店",
-      illustration: ["shop.jpg", "女孩抱着一本用胶带补过的书，打开架子上的蓝色零钱包，看到里面有张便条。"],
-      paragraphs: [
+      "id": "memory-01-shop",
+      "title": "The Shop That Sold Nothing",
+      "topic": "不收钱的小店",
+      "picture": "女孩抱着一本用胶带补过的书，打开架子上的蓝色零钱包，看到里面有张便条。",
+      "image": "shop.jpg",
+      "paragraphs": [
         [
           ["An advertisement on a fence said, “Bring something you no longer need.”", "围栏上有一则广告：“带一件你不再需要的东西来。”"],
           ["I used tape to mend the cover of a thick novel, then took it to the hall opposite the park.", "我先用胶带把一本厚小说的封面粘好，再带着它去了公园对面的礼堂。"],
@@ -163,11 +169,12 @@ const memoryReadingSet = {
       ]
     },
     {
-      id: "memory-01-rain",
-      title: "The Cup That Overflowed",
-      topic: "接满雨水的杯子",
-      illustration: ["rain.jpg", "雨后的两个透明杯，一个放在围栏边，另一个放在树叶下。"],
-      paragraphs: [
+      "id": "memory-01-rain",
+      "title": "The Cup That Overflowed",
+      "topic": "接满雨水的杯子",
+      "picture": "雨后的两个透明杯，一个放在围栏边，另一个放在树叶下。",
+      "image": "rain.jpg",
+      "paragraphs": [
         [
           ["My cousin and I wanted to see how much rain fell in our garden.", "我和表亲想看看自家花园到底下了多少雨。"],
           ["We had no proper equipment, so we put one cup by the fence and taped a ruler to it.", "我们没有合适的设备，就在围栏边放了一个杯子，再贴上一把尺子。"],
@@ -185,11 +192,12 @@ const memoryReadingSet = {
       ]
     },
     {
-      id: "memory-01-ball",
-      title: "The Ball We Could Hear",
-      topic: "能听见的球",
-      illustration: ["ball.jpg", "体育馆里，一名闭着眼睛的学生伸手等着滚来的球，两个运动包标出球门。"],
-      paragraphs: [
+      "id": "memory-01-ball",
+      "title": "The Ball We Could Hear",
+      "topic": "能听见的球",
+      "picture": "体育馆里，一名闭着眼睛的学生伸手等着滚来的球，两个运动包标出球门。",
+      "image": "ball.jpg",
+      "paragraphs": [
         [
           ["At a sports club, our instructor set two bags on the ground to make a goal.", "在体育俱乐部，教练把两个包放在地上，当作球门。"],
           ["He set a ball between them and rolled it towards us.", "他把一个球放在两个包中间，朝我们滚过来。"],
@@ -208,11 +216,12 @@ const memoryReadingSet = {
       ]
     },
     {
-      id: "memory-01-invite",
-      title: "What Counts as Next Door?",
-      topic: "谁算是邻居？",
-      illustration: ["invite.jpg", "带着一叠信封的访客站在院门旁，门口的男孩递给她一个梨。"],
-      paragraphs: [
+      "id": "memory-01-invite",
+      "title": "What Counts as Next Door?",
+      "topic": "谁算是邻居？",
+      "picture": "带着一叠信封的访客站在院门旁，门口的男孩递给她一个梨。",
+      "image": "invite.jpg",
+      "paragraphs": [
         [
           ["Our street was planning a picnic, and I was assigned to invite the people who lived nearby.", "我们这条街要办野餐，我负责邀请住在附近的人。"],
           ["I wrote each address on a separate envelope, put them in a neat pile and tied the pile with string.", "我把每个地址分别写在一个信封上，把信封整齐叠好，再用细绳捆起来。"],
@@ -228,11 +237,12 @@ const memoryReadingSet = {
       ]
     },
     {
-      id: "memory-01-guitar",
-      title: "Music from a Tin",
-      topic: "铁盒里传来的曲调",
-      illustration: ["guitar.jpg", "公园长椅上，男孩弹着用饼干铁盒、木条和细绳做成的小吉他。"],
-      paragraphs: [
+      "id": "memory-01-guitar",
+      "title": "Music from a Tin",
+      "topic": "铁盒里传来的曲调",
+      "picture": "公园长椅上，男孩弹着用饼干铁盒、木条和细绳做成的小吉他。",
+      "image": "guitar.jpg",
+      "paragraphs": [
         [
           ["In the park, a boy tried to play a tune on an old biscuit tin.", "公园里，一个男孩试着用旧饼干铁盒弹一段曲调。"],
           ["He had found some string on a shelf in the equipment cupboard at home and made his own guitar.", "他在家里器材柜的搁板上找了些细绳，自己动手做了把吉他。"],
@@ -249,4 +259,4 @@ const memoryReadingSet = {
       ]
     }
   ]
-};
+}

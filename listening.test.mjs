@@ -1,51 +1,56 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { editionFromSource, embeddedJson } from "./vocab-context.js";
+import { readManifest } from "./content.js";
 import { DEFAULT_SETTINGS, NARRATIONS, SPEEDS, TIMERS, availabilityRequest, barView, inApp, listenable, listeningRun, nextSetting,
   pageView, storyToFollow, tapOnSentence } from "./listening.js";
 
 const html = readFileSync("index.html", "utf8");
-const readSet = (file, binding) => editionFromSource(readFileSync(file, "utf8"), binding);
+const content = name => JSON.parse(readFileSync("content/" + name + ".json", "utf8"));
+const { collections } = readManifest(readFileSync("content/index.json", "utf8"));
+const collectionOf = id => collections.find(collection => collection.id === id);
 const PAGE = "https://frank-humingtao.github.io/zhongkao-reading-lab/?set=reading-01";
 
 test("listening from a reading-set story runs to the end of the set, named by its published tracks", async () => {
-  const set = readSet("reading-01.js", "memoryReadingSet");
-  const run = await listeningRun({ set, setId: "reading-01", setName: "01 生词复现", startIndex: 0, pageURL: PAGE });
+  const set = content("reading-01");
+  const collection = collectionOf("reading-01");
+  const run = await listeningRun({ collection, data: set, setName: "Review 01", startIndex: 0, pageURL: PAGE });
   assert.equal(run.length, 10);
   assert.deepEqual(run[0], {
     key: "2a5f5df5d757c8e8", // Thunder for a Film, as published in tracks-001
     id: "memory-01-film",
     title: "Thunder for a Film",
-    setName: "01 生词复现",
+    setName: "Review 01",
     artwork: "https://frank-humingtao.github.io/zhongkao-reading-lab/images/reading-01/film.jpg",
     sentences: 12
   });
-  const later = await listeningRun({ set, setId: "reading-01", setName: "01 生词复现", startIndex: 8, pageURL: PAGE });
+  const later = await listeningRun({ collection, data: set, setName: "Review 01", startIndex: 8, pageURL: PAGE });
   assert.deepEqual(later.map(story => story.id), set.stories.slice(8).map(story => story.id));
 });
 
 test("a replaced reading set keeps its illustrations under the set id", async () => {
-  const set = readSet("reading-02-v3.js", "readingSet02");
-  const [first] = await listeningRun({ set, setId: "reading-02", setName: "02 生词复现", startIndex: 0, pageURL: PAGE });
+  const [first] = await listeningRun({ collection: collectionOf("reading-02"), data: content("reading-02-v3"),
+    setName: "Review 02", startIndex: 0, pageURL: PAGE });
   assert.match(first.artwork, /\/images\/reading-02\/[^/]+\.jpg$/);
 });
 
-test("a story without an illustration has no artwork", async () => {
+test("a story without a picture description has no artwork", async () => {
+  const [collection] = readManifest(JSON.stringify({ collections: [{ id: "review-2026-11-24", kind: "review" }] })).collections;
   const set = { stories: [
     { id: "a", title: "A", paragraphs: [[["One.", "一。"]]] },
-    { id: "b", title: "B", illustration: [], paragraphs: [[["Two.", "二。"]]] }
+    { id: "b", title: "B", picture: "一盏灯。", paragraphs: [[["Two.", "二。"]]] }
   ] };
-  const run = await listeningRun({ set, setId: "reading-09", setName: "09", startIndex: 0, pageURL: PAGE });
-  assert.deepEqual(run.map(story => story.artwork), [null, null]);
+  const run = await listeningRun({ collection, data: set, setName: "Review 11-24", startIndex: 0, pageURL: PAGE });
+  assert.deepEqual(run.map(story => story.artwork),
+    [null, "https://frank-humingtao.github.io/zhongkao-reading-lab/images/review-2026-11-24/b.jpg"]);
 });
 
 test("screening passages run with sentences counted the way the page splits them", async () => {
-  const screening = embeddedJson(html, "screening-data");
-  const bilingualText = embeddedJson(html, "bilingual-text");
-  const run = await listeningRun({ screening, bilingualText, setName: "筛选短文", startIndex: 66, pageURL: PAGE });
+  const data = content("screening");
+  const bilingualText = data.chinese;
+  const run = await listeningRun({ collection: collectionOf("screening"), data, setName: "Placement 01", startIndex: 66, pageURL: PAGE });
   assert.equal(run.length, 2);
-  const lesson = screening.lessons[66];
+  const lesson = data.lessons[66];
   assert.equal(run[0].id, lesson.id);
   assert.equal(run[0].artwork, `https://frank-humingtao.github.io/zhongkao-reading-lab/images/screening/${lesson.id}.jpg`);
   assert.equal(run[0].sentences, bilingualText[lesson.id].flat().length);
@@ -77,8 +82,8 @@ test("the 听 control is in the view bar before 中英 and 目录, hidden until 
 });
 
 test("the page asks the app which stories of the whole set have tracks", async () => {
-  const set = readSet("reading-01.js", "memoryReadingSet");
-  const run = await listeningRun({ set, setId: "reading-01", setName: "01 生词复现", startIndex: 0, pageURL: PAGE });
+  const run = await listeningRun({ collection: collectionOf("reading-01"), data: content("reading-01"),
+    setName: "Review 01", startIndex: 0, pageURL: PAGE });
   const request = availabilityRequest(run);
   assert.equal(request.type, "availability");
   assert.equal(request.keys.length, 10);
