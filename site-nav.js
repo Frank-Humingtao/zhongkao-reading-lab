@@ -41,7 +41,10 @@ async function start(root) {
     // Without the list the switcher stays empty; the page itself still works.
   }
   const current = onBoard ? null : findCollection(collections, new URLSearchParams(location.search).get("set"));
-  if (!onBoard) label.textContent = current?.label ?? "";
+  if (!onBoard) {
+    label.textContent = current?.label ?? "";
+    label.lang = "en";
+  }
 
   function item(collection) {
     const link = document.createElement("a");
@@ -50,7 +53,10 @@ async function start(root) {
     const number = document.createElement("span");
     number.className = "set-number";
     number.textContent = collection.number;
-    link.append(number, collection.kindLabel);
+    const kind = document.createElement("span");
+    kind.lang = "en";
+    kind.textContent = collection.kindLabel;
+    link.append(number, kind);
     return link;
   }
   function gap() {
