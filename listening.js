@@ -134,7 +134,13 @@ function attach(win, page) {
   }
 
   function removeChineseUnderSentences() {
-    underSentences().forEach(element => element.remove());
+    underSentences().forEach(element => {
+      // WebKit keeps the space after a removed block collapsed ("spacecraft.Our"),
+      // so the space is put back as a fresh text node.
+      const space = element.nextSibling;
+      element.remove();
+      if (space?.nodeType === 3) space.replaceWith(doc.createTextNode(space.data));
+    });
   }
 
   function enter() {
