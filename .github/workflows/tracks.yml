@@ -1,0 +1,81 @@
+# Listening tracks: Kokoro voices for every story, published to GitHub Releases.
+# See scripts/tracks/generate.py. Never commits to the repository: tracks go to
+# the tracks-NNN releases and catalog.json to the tracks-catalog release.
+#
+# On every push to main that touches story data it makes tracks for each story
+# whose narration key is not in the catalog yet (new or edited stories) and
+# skips everything already published. Run it by hand to backfill everything,
+# or one reading set / news edition / "screening".
+name: Listening tracks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "reading-*.js"
+      - "daily-news-*.js"
+      - index.html
+      - site-nav.js
+      - narration.js
+      - vocab-context.js
+      - scripts/narration-plan.mjs
+      - scripts/tracks/**
+      - .github/workflows/tracks.yml
+  workflow_dispatch:
+    inputs:
+      set:
+        description: Only this reading set, news edition or "screening" (empty for every story)
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+# One run at a time, so two runs never overwrite each other's catalog. A push
+# arriving mid-run waits; the next run picks up whatever is still missing.
+concurrency:
+  group: listening-tracks
+  cancel-in-progress: false
+
+jobs:
+  tracks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: scripts/tracks/uv.lock
+
+      - name: Install espeak-ng
+        run: sudo apt-get update -q && sudo apt-get install -y -q espeak-ng
+
+      - name: Cache the Kokoro model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: kokoro-82m-v1
+
+      - name: Plan
+        env:
+          SET: ${{ inputs.set }}
+        run: node scripts/narration-plan.mjs ${SET:+--set "$SET"} > "$RUNNER_TEMP/plan.json"
+
+      - name: Test the generator
+        run: uv run --project scripts/tracks python -m unittest discover -s scripts/tracks
+
+      # A story that fails is logged and skipped; the others are still
+      # published, the job summary lists the failures and the job ends red.
+      - name: Make and publish missing tracks
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          uv run --project scripts/tracks python scripts/tracks/generate.py
+          --plan "$RUNNER_TEMP/plan.json" --out "$RUNNER_TEMP/tracks"
+          --publish --repo "$GITHUB_REPOSITORY"

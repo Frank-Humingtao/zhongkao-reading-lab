@@ -1,0 +1,7 @@
+{
+  "about": "The player bar's setting values as the page (listening.js) and the app (ListeningCore) both spell them on the bridge. The app keeps an identical copy in ListeningCore/Tests/ListeningCoreTests/Fixtures; tests on both sides check their values against it.",
+  "narrations": ["interleaved", "englishOnly"],
+  "speeds": [0.8, 1, 1.2],
+  "timers": ["story", "15", "30", "60", "off"],
+  "defaults": { "narration": "interleaved", "speed": 1, "doubleRead": false, "timer": "off" }
+}
