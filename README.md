@@ -44,9 +44,12 @@ Everything the site shows lives in `content/` and `images/`, and only `content.j
 - `content/index.json` lists every collection (newest last): an `id` and a `kind` (`placement`, `review` or `news`). Older collections also carry their `number`, and 02 and 03 the `version` their file and progress are named by (`reading-02-v3`).
 - `content/<version>.json` holds one collection's `words` and `stories`. Placement 01 (`screening.json`) keeps its older shape.
 - `content/dictionary.json` is the word list every collection is tokenized with.
+- `content/base-dictionary.json` gives any other tapped word a short meaning: about 20,000 everyday words cut from [ECDICT](https://github.com/skywind3000/ECDICT) by `node scripts/base-dictionary.mjs <path to ecdict.csv>` (see [ADR-0004](docs/adr/0004-base-dictionary-looked-up-at-runtime.md)). Rerun it only to change the selection; the downloaded csv is never committed.
 - `images/<id>/<story id>.jpg` is each story's picture, described by the story's `picture`.
 - A story may also carry `questions` (stem, four options A–D, `answer`; optional `image`), `figures` (exam images placed `after` a paragraph) and `underline` (`[paragraph, words]`). The reading page shows the questions under the passage; choices and 对答案 results sync with the rest of the progress. Placement 02 (`placement-02`) holds the Guangzhou 中考 reading passages 2017–2026 this way.
 
 New review batches are written by the writer agent and illustrated by the illustrator agent, who follow [CONTENT.md](CONTENT.md) and never change code. `node scripts/check-content.mjs` checks all of it (the **Content check** Action runs it on every push), and `--pictures` lists the pictures still to draw. A malformed collection is skipped by every page rather than breaking it.
 
 The reading page's code is `reading-page.js`; shared styles live in `site.css`. See `daily-news-01.md` for the first news edition's sources and image credits.
+
+The base dictionary's meanings come from ECDICT by skywind3000, used under its MIT licence (Copyright (c) 2025 Linwei).

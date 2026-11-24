@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import test from "node:test";
-import { checkCollection, checkLibrary, checkRepetition, wordRepetition, findCollection, formatContent, loadCollection, readManifest, storyPicture,
+import { checkBaseDictionary, checkCollection, checkLibrary, checkRepetition, wordRepetition, findCollection, formatContent, loadCollection, readManifest, storyPicture,
   switcherGroups } from "./content.js";
 
 const manifest = collections => readManifest(JSON.stringify({ collections }));
@@ -199,4 +199,12 @@ test("a story's reading questions need a stem, four options and the right letter
   assert.match(problems.join("\n"), /第 1 题：stem/);
   assert.match(problems.join("\n"), /options 必须是四个选项/);
   assert.match(problems.join("\n"), /answer 只能是 A、B、C 或 D/);
+});
+
+test("the base dictionary must be a flat object of lowercase words with meanings", () => {
+  assert.deepEqual(checkBaseDictionary(readFileSync("content/base-dictionary.json", "utf8")), []);
+  assert.deepEqual(checkBaseDictionary('{"book": "n. 书"}'), []);
+  assert.match(checkBaseDictionary('{"Book": "n. 书"}')[0], /1 个词不是小写或没有释义（例如 Book）/);
+  assert.match(checkBaseDictionary('["book"]')[0], /词 → 释义/);
+  assert.match(checkBaseDictionary("{")[0], /不是合法的 JSON/);
 });

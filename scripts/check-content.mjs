@@ -11,9 +11,9 @@
 
 import { existsSync, readdirSync, statSync } from "node:fs";
 import { readFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { checkLibrary, loadCollection, storyImages, storyPicture } from "../content.js";
+import { BASE_DICTIONARY, DICTIONARY, checkLibrary, loadCollection, storyImages, storyPicture } from "../content.js";
 
 const MAX_PICTURE = 1.5 * 1024 * 1024;
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -58,7 +58,7 @@ for (const collection of collections) {
 }
 
 // A collection written but not listed in content/index.json never shows.
-const listed = new Set(["index.json", "dictionary.json", ...collections.map(collection => collection.version + ".json")]);
+const listed = new Set(["index.json", basename(DICTIONARY), basename(BASE_DICTIONARY), ...collections.map(collection => collection.version + ".json")]);
 for (const name of readdirSync(join(root, "content"))) {
   if (name.endsWith(".json") && !listed.has(name)) {
     problems.push(`content/${name}：没有在 content/index.json 里登记，网站看不到它。在 collections 末尾加一行 {"id": "${name.slice(0, -5)}", "kind": "review"}。`);
