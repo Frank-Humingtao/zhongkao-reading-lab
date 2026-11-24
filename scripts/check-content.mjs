@@ -13,7 +13,7 @@ import { existsSync, readdirSync, statSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { checkLibrary, loadCollection, storyPicture } from "../content.js";
+import { checkLibrary, loadCollection, storyImages, storyPicture } from "../content.js";
 
 const MAX_PICTURE = 1.5 * 1024 * 1024;
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -42,7 +42,8 @@ for (const collection of collections) {
   if (!data) continue;
   const list = collection.legacyScreening ? data.lessons : data.stories;
   stories += list.length;
-  const wanted = new Set(list.map(story => storyPicture(collection, story)?.src).filter(Boolean));
+  const wanted = new Set(list.flatMap(story => [storyPicture(collection, story)?.src,
+    ...(collection.legacyScreening ? [] : storyImages(collection, story))]).filter(Boolean));
   const folder = join(root, collection.imageDir);
   if (!existsSync(folder)) continue;
   for (const name of readdirSync(folder)) {

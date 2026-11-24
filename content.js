@@ -43,7 +43,8 @@ const LEGACY_PROGRESS = {
 
 const MANIFEST_FIELDS = new Set(["id", "kind", "number", "version", "earlier"]);
 const COLLECTION_FIELDS = new Set(["words", "stories", "columnTitle", "editionDate"]);
-const STORY_FIELDS = new Set(["id", "title", "topic", "picture", "image", "figure", "sources", "paragraphs"]);
+const STORY_FIELDS = new Set(["id", "title", "topic", "picture", "image", "figure", "sources", "paragraphs", "questions", "figures", "underline"]);
+const LETTERS = ["A", "B", "C", "D"];
 
 function progressFor(version) {
   return LEGACY_PROGRESS[version] ?? {
@@ -190,6 +191,46 @@ function checkStory(story, index, collection, ids, fail) {
     fail(`${where}：sources 必须是 [{"label": "...", "url": "https://..."}]。`);
   }
   checkPairs(story, where, fail);
+  if (story.questions !== undefined) checkQuestions(story.questions, where, fail);
+  const paragraphCount = Array.isArray(story.paragraphs) ? story.paragraphs.length : 0;
+  if (story.figures !== undefined && (!Array.isArray(story.figures) || story.figures.some(figure =>
+    !isObject(figure) || typeof figure.image !== "string" || !IMAGE.test(figure.image)
+    || typeof figure.alt !== "string" || !Number.isInteger(figure.after) || figure.after < 0 || figure.after > paragraphCount))) {
+    fail(`${where}：figures 必须是 [{"after": 段号, "image": "文件名.jpg", "alt": "图片说明"}]，after 是图片前面有几段。`);
+  }
+  if (story.underline !== undefined && (!Array.isArray(story.underline) || story.underline.some(item =>
+    !Array.isArray(item) || item.length !== 2 || !Number.isInteger(item[0]) || item[0] < 0 || item[0] >= paragraphCount
+    || typeof item[1] !== "string" || !item[1].trim()))) {
+    fail(`${where}：underline 必须是 [[段号（从 0 数）, "划线的词"]]。`);
+  }
+}
+
+// Every image a story shows besides its picture: figures in the passage and
+// pictures that belong to a question. They are part of the material, never drawn.
+export function storyImages(collection, story) {
+  const files = [...(story.figures ?? []).map(figure => figure.image),
+    ...(story.questions ?? []).map(question => question.image).filter(Boolean)];
+  return files.map(file => collection.imageDir + file);
+}
+
+// A story's reading questions, as an exam prints them: a stem, four options in
+// A–D order, and the letter of the right one.
+function checkQuestions(questions, where, fail) {
+  if (!Array.isArray(questions) || !questions.length) return fail(`${where}：questions 必须是非空数组。`);
+  questions.forEach((question, index) => {
+    const here = `${where} 第 ${index + 1} 题`;
+    if (!isObject(question)) return fail(`${here}：必须是 {"stem": ..., "options": [...], "answer": "A"}。`);
+    if (typeof question.stem !== "string" || !question.stem.trim()) fail(`${here}：stem（题干）是空的。`);
+    if (!Array.isArray(question.options) || question.options.length !== 4
+      || question.options.some(option => typeof option !== "string" || !option.trim())) {
+      fail(`${here}：options 必须是四个选项的文字，按 A、B、C、D 的顺序，不带字母。`);
+    }
+    if (!LETTERS.includes(question.answer)) fail(`${here}：answer 只能是 A、B、C 或 D。`);
+    if (question.image !== undefined && (typeof question.image !== "string" || !IMAGE.test(question.image)
+      || typeof question.imageAlt !== "string")) fail(`${here}：image 必须是图片文件名，并配上 imageAlt（图片说明）。`);
+    const unknown = Object.keys(question).filter(key => !["stem", "options", "answer", "image", "imageAlt"].includes(key));
+    if (unknown.length) fail(`${here}：不认识的字段 ${unknown.join("、")}。`);
+  });
 }
 
 // Problems with one collection's file, in words the writer agent can act on.
@@ -235,6 +276,7 @@ export function checkCollection(collection, data) {
 // 3 different stories. Returns one line per word that misses, naming the word,
 // its count and its stories. Only dated batches are held to it; a batch that
 // misses still shows on the site.
+export { LETTERS };
 export const REPEAT = { min: 3, max: 7, stories: 3 };
 
 function escapePattern(text) {
@@ -333,6 +375,9 @@ export async function checkLibrary(readText, exists) {
     repetition.push(...checkRepetition(collection, shown.data));
     const stories = collection.legacyScreening ? shown.data.lessons : shown.data.stories;
     for (const story of stories) {
+      for (const src of collection.legacyScreening ? [] : storyImages(collection, story)) {
+        if (!(await exists(src))) problems.push(`${collection.file}（${story.id}）：找不到图片 ${src}。`);
+      }
       const picture = storyPicture(collection, story);
       if (picture && !(await exists(picture.src))) missingPictures.push({ collection: collection.id, story: story.id, src: picture.src, description: picture.alt });
     }

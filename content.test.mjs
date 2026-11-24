@@ -42,7 +42,7 @@ test("the published collections keep the ids, labels and progress they had", () 
   assert.deepEqual(problems, []);
   // Review batches the writer agent adds later sit after these; they never change this test.
   assert.deepEqual(collections.filter(collection => !/^review-\d/.test(collection.id)).map(collection => collection.label),
-    ["Placement 01", "Review 01", "Review 02", "Review 03", "Review 04", "News 01"]);
+    ["Placement 01", "Placement 02", "Review 01", "Review 02", "Review 03", "Review 04", "News 01"]);
   const placement = findCollection(collections, null);
   assert.equal(placement.id, "screening");
   assert.equal(placement.href, "./");
@@ -186,4 +186,17 @@ test("a batch that repeats a word too few or too many times, or in too few stori
   assert.match(checkRepetition(dated(), crowded)[0], /"lamp" 出现了 4 次，在 2 篇里（要分布在至少 3 篇里）/);
   const older = manifest([{ id: "reading-05", kind: "review", number: "05" }]).collections[0];
   assert.deepEqual(checkRepetition(older, repeated(1)), []);
+});
+
+test("a story's reading questions need a stem, four options and the right letter", () => {
+  const placement = manifest([{ id: "placement-02", kind: "placement", number: "02" }]).collections[0];
+  const data = batch();
+  data.stories[0].questions = [{ stem: "Where did Mia read?", options: ["In bed", "Under the lamp", "At school", "Outside"], answer: "B" }];
+  assert.deepEqual(checkCollection(placement, data), []);
+  data.stories[0].questions = [{ stem: "", options: ["one", "two", "three"], answer: "E" }];
+  const problems = checkCollection(placement, data);
+  assert.equal(problems.length, 3);
+  assert.match(problems.join("\n"), /第 1 题：stem/);
+  assert.match(problems.join("\n"), /options 必须是四个选项/);
+  assert.match(problems.join("\n"), /answer 只能是 A、B、C 或 D/);
 });
