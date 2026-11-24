@@ -7,8 +7,7 @@
       "道歉；歉意"
     ],
     "approach": [
-      "方法；做法",
-      "approaches"
+      "方法；做法"
     ],
     "astronaut": [
       "宇航员"
@@ -17,8 +16,7 @@
       "出席；参加"
     ],
     "belong": [
-      "属于",
-      "belongs"
+      "属于"
     ],
     "below": [
       "在…下面"
@@ -30,7 +28,7 @@
       "长筒靴；靴子"
     ],
     "brotherhood": [
-      "兄弟般的关系"
+      "兄弟情谊；手足情谊"
     ],
     "bury": [
       "埋；葬"
@@ -69,7 +67,8 @@
       "走廊"
     ],
     "costume": [
-      "戏服；服装"
+      "戏服；服装",
+      "costumes"
     ],
     "courage": [
       "勇气"
@@ -156,7 +155,7 @@
       "说明；须知"
     ],
     "invent": [
-      "发明；创造"
+      "发明；编造"
     ],
     "invention": [
       "发明；创造物"
@@ -180,7 +179,8 @@
       "大陆"
     ],
     "matter": [
-      "事情；要紧"
+      "事情；要紧",
+      "mattered"
     ],
     "memorial": [
       "纪念碑；纪念馆"
@@ -216,7 +216,8 @@
       "潜在的；可能的"
     ],
     "present": [
-      "出席的；礼物"
+      "在场的；出席的；呈现；展示",
+      "presented"
     ],
     "produce": [
       "农产品；生产"
@@ -251,14 +252,11 @@
     "shake": [
       "摇动；晃动"
     ],
-    "she": [
-      "她"
-    ],
     "sheet": [
       "纸张；薄片"
     ],
     "shot": [
-      "枪声；射击"
+      "照片；镜头"
     ],
     "shout": [
       "喊；高声呼喊"
@@ -279,7 +277,7 @@
       "摊位"
     ],
     "state": [
-      "陈述；说明；国家；州"
+      "州；陈述；说明"
     ],
     "station": [
       "车站；站"
@@ -288,7 +286,8 @@
       "敲；侵袭"
     ],
     "swing": [
-      "秋千；摆动"
+      "秋千；摆动",
+      "swung"
     ],
     "tale": [
       "故事；传说"
@@ -333,8 +332,8 @@
       "受害者"
     ],
     "wear": [
-      "穿；戴；磨损的",
-      "worn"
+      "穿；戴",
+      "wore"
     ],
     "whenever": [
       "每当；无论何时"
@@ -346,1196 +345,2070 @@
   "stories": [
     {
       "id": "review-2026-11-24-01",
-      "title": "The Jam Stall",
-      "topic": "卖果酱的摊位",
-      "picture": "暖色晨市里，一个木摊位上摆着玻璃罐果酱和一只烤火鸡，女孩端着小托盘，用舌尖轻轻试了一点果酱。",
+      "title": "The Taste Test",
+      "topic": "没卖出去的果酱",
+      "picture": "早市的果酱摊前，女孩把一小块面包递给摊主，旁边摆着蔬菜和烤火鸡。",
       "paragraphs": [
         [
           [
-            "Mia stopped at a small stall in the morning market.",
-            "米娅在早市上停在一个小摊位前。"
+            "At the morning market, Lin helped her aunt sell jam.",
+            "早市上，林帮姑姑卖果酱。"
           ],
           [
-            "A roast turkey sat beside several jars of jam.",
-            "一只烤火鸡放在几罐果酱旁边。"
+            "Their stall was busy, but nobody bought the new orange flavour.",
+            "她们的摊位很热闹，但没有人买新出的橙子口味。"
           ],
           [
-            "The seller placed a little jam on a tray for her to try.",
-            "摊主把一点果酱放在托盘上，让她尝尝。"
+            "Lin put small pieces of bread on a tray.",
+            "林把小块面包放在托盘上。"
           ]
         ],
         [
           [
-            "She touched it with the tip of her tongue.",
-            "她用舌尖碰了碰果酱。"
+            "She invited people to dip a piece into a little pot.",
+            "她请大家把一块面包蘸进一个小罐里。"
           ],
           [
-            "The jam was sweet, but not too sweet.",
-            "果酱是甜的，但并不太甜。"
+            "One man touched the bread with his tongue and frowned.",
+            "一个男人用舌头碰了碰面包，皱起眉头。"
           ],
           [
-            "\"Would you like some turkey as well?\" the seller asked.",
-            "「要不要也来一点火鸡？」摊主问。"
+            "The taste was mild, but there was too much orange skin.",
+            "味道不浓，但橙皮太多了。"
           ]
         ],
         [
           [
-            "Mia smiled and bought a small jar to take home.",
-            "米娅笑了笑，买了一小罐带回家。"
+            "Her aunt changed the recipe and served it with turkey at lunch.",
+            "姑姑改了配方，午饭时用它来搭配火鸡肉。"
           ],
           [
-            "She thanked the seller and walked on through the market.",
-            "她谢过摊主，继续往集市里走。"
+            "By afternoon, shoppers were buying it along with the fresh produce.",
+            "到了下午，顾客买新鲜农产品时，也会买上一些。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-02",
-      "title": "Trade in Town",
-      "topic": "镇上的买卖",
-      "picture": "小镇集市的石板路上，几个农夫把蔬菜和水果摆上木桌，正和镇上的人做买卖。",
+      "title": "A Map with Two Homes",
+      "topic": "地图上的两个家",
+      "picture": "教室里，一个女孩指着太平洋地图，桌上放着家乡和海外城市的照片。",
       "paragraphs": [
         [
           [
-            "On market day, farmers came into town to trade.",
-            "赶集的日子，农夫们进城来做买卖。"
+            "Before moving abroad, Mei thought an ocean was just empty water.",
+            "搬到国外之前，梅以为海洋只是一片空旷的水域。"
           ],
           [
-            "They brought fresh produce from the fields.",
-            "他们从田里带来了新鲜的农产品。"
+            "Her family would fly across the Pacific to their new home.",
+            "她一家将乘飞机飞越太平洋，前往新家。"
           ],
           [
-            "Some baskets did not belong to the farmers themselves.",
-            "有些篮子并不属于这些农夫自己。"
+            "At school, she marked their route on a large map.",
+            "在学校，她在大地图上标出了他们的路线。"
           ]
         ],
         [
           [
-            "Neighbours had asked them to sell fruit as well.",
-            "邻居也托他们把水果一并卖掉。"
+            "Then a European classmate pointed to the place where he had lived.",
+            "接着，一位欧洲同学指了指他以前住过的地方。"
           ],
           [
-            "The trade was slow at first.",
-            "一开始买卖有些冷清。"
+            "It was a small village, not a famous capital.",
+            "那是一个小村庄，不是著名的首都。"
           ],
           [
-            "Then more people from town arrived with bags.",
-            "后来镇上更多人提着袋子来了。"
+            "Mei added a photo of her own village in a southern province.",
+            "梅又贴上了自己位于南方某省的村子的照片。"
           ]
         ],
         [
           [
-            "By noon, most of the produce was gone.",
-            "到了中午，大部分农产品都卖完了。"
+            "Another child added an island and the ferry to the mainland.",
+            "另一个孩子添上了一座岛和通往大陆的渡轮。"
           ],
           [
-            "The farmers counted their money and went home.",
-            "农夫们点过钱，就回家了。"
+            "Soon the map showed not just distances, but connections between families.",
+            "很快，这张地图展现的不只是距离，还有家庭之间的联系。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-03",
-      "title": "The New Invention",
-      "topic": "新发明",
-      "picture": "一间温暖的小工作室里，年轻人把刚做成的小装置放在木桌上，窗外是傍晚的金光。",
+      "title": "The Unfinished Letter",
+      "topic": "没有写完的信",
+      "picture": "纪念馆的玻璃展柜前，祖孙两人看着一封旧信，窗外有一门旧炮。",
       "paragraphs": [
         [
           [
-            "Lin wanted to invent a tool to clean dusty books.",
-            "林想发明一种工具，用来清理落了灰的书。"
+            "At a war memorial, Jun found a letter with no ending.",
+            "在一座战争纪念馆里，俊发现了一封没有结尾的信。"
           ],
           [
-            "His first invention did not work at all.",
-            "他的第一件发明根本没法用。"
+            "Its writer had carried a wounded man away from a bridge.",
+            "写信人曾把一个受伤的人从桥边背走。"
           ],
           [
-            "He tried again and again in the small workroom.",
-            "他在小小的工作室里一次又一次地尝试。"
+            "Only later did he learn that the man was an enemy soldier.",
+            "后来他才知道，那个人是一名敌军士兵。"
           ]
         ],
         [
           [
-            "Eventually, the little machine held a book and blew the dust away.",
-            "最终，这台小机器能夹住书，把灰尘吹走。"
+            "A comrade had asked why he had taken such a risk.",
+            "一位战友曾问他为什么冒这样的险。"
           ],
           [
-            "A teacher saw it and told others about it.",
-            "一位老师看见了，就告诉了其他人。"
+            "The reply spoke of a brotherhood wider than any army.",
+            "回信谈到了一种超越任何军队界限的兄弟情谊。"
           ],
           [
-            "Lin did not care much about fame.",
-            "林并不怎么在意名声。"
+            "Outside, an old cannon stood silent in the rain.",
+            "外面，一门旧大炮静静地立在雨中。"
           ]
         ],
         [
           [
-            "He only wanted the invention to be useful.",
-            "他只希望这件发明能派上用场。"
+            "Jun left a white flower beside the writer's tomb.",
+            "俊在写信人的墓旁放了一朵白花。"
           ],
           [
-            "Still, his name began to travel around the school.",
-            "不过，他的名字还是开始在学校里传开了。"
+            "He could not finish the letter, but he understood its message.",
+            "他无法替那封信写上结尾，却明白了信中的意思。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-04",
-      "title": "Different Approaches",
-      "topic": "不同的方法",
-      "picture": "教室黑板前，几个学生围着一道难解的题，桌上摊开几种不同的解题草稿。",
+      "title": "A Song without a Star",
+      "topic": "没有明星的演出",
+      "picture": "小剧场里，穿戏服的孩子们围着一位银发女歌手练习，钢琴旁亮着暖灯。",
       "paragraphs": [
         [
           [
-            "The last question was tough, and no one felt sure.",
-            "最后一道题很棘手，谁都没有把握。"
+            "Our music teacher once sang in an opera company.",
+            "我们的音乐老师曾在一个歌剧团唱歌。"
           ],
           [
-            "\"This problem has potential,\" the teacher said.",
-            "「这道题很有潜力。」老师说。"
+            "Before that, she worked evenings at a night-club to pay for lessons.",
+            "在那之前，她晚上在一家夜总会工作，以支付上课的费用。"
           ],
           [
-            "She asked them to try different approaches.",
-            "她让他们试试不同的方法。"
+            "She rarely spoke about fame, but loved helping beginners.",
+            "她很少谈名气，却喜欢帮助初学者。"
           ]
         ],
         [
           [
-            "One idea seemed weak at first.",
-            "有一个想法起初显得不怎么样。"
+            "For our first performance, she repaired an old costume herself.",
+            "为我们的第一次演出，她亲手修补了一套旧戏服。"
           ],
           [
-            "They had to prove it with clear numbers.",
-            "他们必须用清楚的数字来证明它。"
+            "I had a short dialogue with another child before the music began.",
+            "音乐开始前，我要和另一个孩子说一小段对白。"
           ],
           [
-            "The second approach was slower, but easier to follow.",
-            "第二种方法更慢，但更容易跟上。"
+            "When I forgot my line, the teacher gave me a quiet cue.",
+            "我忘词时，老师悄悄给了我一个提示。"
           ]
         ],
         [
           [
-            "In the end, the answer was correct.",
-            "最后，答案是对的。"
+            "Then we all sang a tune that the youngest children knew.",
+            "接着，我们一起唱了一支连最小的孩子也熟悉的曲子。"
           ],
           [
-            "The tough question no longer looked impossible.",
-            "那道棘手的题看起来不再不可能了。"
+            "The applause was for everyone, which was exactly what she wanted.",
+            "掌声属于所有人，这正是她所希望的。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-05",
-      "title": "The School Debate",
-      "topic": "学校里的辩论",
-      "picture": "放学后的教室里，学生们围坐成两排，一位老师站在中间，安静地听双方发言。",
+      "title": "The Wrong Answer Wall",
+      "topic": "错题也能上墙",
+      "picture": "教室后墙贴着彩色纸，学生们正微笑着讨论一张写错的练习。",
       "paragraphs": [
         [
           [
-            "There was a debate after class about school rules.",
-            "课后有一场关于校规的辩论。"
+            "Our teacher tried a new approach to mistakes.",
+            "老师尝试了一种对待错误的新方法。"
           ],
           [
-            "Some students talked about politics in the news as well.",
-            "有些学生也谈到了新闻里的政治。"
+            "After a quiz, each of us chose one wrong answer to discuss.",
+            "一次小测验后，我们每人选一道错题来讨论。"
           ],
           [
-            "\"We have a duty to listen,\" the teacher said.",
-            "「我们有责任去听。」老师说。"
+            "I brought a sheet from last week's dictation.",
+            "我带来了上周的一张听写纸。"
           ]
         ],
         [
           [
-            "A boy began to complain that the time was too short.",
-            "一个男孩开始抱怨时间太短。"
+            "A classmate brought a funny sentence from her composition.",
+            "一位同学带来了她作文里一个好笑的句子。"
           ],
           [
-            "The others stayed polite and waited for their turn.",
-            "其他人保持礼貌，等着轮到自己。"
+            "Someone else had used an idiom in completely the wrong situation.",
+            "还有人把一个习语用在了完全不合适的情境里。"
           ],
           [
-            "He then spoke more slowly and more clearly.",
-            "后来他讲得更慢、更清楚了。"
+            "We treated each mistake like a riddle, looking for the reason behind it.",
+            "我们把每个错误当作一个谜语，寻找背后的原因。"
           ]
         ],
         [
           [
-            "The debate did not choose a winner.",
-            "这场辩论没有选出赢家。"
+            "For homework, I wrote an essay about why errors are useful.",
+            "课后作业中，我写了一篇关于错误为什么有用的文章。"
           ],
           [
-            "Everyone left with something to think about.",
-            "每个人离开时都带着一点要思考的东西。"
+            "For once, I was not afraid to let the whole class read it.",
+            "这一次，我不再害怕让全班读我的文章了。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-06",
-      "title": "A Guest from the Province",
-      "topic": "省里来的客人",
-      "picture": "明亮的会议室里，一位外省来的客人站在长桌前，平静地说明自己的想法，窗外是城市的午后光线。",
+      "title": "The Bus That Waited",
+      "topic": "愿意等一等的公交车",
+      "picture": "雨中的窄路上，公交司机从驾驶室望向路边，老人正拎着袋子赶来。",
       "paragraphs": [
         [
           [
-            "A certain guest arrived from another province.",
-            "某一位客人从另一个省来了。"
+            "At the station, a guard warned our driver about a fallen tree.",
+            "车站里，一名保安提醒我们的司机，路上有一棵倒下的树。"
           ],
           [
-            "She had just visited the capital the day before.",
-            "她前一天刚去过首都。"
+            "From his cab, the driver studied the narrow road ahead.",
+            "司机从驾驶室里仔细查看前方狭窄的道路。"
           ],
           [
-            "In the meeting room, she began to state her ideas.",
-            "在会议室里，她开始陈述自己的想法。"
+            "He took a quiet lane instead of the usual main road.",
+            "他没有走平常的大路，而是拐进了一条安静的小路。"
           ]
         ],
         [
           [
-            "Her voice was calm and clear.",
-            "她的声音平静而清楚。"
+            "Near a bend, an old woman waved both arms at us.",
+            "在一处弯道附近，一位老太太向我们挥动双臂。"
           ],
           [
-            "Some people did not agree with every point.",
-            "有些人并不同意每一个观点。"
+            "Beside her was a heavy load of bags and boxes.",
+            "她身旁是一大堆沉重的袋子和箱子。"
           ],
           [
-            "Still, they let her state the plan to the end.",
-            "但他们还是让她把计划陈述完。"
+            "The driver stopped well before her, avoiding a possible crash.",
+            "司机在离她还很远的地方就停了车，避免了可能发生的碰撞。"
           ]
         ],
         [
           [
-            "\"The province has a new school programme,\" she said.",
-            "「这个省有一项新的学校计划。」她说。"
+            "Two passengers helped her carry everything onto the bus.",
+            "两名乘客帮她把所有东西搬上了车。"
           ],
           [
-            "Later, they walked her back to the gate.",
-            "后来，他们送她走到门口。"
+            "We arrived late, but nobody asked him to drive faster.",
+            "我们到得晚了，但没有人要求他开快些。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-07",
-      "title": "At the Memorial",
-      "topic": "在纪念碑前",
-      "picture": "暮色中的安静广场上，一位老人在高高的纪念碑下摆上鲜花，碑身投下长长的影子。",
+      "title": "The Empty Boat",
+      "topic": "空船的误会",
+      "picture": "湖边救援队员站在岸上拉绳，远处漂着一条空木船，孩子躲在树后。",
       "paragraphs": [
         [
           [
-            "We stood below the tall memorial in the quiet square.",
-            "我们站在安静广场上那座高高的纪念碑下面。"
+            "A child's shout brought the rescue team to the lake.",
+            "一个孩子的喊声把救援队引到了湖边。"
           ],
           [
-            "An old comrade placed flowers at the stone.",
-            "一位老同志把花放在石碑前。"
+            "An empty boat was drifting away, and one end began to sink.",
+            "一条空船正向远处漂去，一端开始下沉。"
           ],
           [
-            "He spoke of brotherhood in the hard years.",
-            "他谈起那些艰难岁月里兄弟般的情谊。"
+            "The captain ordered everyone to stay on the bank.",
+            "队长命令所有人留在岸上。"
           ]
         ],
         [
           [
-            "It took courage to remember those days.",
-            "记起那些日子，是需要勇气的。"
+            "He threw a rope across the boat and slowly pulled it back.",
+            "他把一根绳子抛到船的另一侧，慢慢把船拉了回来。"
           ],
           [
-            "Below the names, there were several fresh flowers.",
-            "在那些名字下面，放着几束新鲜的花。"
+            "They searched for a victim, but found only a schoolbag.",
+            "他们寻找遇险者，却只找到一个书包。"
           ],
           [
-            "A child asked why the memorial was built.",
-            "一个孩子问，为什么要建这座纪念碑。"
+            "Finally, a boy found the courage to step out from behind a tree.",
+            "终于，一个男孩鼓起勇气，从树后走了出来。"
           ]
         ],
         [
           [
-            "The old man answered in a soft voice.",
-            "老人用很轻的声音回答了。"
+            "He had pushed the boat away and then tried to escape blame.",
+            "他推走了船，之后又试图逃避责备。"
           ],
           [
-            "We stayed until the square grew dark.",
-            "我们一直待到广场暗下来。"
+            "The team explained that their duty was to save lives, not punish children.",
+            "队员们解释说，他们的职责是救人，而不是惩罚孩子。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-08",
-      "title": "The Wounded Messenger",
-      "topic": "受伤的信使",
-      "picture": "帐营里，一名受伤的信使靠在毯子上，医生在一旁端着水，帐外是刚停息的尘土。",
+      "title": "A Garden in Space",
+      "topic": "太空里的小菜园",
+      "picture": "科学展桌上放着透明种植盒，学生用相机记录幼苗，后方屏幕显示宇航员。",
       "paragraphs": [
         [
           [
-            "After the fight, a wounded man was carried into the tent.",
-            "战斗结束后，一名受伤的人被抬进帐篷。"
+            "A video of an astronaut growing lettuce started our project.",
+            "一段宇航员种生菜的视频开启了我们的项目。"
           ],
           [
-            "He had been a victim of a sudden shot.",
-            "他是一声突然的枪响的受害者。"
+            "Could we invent a watering box for a very small room?",
+            "我们能不能发明一种适用于狭小房间的浇水箱呢？"
           ],
           [
-            "The enemy had already gone back into the hills.",
-            "敌人已经退回山里了。"
+            "Our science teacher lent us some simple equipment.",
+            "科学老师借给我们一些简单的设备。"
           ]
         ],
         [
           [
-            "The wounded man tried to sit up.",
-            "这个受伤的人想坐起来。"
+            "We used a camera to record how quickly each plant grew.",
+            "我们用照相机记录每株植物的生长速度。"
           ],
           [
-            "\"The shot came from the trees,\" he said.",
-            "「枪声是从树林里传来的。」他说。"
+            "At first, our invention gave the roots far too much water.",
+            "起初，我们的发明给根部浇了太多的水。"
           ],
           [
-            "People in the tent grew quiet.",
-            "帐篷里的人安静了下来。"
+            "We changed the holes and repeated the test to prove that it worked.",
+            "我们改变了孔洞，然后重复试验来证明它有效。"
           ]
         ],
         [
           [
-            "They gave him water and asked him to rest.",
-            "他们递给他水，让他休息。"
+            "A visitor noticed its potential for growing vegetables in city flats.",
+            "一位参观者注意到它在城市公寓里种菜的潜在用途。"
           ],
           [
-            "In the morning, he was able to speak again.",
-            "到了早晨，他又能开口说话了。"
+            "We had begun with space, but could now imagine helping our neighbours.",
+            "我们的起点是太空，如今却能设想用它帮助邻居了。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-09",
-      "title": "The Pacific Captain",
-      "topic": "太平洋上的船长",
-      "picture": "银色海光里，船长站在甲板的栏杆旁看向两艘靠近的小船，一名水手举起相机，远处是平静的太平洋。",
+      "title": "The Last Seat",
+      "topic": "最后一个座位",
+      "picture": "社区合唱排练室里，男孩把空椅子推向一位刚到的同学，两人露出笑容。",
       "paragraphs": [
         [
           [
-            "The captain stood on the ship in the Pacific.",
-            "船长站在太平洋上的那艘船上。"
+            "I used to envy the best singer in our club.",
+            "我曾经羡慕我们社团里唱得最好的人。"
           ],
           [
-            "The sea was calm after a long night.",
-            "经过漫长的一夜，海面平静了。"
+            "When he arrived late, I did not greet him as usual.",
+            "他迟到时，我没有像平常那样跟他打招呼。"
           ],
           [
-            "Then two boats almost had a crash near the side.",
-            "这时，两艘小船差点儿在船舷旁相撞。"
+            "I left my bag on the last empty chair.",
+            "我把书包放在了最后一张空椅子上。"
           ]
         ],
         [
           [
-            "The captain called out and turned the wheel.",
-            "船长大声喊着，转动了舵轮。"
+            "He called this rude, and we began a quarrel.",
+            "他说这样很无礼，我们便争吵起来。"
           ],
           [
-            "A sailor took out a camera to record the moment.",
-            "一名水手拿出相机，记下了这一刻。"
+            "I wanted to complain about all the solos he received.",
+            "我想抱怨他总是获得独唱的机会。"
           ],
           [
-            "The light on the Pacific was silver and soft.",
-            "太平洋上的光是银色的，也很柔和。"
+            "But I was certain that hiding the chair would not improve my singing.",
+            "但我很清楚，霸占椅子并不能提高我的歌唱水平。"
           ]
         ],
         [
           [
-            "No one was hurt, and the boats moved apart.",
-            "没有人受伤，两艘小船随后分开了。"
+            "I offered an apology and moved my bag.",
+            "我道了歉，移开了书包。"
           ],
           [
-            "The captain did not leave the deck until both were safe.",
-            "直到两艘船都安全了，船长才离开甲板。"
+            "His polite reply surprised me even more than his beautiful voice.",
+            "他有礼貌的回答，比他优美的歌声更让我惊讶。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-10",
-      "title": "After the Opera",
-      "topic": "歌剧散场之后",
-      "picture": "歌剧院散场后的灯火街上，一位女演员把戏服搭在手臂上，在门口停下来整理靴子，不远处夜总会门口正透出暖光。",
+      "title": "Grandmother's Workroom",
+      "topic": "奶奶的工作间",
+      "picture": "奶奶坐在缝纫桌旁，膝上放着布料，孩子把纽扣分进小盒子。",
       "paragraphs": [
         [
           [
-            "After the opera, the street was full of lights.",
-            "歌剧散场后，街上满是灯光。"
+            "Grandmother calls herself a retired housewife, but her days are busy.",
+            "奶奶说自己是个退休的家庭主妇，但她的日子很忙。"
           ],
           [
-            "Anna still had her stage costume over her arm.",
-            "安娜还把舞台上的戏服搭在手臂上。"
+            "A pile of old clothes waits beside her sewing machine.",
+            "缝纫机旁，一堆旧衣服正等着她处理。"
           ],
           [
-            "She stopped to fix her boot by the door.",
-            "她在门口停下来，整理自己的靴子。"
+            "She makes them into useful things that we can wear again.",
+            "她把它们改成我们可以重新穿戴的实用物品。"
           ]
         ],
         [
           [
-            "They passed a busy night-club with music at the door.",
-            "她们路过一家热闹的夜总会，门口传出音乐。"
+            "Yesterday, I watched her hold a soft cushion on her lap.",
+            "昨天，我看着她把一个柔软的靠垫放在膝上。"
           ],
           [
-            "Anna laughed and said she was too tired to go in.",
-            "安娜笑着说，她太累了，不想进去。"
+            "She showed me how to tuck the loose cloth inside.",
+            "她教我怎样把松开的布边塞进去。"
           ],
           [
-            "She folded the costume carefully over her arm.",
-            "她把戏服小心地叠好，仍搭在手臂上。"
+            "I helped tidy the buttons into little boxes.",
+            "我帮忙把纽扣整理到小盒子里。"
           ]
         ],
         [
           [
-            "The night air felt cool after the warm opera house.",
-            "从温暖的歌剧院出来，夜里的空气显得很凉。"
+            "Even the cracked vase on her table held scraps of colourful thread.",
+            "就连她桌上那个有裂纹的花瓶，也装着零碎的彩色线头。"
           ],
           [
-            "They walked home under the yellow lamps.",
-            "她们在黄色的灯光下走回家。"
+            "Nothing in that room seemed ready to be thrown away.",
+            "那个房间里似乎没有任何东西该被扔掉。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-11",
-      "title": "The Old Photograph",
-      "topic": "旧照片",
-      "picture": "黄昏的房间里，一位老妇人把发黄的旧照片托在膝上，照片中的男子打着一条深色领带，膝上坐着一个微笑的小孩。",
+      "title": "A Place to Play",
+      "topic": "球场该留给谁",
+      "picture": "小镇公共会议室里，学生举着旧球场照片向居民发言，窗外有高楼。",
       "paragraphs": [
         [
           [
-            "In the old photograph, Grandpa had worn his father's necktie.",
-            "在那张旧照片里，爷爷戴着他父亲的领带。"
+            "Our town planned to replace an old basketball court with a car park.",
+            "我们镇打算把一个旧篮球场改成停车场。"
           ],
           [
-            "A little girl sat on his lap and smiled.",
-            "一个小女孩坐在他的膝上，微笑着。"
+            "I had never been interested in local politics before.",
+            "在那之前，我对地方政治从不感兴趣。"
           ],
           [
-            "Grandma looked at the picture for a long time.",
-            "奶奶看了那张照片很久。"
+            "This time, my friends asked me to attend a public meeting.",
+            "这一次，朋友们叫我去参加一场公开会议。"
           ]
         ],
         [
           [
-            "\"I still envy that calm look on his face,\" she said.",
-            "「我还是羡慕他脸上那种平静的神情。」她说。"
+            "It would be held on the twentieth of May.",
+            "会议定在五月二十日举行。"
           ],
           [
-            "The necktie was dark and carefully tied.",
-            "那条领带是深色的，系得很仔细。"
+            "During the debate, residents explained why both spaces were needed.",
+            "辩论中，居民们解释了为什么这两种场地都有必要。"
           ],
           [
-            "She held the photograph on her lap.",
-            "她把照片放在膝上托着。"
+            "I stood up to state how far children would have to walk to play.",
+            "我站起来说明，孩子们将不得不走多远才能打球。"
           ]
         ],
         [
           [
-            "\"He had worn it only on special days,\" she added.",
-            "「他只在特别的日子才戴它。」她又说。"
+            "Several parents present nodded when I showed them our photos.",
+            "我向大家展示照片时，几位在场的家长点了点头。"
           ],
           [
-            "The room stayed quiet while she remembered.",
-            "她回忆的时候，房间里一直很安静。"
+            "The council agreed to look for another place for the cars.",
+            "地方议会同意为汽车另找一个地方。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-12",
-      "title": "Composition Day",
-      "topic": "作文日",
-      "picture": "明亮的教室里，学生们低头写着作文，讲台上放着听写本和一小叠测验卷，窗外是安静的校园。",
+      "title": "The Fox under the Bridge",
+      "topic": "桥下的狐狸",
+      "picture": "小桥下，一只狐狸缩在泥岸上，穿雨靴的女孩蹲在桥栏边保持安静。",
       "paragraphs": [
         [
           [
-            "In the morning, the class had a dictation.",
-            "早上，这节课先进行了听写。"
+            "A red tail moved below the little bridge.",
+            "小桥下，一条红色的尾巴动了动。"
           ],
           [
-            "Then they wrote a short composition about a family trip.",
-            "接着他们写了一篇关于家庭旅行的短作文。"
+            "I stopped so quickly that one boot filled with muddy water.",
+            "我停得太急，一只靴子里灌满了泥水。"
           ],
           [
-            "After lunch there was a quiz on new words.",
-            "午饭后，又有一次生词测验。"
+            "A fox was trying to bury a piece of food in the bank.",
+            "一只狐狸正试着把一块食物埋进河岸。"
           ]
         ],
         [
           [
-            "The last task was an essay, a little longer than the composition.",
-            "最后一项任务是一篇随笔，比那篇作文稍长一些。"
+            "I wanted to call my brother, but did not want to frighten it.",
+            "我想叫弟弟来看，却不愿吓到它。"
           ],
           [
-            "One student used an idiom in the first line.",
-            "有一个学生在第一句里用了一条习语。"
+            "We watched from a dry spot beside the path.",
+            "我们从小路旁一处干燥的地方看着它。"
           ],
           [
-            "The teacher smiled when she read it.",
-            "老师读到的时候笑了。"
+            "A nearby swing began to shake in the wind.",
+            "附近的一架秋千开始在风中晃动。"
           ]
         ],
         [
           [
-            "\"An idiom can make a sentence feel alive,\" she said.",
-            "「一条习语能让句子活起来。」她说。"
+            "Then we heard a loose branch strike the wooden seat.",
+            "接着，我们听见一根松动的树枝打在木座上。"
           ],
           [
-            "Everyone handed in the essay before the bell.",
-            "铃声响起之前，大家都交了随笔。"
+            "The fox vanished, leaving us with only a story to tell.",
+            "狐狸消失了，只给我们留下了一个可以讲述的故事。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-13",
-      "title": "One Cue",
-      "topic": "一个提示",
-      "picture": "排练室的走廊墙边贴着一张工整的台词纸，女孩抱着吉他坐在长椅上，正轻轻弹一段开场的曲调。",
+      "title": "The Missing Coat",
+      "topic": "找回外套",
+      "picture": "旧教堂门边，一个戴领带的男孩把外套交给老人，走廊深处透进夕阳。",
       "paragraphs": [
         [
           [
-            "Before the play, Mina played a tune to greet the listeners.",
-            "开演前，米娜弹了一段曲调，向听众打招呼。"
+            "After a concert at the old church, a man could not find his coat.",
+            "旧教堂的音乐会结束后，一个男人找不到自己的外套了。"
           ],
           [
-            "She had written the dialogue on a neat sheet of paper.",
-            "她把对话写在一张整齐的纸上。"
+            "I saw him searching the long corridor outside the hall.",
+            "我看见他在大厅外的长走廊里寻找。"
           ],
           [
-            "The sheet was taped to the wall, ready for the actors.",
-            "那张纸被贴在墙上，好让演员随时看。"
+            "He wore a bright necktie that was easy to remember.",
+            "他戴着一条鲜亮的领带，很容易辨认。"
           ]
         ],
         [
           [
-            "\"Wait for my cue,\" she said.",
-            "「等我的提示。」她说。"
+            "Just before the doors shut, I noticed a coat under a chair.",
+            "就在门关上之前，我注意到椅子下面有一件外套。"
           ],
           [
-            "The first cue was a soft knock.",
-            "第一个提示是一声轻轻的敲门。"
+            "Did it belong to him or to one of the musicians?",
+            "它是他的，还是某位乐手的呢？"
           ],
           [
-            "Then the dialogue began, line by line.",
-            "随后，对话一行一行地开始了。"
+            "I checked a photo that Dad had taken before the concert.",
+            "我查看了爸爸在音乐会前拍的一张照片。"
           ]
         ],
         [
           [
-            "People in the room leaned forward to listen.",
-            "房间里的人探身向前听着。"
+            "In that shot, the man was holding exactly the same coat.",
+            "在那张照片里，那个男人拿着完全相同的外套。"
           ],
           [
-            "At the end, Mina played the same tune again.",
-            "结束时，米娜又弹了同一段曲调。"
+            "We caught up with him before he walked out into the cold.",
+            "他还没走到寒冷的室外，我们就追上了他。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-14",
-      "title": "The Quiet Corridor",
-      "topic": "安静的走廊",
-      "picture": "洒满午后阳光的长走廊里，木长凳上放着一个软垫，墙边的花瓶里插着花，一名佣人正轻轻走过。",
+      "title": "More than a Famous Name",
+      "topic": "开拓者背后的人",
+      "picture": "图书馆里，女孩翻看旧账本，墙上挂着一位早期女商人的画像。",
       "paragraphs": [
         [
           [
-            "A vase of flowers stood in the long corridor.",
-            "长走廊里立着一只插了花的花瓶。"
+            "For a history project, I studied a pioneer of the local tea trade.",
+            "做历史项目时，我研究了本地茶叶贸易的一位开拓者。"
           ],
           [
-            "A servant walked by with careful steps.",
-            "一名佣人小心翼翼地走了过去。"
+            "A book described her rise from a poor family.",
+            "一本书描述了她如何从贫困家庭中崛起。"
           ],
           [
-            "She stopped to tidy a cushion on the wooden bench.",
-            "她停下来，把木长凳上的垫子整理整齐。"
+            "It called her life a splendid tale of personal success.",
+            "书中把她的一生称为一个精彩的个人成功故事。"
           ]
         ],
         [
           [
-            "\"Does this vase belong here?\" a visitor asked.",
-            "「这只花瓶是放在这里的吗？」一位访客问。"
+            "Then I found an old account book in the library.",
+            "后来，我在图书馆发现了一本旧账本。"
           ],
           [
-            "\"Yes,\" the servant said. \"It belongs to the hall.\"",
-            "「是的，」佣人说。「它是大厅的。」"
+            "It recorded wages paid to a servant who had travelled with her.",
+            "里面记录了付给一位随她出行的仆人的工资。"
           ],
           [
-            "The corridor was quiet and smelled of clean wood.",
-            "走廊很安静，有一股干净木头的气味。"
+            "Their journeys had been tough, with little food and dangerous roads.",
+            "他们的旅途十分艰难，食物短缺，道路危险。"
           ]
         ],
         [
           [
-            "The visitor sat down on the tidy bench.",
-            "访客在整洁的长凳上坐了下来。"
+            "Yet the famous biography never mentioned this helper's name.",
+            "然而，那本著名的传记从未提到这位帮手的名字。"
           ],
           [
-            "Afternoon light fell across the floor.",
-            "午后的光线落在地板上。"
+            "I decided my report should make room for more than one person.",
+            "我决定，我的报告不应该只写一个人。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-15",
-      "title": "Piles of Housework",
-      "topic": "堆起来的家务",
-      "picture": "温暖的家中，一位家庭主妇和儿子正把叠好的衣物塞进抽屉，一旁的椅子上还堆着待整理的毛巾。",
+      "title": "The First Question",
+      "topic": "举手以前",
+      "picture": "教室里，女孩举起手询问，老师停下板书，周围同学转头认真倾听。",
       "paragraphs": [
         [
           [
-            "Lately the house had been busy and a little messy.",
-            "最近家里又忙又有些乱。"
+            "Lately, our teacher had noticed how quiet I was in class.",
+            "最近，老师注意到我在课堂上非常安静。"
           ],
           [
-            "The housewife looked at the clothes that had begun to pile up.",
-            "家庭主妇看着那些开始堆起来的衣服。"
+            "Whenever I was confused, I copied others instead of asking.",
+            "每当我感到困惑时，我都照抄别人的，而不提问。"
           ],
           [
-            "She began to tuck the clean shirts into a drawer.",
-            "她开始把干净的衬衫塞进抽屉。"
+            "One morning, an instruction on the board made no sense to me.",
+            "一天早上，黑板上的一条指示让我摸不着头脑。"
           ]
         ],
         [
           [
-            "\"I can help,\" her son said.",
-            "「我可以帮忙。」她的儿子说。"
+            "I did not dare raise my hand at first.",
+            "起初，我不敢举手。"
           ],
           [
-            "Together they made a neat pile of towels.",
-            "他们一起把毛巾叠成整齐的一堆。"
+            "I moved my pencil back and forth, hoping someone else would speak.",
+            "我来回挪动着铅笔，希望别人会开口。"
           ],
           [
-            "She showed him how to tuck the edges in.",
-            "她教他怎样把边缘掖好。"
+            "Eventually, I asked what the first step meant.",
+            "最终，我问第一步是什么意思。"
           ]
         ],
         [
           [
-            "Lately he had wanted to be useful after school.",
-            "最近他放学后也想帮上忙。"
+            "Three classmates immediately said that they had the same problem.",
+            "三位同学立刻说，他们也有同样的问题。"
           ],
           [
-            "By evening, the room looked light again.",
-            "到了傍晚，房间看起来又清爽了。"
+            "It was a small matter, but it changed how I felt about questions.",
+            "这是一件小事，却改变了我对提问的感受。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-16",
-      "title": "The Muddy Lane",
-      "topic": "泥泞的小路",
-      "picture": "雨后狭窄的泥路上，一辆装满木柴的马车陷在泥里，车夫拉着绳子，马正在用力前行。",
+      "title": "Dinner after the Snow",
+      "topic": "雪后的晚餐",
+      "picture": "社区厨房里，志愿者把热饭放上托盘，门外台阶积着白雪。",
       "paragraphs": [
         [
           [
-            "The lane was narrow and muddy after the rain.",
-            "雨后，这条小路又窄又泥泞。"
+            "Snow kept many older neighbours indoors, so our class cooked dinner for them.",
+            "大雪让许多老邻居无法出门，于是我们班为他们做晚饭。"
           ],
           [
-            "A cart carried a heavy load of wood.",
-            "一辆马车载着沉重的木柴。"
+            "A farmer gave us fresh produce that he could not deliver.",
+            "一位农民把他无法送出的新鲜农产品给了我们。"
           ],
           [
-            "The load was tied with a thick rope.",
-            "那些木柴用一根粗绳子捆着。"
+            "We bought a turkey with money from our school craft stall.",
+            "我们用学校手工摊位挣来的钱买了一只火鸡。"
           ]
         ],
         [
           [
-            "The wheels began to sink into the mud.",
-            "轮子开始往泥里陷。"
+            "The cook chose a mild sauce because some people disliked hot food.",
+            "厨师选了一种口味温和的酱汁，因为有些人不喜欢辣的食物。"
           ],
           [
-            "The driver tried to shake the rope free.",
-            "车夫试着把绳子抖松。"
+            "I learned to dip a clean spoon into the sauce to taste it.",
+            "我学着把一把干净的勺子伸进酱汁里试味。"
           ],
           [
-            "The horse gave a shake and pulled again.",
-            "马晃了一下，又拉了起来。"
+            "It was too hot and nearly burned my tongue.",
+            "酱汁太烫，差点烫伤了我的舌头。"
           ]
         ],
         [
           [
-            "Slowly, the cart moved down the lane.",
-            "马车慢慢沿着小路向前移动。"
+            "Later, each tray carried a warm meal and a bread roll.",
+            "后来，每个托盘上都放着一份热饭和一个小面包。"
           ],
           [
-            "They did not stop until the ground was firm.",
-            "直到地面变扎实，他们才停下来。"
+            "A neighbour sent us homemade jam in return the next morning.",
+            "第二天早上，一位邻居送来了自制果酱作为回礼。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-17",
-      "title": "The Bend by the Tomb",
-      "topic": "坟墓旁的拐弯",
-      "picture": "黄昏的土路在一座旧坟旁急转，草丛里立着一门生锈的旧炮，两个行人在拐弯处放慢了脚步。",
+      "title": "Why the Birds Stop Here",
+      "topic": "候鸟为什么停留",
+      "picture": "海边湿地，学生隔着围栏观察候鸟，老师指着鸟腿上的彩色环。",
       "paragraphs": [
         [
           [
-            "The path made a sharp bend beside an old tomb.",
-            "小路在一座旧坟墓旁转了一个急弯。"
+            "Every autumn, birds arrive on our island from abroad.",
+            "每年秋天，鸟儿从国外来到我们岛上。"
           ],
           [
-            "A rusted cannon stood in the grass nearby.",
-            "附近的草丛里立着一门生锈的大炮。"
+            "They fly over the Pacific, stopping where they can find enough food.",
+            "它们飞越太平洋，在能找到足够食物的地方停留。"
           ],
           [
-            "The place could frighten a child at dusk.",
-            "在黄昏时，这地方可能会吓到小孩。"
+            "A European scientist helped our class study their journey.",
+            "一位欧洲科学家帮助我们班研究它们的旅程。"
           ]
         ],
         [
           [
-            "They slowed down at the bend and looked around.",
-            "他们在拐弯处放慢脚步，四周看了看。"
+            "One bird carried a tiny device that recorded its route.",
+            "一只鸟身上带着一个记录路线的小装置。"
           ],
           [
-            "The tomb was quiet, and no one was there.",
-            "坟墓很安静，没有别的人。"
+            "It had passed close to a crowded capital without landing.",
+            "它曾从一座拥挤的首都附近经过，却没有降落。"
           ],
           [
-            "A bird flew up from behind the cannon.",
-            "一只鸟从大炮后面飞了起来。"
+            "Instead, it rested beside a quiet lake on the mainland.",
+            "相反，它在大陆上一个安静的湖边休息。"
           ]
         ],
         [
           [
-            "The sound did not frighten them for long.",
-            "那声音并没有让他们害怕很久。"
+            "That lake lies in a province where many wetlands have disappeared.",
+            "那个湖位于一个已有许多湿地消失的省份。"
           ],
           [
-            "They walked on before the light was gone.",
-            "他们趁天还没黑，继续往前走。"
+            "Protecting one small area could therefore help birds on a much longer journey.",
+            "因此，保护一小片区域，就可能帮助远行的鸟儿。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-18",
-      "title": "A Trip Abroad",
-      "topic": "出国旅行",
-      "picture": "清晨的机场大厅里，一个女孩提着行李箱走向登机口，父母站在后方望着她，窗外有飞机正在滑行。",
+      "title": "Two Names on One Stone",
+      "topic": "一块石头上的两个名字",
+      "picture": "山间步道旁，两名学生清理纪念石上的落叶，旁边的小牌展示着旧照片。",
       "paragraphs": [
         [
           [
-            "Yuan was going abroad for the first time.",
-            "袁是第一次出国。"
+            "On a mountain walk, we found a memorial hidden by leaves.",
+            "山间徒步时，我们发现了一座被树叶遮住的纪念碑。"
           ],
           [
-            "She would fly to a European city in the morning.",
-            "她早上将乘飞机去一座欧洲城市。"
+            "Two names were cut into the stone beside an empty tomb.",
+            "一座空墓旁的石头上刻着两个名字。"
           ],
           [
-            "Her parents would stay on the mainland and wait for her call.",
-            "她的父母会留在大陆，等她的电话。"
+            "A local guide told us that one man had once been the other's enemy.",
+            "当地向导告诉我们，其中一人曾是另一人的敌人。"
           ]
         ],
         [
           [
-            "She had never visited a European street before.",
-            "她以前从没走过欧洲的街道。"
+            "During a battle, a cannon had destroyed the path down the mountain.",
+            "一场战斗中，一门大炮炸毁了下山的路。"
           ],
           [
-            "At the airport, she watched the planes fly over the roof.",
-            "在机场，她看着飞机从屋顶上方飞过。"
+            "Both men were wounded and could only survive by helping each other.",
+            "两人都受了伤，只有互相帮助才能活下来。"
           ],
           [
-            "\"I'll write when I arrive,\" she told them.",
-            "「我到了就写信。」她对他们说。"
+            "Years later, one returned with a former comrade to search for the place.",
+            "多年以后，其中一人和一位从前的战友重返这里，寻找当年的地点。"
           ]
         ],
         [
           [
-            "The mainland felt far away as she walked to the gate.",
-            "走向登机口时，大陆忽然显得很远。"
+            "They built this stone as a sign of brotherhood, not victory.",
+            "他们立下这块石碑，象征兄弟情谊，而不是胜利。"
           ],
           [
-            "She held her passport and tried to smile.",
-            "她握着护照，努力笑了笑。"
+            "We cleared the leaves so that the next walkers could read both names.",
+            "我们清走了树叶，让下一批徒步者也能读到这两个名字。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-19",
-      "title": "The Route to the Meeting",
-      "topic": "去会合的路线",
-      "picture": "清晨的车站大厅里，两个学生对照一张小地图，看着指示牌上的路线，人群在他们身后流动。",
+      "title": "The Sound behind the Door",
+      "topic": "门后的音乐",
+      "picture": "旧音乐厅的资料室里，两个孩子戴着耳机听旧录音，桌上放着褪色演出照。",
       "paragraphs": [
         [
           [
-            "They had to attend a meeting in the next city.",
-            "他们得去邻近的城市出席一场会合。"
+            "The building near our library used to be a night-club.",
+            "图书馆附近的那栋楼过去是一家夜总会。"
           ],
           [
-            "The teacher gave them an instruction about the route.",
-            "老师给了他们一条关于路线的说明。"
+            "Now it holds old recordings from the city's theatres.",
+            "如今，那里存放着这座城市各家剧院的老录音。"
           ],
           [
-            "\"Take the early bus to the station,\" she said.",
-            "「坐早班车去车站。」她说。"
+            "We listened to a young woman singing a tune that my grandfather knew.",
+            "我们听到一位年轻女子唱着一支爷爷熟悉的曲子。"
           ]
         ],
         [
           [
-            "The instruction was short and easy to follow.",
-            "那条说明很短，也很容易照着做。"
+            "In the next recording, she had a small part in an opera.",
+            "下一段录音中，她在一部歌剧里扮演一个小角色。"
           ],
           [
-            "They studied the route on a small map.",
-            "他们在一张小地图上查看路线。"
+            "Her spoken dialogue sounded nervous, but her song was clear.",
+            "她说对白时听起来很紧张，但歌声十分清亮。"
           ],
           [
-            "At the station, the hall was already crowded.",
-            "到了车站，大厅里已经很拥挤。"
+            "A bell was the cue for her to leave the stage.",
+            "一声铃响就是她退场的提示。"
           ]
         ],
         [
           [
-            "They arrived in time to attend the first talk.",
-            "他们及时赶到，赶上了第一场讲座。"
+            "In a faded photo, she wore a costume made from cheap curtains.",
+            "一张褪色照片里，她穿着用廉价窗帘做成的戏服。"
           ],
           [
-            "On the way home, they used the same route.",
-            "回家时，他们走了同一条路线。"
+            "She never achieved great fame, yet her voice had survived for sixty years.",
+            "她从未大红大紫，但她的歌声却保存了六十年。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-20",
-      "title": "Inside the Old Court",
-      "topic": "在旧法庭里",
-      "picture": "旧法庭门口站着一名守卫，旁边能看见小教堂的屋顶，屋里已有几位出席的人安静地坐着。",
+      "title": "The Dictionary Game",
+      "topic": "词典挑战",
+      "picture": "图书角里，一群学生围着词典和答题纸，窗外下着细雨。",
       "paragraphs": [
         [
           [
-            "A guard stood at the door of the old court.",
-            "一名守卫站在旧法庭的门口。"
+            "Rain cancelled our sports afternoon, so we made a language game.",
+            "下雨让下午的体育活动取消了，于是我们设计了一个语言游戏。"
           ],
           [
-            "Next to it, a small church bell was ringing.",
-            "旁边，一座小教堂的钟正在响。"
+            "Each team received a sheet with an unfinished riddle.",
+            "每队拿到一张写着未完成谜语的纸。"
           ],
           [
-            "People who were present sat down and grew quiet.",
-            "出席的人坐下来，渐渐安静了。"
+            "The answer was hidden in an essay about animals.",
+            "答案藏在一篇关于动物的文章里。"
           ]
         ],
         [
           [
-            "The guard checked each name on a list.",
-            "守卫核对名单上的每一个名字。"
+            "To find it, we had to explain an idiom that contained a bird's name.",
+            "为了找到答案，我们得解释一个包含鸟名的习语。"
           ],
           [
-            "Someone from the church had come to listen as well.",
-            "教堂里也有人过来旁听。"
+            "My usual approach was to guess, but this time I opened a dictionary.",
+            "我平常的做法是猜，但这次我翻开了词典。"
           ],
           [
-            "A woman was present with a small bag on her knees.",
-            "一位女士也出席了，膝上放着一个小包。"
+            "Next came a short dictation, which tested how carefully we listened.",
+            "接下来是一小段听写，考查我们听得是否仔细。"
           ]
         ],
         [
           [
-            "The court began when the doors were closed.",
-            "门关上后，法庭开始了。"
+            "Our final task was a composition using the answer as its title.",
+            "最后一个任务是用答案作标题写一篇作文。"
           ],
           [
-            "From the window, they could see the church roof.",
-            "从窗户望出去，能看见教堂的屋顶。"
+            "By the end, the room was louder than it had ever been during a quiz.",
+            "结束时，屋里比以往任何一次测验时都要热闹。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-21",
-      "title": "A Loud Quarrel",
-      "topic": "一场大声的争吵",
-      "picture": "校园院子的树荫下，两个男孩刚吵完，一个低下头道歉，几个同学站在一旁看着他们。",
+      "title": "The Parcel's Journey",
+      "topic": "包裹去了哪里",
+      "picture": "乡村小站外，送货员和保安一起检查一个压扁的纸箱，货车停在旁边。",
       "paragraphs": [
         [
           [
-            "Two boys began to quarrel in the yard.",
-            "两个男孩在院子里争吵起来。"
+            "My aunt's parcel arrived with one corner badly crushed.",
+            "姑姑的包裹送到时，一个角被压得很厉害。"
           ],
           [
-            "One of them gave a rude shout.",
-            "其中一个粗鲁地喊了一声。"
+            "The delivery driver feared that something had fallen from his load.",
+            "送货司机担心，他装载的货物里有东西掉下来砸到了包裹。"
           ],
           [
-            "\"Don't you dare say that again!\" the other cried.",
-            "「你敢再说一遍试试！」另一个叫道。"
+            "He checked the floor of the cab, but found no loose boxes.",
+            "他检查了驾驶室地板，却没发现散落的箱子。"
           ]
         ],
         [
           [
-            "Their friends ran over and asked them to stop.",
-            "朋友们跑过来，叫他们停下来。"
+            "Then a guard at the railway station remembered hearing a loud crash.",
+            "后来，火车站的一位保安想起曾听到一声巨响。"
           ],
           [
-            "After a while, the shout died away.",
-            "过了一会儿，喊声平息了。"
+            "A large empty case had fallen off a shelf before the parcel was collected.",
+            "这个包裹被取走之前，一个大空箱曾从架子上掉下来。"
           ],
           [
-            "The first boy offered an apology.",
-            "先吵起来的那个男孩道了歉。"
+            "The driver returned along the lane beside the tracks.",
+            "司机沿铁轨旁的小路返回。"
           ]
         ],
         [
           [
-            "He said he had been rude, and he was sorry.",
-            "他说自己刚才很无礼，他很抱歉。"
+            "He slowed at every bend, though the road was empty.",
+            "虽然路上没有车，他经过每一处弯道时仍然减速。"
           ],
           [
-            "They stood still for a moment, then walked off together.",
-            "他们静静站了一会儿，然后一起走开了。"
+            "My aunt thanked him for finding the cause rather than blaming someone else.",
+            "姑姑感谢他查明了原因，而不是责怪别人。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-22",
-      "title": "The Pioneer's Tale",
-      "topic": "开拓者的传说",
-      "picture": "炉火照亮的房间里，祖父坐在孩子们中间讲述故事，窗外是夜里的小定居点。",
+      "title": "Rehearsal at the Pool",
+      "topic": "泳池里的演练",
+      "picture": "室内泳池旁，救生教练指导学生向水中假人抛绳，其他人站在安全线后。",
       "paragraphs": [
         [
           [
-            "Grandfather told a splendid tale about a pioneer.",
-            "祖父讲了一个关于开拓者的精彩故事。"
+            "Our swimming lesson began with a rescue exercise.",
+            "我们的游泳课以一次救援演练开始。"
           ],
           [
-            "In the tale, the pioneer came forth to warn the town.",
-            "在故事里，那个开拓者站出来，向镇子发出警告。"
+            "The captain of the local rescue team placed a training dummy in the water.",
+            "当地救援队的队长把一个训练假人放进水中。"
           ],
           [
-            "It was in the twentieth year of the little settlement.",
-            "那是这个小定居点的第二十年。"
+            "We watched it sink until only its bright head remained visible.",
+            "我们看着它下沉，直到只能看见颜色鲜亮的头部。"
           ]
         ],
         [
           [
-            "\"He came forth at sunrise,\" Grandfather said.",
-            "「他是在日出时站出来的。」祖父说。"
+            "Our first duty was to call for adult help.",
+            "我们的首要责任是呼叫成年人来帮忙。"
           ],
           [
-            "The tale was short, but the room felt wide.",
-            "故事不长，房间却显得开阔了。"
+            "A loud shout was useful, but jumping in could put two people in danger.",
+            "大声呼喊是有用的，但跳下水可能让两个人都陷入危险。"
           ],
           [
-            "A splendid fire burned in the stove.",
-            "炉子里燃着很旺的火。"
+            "Instead, we practised throwing a rope towards the victim from dry ground.",
+            "因此，我们练习从干燥的地面上向遇险者抛绳。"
           ]
         ],
         [
           [
-            "The children asked to hear it a second time.",
-            "孩子们要求再听一遍。"
+            "The coach explained how to escape someone's grip if they pulled us towards the edge.",
+            "教练解释了，如果有人把我们拉向池边，该如何挣脱对方的抓握。"
           ],
           [
-            "They sat close together until the story ended.",
-            "他们靠在一起坐着，直到故事讲完。"
+            "I learned that courage can mean stopping yourself from doing something unsafe.",
+            "我明白了，勇气也可以意味着克制自己，不做不安全的事。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-23",
-      "title": "The Astronaut",
-      "topic": "宇航员",
-      "picture": "夜里的窗边，一个女孩把打开的画册放在膝上，书页上是一名宇航员和发光的设备，窗外是深色的天空。",
+      "title": "A Button for Grandpa",
+      "topic": "给爷爷的大按钮",
+      "picture": "男孩坐在桌前测试大按钮，爷爷在旁微笑，桌上放着拆开的旧收音机。",
       "paragraphs": [
         [
           [
-            "Mei liked to imagine life as an astronaut.",
-            "梅喜欢想象自己成为一名宇航员的生活。"
+            "Grandpa could no longer see the tiny buttons on his radio.",
+            "爷爷已经看不清收音机上那些细小的按钮了。"
           ],
           [
-            "In her book, the astronaut checked every piece of equipment.",
-            "在她的书里，那名宇航员检查着每一件装备。"
+            "I wanted to invent a larger control that he could use by touch.",
+            "我想发明一个更大的控制装置，让他凭触摸就能使用。"
           ],
           [
-            "When a door failed to lock, he had to escape the broken room.",
-            "一扇门没能锁上时，他只得逃出那间坏掉的房间。"
+            "I could imagine its shape, but knew little about wires.",
+            "我能想象出它的形状，却不太懂电线。"
           ]
         ],
         [
           [
-            "She tried to imagine the Earth far below.",
-            "她试着想象远处下方的地球。"
+            "A repair shop lent me equipment and helped me build a safe model.",
+            "一家维修店借给我设备，帮我做出一个安全的模型。"
           ],
           [
-            "The equipment in the picture looked heavy and bright.",
-            "画里的装备看起来又沉又亮。"
+            "The owner had once repaired a camera for a visiting astronaut.",
+            "店主曾给一位到访的宇航员修过照相机。"
           ],
           [
-            "\"Could I escape danger so calmly?\" she wondered.",
-            "「我也能这么冷静地脱离危险吗？」她想。"
+            "He said my simple invention also solved a real problem.",
+            "他说，我这个简单的发明同样解决了一个实际问题。"
           ]
         ],
         [
           [
-            "She closed the book and looked at the sky.",
-            "她合上书，望向天空。"
+            "To prove its value, I asked Grandpa to try it without my help.",
+            "为了证明它的价值，我请爷爷不靠我帮忙试着使用它。"
           ],
           [
-            "For a moment, the night felt close and very large.",
-            "有那么一会儿，夜空显得又近又广阔。"
+            "When he found his favourite programme, I understood the potential of a small idea.",
+            "他找到最喜欢的节目时，我明白了一个小想法的潜力。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-24",
-      "title": "First Dip in the Pool",
-      "topic": "第一次试水",
-      "picture": "游泳馆浅水区旁，老师看着一个男孩把一只脚伸进水里，后面的围栏边有一架在风中轻晃的秋千。",
+      "title": "A Review Written Twice",
+      "topic": "写了两遍的评价",
+      "picture": "餐馆靠窗的桌边，一家人和服务员交谈，女孩把手机轻轻放下。",
       "paragraphs": [
         [
           [
-            "At the swimming club, the teacher told Ken to dip a foot in first.",
-            "在游泳俱乐部，老师叫肯先把一只脚伸进水里试试。"
+            "At a café, I waited a long time for my drink.",
+            "在一家咖啡馆里，我等了很久，饮料还没上来。"
           ],
           [
-            "A swing stood near the fence, moving a little in the wind.",
-            "围栏边立着一架秋千，在风里轻轻晃着。"
+            "I was certain that the waiter had forgotten us.",
+            "我确信服务员把我们忘了。"
           ],
           [
-            "After the lesson, a girl asked him a riddle.",
-            "课后，一个女孩给他出了一则谜语。"
+            "I began writing a rude review on my phone.",
+            "我开始在手机上写一条措辞无礼的评价。"
           ]
         ],
         [
           [
-            "Ken could not guess it, and she would not tell him yet.",
-            "肯猜不出来，而她暂时也不想告诉他。"
+            "Dad suggested that I complain in person before posting it.",
+            "爸爸建议我先当面提出不满，再发布评价。"
           ],
           [
-            "He asked her to shut the door of the changing room.",
-            "他请她把更衣室的门关上。"
+            "The waiter came to greet us and explained that a pipe had broken.",
+            "服务员过来招呼我们，解释说一根水管坏了。"
           ],
           [
-            "She did shut it, then gave him the answer to the riddle.",
-            "她确实关上了门，然后把谜底告诉了他。"
+            "His apology was so honest that I deleted my angry words.",
+            "他的道歉非常诚恳，于是我删掉了那些气话。"
           ]
         ],
         [
           [
-            "Ken laughed and sat down to take off his wet shoes.",
-            "肯笑了，坐下来脱湿鞋子。"
+            "We did not need a quarrel to get a polite explanation.",
+            "我们不需要吵一架，也能得到有礼貌的解释。"
           ],
           [
-            "The water on the floor still shone from his first dip.",
-            "地板上的水还在发亮，那是他第一次试水留下的。"
+            "I used to envy people who always won arguments, but now I was less sure.",
+            "我曾经羡慕那些争论总能获胜的人，但现在我不那么确定了。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-25",
-      "title": "In the Cab",
-      "topic": "在驾驶室里",
-      "picture": "雨天的卡车驾驶室里，司机握着方向盘等雨变小，玻璃上有一层薄雾，窗外不时有车辆驶过。",
+      "title": "The Cat at the Repair Café",
+      "topic": "修理角的猫",
+      "picture": "社区修理角里，妇女补着靠垫，一只猫趴在她膝上，孩子整理旧衣服。",
       "paragraphs": [
         [
           [
-            "The driver sat in the cab and waited for the rain to pass.",
-            "司机坐在驾驶室里，等雨过去。"
+            "At our community repair café, people bring things they want to save.",
+            "在我们社区的修理角，人们会带来想要修好的东西。"
           ],
           [
-            "The weather had been mild, but today was wet.",
-            "天气本来很温和，可今天却很湿。"
+            "A housewife named Mrs Chen teaches children simple sewing skills.",
+            "一位姓陈的家庭主妇教孩子们简单的缝纫技巧。"
           ],
           [
-            "\"Is anything the matter?\" a passenger asked.",
-            "「出什么事了吗？」一名乘客问。"
+            "People bring shirts they still want to wear, although the sleeves are torn.",
+            "人们带来袖子破了却仍想穿的衬衫。"
           ]
         ],
         [
           [
-            "\"No,\" he said. \"We can go whenever the road is clear.\"",
-            "「没有，」他说。「等路一清，我们随时可以走。」"
+            "Last Saturday, she was repairing a cushion when a cat climbed onto her lap.",
+            "上周六，她正在修补一个靠垫，一只猫爬上了她的膝头。"
           ],
           [
-            "The cab felt warm, and the window was a little foggy.",
-            "驾驶室里很暖和，车窗上有一点雾。"
+            "Nobody wanted to move it, so I helped with the sewing.",
+            "谁也不想挪开它，于是我帮忙缝补。"
           ],
           [
-            "Whenever a truck passed, water hit the glass.",
-            "每当有卡车经过，水就会打在玻璃上。"
+            "She told me to tuck the sharp needle into a small cloth case afterwards.",
+            "她告诉我，用完后要把尖针插进一个小布套里。"
           ]
         ],
         [
           [
-            "It did not matter if they left a few minutes late.",
-            "晚几分钟出发也不要紧。"
+            "Meanwhile, my brother made a pile of fabric bags to keep the table tidy.",
+            "与此同时，弟弟把布袋叠成一摞，让桌面保持整洁。"
           ],
           [
-            "When the rain grew mild again, he started the engine.",
-            "雨又变得温和之后，他发动了引擎。"
+            "Someone even repaired a broken vase, although it could hold only dried flowers now.",
+            "还有人修好了一只破花瓶，虽然它现在只能插干花了。"
           ]
         ]
       ]
     },
     {
       "id": "review-2026-11-24-26",
-      "title": "A Quiet Spot",
-      "topic": "一处安静的地点",
-      "picture": "公园老树下，一个女孩在安静的角落挖开一小块土，准备把一只小盒子埋进去，远处教堂的钟楼正亮着暖光。",
+      "title": "Reading the News Slowly",
+      "topic": "慢一点读新闻",
+      "picture": "课堂上，学生把报纸和地图铺在桌上，老师带着大家核对报道。",
       "paragraphs": [
         [
           [
-            "She found a quiet spot under the old trees.",
-            "她在老树下找到一处安静的地点。"
+            "On the twentieth of March, our class began a news project.",
+            "三月二十日，我们班开始了一个新闻项目。"
           ],
           [
-            "She wanted to bury a small box of family letters there.",
-            "她想把一盒家里的信埋在那里。"
+            "The first report concerned a court in a distant state.",
+            "第一篇报道涉及一个遥远州里的一家法院。"
           ],
           [
-            "The church clock began to strike four.",
-            "教堂的钟开始敲四点。"
+            "Several students thought the story was about our own town.",
+            "几个学生以为那篇报道说的是我们镇。"
           ]
         ],
         [
           [
-            "After the first strike, the park felt even quieter.",
-            "敲过第一下后，公园显得更安静了。"
+            "Our teacher asked everyone present to find the place on a map.",
+            "老师请所有在场的人在地图上找到那个地方。"
           ],
           [
-            "She dug a little hole and set the box in the spot.",
-            "她挖了一个小坑，把盒子放进那个地点。"
+            "Then we held a debate about how quickly false ideas spread.",
+            "接着，我们就错误观念的传播速度展开了辩论。"
           ],
           [
-            "Then she covered the box with soft earth.",
-            "接着，她用松软的土把盒子盖好。"
+            "A local reporter agreed to attend our next lesson.",
+            "一位当地记者答应来参加我们的下一堂课。"
           ]
         ],
         [
           [
-            "A neighbour had once said she always came here with her grandmother.",
-            "一位邻居曾经说过，她以前总是和外祖母一起来这里。"
+            "She said that reports about politics need especially careful reading.",
+            "她说，有关政治的报道尤其需要仔细阅读。"
           ],
           [
-            "She stood up when the clock finished and walked home.",
-            "钟声结束后，她站起身，走回了家。"
+            "We decided to check dates and places before sharing any surprising news.",
+            "我们决定，在转发任何惊人的消息前，先核对日期和地点。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-27",
+      "title": "The Time Box",
+      "topic": "埋给未来的盒子",
+      "picture": "校园大树下，学生把密封铁盒放进浅坑，旁边立着一双沾泥雨靴。",
+      "paragraphs": [
+        [
+          [
+            "Our class chose a spot near the oldest tree for a time box.",
+            "我们班在最老的树旁选了一个地方，准备埋下时光盒。"
+          ],
+          [
+            "We planned to bury letters there until we finished school.",
+            "我们打算把信埋在那里，直到毕业再取出来。"
+          ],
+          [
+            "The hole was below the roots, so we moved it further away.",
+            "挖的坑在树根下方，于是我们把位置移得更远了些。"
+          ]
+        ],
+        [
+          [
+            "I pressed the loose earth down with the heel of my boot.",
+            "我用靴子的后跟把松土压实。"
+          ],
+          [
+            "A younger child watched us from a swing beside the fence.",
+            "一个年纪小些的孩子在围栏旁的秋千上看着我们。"
+          ],
+          [
+            "A sudden noise made him shake with fear.",
+            "一声突如其来的响声吓得他直发抖。"
+          ]
+        ],
+        [
+          [
+            "It was only a stone that had happened to strike our empty tin.",
+            "那不过是一块石头碰巧打中了我们的空铁罐。"
+          ],
+          [
+            "We showed him inside the box so that our secret would not frighten him.",
+            "我们让他看了看盒子里面，免得这个秘密吓着他。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-28",
+      "title": "The Photograph Nobody Wanted",
+      "topic": "没人想要的照片",
+      "picture": "摄影展的走廊里，一名少年和老人停在一张旧街景照片前。",
+      "paragraphs": [
+        [
+          [
+            "I entered a school photography show with a shot of a ruined building.",
+            "我用一张废弃建筑的照片参加了学校摄影展。"
+          ],
+          [
+            "It had once been a church, but only one wall remained.",
+            "那里曾是一座教堂，但只剩下一面墙。"
+          ],
+          [
+            "I thought the empty doorway made it look mysterious.",
+            "我觉得空空的门洞让它显得很神秘。"
+          ]
+        ],
+        [
+          [
+            "Before the exhibition shut, an old man stopped me in the corridor.",
+            "展览关闭前，一位老人在走廊里叫住了我。"
+          ],
+          [
+            "He recognised a necktie hanging from a nail inside the doorway.",
+            "他认出了门洞里面钉子上挂着的一条领带。"
+          ],
+          [
+            "It used to belong to his father, who had worked next door.",
+            "它以前属于他的父亲，他父亲曾在隔壁工作。"
+          ]
+        ],
+        [
+          [
+            "The building was not empty to him; it was full of memories.",
+            "对他来说，那栋建筑并不空，那里满是回忆。"
+          ],
+          [
+            "I gave him a copy and changed the words beneath my picture.",
+            "我给了他一张照片，并改写了照片下方的说明。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-29",
+      "title": "The Price of Cheap Cloth",
+      "topic": "廉价布料的代价",
+      "picture": "博物馆里，学生看着旧织机和工人的照片，讲解员手里拿着一块粗布。",
+      "paragraphs": [
+        [
+          [
+            "A museum display celebrated a pioneer who had built the first local cloth factory.",
+            "博物馆的一个展览纪念了一位建造本地首家布厂的开拓者。"
+          ],
+          [
+            "It showed how the cloth trade had brought money to the area.",
+            "展览展示了布匹贸易如何为当地带来收入。"
+          ],
+          [
+            "A painting presented a splendid dinner in the owner's large house.",
+            "一幅画描绘了厂主大宅里的一场丰盛晚宴。"
+          ]
+        ],
+        [
+          [
+            "In one corner, a young servant waited beside the door.",
+            "画面一角，一个年轻仆人在门边等候。"
+          ],
+          [
+            "I wondered what she would have said about that evening.",
+            "我想知道，她会如何讲述那个夜晚。"
+          ],
+          [
+            "Another display described the tough conditions inside the factory.",
+            "另一个展区描述了工厂内艰苦的环境。"
+          ]
+        ],
+        [
+          [
+            "The guide said that every tale of progress has more than one side.",
+            "讲解员说，每一个关于进步的故事都有不止一个侧面。"
+          ],
+          [
+            "I left wanting to learn about the workers as well as their employer.",
+            "离开时，我既想了解厂主，也想了解工人。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-30",
+      "title": "Learning to Cycle Again",
+      "topic": "重新学骑车",
+      "picture": "公园空旷小路上，男孩扶着自行车，姐姐在前面回头鼓励他。",
+      "paragraphs": [
+        [
+          [
+            "After a fall, my brother would not dare ride his bicycle.",
+            "摔倒以后，弟弟不敢再骑自行车了。"
+          ],
+          [
+            "Lately, he had even stopped coming to the park.",
+            "最近，他甚至不再去公园了。"
+          ],
+          [
+            "I found a flat path where traffic would not matter.",
+            "我找到了一条平坦的小路，在那里不必考虑车流。"
+          ]
+        ],
+        [
+          [
+            "My first instruction was simply to walk beside the bike.",
+            "我的第一条指示，只是让他推着车走。"
+          ],
+          [
+            "He went back and forth until his shoulders relaxed.",
+            "他来回走着，直到肩膀放松下来。"
+          ],
+          [
+            "Whenever he felt ready, he could put one foot on a pedal.",
+            "每当他感觉准备好了，就可以把一只脚放上踏板。"
+          ]
+        ],
+        [
+          [
+            "Eventually, both wheels rolled forward without my hand on the seat.",
+            "终于，在我没有扶着座椅的情况下，两个轮子向前滚动起来。"
+          ],
+          [
+            "He travelled only a few metres, but they were his own.",
+            "他只骑了几米，但那是他自己骑出的几米。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-31",
+      "title": "When Food Loses Its Smell",
+      "topic": "闻不到时的味道",
+      "picture": "科学活动室里，一个蒙眼的学生试吃小块食物，同学拿着记录表站在旁边。",
+      "paragraphs": [
+        [
+          [
+            "In science club, we tested how smell changes the taste of food.",
+            "在科学社团里，我们测试了气味怎样改变食物的味道。"
+          ],
+          [
+            "Our teacher placed cooked turkey and pieces of apple on a tray.",
+            "老师把熟火鸡肉和苹果块放在一个托盘上。"
+          ],
+          [
+            "With my eyes covered and my nose held, I could feel food on my tongue.",
+            "蒙住眼睛、捏住鼻子后，我能感觉到舌头上的食物。"
+          ]
+        ],
+        [
+          [
+            "Yet it was surprisingly difficult to name a mild flavour.",
+            "然而，要辨认一种清淡的味道，竟然很难。"
+          ],
+          [
+            "Next, I had to dip a fresh spoon into some strawberry jam.",
+            "接下来，我要用一把干净的勺子蘸一些草莓酱。"
+          ],
+          [
+            "I recognised sweetness, but could not name the fruit until I released my nose.",
+            "我尝出了甜味，却直到松开鼻子才辨认出水果种类。"
+          ]
+        ],
+        [
+          [
+            "A grower at a nearby farm stall later let us compare different apples.",
+            "后来，附近一个农场摊位的种植者让我们比较了不同的苹果。"
+          ],
+          [
+            "Fresh produce gave us far more to notice than colour alone.",
+            "新鲜农产品带给我们的感受，远不止颜色而已。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-32",
+      "title": "A Bottle's Long Journey",
+      "topic": "漂流瓶的旅程",
+      "picture": "海滩清理活动中，两个孩子打开旧瓶子里的纸条，身后是蓝色海面。",
+      "paragraphs": [
+        [
+          [
+            "While cleaning a beach, we found a sealed bottle from abroad.",
+            "清理海滩时，我们发现了一个来自国外的密封瓶子。"
+          ],
+          [
+            "Inside was a message from a European family travelling by ship.",
+            "里面是一家欧洲人乘船旅行时留下的纸条。"
+          ],
+          [
+            "They had thrown it into the Pacific twelve years earlier.",
+            "十二年前，他们把瓶子扔进了太平洋。"
+          ]
+        ],
+        [
+          [
+            "An ocean expert helped us guess its possible route.",
+            "一位海洋专家帮我们推测了它可能的漂流路线。"
+          ],
+          [
+            "It might have passed the coast of our province several times.",
+            "它可能已经好几次经过了我们省的海岸。"
+          ],
+          [
+            "A child asked whether it would be quicker to fly to the family.",
+            "一个孩子问，乘飞机去那一家人那里会不会更快。"
+          ]
+        ],
+        [
+          [
+            "The expert laughed, then showed us how rubbish reaches both islands and the mainland.",
+            "专家笑了，接着向我们展示垃圾怎样到达岛屿和大陆。"
+          ],
+          [
+            "We sent our findings to an exhibition in the capital, along with a request for cleaner seas.",
+            "我们把发现连同保护海洋清洁的呼吁，一起送到了首都的一个展览上。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-33",
+      "title": "The Veteran's Visitor",
+      "topic": "老兵的访客",
+      "picture": "明亮病房里，两位白发老人握手，床头摆着年轻时的黑白合照。",
+      "paragraphs": [
+        [
+          [
+            "When my grandfather was in hospital, an unexpected visitor came to see him.",
+            "爷爷住院时，一位意想不到的访客来看他。"
+          ],
+          [
+            "He was the son of a wounded soldier whom Grandfather had helped during a war.",
+            "他是一名士兵的儿子，爷爷曾在战争中救助过那位受伤的士兵。"
+          ],
+          [
+            "The two older men had served on opposite sides, each calling the other an enemy.",
+            "那两位老人当年分属敌对阵营，都把对方称作敌人。"
+          ]
+        ],
+        [
+          [
+            "After the fighting, the men joined a rescue unit, and Grandfather began calling him a comrade.",
+            "战争结束后，两人加入了一支救援队，爷爷开始称他为战友。"
+          ],
+          [
+            "They wrote letters for years, building a quiet brotherhood.",
+            "他们多年通信，建立起一份平静的兄弟情谊。"
+          ],
+          [
+            "The visitor brought a photograph of his father's tomb and a small stone from home.",
+            "来客带来了一张父亲坟墓的照片和一块家乡的小石头。"
+          ]
+        ],
+        [
+          [
+            "He also brought a sketch of a cannon that both men remembered.",
+            "他还带来了一幅素描，画着两位老人都记得的一门大炮。"
+          ],
+          [
+            "Grandfather said their letters were a better memorial than any weapon could be.",
+            "爷爷说，比起任何武器，他们的通信都更能纪念那段往事。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-34",
+      "title": "Music You Can Feel",
+      "topic": "可以触摸的音乐",
+      "picture": "无障碍音乐工作坊里，孩子把手放在共鸣木箱上，演员用手势示意开场。",
+      "paragraphs": [
+        [
+          [
+            "A local singer offered a workshop for children who could not hear well.",
+            "一位本地歌手为听力不佳的孩子开办了一个工作坊。"
+          ],
+          [
+            "He usually performed at a night-club, but today he wanted a quieter room.",
+            "他通常在一家夜总会演出，但这一天他想要一个更安静的房间。"
+          ],
+          [
+            "He played a slow tune while we touched a wooden box beside the speaker.",
+            "他弹奏一支缓慢的曲子时，我们触摸着扬声器旁的一个木箱。"
+          ]
+        ],
+        [
+          [
+            "We could feel the low notes through our fingers.",
+            "我们能通过手指感受到低音。"
+          ],
+          [
+            "A flash of light was our cue to begin a simple dance.",
+            "一道闪光就是我们开始跳简单舞步的提示。"
+          ],
+          [
+            "An actor in a bright costume acted out a scene from an opera.",
+            "一名穿着鲜艳戏服的演员表演了歌剧中的一个场景。"
+          ]
+        ],
+        [
+          [
+            "The dialogue appeared on a screen, so everyone could follow the story.",
+            "对白显示在屏幕上，让每个人都能跟上故事。"
+          ],
+          [
+            "The singer said that reaching new listeners mattered more to him than fame.",
+            "那位歌手说，对他而言，接触到新的听众比名气更重要。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-35",
+      "title": "A Book in Two Voices",
+      "topic": "两代人合写的书",
+      "picture": "祖孙坐在窗边，小女孩在纸上记下老人讲的故事，桌上放着装订小册子。",
+      "paragraphs": [
+        [
+          [
+            "My grandfather wanted to write about his childhood, but his hands hurt.",
+            "爷爷想写写自己的童年，但他的手疼。"
+          ],
+          [
+            "We chose a different approach: he talked while I wrote.",
+            "我们选了另一种方法：他讲，我写。"
+          ],
+          [
+            "It felt like dictation, except that I could stop him with questions.",
+            "这感觉像听写，只不过我可以打断他提问。"
+          ]
+        ],
+        [
+          [
+            "Every sheet filled up with games, meals and names of old friends.",
+            "每张纸都写满了游戏、饭菜和老朋友的名字。"
+          ],
+          [
+            "He explained an idiom that his mother had often used.",
+            "他解释了一个他母亲常用的习语。"
+          ],
+          [
+            "He also taught me a riddle that became a quiz for our whole family.",
+            "他还教给我一个谜语，后来成了我们全家的小测验题。"
+          ]
+        ],
+        [
+          [
+            "I added a short composition describing our afternoons together.",
+            "我添了一篇短作文，描述我们一起度过的那些下午。"
+          ],
+          [
+            "Our little book ended with his essay about why ordinary memories are worth keeping.",
+            "我们的小书以他的一篇文章收尾，主题是平凡的记忆为何值得保存。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-36",
+      "title": "The Model Crossing",
+      "topic": "模型里的路口",
+      "picture": "科技教室里，学生围着铁路道口模型测试灯光，纸板卡车停在轨道前。",
+      "paragraphs": [
+        [
+          [
+            "Our class built a model railway station for a safety exhibition.",
+            "我们班为安全展制作了一个火车站模型。"
+          ],
+          [
+            "A toy truck carried a load of wooden blocks towards the tracks.",
+            "一辆玩具卡车载着木块驶向铁轨。"
+          ],
+          [
+            "The driver in its tiny cab could not see a train around the bend.",
+            "小小驾驶室里的司机，看不到弯道另一边的火车。"
+          ]
+        ],
+        [
+          [
+            "We first placed a warning light too far down the lane.",
+            "起初，我们把警示灯放在小路上太靠前的位置。"
+          ],
+          [
+            "By the time it flashed, the truck had already reached the crossing.",
+            "灯闪起来时，卡车已经到了道口。"
+          ],
+          [
+            "There was a crash, and the blocks scattered across our table.",
+            "一声碰撞后，木块散落在我们的桌面上。"
+          ]
+        ],
+        [
+          [
+            "A real crossing guard helped us move the light to a safer position.",
+            "一位真正的道口看守员帮我们把灯移到了更安全的位置。"
+          ],
+          [
+            "The next test showed why warning signs must give people time to act.",
+            "下一次测试表明了，警示标志为什么必须给人留下行动的时间。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-37",
+      "title": "The Voice in the Dark",
+      "topic": "黑暗里的声音",
+      "picture": "录音室里，孩子对着麦克风演广播剧，另一人在水盆旁制造海浪声。",
+      "paragraphs": [
+        [
+          [
+            "Our drama club made a radio play about a ship in trouble.",
+            "我们戏剧社制作了一部讲述船只遇险的广播剧。"
+          ],
+          [
+            "I played the captain, whose duty was to get everyone safely ashore.",
+            "我扮演船长，他的职责是把所有人安全送上岸。"
+          ],
+          [
+            "Because listeners could see nothing, every sound had to tell part of the story.",
+            "因为听众什么也看不到，每种声音都必须传达一部分情节。"
+          ]
+        ],
+        [
+          [
+            "My friend pulled a rope across wood to make the boat sound old.",
+            "朋友在木头上拉动绳子，让船听起来很破旧。"
+          ],
+          [
+            "Another actor played a victim trapped in a room below the deck.",
+            "另一位演员扮演被困在甲板下房间里的遇险者。"
+          ],
+          [
+            "As the ship began to sink, we heard his desperate shout.",
+            "船开始下沉时，我们听到了他绝望的喊声。"
+          ]
+        ],
+        [
+          [
+            "My character needed the courage to return for him instead of leaving alone.",
+            "我扮演的角色需要鼓起勇气回去救他，而不是独自离开。"
+          ],
+          [
+            "When they finally made their escape, even our teacher let out a breath.",
+            "他们最终成功逃生时，连老师也松了一口气。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-38",
+      "title": "A Picture Too Good to Be True",
+      "topic": "好得令人怀疑的照片",
+      "picture": "电脑前，两名学生放大一张太空照片，旁边摆着相机和新闻核查笔记。",
+      "paragraphs": [
+        [
+          [
+            "A picture online showed an astronaut holding a flower on the Moon.",
+            "网上的一张图片显示，一位宇航员正在月球上拿着一朵花。"
+          ],
+          [
+            "The writer claimed that a new invention could grow flowers without water.",
+            "配文者声称，一项新发明能让花不需要水就生长。"
+          ],
+          [
+            "I wanted to believe it and began to imagine colourful gardens in space.",
+            "我很想相信，还开始想象太空中五彩缤纷的花园。"
+          ]
+        ],
+        [
+          [
+            "My sister asked what evidence could prove the claim.",
+            "姐姐问，有什么证据能证明这个说法。"
+          ],
+          [
+            "We found the original image on a camera maker's website.",
+            "我们在一家相机制造商的网站上找到了原图。"
+          ],
+          [
+            "The flower had been added, and the equipment was actually being tested indoors.",
+            "花是后来加上的，而那些设备其实正在室内接受测试。"
+          ]
+        ],
+        [
+          [
+            "It is easy to invent an exciting story around a changed photograph.",
+            "围绕一张改过的照片编造一个精彩故事，并不难。"
+          ],
+          [
+            "The potential harm is real when readers share it without checking.",
+            "读者不经核实就转发时，潜在的危害是真实存在的。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-39",
+      "title": "The Tall Sunflowers",
+      "topic": "向日葵的影子",
+      "picture": "两户人家的花园交界处，老人和女孩查看落在菜地上的向日葵影子。",
+      "paragraphs": [
+        [
+          [
+            "Our neighbour grew sunflowers taller than our fence.",
+            "邻居种的向日葵长得比围栏还高。"
+          ],
+          [
+            "Mum began to complain that their shadow covered her vegetables.",
+            "妈妈开始抱怨，花的影子遮住了她的蔬菜。"
+          ],
+          [
+            "I expected a quarrel when she knocked on the neighbour's door.",
+            "她敲邻居家门时，我以为要吵架了。"
+          ]
+        ],
+        [
+          [
+            "Instead, she began with a polite question about his garden.",
+            "然而，她先有礼貌地问起了他的花园。"
+          ],
+          [
+            "He came outside to greet us and looked at the dark patch himself.",
+            "他走出来招呼我们，亲自查看了那片阴影。"
+          ],
+          [
+            "He offered an apology and promised to move some pots.",
+            "他道了歉，并答应挪动几个花盆。"
+          ]
+        ],
+        [
+          [
+            "I had thought him rude, but was no longer certain I had been fair.",
+            "我曾认为他无礼，现在却不确定自己的判断是否公正。"
+          ],
+          [
+            "Now I envy Mum's ability to solve a problem without making an enemy.",
+            "现在，我羡慕妈妈不树敌也能解决问题的本领。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-40",
+      "title": "A Day That Looked Like Rest",
+      "topic": "看似休息的一天",
+      "picture": "餐桌边，女孩写采访记录，妈妈整理孩子的衣服，窗台上摆着花瓶。",
+      "paragraphs": [
+        [
+          [
+            "For a school interview, I followed my mother through an ordinary day.",
+            "为了完成一次学校采访，我跟着妈妈度过了平常的一天。"
+          ],
+          [
+            "She is a housewife, and I had thought that meant plenty of free time.",
+            "她是家庭主妇，我原以为那意味着很多空闲时间。"
+          ],
+          [
+            "Before breakfast, she found clean clothes for my little brother to wear.",
+            "早餐前，她为弟弟找出了干净衣服来穿。"
+          ]
+        ],
+        [
+          [
+            "Then she washed a pile of dishes and tried to tidy the living room.",
+            "接着，她洗了一堆碗碟，又试着收拾客厅。"
+          ],
+          [
+            "My brother knocked over a vase, so she had to clear the broken pieces.",
+            "弟弟撞倒了一个花瓶，她只好清理碎片。"
+          ],
+          [
+            "Later, he fell asleep on her lap while she sat against a cushion.",
+            "后来，她靠着一个靠垫坐下，弟弟在她膝上睡着了。"
+          ]
+        ],
+        [
+          [
+            "I watched her tuck a blanket around him without waking him.",
+            "我看着她给他掖好毯子，没有吵醒他。"
+          ],
+          [
+            "In my report, I called that quiet hour work, not rest.",
+            "在报告里，我把那安静的一小时称作工作，而不是休息。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-41",
+      "title": "The Guest Chair",
+      "topic": "留给听众的椅子",
+      "picture": "模拟法庭上，学生坐成半圆，一位记者坐在留出的椅子上认真记录。",
+      "paragraphs": [
+        [
+          [
+            "For our school's twentieth birthday, we held a mock trial.",
+            "为了庆祝学校二十岁生日，我们举行了一次模拟审判。"
+          ],
+          [
+            "The case concerned a fictional town that wanted to cut down its oldest tree.",
+            "案件涉及一个虚构的小镇，那里打算砍掉最老的一棵树。"
+          ],
+          [
+            "We arranged our classroom like a court, with seats for the public.",
+            "我们把教室布置成法庭的样子，留出了公众席位。"
+          ]
+        ],
+        [
+          [
+            "A reporter asked if she could attend as an observer.",
+            "一位记者问，她能否作为旁听者参加。"
+          ],
+          [
+            "Everyone present had to listen without interrupting the speakers.",
+            "所有在场的人都必须认真听，不打断发言者。"
+          ],
+          [
+            "At first, our debate sounded like an argument between friends.",
+            "起初，我们的辩论听起来像朋友间的争执。"
+          ]
+        ],
+        [
+          [
+            "Then the teacher reminded us to state our reasons and offer evidence.",
+            "接着，老师提醒我们要陈述理由并提供证据。"
+          ],
+          [
+            "I realised that learning about politics could begin with learning how to listen.",
+            "我意识到，了解政治可以从学会倾听开始。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-42",
+      "title": "After the Storm",
+      "topic": "暴风雨过后",
+      "picture": "公园里，一名工作人员检查被树枝砸坏的秋千，孩子站在警示带外。",
+      "paragraphs": [
+        [
+          [
+            "After the storm, I went to the park to look for my missing boot.",
+            "暴风雨过后，我到公园去找丢失的靴子。"
+          ],
+          [
+            "Strong water had carried it away from our back step.",
+            "急流把它从我家后门台阶冲走了。"
+          ],
+          [
+            "I found it below a broken branch near the playground.",
+            "我在游乐场附近的一根断枝下方找到了它。"
+          ]
+        ],
+        [
+          [
+            "The branch had fallen to strike a swing and crack its seat.",
+            "那根树枝掉下来砸中了秋千，砸裂了座板。"
+          ],
+          [
+            "A worker asked us not to shake the damaged frame.",
+            "一名工作人员让我们不要摇晃损坏的支架。"
+          ],
+          [
+            "He marked the spot so that nobody would try to play there.",
+            "他标出了那个地方，以免有人想在那里玩耍。"
+          ]
+        ],
+        [
+          [
+            "Then he noticed ants trying to bury their eggs in higher ground.",
+            "接着，他注意到蚂蚁正试着把卵埋进更高处的土里。"
+          ],
+          [
+            "We stepped carefully around them, not wishing to frighten any more storm survivors.",
+            "我们小心地绕过它们，不想再惊吓这些从暴风雨中活下来的小生命。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-43",
+      "title": "The Borrowed Building",
+      "topic": "借来的屋子",
+      "picture": "改建后的旧教堂里，学生拍摄短片，门外走廊贴着临时安静标识。",
+      "paragraphs": [
+        [
+          [
+            "Our film club was allowed to use an old church for one afternoon.",
+            "我们电影社获准使用一座旧教堂一个下午。"
+          ],
+          [
+            "It was now a community hall rather than a place of worship.",
+            "那里如今是社区活动厅，不再是礼拜场所。"
+          ],
+          [
+            "The costumes did not belong to us, so we handled them carefully.",
+            "那些服装不属于我们，所以我们小心地使用。"
+          ]
+        ],
+        [
+          [
+            "My character was a shy clerk with an enormous necktie.",
+            "我扮演一名害羞的办事员，戴着一条特别大的领带。"
+          ],
+          [
+            "For the final shot, I had to run along the corridor and knock on a door.",
+            "拍摄最后一个镜头时，我得沿着走廊跑过去敲门。"
+          ],
+          [
+            "I pushed too hard, and the door swung shut behind me.",
+            "我推得太用力，门在我身后关上了。"
+          ]
+        ],
+        [
+          [
+            "My friends thought I was acting when I asked them to let me out.",
+            "我叫朋友们放我出去时，他们以为我在演戏。"
+          ],
+          [
+            "We kept the mistake in the film because it made everyone laugh.",
+            "我们把这个失误保留在影片里，因为它让所有人都笑了。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-44",
+      "title": "The Game Nobody Bought",
+      "topic": "无人问津的游戏",
+      "picture": "校园义卖桌前，两个学生把复杂棋盘收起，改用几张简单卡片邀请同学试玩。",
+      "paragraphs": [
+        [
+          [
+            "For charity week, our group made a board game about the silk trade.",
+            "慈善周时，我们组制作了一款关于丝绸贸易的棋盘游戏。"
+          ],
+          [
+            "Each player followed a young servant carrying messages between distant markets.",
+            "每位玩家都跟随一个年轻仆人，在相隔遥远的市场之间传递消息。"
+          ],
+          [
+            "We wrote a long tale for every stop on the journey.",
+            "我们为旅程中的每一站都写了一个长故事。"
+          ]
+        ],
+        [
+          [
+            "The finished board looked splendid, but the rules were too tough for young children.",
+            "完成的棋盘看起来很漂亮，但规则对小孩子来说太难了。"
+          ],
+          [
+            "Nobody wanted to buy it at our school sale.",
+            "学校义卖上，没有人想买它。"
+          ],
+          [
+            "One teammate called herself a pioneer of simpler games and removed half the cards.",
+            "一位队友自称简单游戏的开拓者，拿掉了一半卡片。"
+          ]
+        ],
+        [
+          [
+            "Soon children were laughing as they raced to deliver their messages.",
+            "很快，孩子们一边争着送达消息，一边笑了起来。"
+          ],
+          [
+            "We learned that a good idea must work for the people who use it.",
+            "我们明白了，好点子必须适合实际使用它的人。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-24-45",
+      "title": "A Door That Opened Slowly",
+      "topic": "慢慢打开的门",
+      "picture": "动物救助站里，女孩静静坐在笼边，一只小狗从打开的门里探出头来。",
+      "paragraphs": [
+        [
+          [
+            "Lately, I had been helping at an animal shelter after school.",
+            "最近，我放学后一直在一家动物救助站帮忙。"
+          ],
+          [
+            "One small dog would not dare come near anyone.",
+            "有一只小狗不敢靠近任何人。"
+          ],
+          [
+            "It paced back and forth at the far end of its pen.",
+            "它在围栏另一端来回踱步。"
+          ]
+        ],
+        [
+          [
+            "The keeper gave me one clear instruction: let the animal choose the distance.",
+            "饲养员给了我一条明确的指示：让动物自己决定保持多远的距离。"
+          ],
+          [
+            "Whenever I sat nearby, I put down a little food and looked away.",
+            "每当我坐到附近，我都会放下一点食物，再把目光移开。"
+          ],
+          [
+            "It did not matter if nothing happened that day.",
+            "即使那天毫无进展，也没有关系。"
+          ]
+        ],
+        [
+          [
+            "Eventually, I felt a wet nose touch the back of my hand.",
+            "终于，我感到一个湿湿的鼻子碰了碰我的手背。"
+          ],
+          [
+            "I stayed still, knowing that trust grows better when nobody forces it.",
+            "我一动不动，因为我知道，没有强迫，信任才更容易生长。"
           ]
         ]
       ]
