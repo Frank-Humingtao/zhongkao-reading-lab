@@ -146,39 +146,14 @@ function attach(win, page) {
   }
 
   const englishSentences = () => [...page.passage.querySelectorAll('p[lang="en"] > .aligned-sentence')];
-  const chineseSentences = () => [...page.passage.querySelectorAll("p.translation > .aligned-sentence")];
-  const underSentences = () => [...page.passage.querySelectorAll(".listening-zh")];
-
-  // Each sentence's Chinese goes right under it while listening (the
-  // paragraph-wide translations are hidden), and is taken away again on stop.
-  function addChineseUnderSentences() {
-    if (page.passage.querySelector(".listening-zh")) return;
-    const chinese = chineseSentences();
-    englishSentences().forEach((english, index) => {
-      const under = doc.createElement("span");
-      under.className = "listening-zh";
-      under.lang = "zh-CN";
-      under.textContent = chinese[index]?.textContent ?? "";
-      english.after(under);
-    });
-  }
-
-  function removeChineseUnderSentences() {
-    underSentences().forEach(element => {
-      // WebKit keeps the space after a removed block collapsed ("spacecraft.Our"),
-      // so the space is put back as a fresh text node.
-      const space = element.nextSibling;
-      element.remove();
-      if (space?.nodeType === 3) space.replaceWith(doc.createTextNode(space.data));
-    });
-  }
+  // The page already puts each sentence's Chinese right under it in 中英对照.
+  const chineseSentences = () => [...page.passage.querySelectorAll('p[lang="en"] > .translation')];
 
   function enter() {
     if (listening) return;
     listening = true;
     bilingualBefore = page.bilingual();
     page.setBilingual(true);
-    addChineseUnderSentences();
     doc.body.classList.add("listening");
     page.passage.classList.add("listening");
     pill.setAttribute("aria-pressed", "true");
@@ -190,7 +165,6 @@ function attach(win, page) {
     listening = false;
     heardStory = null;
     highlight(null);
-    removeChineseUnderSentences();
     doc.body.classList.remove("listening");
     page.passage.classList.remove("listening");
     pill.setAttribute("aria-pressed", "false");
@@ -203,7 +177,7 @@ function attach(win, page) {
     spoken = [];
     if (index === null) return;
     const english = englishSentences()[index];
-    const under = underSentences()[index];
+    const under = chineseSentences()[index];
     spoken = [english, under].filter(Boolean);
     spoken.forEach(element => element.classList.add("spoken"));
     if (english && page.inReader()) keepInView(under ?? english, english);
@@ -297,10 +271,9 @@ function attach(win, page) {
   // The tap does not reach the words inside, so listening never marks words.
   page.passage.addEventListener("click", event => {
     if (!listening) return;
-    const target = event.target.closest?.(".aligned-sentence, .listening-zh");
+    const target = event.target.closest?.(".aligned-sentence, .translation");
     if (!target) return;
-    const index = Math.max(englishSentences().indexOf(target), underSentences().indexOf(target),
-      chineseSentences().indexOf(target));
+    const index = Math.max(englishSentences().indexOf(target), chineseSentences().indexOf(target));
     const tap = tapOnSentence(view, index, waitingForApp);
     if (!tap) return;
     event.preventDefault();
@@ -314,7 +287,6 @@ function attach(win, page) {
     refreshPill();
     if (!listening) return;
     page.setBilingual(true);
-    addChineseUnderSentences();
     spoken = [];
     view = { ...view, sentence: null };
     waitingForApp = true;

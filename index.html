@@ -114,9 +114,10 @@
     .passage { font: 1.22rem/1.85 var(--english); color: var(--ink); }
     .passage-block + .passage-block { margin-top: 1em; }
     .passage.bilingual .passage-block + .passage-block { margin-top: 1.5em; }
-    .translation { display: none; margin-top: .5em; color: var(--ink-2); font: .86em/1.8 var(--chinese); }
+    .translation { display: none; margin: 2px 0 12px; color: var(--ink-2); font: .8em/1.7 var(--chinese); }
     .passage.bilingual .translation { display: block; }
-    .passage.bilingual .aligned-sentence.matched { background: var(--fill); border-radius: 4px; }
+    .passage.bilingual .translation:last-child { margin-bottom: 0; }
+    .passage.bilingual :is(.aligned-sentence, .translation).matched { background: var(--fill); border-radius: 4px; }
     .word {
       display: inline; border-radius: 4px; font: inherit; letter-spacing: inherit; line-height: inherit;
       text-align: inherit; -webkit-tap-highlight-color: transparent;
@@ -225,14 +226,9 @@
       transition: background-color .25s;
     }
     .passage.listening p[lang="en"] > .aligned-sentence.spoken { background: var(--accent-soft); color: var(--ink); }
-    .passage.listening .aligned-sentence.matched { background: none; }
-    /* Each sentence's Chinese right under it, instead of the paragraph's translation. */
-    .passage.listening .translation { display: none; }
-    .listening-zh {
-      display: block; margin: 2px 0 10px; color: var(--muted); font: .8em/1.7 var(--chinese);
-      transition: color .25s;
-    }
-    .listening-zh.spoken { color: var(--ink-2); }
+    .passage.listening :is(.aligned-sentence, .translation).matched { background: none; }
+    .passage.listening .translation { color: var(--muted); transition: color .25s; }
+    .passage.listening .translation.spoken { color: var(--ink-2); }
     body.listening .shell { padding-bottom: calc(132px + env(safe-area-inset-bottom)); }
     .player-bar {
       position: fixed; z-index: 6; left: 0; right: 0; bottom: 0;

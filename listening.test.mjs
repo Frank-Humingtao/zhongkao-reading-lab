@@ -150,11 +150,10 @@ test("the page follows a run onto the next story, but leaves a story the reader 
   assert.equal(storyToFollow({ listening: false, storyId: null }, "memory-01-film", "memory-01-film"), null);
 });
 
-test("while listening the Chinese sits under each sentence, and the bar has every control", () => {
+test("the Chinese sits under each sentence, and the bar has every control", () => {
   const bar = html.slice(html.indexOf('<div class="player-bar"'), html.indexOf("</div>", html.indexOf('<div class="player-bar"')));
   const order = ["player-toggle", "player-narration", "player-speed", "player-double", "player-timer"].map(id => bar.indexOf(`id="${id}"`));
   assert.ok(order.every(index => index > 0), "every control is on the bar");
   assert.deepEqual([...order].sort((a, b) => a - b), order, "left to right as approved");
-  assert.match(html, /\.passage\.listening \.translation \{[^}]*display: none/);
-  assert.match(html, /\.listening-zh \{[^}]*display: block/);
+  assert.match(html, /\.passage\.bilingual \.translation \{[^}]*display: block/);
 });

@@ -289,7 +289,7 @@ function updateBilingual() {
 }
 
 function highlightSentence(target) {
-  const sentence = showingBilingual && target instanceof Element ? target.closest(".aligned-sentence") : null;
+  const sentence = showingBilingual && target instanceof Element ? target.closest(".aligned-sentence, .translation") : null;
   const pair = sentence ? sentencePairs.get(sentence) : undefined;
   if (pair === matchedPair) return;
   matchedPair?.forEach(element => element.classList.remove("matched"));
@@ -580,25 +580,23 @@ function selectLesson(index, moveFocus = true) {
     block.className = "passage-block";
     const englishParagraph = document.createElement("p");
     englishParagraph.lang = "en";
-    const chineseParagraph = document.createElement("p");
-    chineseParagraph.lang = "zh-CN";
-    chineseParagraph.className = "translation";
+    // Each sentence's Chinese sits right under it, shown in 中英对照.
     sentences.forEach((segments, sentenceIndex) => {
       const english = document.createElement("span");
       english.className = "aligned-sentence";
       english.append(textParts(segments, lesson));
       insertFixedGlosses(english, lesson.fixedGlosses?.[paragraphIndex]?.[sentenceIndex]);
       const chinese = document.createElement("span");
-      chinese.className = "aligned-sentence";
+      chinese.className = "translation";
+      chinese.lang = "zh-CN";
       chinese.textContent = bilingualText[lesson.id][paragraphIndex][sentenceIndex];
       const pair = [english, chinese];
       sentencePairs.set(english, pair);
       sentencePairs.set(chinese, pair);
       if (sentenceIndex > 0) englishParagraph.append(" ");
-      englishParagraph.append(english);
-      chineseParagraph.append(chinese);
+      englishParagraph.append(english, chinese);
     });
-    block.append(englishParagraph, chineseParagraph);
+    block.append(englishParagraph);
     for (const [at, phrase] of lesson.underline ?? []) if (at === paragraphIndex) underlinePhrase(englishParagraph, phrase);
     return block;
   }));
