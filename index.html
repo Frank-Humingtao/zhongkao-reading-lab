@@ -159,7 +159,7 @@
     @media (hover: hover) { .question-option:hover:not(:disabled) { background: var(--fill-hover); } }
     .question-option[aria-pressed="true"] { background: var(--solid); color: var(--on-solid); }
     .question-option[aria-pressed="true"] .option-letter { color: inherit; }
-    .question-option:disabled { cursor: default; }
+    .question-option:disabled { cursor: default; opacity: 1; color: var(--ink-2); }
     .question-option.correct { background: none; color: var(--ok); box-shadow: inset 0 0 0 2px var(--ok); }
     .question-option.correct .option-letter { color: inherit; }
     .question-option.correct::after { content: "✓"; margin-left: auto; }
