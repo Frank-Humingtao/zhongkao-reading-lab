@@ -1,0 +1,3435 @@
+{
+  "columnTitle": "广州中考英语真题 · 阅读理解",
+  "words": {
+    "soup": ["汤", "soups"],
+    "junk": ["垃圾"],
+    "telescope": ["望远镜", "telescopes"],
+    "first-aid": ["急救"],
+    "marathon": ["马拉松"],
+    "camel": ["骆驼", "camels"],
+    "astronaut": ["宇航员", "astronauts"],
+    "gravity": ["重力"],
+    "attic": ["阁楼"],
+    "trophy": ["奖杯"],
+    "album": ["唱片；专辑"],
+    "opera": ["歌剧"],
+    "scarecrow": ["稻草人"],
+    "procrastinate": ["拖延", "procrastinates", "procrastinating", "procrastination"],
+    "dimmer switch": ["渐暗开关"],
+    "ancestor": ["祖先"],
+    "evolution": ["进化"],
+    "clue": ["线索", "clues"],
+    "cemetery": ["墓地"],
+    "define": ["定义", "defined", "defines"],
+    "nest": ["鸟巢", "nests", "nesting"],
+    "cave": ["洞穴"],
+    "reward": ["奖励", "rewards"],
+    "comet": ["彗星", "comets"],
+    "mold": ["模具", "molds"],
+    "seedless": ["无核的"],
+    "floppy disc": ["软盘", "floppy discs"],
+    "upload": ["上传", "uploaded"],
+    "nut": ["坚果", "nuts"],
+    "bury": ["埋", "buried"],
+    "conscious attention": ["有意注意"],
+    "concentration": ["专注力"],
+    "literacy": ["素养"]
+  },
+  "stories": [
+    {
+      "id": "gz-2026-a",
+      "title": "Join the club!",
+      "topic": "2026 A 篇｜加入社团吧",
+      "paragraphs": [
+        [
+          ["Paper Cutting Club", "剪纸社"]
+        ],
+        [
+          ["Zhang — Let’s explore together!", "张同学｜一起来探索吧！"]
+        ],
+        [
+          ["I used to sit by the window, watching Grandpa cut red paper into different shapes.", "我以前常坐在窗边，看爷爷把红纸剪成不同的形状。"],
+          ["I admired the way his hands moved—quick, smooth, and sure.", "我很佩服他那又快、又流畅、又稳当的手法。"],
+          ["After I joined the club, I practised a lot.", "加入社团后，我练习了很多。"],
+          ["I’ve now created a few works with my own ideas.", "现在我已经按自己的想法创作了几件作品。"],
+          ["Seeing my works on the wall, Grandpa smiled and said, “You’ve learnt it!", "爷爷看着墙上的作品，笑着说：“你学会啦！"],
+          ["Now you can teach me new things.”", "现在可以教我一些新东西了。”"]
+        ],
+        [
+          ["STEAMsmarts Club", "STEAM 创意社"]
+        ],
+        [
+          ["Qian — If you like a challenge, give the club a try!", "钱同学｜喜欢挑战的话，试试这个社团吧！"]
+        ],
+        [
+          ["I like to learn how things work and create new things.", "我喜欢弄懂事物是怎么运作的，也喜欢创造新东西。"],
+          ["Last month, we made a model of a space telescope’s mirror.", "上个月，我们做了一个太空望远镜镜面的模型，"],
+          ["We learnt how the mirror fits into the rocket and works in space.", "了解了镜面怎样装进火箭、怎样在太空中工作。"],
+          ["The mirror is made of 18 hexagons.", "镜面由18个六边形组成。"],
+          ["By making the model, I had a chance to express a lot of creativity!", "做模型让我有机会发挥自己的创意！"],
+          ["Afterwards, I even made some paper hexagon gift boxes for my friends.", "后来，我甚至做了几个六边形的纸礼盒送给朋友。"]
+        ],
+        [
+          ["Scribble Squad Club", "创意写作社"]
+        ],
+        [
+          ["Zhou — Come and join us!", "周同学｜来加入我们吧！"]
+        ],
+        [
+          ["I want to be a story writer, but I find it difficult to create interesting characters and plots.", "我想成为一名故事作家，可我觉得构思有趣的人物和情节很难。"],
+          ["This club is just for me.", "这个社团正适合我。"],
+          ["My favourite part is making digital “plot and character boards.”", "我最喜欢做电子版的“情节和人物板”。"],
+          ["Every time I want to write a new story, I start with a board, I upload（上传） pictures, music, and even videos to my board.", "每次想写新故事，我都会先建一块板，再把图片、音乐，甚至视频传上去。"],
+          ["With the help of the digital materials on it, my imagination works super-fast.", "有了这些数字素材，我的想象力一下子就活跃起来。"]
+        ],
+        [
+          ["Show Time Club", "表演社"]
+        ],
+        [
+          ["Liang — Just do it!", "梁同学｜去试试吧！"],
+          ["It’s great!", "好玩极了！"]
+        ],
+        [
+          ["I used to be very shy.", "我以前很害羞。"],
+          ["The activity named “Dance, Freeze, Explain!” was really helpful.", "“跳舞、定格、解释！”这个活动对我很有帮助。"],
+          ["It went like this: some loud, fun music started playing and we all danced.", "玩法是这样的：先放一段响亮、有趣的音乐，大家跟着跳舞。"],
+          ["When the music stopped, we froze.", "音乐一停，我们就定住不动，"],
+          ["Then we had to think really, really fast and use our imagination to explain what we were.", "然后得非常快地开动脑筋，用想象力解释自己定格成了什么。"],
+          ["At first, I felt a bit silly, but then I relaxed and began to feel more confident.", "刚开始，我觉得自己有点傻，后来就放松了，也渐渐变得更自信。"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 12,
+          "image": "2026-A-clubs-01.jpg",
+          "alt": "社团招募原图 1/2"
+        },
+        {
+          "after": 12,
+          "image": "2026-A-clubs-02.jpg",
+          "alt": "社团招募原图 2/2"
+        }
+      ],
+      "questions": [
+        {
+          "stem": "What is the main purpose of the passage?",
+          "options": ["To compare different clubs.", "To invite students to join the clubs.", "To give advice on club activities.", "To tell the steps of choosing a club."],
+          "answer": "B"
+        },
+        {
+          "stem": "Which picture shows an activity in the Scribble Squad Club?",
+          "options": ["图 A", "图 B", "图 C", "图 D"],
+          "answer": "A",
+          "image": "2026-Q27-options.jpg",
+          "imageAlt": "第27题的选项图 A 至 D"
+        },
+        {
+          "stem": "What do the four clubs have in common?",
+          "options": ["They train acting skills.", "They develop interest in science.", "They exercise imagination.", "They suggest using digital materials."],
+          "answer": "C"
+        }
+      ]
+    },
+    {
+      "id": "gz-2026-b",
+      "title": "Guangzhou 2026 · Passage B",
+      "topic": "2026 B 篇｜威尔逊和名叫麻烦的松鼠",
+      "paragraphs": [
+        [
+          ["“It has to arrive soon,” thought Amy happily.", "“它应该很快就到了。”艾米高兴地想。"],
+          ["“How does it get here without a map?” wondered Amy.", "“没有地图，它怎么找到这儿的呢？”"],
+          ["She was waiting patiently to see Wilson again.", "她耐心地等着再次见到威尔逊。"]
+        ],
+        [
+          ["As Amy looked through the window, she saw something unusual—a squirrel!", "艾米往窗外一看，发现了个不寻常的访客：一只松鼠！"],
+          ["Amy watched him collecting the nuts（坚果） that fell from the trees.", "她看着它捡起树上掉下来的坚果。"],
+          ["The squirrel studied each nut before deciding what to do with it.", "松鼠会先仔细看看每颗坚果，再决定怎么处理。"],
+          ["If it was small or ready to eat, he pushed the nut into his mouth.", "如果坚果小，或者已经可以吃了，它就把坚果塞进嘴里。"],
+          ["If it was large but not ready, he buried（埋） it.", "如果坚果大却还不能吃，它就把它埋起来。"],
+          ["If he saw another animal nearby, like a rabbit or a fox, he first hid the nut in his mouth and then buried it somewhere else secretly.", "要是看到附近有别的动物，比如兔子或狐狸，它就先把坚果藏在嘴里，再偷偷到别处埋好。"]
+        ],
+        [
+          ["Suddenly, a flash of yellow flew past Amy’s window.", "突然，一道黄色身影从艾米的窗前掠过。"],
+          ["“Wilson, you’ve come back!” Amy cheered, running into the yard.", "“威尔逊，你回来啦！”艾米欢呼着跑进院子。"],
+          ["She picked some berries for the bird to eat and went inside to watch.", "她摘了几颗浆果给小鸟吃，便回到屋里观察。"],
+          ["Minutes later, she saw the squirrel.", "几分钟后，她看见了松鼠。"],
+          ["He was eating the berries!", "它正在吃浆果！"],
+          ["Amy ran back outside as fast as she could.", "艾米飞快地跑回院子。"],
+          ["“Hey!", "“喂！"],
+          ["Those are for Wilson!", "那是给威尔逊的！"],
+          ["Go and dig up the nuts you buried!”", "去把你埋的坚果挖出来吃吧！”"],
+          ["Amy raced into the house and found a small net to put some berries in.", "艾米冲进屋找到一个小网兜，装了些浆果，"],
+          ["She managed to hang the net from a tall branch of an old tree.", "再想办法把网兜挂到一棵老树的高枝上。"]
+        ],
+        [
+          ["The next morning, Amy woke up, looked out of her window, and saw the squirrel.", "第二天早晨，艾米醒来往窗外一看，又见到了松鼠。"],
+          ["He was at the bottom of the tree, looking at the branches!", "它就在树下，抬头看着树枝！"],
+          ["Suddenly, he climbed up to the tall branch.", "突然，它爬上了高枝，"],
+          ["Then, he hung upside down to reach for the net!", "再倒挂下来去够网兜！"],
+          ["“You’re nothing but trouble,” thought Amy angrily.", "“你就知道给我添麻烦，”艾米气恼地想，"],
+          ["“From now on, I’m calling you Trouble!”", "“从今天起，我就叫你‘麻烦’！”"]
+        ],
+        [
+          ["Amy had to go outside to look for somewhere else.", "艾米只好出门另外找个地方。"],
+          ["She noticed a metal pole supporting the clothesline.", "她看见支撑晾衣绳的一根金属杆。"],
+          ["“Trouble can’t climb that!” thought Amy.", "“‘麻烦’爬不上这个！”艾米想，"],
+          ["“There is no way to snack on Wilson’s food this time!”", "“这回它休想再偷吃威尔逊的食物！”"]
+        ],
+        [
+          ["Later, when Amy arrived home from school, she went to look for Wilson.", "后来，艾米放学回家，去找威尔逊。"],
+          ["There was Trouble again, jumping onto the clothesline from the tall branch of the tree!", "她又看见“麻烦”了！它正从高高的树枝跳到晾衣绳上，"],
+          ["Using his tail to balance, he walked along the clothesline to the net of berries.", "用尾巴保持平衡，沿着绳子一路走到装浆果的网兜旁。"],
+          ["Next, Trouble hit the net hard with his foot, causing several berries to fall to the ground.", "接着，它用脚猛踢网兜，几颗浆果掉到地上。"],
+          ["Wilson flew down from a nearby tree and, together, Trouble and Wilson shared the berries.", "威尔逊从附近的一棵树上飞下来，和“麻烦”一起分着吃了浆果。"]
+        ],
+        [
+          ["“Trouble, you’re a smart squirrel!” smiled Amy.", "“‘麻烦’，你真是只聪明的松鼠！”艾米笑了。"],
+          ["From that day on, Amy looked forward to visits from both Wilson and Trouble.", "从那天起，她既盼着威尔逊来，也盼着“麻烦”来。"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "What was Amy waiting for at the beginning of the story?",
+          "options": ["A fox.", "A rabbit.", "A bird.", "A squirrel."],
+          "answer": "C"
+        },
+        {
+          "stem": "What did Amy find while watching the squirrel in paragraph 2?",
+          "options": ["He picked and buried the biggest nuts for winter.", "He decided which nuts to bury and which to eat.", "He liked to share nuts with other animals nearby.", "He collected and buried all the nuts on the ground."],
+          "answer": "B"
+        },
+        {
+          "stem": "Why did Amy call the squirrel Trouble?",
+          "options": ["He kept snacking on Wilson’s food.", "He climbed too high for Amy to catch.", "He didn’t go and dig up the nuts he buried.", "He waited outside Amy’s house every morning."],
+          "answer": "A"
+        },
+        {
+          "stem": "How did Amy feel about Trouble at the end of the story?",
+          "options": ["She thought he was still a trouble.", "She was unhappy with his smartness.", "She cared more about him than Wilson.", "She admired his cleverness and kindness."],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "gz-2026-c",
+      "title": "Guangzhou 2026 · Passage C",
+      "topic": "2026 C 篇｜音乐怎样影响我们",
+      "paragraphs": [
+        [
+          ["Do you like music?", "你喜欢音乐吗？"],
+          ["Have you ever listened to upbeat music—often music that is happy or energetic—to cheer yourself up?", "你有没有听过欢快、充满活力的音乐来振作精神？"],
+          ["Research has shown that music can have an effect on our mind.", "研究表明，音乐会影响我们的心理。"],
+          ["So, what is the science behind music?", "那么，这背后的科学原理是什么？"]
+        ],
+        [
+          ["Researchers found that if people listen to upbeat music while trying to feel happier at the same time, they report feeling better.", "研究人员发现，一边听欢快的音乐，一边尝试让自己更开心，人们就会觉得心情变好了。"],
+          ["However, if people just listen to the music but don’t actively try to feel happier, they can’t feel better.", "可如果只是听，并没有主动尝试改善心情，就不会觉得更开心。"],
+          ["And listening to slower, more serious music doesn’t help them feel any happier either.", "听节奏较慢、比较严肃的音乐，也不会让人更快乐。"]
+        ],
+        [
+          ["And there’s more. Researchers also found that listening to some classical music helps your brain focus and deal with information better.", "研究人员还发现，听某些古典音乐能让大脑更专注，更好地处理信息。"],
+          ["This is very useful when you’re studying.", "这在学习时很有用。"],
+          ["And many people report that simple and soft music can also help their brain stay focused.", "许多人也说，简单、轻柔的音乐也能帮助他们保持专注。"],
+          ["Why?", "这是为什么？"],
+          ["The brain has two kinds of attention.", "大脑有两种注意："],
+          ["One is conscious attention（有意注意） and the other is unconscious attention.", "有意注意和无意注意。"],
+          ["While the conscious attention may be focused on work, the unconscious attention may have nothing to do, only looking for fun.", "你可能正用有意注意专心工作，而无意注意闲着没事，就会四处找点有意思的东西。"],
+          ["Having music on in the background gives the unconscious attention something to focus on, which improves overall concentration（专注力）.", "放一点背景音乐，可以让无意注意有个关注对象，从而提高整体的专注力。"]
+        ],
+        [
+          ["The power of music doesn’t stop there.", "音乐还有别的用处。"],
+          ["If you have trouble falling asleep from time to time, music can also help.", "如果你有时难以入睡，音乐也能帮忙。"],
+          ["Research shows that the best music for this purpose has about sixty beats per minute—almost the same as a healthy, resting heart.", "研究表明，最适合助眠的音乐节奏约为每分钟60拍，和健康的人静息时的心率差不多。"],
+          ["Classical music is often around this speed.", "古典音乐常在这个速度附近。"],
+          ["Any music that is soft and does not have sudden loud parts may be effective.", "只要音乐轻柔，没有突然变响的段落，都可能有效。"],
+          ["People who have serious sleep problems may need to listen to this kind of music for several nights before they see results.", "睡眠问题较严重的人可能要连续听几个晚上，才会看到效果。"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "When can upbeat music help us feel happier according to paragraph 2?",
+          "options": ["If we are also trying to feel happier.", "If we listen to upbeat music every day.", "If we mix upbeat music with serious music.", "If we are listening to slow music at the same time."],
+          "answer": "A"
+        },
+        {
+          "stem": "Why does some background music help improve concentration?",
+          "options": ["It brings the brain a lot of fun.", "It gets the brain to work faster.", "It makes conscious attention busier.", "It gives unconscious attention something to do."],
+          "answer": "D"
+        },
+        {
+          "stem": "How does the writer develop ideas in Paragraph 4?",
+          "options": ["By telling stories.", "By listing numbers.", "By making comparisons.", "By using research findings."],
+          "answer": "D"
+        },
+        {
+          "stem": "What can be a suitable title for the passage?",
+          "options": ["Why music cheers us up", "How music helps us learn", "How music influences our mind", "Why music improves our memory"],
+          "answer": "C"
+        }
+      ]
+    },
+    {
+      "id": "gz-2026-d",
+      "title": "Guangzhou 2026 · Passage D",
+      "topic": "2026 D 篇｜人工智能时代的素养",
+      "paragraphs": [
+        [
+          ["Ever since we were born, we’ve been learning new things using our natural intelligence.", "自出生以来，我们就一直用天生的智能学习新事物。"],
+          ["Today artificial intelligence (AI) is changing the way we live and learn.", "今天，人工智能（AI）正在改变我们的生活和学习方式。"],
+          ["How can we understand AI literacy（素养） in the age of AI?", "在人工智能时代，该怎样理解人工智能素养呢？"]
+        ],
+        [
+          ["Mr Ma", "马先生"]
+        ],
+        [
+          ["I’m a computer scientist.", "我是一名计算机科学家。"],
+          ["I think understanding AI is the first step.", "我认为第一步是了解人工智能。"],
+          ["Artificial means “made by people.”", "“人工”的意思是“由人制造”。"],
+          ["Computers use AI to think or act more like a human.", "计算机借助人工智能，以更接近人类的方式思考或行动。"],
+          ["In my work, I give computers special lists of rules or instructions.", "工作中，我会给计算机一套专门的规则或指令。"],
+          ["These instructions are called algorithms.", "这些指令叫作“算法”，"],
+          ["They allow computers to carry out intelligent tasks or solve problems.", "让计算机能完成需要智能的任务，或解决问题。"],
+          ["However, we must make sure the algorithms are fair.", "不过，我们必须确保算法是公平的。"],
+          ["AI is pretty smart.", "人工智能挺聪明，"],
+          ["But don’t worry!", "不过别担心，"],
+          ["It isn’t necessarily smarter than you are.", "它未必比你聪明。"]
+        ],
+        [
+          ["Ms Wu", "吴女士"]
+        ],
+        [
+          ["I’m an engineer.", "我是一名工程师。"],
+          ["In the age of AI, human-machine cooperation can’t be avoided.", "在人工智能时代，人机协作不可避免。"],
+          ["Learning how to ask AI questions is very important.", "学会怎样向人工智能提问很重要。"],
+          ["Just like us, computers perform tasks and learn by using information and experience.", "和我们一样，计算机利用信息和经验来完成任务、学习新东西。"],
+          ["However, no matter what AI tools we are using, they are trained by us humans.", "不过，不管我们使用哪种人工智能工具，它们都是由人训练出来的。"],
+          ["AI is like a big team project.", "人工智能就像一个大型团队项目。"],
+          ["Using AI effectively depends on our own knowledge and experience.", "能不能用好人工智能，取决于我们自己的知识和经验。"]
+        ],
+        [
+          ["Mr Li", "李老师"]
+        ],
+        [
+          ["I teach history.", "我教历史。"],
+          ["I think AI literacy is the ability to understand, value, and use new technology confidently and responsibly.", "我认为人工智能素养是理解、正确看待新技术，并能自信、负责任地使用它的能力。"],
+          ["At my school, students learn about AI through cross-subject projects.", "在我们学校，学生通过跨学科项目学习人工智能。"],
+          ["We not only help them learn to use AI to solve real-life problems but also encourage them to think critically.", "我们教他们用人工智能解决现实问题，也鼓励他们进行批判性思考。"],
+          ["For example, when AI gives an answer, students check the information from trusted websites and books to make sure it’s true.", "例如，人工智能给出答案后，学生会查阅可信的网站和书籍，核实信息的真伪。"],
+          ["We also get students to think and discuss what is right and wrong when using AI.", "我们还让学生思考和讨论，使用人工智能时哪些做法是对的，哪些是错的。"]
+        ],
+        [
+          ["AI is a helpful tool, but it cannot think or feel like humans.", "人工智能是个有用的工具，但它无法像人一样思考或感受。"],
+          ["That’s why we always help students learn to listen to and understand each other, work as a team, and most importantly, stay positive when facing challenges.", "因此，我们一直帮助学生学会彼此倾听、彼此理解，学会团队合作。最重要的是，面对挑战时要保持积极。"]
+        ],
+        [
+          ["The AI age has arrived.", "人工智能时代已经到来。"],
+          ["Let’s get ready!", "让我们做好准备吧！"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 9,
+          "image": "2026-D-ai-intro-and-Ma.jpg",
+          "alt": "人工智能素养讨论原图 1/3"
+        },
+        {
+          "after": 9,
+          "image": "2026-D-ai-Wu.jpg",
+          "alt": "人工智能素养讨论原图 2/3"
+        },
+        {
+          "after": 9,
+          "image": "2026-D-ai-Li.jpg",
+          "alt": "人工智能素养讨论原图 3/3"
+        }
+      ],
+      "underline": [
+        [2, "algorithms"]
+      ],
+      "questions": [
+        {
+          "stem": "What does the underlined word “algorithms” in Mr Ma’s post mean?",
+          "options": ["Special lists of rules.", "Learning tasks.", "Problems to be solved.", "Digital machines."],
+          "answer": "A"
+        },
+        {
+          "stem": "What decides how well you can work with AI according to Ms Wu?",
+          "options": ["The training AI receives.", "How we ask AI questions.", "What AI tools we are using.", "Our knowledge and experience."],
+          "answer": "D"
+        },
+        {
+          "stem": "What is Mr Li?",
+          "options": ["A student.", "A school teacher.", "An engineer.", "A computer scientist."],
+          "answer": "B"
+        },
+        {
+          "stem": "What is Mr Li’s post mainly about?",
+          "options": ["How to solve real-life problems with AI.", "How to help prepare students for the AI age.", "How to design cross-subject projects with AI.", "How to raise students’ team spirit in the AI age."],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "gz-2025-a",
+      "title": "Guangzhou 2025 · Passage A",
+      "topic": "2025 A 篇｜花园里的蝴蝶",
+      "paragraphs": [
+        [
+          ["It was going to be a long afternoon.", "这个下午恐怕会很漫长。"],
+          ["Aunt Jen and Uncle Pete were visiting, which meant I had to play with Amy.", "珍姨和皮特叔叔来做客，这意味着我得陪艾米玩。"]
+        ],
+        [
+          ["I was mixing salt with mud（泥） in the garden.", "我正在花园里往泥里拌盐。"],
+          ["Amy was dancing around like a butterfly.", "艾米像只蝴蝶一样蹦蹦跳跳。"],
+          ["Maybe she could help prepare food for the butterflies.", "也许她能帮忙给蝴蝶准备食物。"]
+        ],
+        [
+          ["“Okay, Amy,” I said.", "“好啦，艾米，”我说，"],
+          ["“You can help spread this salt on the mud.”", "“你来帮我把这些盐撒到泥上吧。”"]
+        ],
+        [
+          ["She took the salt shaker.", "她接过盐罐。"],
+          ["“Are you growing butterflies like plants, Simon?”", "“西蒙，你要像种植物一样种出蝴蝶吗？”"]
+        ],
+        [
+          ["“Questions again!”", "“又来问问题了！”"],
+          ["I shook my head.", "我摇摇头。"],
+          ["This little girl had a lot to learn—just like me at her age, when my family started planting this butterfly garden.", "这小姑娘还有很多要学，就像我当年一样。那时候我和她差不多大，家里刚开始种这个蝴蝶花园。"],
+          ["“Some butterflies need salt to stay healthy,” I explained.", "“有些蝴蝶需要盐来保持健康，”我解释道，"],
+          ["“Once, a butterfly sat right here on my arm, tasting my salty sweat.”", "“有一回，一只蝴蝶就落在我这只胳膊上，尝我咸咸的汗。”"]
+        ],
+        [
+          ["“I want a butterfly to sit on me!” cried Amy.", "“我也想让蝴蝶停在我身上！”艾米喊道，"],
+          ["“I want to wear it like a flower!”", "“我要把它像花一样戴着！”"]
+        ],
+        [
+          ["“Butterflies don’t grow like flowers,” I said.", "“蝴蝶可不像花那样长。”我说，"],
+          ["“They fly wherever they like.”", "“它们想飞去哪儿就飞去哪儿。”"]
+        ],
+        [
+          ["“Aww...make them come to me,” Amy said.", "“哎呀……让它们飞到我这边嘛。”艾米说。"]
+        ],
+        [
+          ["“They will.", "“它们会来的。"],
+          ["They love our garden’s plants, with nice leaves and juice, and this...” I said, pointing to the salty mud.", "它们喜欢咱家花园的植物，这些植物的叶子和汁液都合它们的口味，还有这个……”我指着咸泥说。"]
+        ],
+        [
+          ["“I don’t like mud,” Amy said.", "“我不喜欢泥。”艾米说，"],
+          ["“See, my new pink shoes are muddy—and pink’s my favorite color!”", "“你看，我的新粉鞋都沾泥了。粉色可是我最喜欢的颜色！”"]
+        ],
+        [
+          ["I tried to distract her attention.", "我想转移她的注意力："],
+          ["“Do you know butterflies have favorite colors, too?”", "“你知道蝴蝶也有最喜欢的颜色吗？”"]
+        ],
+        [
+          ["“Pink?” Amy asked, starting to smile again.", "“粉色吗？”艾米问，脸上又露出了笑容。"]
+        ],
+        [
+          ["“They like purple better, and orange,” I explained, pointing to the nearby butterfly weed with dark orange flowers.", "“它们更喜欢紫色，还有橙色，”我指着附近开深橙色花的蝴蝶草解释道，"],
+          ["“Look, a butterfly is drinking the juice of the flowers.”", "“你看，有一只蝴蝶正在吸花蜜。”"]
+        ],
+        [
+          ["I kept talking so she wouldn’t try to catch it.", "我继续说下去，免得她伸手去抓："],
+          ["“Butterfly weed is a perfect host plant.", "“蝴蝶草是很理想的寄主植物。"],
+          ["Butterflies lay eggs here, which become caterpillars, then chrysalises, and finally beautiful butterflies...”", "蝴蝶在这里产卵，卵孵成毛毛虫，毛毛虫再变成蛹，最后变成漂亮的蝴蝶……”"]
+        ],
+        [
+          ["As I spoke, Amy saw a big bee.", "我正说着，艾米看见了一只大蜜蜂。"],
+          ["“Shoo!", "“去去！"],
+          ["No bees allowed!” she cried.", "蜜蜂不许来！”她喊道。"]
+        ],
+        [
+          ["“Hey, it’s okay.", "“没事的。"],
+          ["Butterflies and bees both work for flowers,” I told her.", "蝴蝶和蜜蜂都在为花儿干活。”我告诉她。"]
+        ],
+        [
+          ["“Butterflies work?” she asked.", "“蝴蝶也干活？”她问。"]
+        ],
+        [
+          ["“Yes, listen...”", "“对，你听我说……”"]
+        ],
+        [
+          ["We stayed in the garden until sunset.", "我们在花园里待到日落。"],
+          ["Then I smelt bread and suggested, “Let’s rest in the hammock.”", "我闻到了面包的香味，便提议：“咱们到吊床上歇歇吧。”"]
+        ],
+        [
+          ["As we lay together, Amy noticed a butterfly leaving a flower and cried, “Simon, it’s like a flying flower!”", "我们一起躺在吊床上时，艾米看见一只蝴蝶飞离花朵，喊道：“西蒙，它像一朵会飞的花！”"]
+        ],
+        [
+          ["That made me smile.", "我笑了。"],
+          ["We swung gently back and forth, happy just to watch all the flowers—the ones that fly and those that don’t—until Mom called us in to dinner.", "我们轻轻地荡来荡去，开心地看着那些花，会飞的也好，不会飞的也好，一直看到妈妈叫我们进屋吃饭。"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 18,
+          "image": "2025-image4.jpg",
+          "alt": "西蒙向艾米介绍蝴蝶的一生"
+        },
+        {
+          "after": 19,
+          "image": "2025-image5.jpg",
+          "alt": "西蒙和艾米躺在吊床上"
+        }
+      ],
+      "underline": [
+        [10, "distract her attention"]
+      ],
+      "questions": [
+        {
+          "stem": "Why did Simon mix the salt with the mud?",
+          "options": ["To play games with Amy.", "To prepare food for butterflies.", "To make the plants grow better.", "To make it safer for Amy to dance."],
+          "answer": "B"
+        },
+        {
+          "stem": "How did Simon feel when Amy asked her first question?",
+          "options": ["He couldn’t believe how silly Amy was.", "He was surprised at Amy’s rich imagination.", "He was a bit impatient but also very understanding.", "He was glad that Amy was curious about butterflies."],
+          "answer": "C"
+        },
+        {
+          "stem": "What does the underlined phrase “distract her attention” mean in the story?",
+          "options": ["Clean the mud off her shoes.", "Change her mind about mud.", "Keep her away from the mud.", "Get her to forget about the mud."],
+          "answer": "D"
+        },
+        {
+          "stem": "Why did Simon feel happy at the end of the story?",
+          "options": ["The bread for dinner smelt good.", "He enjoyed the afternoon with Amy.", "The hammock was really comfortable.", "Amy thanked him for the butterfly lesson."],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "gz-2025-b",
+      "title": "Guangzhou 2025 · Passage B",
+      "topic": "2025 B 篇｜卡罗琳和她发现的彗星",
+      "paragraphs": [
+        [
+          ["When I was young, my father took me outside to see the stars.", "小时候，爸爸带我到户外看星星。"],
+          ["Once we saw a comet（彗星）!", "有一次，我们看见了一颗彗星！"],
+          ["It was the first comet I’d seen but wasn’t the last.", "那是我第一次看到彗星，后来还看到了更多。"]
+        ],
+        [
+          ["My name is Caroline Herschel.", "我叫卡罗琳·赫歇尔，"],
+          ["I was born in Hanover, Germany in 1750.", "1750年出生于德国汉诺威。"],
+          ["When I was 22, I moved to England to stay with my older brother, William.", "22岁时，我搬到英国，和哥哥威廉一起住。"],
+          ["He was a musician and he offered me singing lessons.", "他是个音乐家，愿意教我唱歌。"],
+          ["I helped him with housework in return.", "我帮他做家务作为回报。"],
+          ["I practiced hard and soon started singing at his concerts.", "我刻苦练习，很快就在他的音乐会上演唱了。"]
+        ],
+        [
+          ["Life changed when William became interested in astronomy.", "威廉对天文学产生兴趣后，我们的生活变了。"],
+          ["He read about space late into the night.", "他看有关太空的书，一直看到深夜。"],
+          ["Breakfast often turned into a lesson about stars.", "早餐时间也常常变成讲星星的课堂。"],
+          ["I learned a lot from him.", "我跟他学了很多。"],
+          ["And we even started working together on a big project: building telescopes—the special tools for seeing faraway things.", "我们甚至着手合作一个大项目：制作能看清远处事物的特殊工具，也就是望远镜。"]
+        ],
+        [
+          ["To make the perfect mirrors for our telescopes, we heated metals and shaped them using special molds（模具）.", "为了给望远镜做出理想的镜面，我们给金属加热，再用特制的模具塑形。"],
+          ["These molds were made from strange things, like dry horse waste.", "这些模具用的材料很奇怪，比如干马粪。"],
+          ["I had to break it into small bits.", "我得把它掰成小块。"],
+          ["It was dirty work, but I didn’t mind.", "这活儿脏，但我不介意，"],
+          ["Someone had to do it.", "总得有人做。"]
+        ],
+        [
+          ["Making the mirrors smooth was very difficult.", "把镜面磨光滑非常困难。"],
+          ["William invented a machine to help, but he still had to work without stopping for hours once he began.", "威廉发明了一台机器来帮忙，可一开工，还是得连续干上好几个小时，"],
+          ["He couldn’t even stop to eat, so I fed him and read stories to keep him happy and relaxed.", "连停下来吃东西都不行。于是我喂他吃东西，还给他读故事，让他开心、放松。"]
+        ],
+        [
+          ["In 1781, William discovered something fantastic—a new planet!", "1781年，威廉有了一个惊人的发现：一颗新行星！"],
+          ["King George was so glad that he made William his astronomer.", "乔治国王十分高兴，便任命威廉做自己的天文学家。"],
+          ["William made a telescope just for me.", "威廉专门为我做了一台望远镜，"],
+          ["And I was able to search the sky along with him.", "我也能跟他一起搜寻星空了。"]
+        ],
+        [
+          ["On August 1, 1786, I found something special too—a comet!", "1786年8月1日，我也发现了特别的东西：一颗彗星！"],
+          ["I watched it carefully for one more night and discovered it was real.", "我又仔细观察了一晚，确认它真是一颗彗星。"],
+          ["Now everyone is talking about my comet.", "现在大家都在谈论我发现的彗星，"],
+          ["They call it the Lady’s Comet.", "称它为“女士彗星”。"]
+        ],
+        [
+          ["This is the first comet I’ve ever discovered, but I don’t think it will be the last.", "这是我发现的第一颗彗星。我想以后还会有更多发现。"]
+        ],
+        [
+          ["Historical Note: After Caroline discovered her first comet, King George paid her to be William’s assistant（助手）.", "历史小注　卡罗琳发现第一颗彗星后，乔治国王出钱聘请她做威廉的助手。"],
+          ["She was one of the first women astronomers to be paid for her work.", "她是最早凭工作获得报酬的女性天文学家之一。"],
+          ["She went on to find seven more comets herself between 1786 and 1797.", "1786年至1797年间，她又独自发现了七颗彗星。"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 3,
+          "image": "2025-image7.jpg",
+          "alt": "望远镜"
+        }
+      ],
+      "questions": [
+        {
+          "stem": "Why did Caroline move to England?",
+          "options": ["To live with her brother.", "To study at a music school.", "To sing at famous concerts.", "To look after a sick relative."],
+          "answer": "A"
+        },
+        {
+          "stem": "In what order did the following happen in Caroline’s life? a. She discovered her first comet. b. Her brother built a telescope for her. c. Her brother became interested in space. d. She built telescopes together with her brother. e. She got paid by King George to help with her brother’s work.",
+          "options": ["c-d-b-a-e", "c-d-e-b-a", "c-b-d-a-e", "c-b-a-e-d"],
+          "answer": "A"
+        },
+        {
+          "stem": "How many comets did Caroline discover by herself?",
+          "options": ["One.", "Seven.", "Eight.", "Nine."],
+          "answer": "C"
+        },
+        {
+          "stem": "Which of the following best describes Caroline and William’s working relationship?",
+          "options": ["Caroline gave William more help.", "Caroline had to do all the dirty work.", "William took care of most of the work.", "They were important to each other’s success."],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "gz-2025-c",
+      "title": "Guangzhou 2025 · Passage C",
+      "topic": "2025 C 篇｜荔枝的滋味",
+      "paragraphs": [
+        [
+          ["June 6, 2025·Issue 66 SUNSHINE SCHOOL WEEKLY", "《阳光校园周刊》｜2025年6月6日｜第66期"]
+        ],
+        [
+          ["A Taste of Lychees", "品味荔枝"]
+        ],
+        [
+          ["How much do you know about lychees?", "你对荔枝了解多少？"]
+        ],
+        [
+          ["- China has been growing lychees for over 2,000 years.", "- 中国种植荔枝已有两千多年。"]
+        ],
+        [
+          ["See History, page 2", "（见第2页“历史”）"]
+        ],
+        [
+          ["- The first lychee cultural museum is in Guangzhou.", "- 第一座荔枝文化博物馆位于广州。"]
+        ],
+        [
+          ["See Museum, page 3", "（见第3页“博物馆”）"]
+        ],
+        [
+          ["- Lychees can be used in traditional Chinese medicine.", "- 荔枝可以入药。"]
+        ],
+        [
+          ["See Health, page 4", "（见第4页“健康”）"]
+        ],
+        [
+          ["“Eating three hundred lychees every day, I would long live in Lingnan.” —Su Shi", "插图引语　苏轼：“日啖荔枝三百颗，不辞长作岭南人。”"]
+        ],
+        [
+          ["See Poems, page 5", "（见第5页“诗歌”）"]
+        ],
+        [
+          ["Online", "线上欣赏"]
+        ],
+        [
+          ["Scan and enjoy the famous song An Ode to the Lychee from Yueju Opera.", "扫码欣赏粤剧名曲《荔枝颂》。"]
+        ],
+        [
+          ["Cool ways to serve the best lychees!", "荔枝保鲜与配送的新办法"]
+        ],
+        [
+          ["The government of Conghua district is working with research teams to invent super-cold freezing technology to keep lychees fresh!", "从化区政府正与科研团队合作，研发超低温冷冻技术，为荔枝保鲜！"]
+        ],
+        [
+          ["After their first successful service in Maoming, Guangdong, drones are coming to Zengcheng this June!", "在广东茂名首次成功提供运输服务后，无人机也将在今年六月来到增城！"],
+          ["These drones can carry lychees over 5 kilometres in just 5 minutes!", "这些无人机只用五分钟，就能把荔枝送到五公里以外！"]
+        ],
+        [
+          ["See more, page 6", "（详见第6页）"]
+        ],
+        [
+          ["China’s work on spreading sweet lychees to the world", "中国让香甜的荔枝走向世界"]
+        ],
+        [
+          ["Since 2007, Guangdong scientists have helped farmers in Madagascar learn new technology for growing lychees.", "2007年以来，广东科学家一直在帮助马达加斯加的农户学习荔枝种植新技术。"],
+          ["The country now produces 60,000-80,000 tons of lychees per year, with half sold to Europe.", "该国现在每年产六万至八万吨荔枝，其中一半销往欧洲。"]
+        ],
+        [
+          ["See more, page 7", "（详见第7页）"]
+        ],
+        [
+          ["My lychee story Send your story to sunshineschoolweekly@123.com.", "我的荔枝故事　来稿请发至 sunshineschoolweekly@123.com。"]
+        ],
+        [
+          ["Yesterday, I visited a lychee farm.", "昨天，我参观了一家荔枝种植园，"],
+          ["There, I tried seedless（无核的） lychees for the first time.", "在那儿第一次尝到无核荔枝。"],
+          ["They are my favourite!", "它是我最喜欢的荔枝！"],
+          ["I can’t wait to find lychees in my hometown so my family can taste them too.", "我迫不及待地想在家乡找到荔枝，让家人也尝一尝。"],
+          ["To me, lychees are more than just a fruit—they are a bridge between cultures.", "对我来说，荔枝还是连接不同文化的桥梁。"]
+        ],
+        [
+          ["—exchange student, Jenny, 14 See more, page 8", "——交换生珍妮，14岁（详见第8页）"]
+        ],
+        [
+          ["Online", "线上作品"]
+        ],
+        [
+          ["Scan and see more about our students’ lychee artworks.", "扫码查看更多同学们创作的荔枝主题艺术作品。"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 9,
+          "image": "2025-image8.jpg",
+          "alt": "荔枝插图和苏轼诗句"
+        },
+        {
+          "after": 11,
+          "image": "2025-image9.jpg",
+          "alt": "原试卷中的《荔枝颂》二维码"
+        },
+        {
+          "after": 15,
+          "image": "2025-image10.jpg",
+          "alt": "运送荔枝的无人机"
+        },
+        {
+          "after": 25,
+          "image": "2025-image11.jpg",
+          "alt": "原试卷中的荔枝作品二维码"
+        }
+      ],
+      "questions": [
+        {
+          "stem": "Which page should you read if you are planning to visit the first lychee cultural museum?",
+          "options": ["Page 2.", "Page 3.", "Page 4.", "Page 5."],
+          "answer": "B"
+        },
+        {
+          "stem": "How have Guangdong scientists helped lychee farmers in Madagascar?",
+          "options": ["By giving them drones.", "By buying their lychees.", "By teaching them growing methods.", "By offering them freezing technology."],
+          "answer": "C"
+        },
+        {
+          "stem": "Which of the following is an opinion according to Jenny’s story?",
+          "options": ["Lychees are a bridge between cultures.", "Jenny visited a lychee farm yesterday.", "Seedless lychees are Jenny’s favourite.", "Jenny’s family haven’t tasted lychees."],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "gz-2025-d",
+      "title": "Guangzhou 2025 · Passage D",
+      "topic": "2025 D 篇｜数字黑洞",
+      "paragraphs": [
+        [
+          ["Libraries around the world still keep old books hundreds of years old.", "世界各地的图书馆至今还保存着几百年前的旧书。"],
+          ["But will we be able to read today’s digital（数字的） books in hundreds of years?", "可几百年后，我们还能读到今天的电子书吗？"],
+          ["Librarians are worried.", "图书管理员对此很担忧。"],
+          ["Even now, we can’t open some files（文件） from 20 or 25 years ago.", "即使现在，我们也打不开一些二十年前、甚至二十五年前的文件。"],
+          ["Will our digital works be lost in a digital black hole?", "我们的数字作品会不会消失在“数字黑洞”里？"],
+          ["Will we face the loss of valuable information?", "我们会不会丢掉有价值的信息？"]
+        ],
+        [
+          ["Technology is changing fast.", "技术变化很快。"],
+          ["Old ways of keeping information are gone now, or they are no longer supported by new technology.", "旧的信息保存方式有的已经消失，有的已经得不到新技术的支持。"],
+          ["For example, many people used floppy discs（软盘） to save files years ago, but today few machines can open them.", "例如，许多人以前用软盘存文件，今天却很少有机器能读取它。"],
+          ["Also, millions of songs and music pieces were saved on tapes or CDs, but now most old music players no longer work.", "还有数以百万计的歌和乐曲曾存在磁带或光盘上，可如今大多数老式播放器已经不能用了。"],
+          ["Another problem is that websites often change or close down, and all the information on them can fall into the digital black hole.", "另一个问题是，网站常常改版或关闭，网站上的所有信息都可能掉进数字黑洞。"]
+        ],
+        [
+          ["Books, however, are quite easy to keep.", "纸质书倒很容易保存。"],
+          ["We don’t need special tools or technology to read them.", "读书用不着特殊工具或技术。"],
+          ["If you keep them in a dry and safe place, they will stay safe for a long time.", "只要存放在干燥、安全的地方，书就能保存很久。"],
+          ["Li Shizhen’s great medical book Ben Cao Gang Mu came out in 1593.", "李时珍的医学巨著《本草纲目》于1593年出版。"],
+          ["Amazingly, three copies from the first printing still survive today.", "令人惊讶的是，初版至今还保存着三册。"],
+          ["That’s not bad for a book more than 400 years old.", "对于一部四百多年前的书来说，这可不容易。"]
+        ],
+        [
+          ["Today, to some researchers, printed books remain a safe way to keep information.", "如今，有些研究人员认为，印刷书籍仍是一种稳妥的信息保存方式。"],
+          ["In 2014, a professional group began to raise money to print a famous online encyclopedia into 1,000 books.", "2014年，一个专业团体开始筹款，想把一部著名的在线百科全书印成一千册书。"],
+          ["This would make sure that even if digital technology fails, the knowledge can still be kept.", "这样，即使数字技术出了故障，知识也依然能保存下来。"]
+        ],
+        [
+          ["For now, when it comes to storing information, printed copies seem to be the safest choice.", "目前看来，要保存信息，印刷本似乎是最稳妥的选择。"],
+          ["However, future technology might develop and provide new ways to solve the problem of the digital black hole.", "不过，未来技术可能继续发展，提供新的办法解决数字黑洞问题。"],
+          ["Time will tell.", "时间会给出答案。"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "What happens if our digital works fall into a digital black hole?",
+          "options": ["They are carefully kept.", "They cannot be understood.", "They cannot be read or reached.", "They are saved in a wrong place."],
+          "answer": "C"
+        },
+        {
+          "stem": "What is Paragraph 2 mainly about?",
+          "options": ["How music players are developing.", "How technology is changing over time.", "Why old machines are no longer used today.", "Why technology may cause information loss."],
+          "answer": "D"
+        },
+        {
+          "stem": "Why does the writer mention Ben Cao Gang Mu?",
+          "options": ["To discuss why this book is still important.", "To show printed books can last for a long time.", "To explain how easy it is to keep printed books.", "To tell when the earliest printed book came out."],
+          "answer": "B"
+        },
+        {
+          "stem": "What would the writer most probably agree with?",
+          "options": ["Libraries should keep more digital books.", "Digital books are less valuable than printed ones.", "Technology will soon solve the problem of the digital black hole.", "Technology is still looking for better ways to keep information."],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "gz-2024-a",
+      "title": "Guangzhou 2024 · Passage A",
+      "topic": "2024 A 篇｜艾米观察小鸟",
+      "paragraphs": [
+        [
+          ["Ffh. Ffh. Ffh!", "“呼，呼，呼！”"],
+          ["It was not just the empty nest（鸟巢） of a pewee bird as Amy had found the last five days.", "这一次，洞穴里不只是艾米过去五天看到的那个空空的小霸鹟（pewee）的鸟巢。"],
+          ["Amy ran home through the woods.", "艾米穿过树林，跑回了家。"]
+        ],
+        [
+          ["“Mum!” she shouted.", "“妈妈！”她喊道，"],
+          ["“I see birds.", "“我看到鸟了。"],
+          ["Two.", "两只。"],
+          ["In cave（洞穴）.", "在洞穴里。"],
+          ["Beautiful!”", "真漂亮！”"]
+        ],
+        [
+          ["Mum smiled.", "妈妈笑了。"],
+          ["Birds!", "鸟！"],
+          ["Always birds!", "总是鸟！"],
+          ["From the moment Amy woke up in the morning to the moment she closed her eyes at night, she thought only of birds.", "从早上睁眼到晚上闭眼，艾米心里想的都是鸟。"]
+        ],
+        [
+          ["Amy climbed straight to her attic room—her museum, she called it.", "艾米径直爬上阁楼，那里是她自己的“博物馆”。"],
+          ["Every shelf, every spare inch of floor, was covered with nests, bird models and natural science books.", "架子上、地板上，凡是能放东西的地方，全摆满了鸟巢、鸟模型和自然科学书。"],
+          ["The walls were covered with pencil and crayon drawings of many different kinds of birds, all signed “Amy in the woods.”", "墙上挂满了她用铅笔和彩色蜡笔画的各种鸟，每一幅都签着“树林里的艾米”。"]
+        ],
+        [
+          ["“Are those the same birds who built the nest last year?", "“它们是去年筑巢的那两只鸟吗？"],
+          ["Will they return to the cave next spring?” Amy always wondered.", "明年春天还会回到洞穴吗？”艾米经常琢磨。"],
+          ["“I will study my cave birds.", "“我要研究洞穴里的鸟，"],
+          ["I will draw them just as they are.”", "把它们照原样画下来。”"],
+          ["Amy made up her mind.", "艾米打定了主意。"]
+        ],
+        [
+          ["In a week, the birds were used to her.", "一周后，鸟儿就习惯了她在身边。"],
+          ["They were busy building their nest as Amy watched and drew with her pencils.", "它们忙着筑巢，艾米一边观察，一边用铅笔画。"],
+          ["Soon the dried brown nest became a soft green bed.", "不久，干枯的棕色鸟巢变成了一张柔软的绿色小床。"]
+        ],
+        [
+          ["Amy watched as two baby birds came out.", "艾米亲眼看见两只幼鸟孵出来，"],
+          ["She watched as the young birds flew for the first time.", "也看见它们第一次飞起来。"],
+          ["She began to feel a part of this small family.", "她渐渐觉得自己成了这个小家庭的一员。"]
+        ],
+        [
+          ["When the days grew shorter and the autumn air began to bite, Amy knew the birds would leave soon.", "白天越来越短，秋风开始刺骨。艾米知道鸟儿很快会飞走。"],
+          ["But would they come back?", "可它们还会回来吗？"],
+          ["She had to know!", "她一定要弄清楚！"]
+        ],
+        [
+          ["In bed that night, she formed a plan.", "那天晚上躺在床上，她想出了一个办法。"]
+        ],
+        [
+          ["The next day, when the mother and father birds were away from the nest, she tied something to one leg of each baby bird.", "第二天，趁鸟爸爸、鸟妈妈都离开巢穴，她在每只幼鸟的一条腿上系了个东西。"],
+          ["A week later, the birds were gone. . .", "一周后，鸟儿飞走了……"]
+        ],
+        [
+          ["The days grew longer again.", "白天又渐渐变长了。"],
+          ["One morning.", "一天早上，"],
+          ["Amy heard a bird call, “Fee-bee!", "艾米听见了鸟叫声：“啡—比！"],
+          ["Fee-bee!”", "啡—比！”"]
+        ],
+        [
+          ["She ran to the cave.", "她跑到洞穴。"],
+          ["Watching the way the birds flew in and out of the cave, Amy knew her friends came back.", "看着鸟儿飞进飞出的样子，艾米知道她的朋友回来了。"],
+          ["But where were last year’s babies?", "可去年的幼鸟在哪儿？"],
+          ["Did they return too?", "它们也回来了吗？"],
+          ["She began to search the woods near the cave, listening for their call.", "她开始在洞穴附近的树林里寻找，仔细听有没有它们的叫声。"]
+        ],
+        [
+          ["Inside a little house, she found two birds building a nest.", "在一间小屋里，她看见两只鸟正在筑巢，"],
+          ["One wore a silver ring around its leg.", "其中一只腿上戴着银环。"],
+          ["Up the small river, under a bridge, she found two more nesting birds.", "沿小河往上游走，她又在一座桥下找到两只正在筑巢的鸟，"],
+          ["And one wore a silver ring around its leg.", "其中一只腿上也戴着银环。"]
+        ],
+        [
+          ["Amy smiled and called, “Fee-bee!", "艾米笑着叫道：“啡—比！"],
+          ["Fee-bee!”", "啡—比！”"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "What did Amy want to find out in the whole story?",
+          "options": ["Where and how the birds spent winter.", "Why the birds and their babies came back.", "Whether the same birds would return.", "How she could make friends with the birds."],
+          "answer": "C"
+        },
+        {
+          "stem": "What can we learn about Amy from her museum?",
+          "options": ["She often studied birds with her mother.", "She had rich bird-watching experiences.", "She liked drawing more than other hobbies.", "She wanted to keep her hobbies as secrets."],
+          "answer": "B"
+        },
+        {
+          "stem": "How did Amy carry out her plan in the late autumn?",
+          "options": ["She marked each baby bird with a silver ring.", "She separated the baby birds from their parents.", "She cared for the birds and watched them grow.", "She used the birds’ language to call them back."],
+          "answer": "A"
+        },
+        {
+          "stem": "What happened to the two baby birds when the second spring came?",
+          "options": ["They flew back and looked for their parents.", "They made their own nests under a bridge.", "They flew in and out of the cave to meet Amy.", "They returned and built nests near the cave."],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "gz-2024-b",
+      "title": "Robots",
+      "topic": "2024 B 篇｜四种用途各异的机器人",
+      "paragraphs": [
+        [
+          ["Many people know that robots explore space and build things in factories.", "许多人知道机器人能探索太空，也能在工厂里制造东西。"],
+          ["But did you know that there are many other kinds of robots?", "但你知道还有许多其他种类的机器人吗？"],
+          ["Let’s meet some of these robots and find out what they do.", "来看看下面这些机器人能做什么。"]
+        ],
+        [
+          ["Robot 1", "机器人1"]
+        ],
+        [
+          ["If your family are moving to a new house, this two-legged robot is a good helper.", "如果你们家要搬家，这个双腿机器人会是个好帮手。"],
+          ["It can lift several heavy boxes and carry them to the moving truck before returning inside for more.", "它能抬起几个重箱子，把它们搬到搬家卡车上，再回屋搬下一批。"],
+          ["It has the ability to walk more carefully and skillfully than other robots.", "它走路能比其他机器人更小心、更灵巧。"]
+        ],
+        [
+          ["Robot 2", "机器人2"]
+        ],
+        [
+          ["Powered by the sun, this robot works in a forest.", "这台用太阳能驱动的机器人在森林里工作。"],
+          ["It keeps an eye on everything from animal movements to the forest’s temperature, then sends the information back to the scientists.", "它观察动物活动、森林温度等各种情况，并把信息传给科学家。"],
+          ["This robot can watch how the environment changes for a long period of time, which is difficult for humans.", "它能长期观察环境的变化，这对人类来说很难做到。"]
+        ],
+        [
+          ["Robot 3", "机器人3"]
+        ],
+        [
+          ["This pie-making robot is cutting a pie into pieces in the kitchen.", "这个做馅饼的机器人正在厨房里把一个馅饼切成块。"],
+          ["It uses its arms to do all the things human cooks might do when they make food.", "人类厨师制作食物时的各种动作，它都能用手臂完成。"],
+          ["But it makes much more food than human cooks.", "它做的食物比人类厨师多得多，"],
+          ["It can prepare a pie in 45 seconds and cook 80 pies an hour.", "45秒就能备好一个馅饼，一小时能烤80个。"],
+          ["It even divides your pie and boxes it up.", "它甚至会替你把馅饼切好、装盒。"]
+        ],
+        [
+          ["Robot 4", "机器人4"]
+        ],
+        [
+          ["This bright orange robot helps repair the machines under deep water.", "这个亮橙色机器人能帮忙维修深水中的机器，"],
+          ["It can reach the part which is too deep for a human diver.", "能到达潜水员无法到达的深处。"],
+          ["Humans program where the robot should go and what it should do.", "人类为它编写程序，告诉它该去哪儿、做什么。"],
+          ["This robot can also help humans explore the sea and discover new living things.", "它还能帮助人类探索海洋，发现新的生物。"],
+          ["But it can’t work for long underwater.", "不过，它不能长时间在水下工作。"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 0,
+          "image": "2024-image5.jpg",
+          "alt": "Robots 标题图"
+        }
+      ],
+      "questions": [
+        {
+          "stem": "Which of the following shows the correct match between the robots and their working places?",
+          "options": ["Robot 1—③, Robot 2—④, Robot 3—②, Robot 4—①", "Robot 1—②, Robot 2—①, Robot 3—③, Robot 4—④", "Robot 1—②, Robot 2—④, Robot 3—③, Robot 4—①", "Robot 1—③, Robot 2—①, Robot 3—②, Robot 4—④"],
+          "answer": "A",
+          "image": "2024-image6.jpg",
+          "imageAlt": "第30题的四种工作场景"
+        },
+        {
+          "stem": "What is an advantage of Robot 3?",
+          "options": ["It makes the food more delicious.", "It cooks different kinds of food.", "It prepares food at a faster speed.", "It keeps the kitchen clean and tidy."],
+          "answer": "C"
+        },
+        {
+          "stem": "What can Robot 2 and Robot 4 both do?",
+          "options": ["Study the information for scientists.", "Keep working for a long period of time.", "Help humans learn more about the Earth.", "Do lots of heavy housework for people."],
+          "answer": "C"
+        }
+      ]
+    },
+    {
+      "id": "gz-2024-c",
+      "title": "Guangzhou 2024 · Passage C",
+      "topic": "2024 C 篇｜为什么习惯难改",
+      "paragraphs": [
+        [
+          ["I don’t believe it!", "真不敢相信！"],
+          ["I’m still sitting here writing my paper.", "我还坐在这儿写论文。"],
+          ["I’ve had two weeks to prepare and write it and I need to hand it in tomorrow.", "我有两周时间准备和写作，明天就得交。"],
+          ["A month ago, I made a decision to never leave things to the last minute.", "一个月前，我下定决心再也不把事情拖到最后一刻。"],
+          ["Well, I’ve failed.", "结果我还是没做到。"],
+          ["I’ve also been trying to go running to get fitter with my classmates after school for four weeks.", "为了让身体更健康，过去四周我也一直努力在放学后和同学跑步。"],
+          ["But I really feel it’s difficult to follow my plan now.", "可现在我觉得很难坚持。"],
+          ["Why is it so hard to break a bad habit and form a good one?", "为什么改掉坏习惯、养成好习惯这么难？"]
+        ],
+        [
+          ["I’ve just read an article and I’ve discovered that it isn’t my problem! In fact, it’s our brains.", "我刚看了一篇文章，发现原因在于我们的大脑！"],
+          ["Our brains are programmed to make it difficult to break bad habits.", "我们的大脑天生就让坏习惯难以改变。"],
+          ["Research shows when we do something the same way repeatedly, our brain notices.", "研究表明，反复用同一种方式做事，大脑就会留意到。"],
+          ["It’s just like, “Oh, writing a paper is hard.", "它仿佛在说：“哦，写论文很难。"],
+          ["We still have time.", "反正还有时间，"],
+          ["We can relax for now?", "我们先放松一下？"],
+          ["Got it!”", "明白！”"],
+          ["If we always do things like that, we get “into the habit” of leaving things to the last minute.", "总是这样做，我们就会养成拖到最后一刻的习惯。"],
+          ["We may even get a reward（奖励） from this bad habit, at least at first.", "这个坏习惯甚至可能给我们带来一点奖励，至少刚开始是这样。"],
+          ["Our brain may say, “Ah, relaxation!", "大脑可能会说：“啊，真放松！"],
+          ["I like this!”", "我喜欢！”"],
+          ["Slowly, it seems that we can’t stop doing the habit or control it.", "渐渐地，我们似乎戒不掉这个习惯，也控制不了它。"],
+          ["Maybe it’s because we don’t know how to get the rewards without doing it.", "也许是因为我们不知道还能怎样获得同样的奖励。"]
+        ],
+        [
+          ["But that’s not all. Scientists have also discovered that it takes ten weeks to form a good habit.", "科学家还发现，养成一个好习惯需要十周。"],
+          ["That’s because ten weeks is the amount of time the brain needs to change and accept a new habit as part of everyday life.", "大脑需要这段时间来发生改变，把新习惯当作日常生活的一部分。"],
+          ["The good news is that once you make it to ten weeks, everything becomes a lot easier.", "好消息是，只要撑过十周，一切就容易多了。"],
+          ["The bad news is that ten weeks is a really long time, so you may give up your plan sooner.", "坏消息是，十周确实很长，你可能没等到那时就放弃了。"]
+        ],
+        [
+          ["So there you are.", "事情就是这样。"],
+          ["Maybe we want to change our ways and become better people, but our brains won’t let us.", "也许我们想改变自己的做法，成为更好的人，可大脑不肯配合。"],
+          ["Or is this just an excuse?", "又或者，这只是个借口？"],
+          ["Look—I’ve finished my paper on time!", "看，我已经按时写完论文了！"],
+          ["Anything is possible!", "只要去做，一切皆有可能！"]
+        ],
+        [
+          ["By Ana", "——安娜"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "Who is Ana?",
+          "options": ["A schoolgirl.", "A brain scientist.", "A teacher.", "A sports coach."],
+          "answer": "A"
+        },
+        {
+          "stem": "What can be a reason why it’s hard to break a bad habit?",
+          "options": ["Our brains avoid doing things repeatedly.", "Our brains are not programmed to notice it.", "Our brains need relaxation from time to time.", "Our brains enjoy getting the rewards from doing it."],
+          "answer": "C"
+        },
+        {
+          "stem": "How many more weeks will it take Ana to develop her habit of running after school?",
+          "options": ["Four.", "Six.", "Eight.", "Ten."],
+          "answer": "B"
+        },
+        {
+          "stem": "What does Ana want to tell us at the end of the passage?",
+          "options": ["You’d better finish your paper on time.", "Don’t forget to make a plan beforehand.", "Stick with the ways you are doing habits.", "It depends on you to control your habits."],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "gz-2024-d",
+      "title": "Guangzhou 2024 · Passage D",
+      "topic": "2024 D 篇｜旧物升级再造",
+      "paragraphs": [
+        [
+          ["Have you ever heard of upcycling?", "你听说过升级再造吗？"],
+          ["It is a way of turning old or unnecessary things into something useful and often beautiful.", "这是把旧东西或不需要的东西变成实用物品的一种方法，做出来的东西往往还很漂亮。"]
+        ],
+        [
+          ["Is it the same as recycling?", "它和回收再利用一样吗？"],
+          ["Recycling usually takes old things, like paper and glass, and breaks them down to make a new product.", "回收再利用通常把废纸、废玻璃等旧物分解，再制成新产品。"],
+          ["When you upcycle an object, you are probably doing something different.", "升级再造时，"],
+          ["You can simply refashion it.", "你可以直接改造物品。"],
+          ["For example, you might make a bag out of an old T-shirt.", "例如，用一件旧T恤做个包。"],
+          ["Also, the upcycled object is usually in the same, or even better condition.", "改造后的东西通常还能保持原有状态，有时甚至比原来更好。"]
+        ],
+        [
+          ["Upcycling isn’t a new idea.", "升级再造并非新点子。"],
+          ["Some of the best examples of modern-day upcycling come from the old times.", "今天一些很好的做法可以追溯到很久以前。"],
+          ["In those days, things were repurposed over and over until they were no longer useful.", "过去，人们总是想办法给东西换个用途，直到它再也用不上为止。"],
+          ["Upcycling is a way of life.", "升级再造也是一种生活方式。"],
+          ["Things shouldn’t be just thrown away when they can be saved and turned into something useful.", "只要东西还能留着，变成有用的物品，就别随手扔掉。"]
+        ],
+        [
+          ["It’s clear that upcycling is green.", "显然，升级再造很环保。"],
+          ["It is also considered to be more environmentally friendly than recycling.", "人们也认为它比回收再利用更加环保。"],
+          ["Upcycling can just require your own ideas and work, but recycling requires energy（能源） or water to break down things.", "升级再造可以只靠自己的想法和动手能力，而回收时把旧物分解，要用到能源或水。"]
+        ],
+        [
+          ["Grace, a young woman from the UK, takes used tea bags and turns them into dresses, shoes and even hats.", "英国姑娘格蕾丝用泡过的茶包做连衣裙、鞋子，甚至帽子。"],
+          ["Every day she drinks some tea, then dries out the tea bags with the tea still in them.", "她每天喝些茶，再把装着茶叶的茶包晾干。"],
+          ["When they’re dry, she takes the tea out and puts the bags together to make an item of clothing.", "等茶包干了，她倒掉茶叶，把一个个空茶包拼起来做成一件衣物。"],
+          ["This can take a long time, but Grace has made lots of artworks.", "这样做可能很耗时，但格蕾丝已经做出了不少艺术品。"]
+        ],
+        [
+          ["In fact, no matter you create objects from old things or buy ready-made products from upcycled things, both ways are helpful for the environment and can bring you something that’s both beautiful and useful.", "其实，无论是自己用旧物做东西，还是购买升级再造的成品，都对环境有好处，也能让你得到漂亮又实用的物品。"],
+          ["Get started today!", "今天就开始吧！"]
+        ]
+      ],
+      "underline": [
+        [1, "refashion"]
+      ],
+      "questions": [
+        {
+          "stem": "What does the underlined word “refashion” mean in paragraph 2?",
+          "options": ["Break down useless things.", "Collect used things.", "Create things out of old ones.", "Come up with good ideas."],
+          "answer": "C"
+        },
+        {
+          "stem": "How is upcycling different from recycling?",
+          "options": ["It’s a completely new idea.", "It needs more energy.", "It requires more time and work.", "It’s a greener way of life."],
+          "answer": "D"
+        },
+        {
+          "stem": "Why does the writer tell the story of Grace in paragraph 5?",
+          "options": ["To list the steps of doing upcycling.", "To give a good example of upcycling.", "To express a different idea of upcycling.", "To provide basic knowledge of upcycling."],
+          "answer": "B"
+        },
+        {
+          "stem": "What is the main purpose of the passage?",
+          "options": ["To encourage people to do upcycling.", "To introduce the history of upcycling.", "To compare upcycling with recycling.", "To explain the importance of recycling"],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "gz-2023-a",
+      "title": "Helpful Advice",
+      "topic": "2023 A 篇｜给青少年的建议",
+      "paragraphs": [
+        [
+          ["Never fear!", "实用建议　别担心！"],
+          ["We are here to help solve your problems!", "我们来帮你解决问题！"]
+        ],
+        [
+          ["My friend keeps copying my look, but I like looking special.", "安：我的朋友老是模仿我的穿着打扮，可我喜欢有自己的风格。"]
+        ],
+        [
+          ["What should I do?—Ann", "我该怎么办？"]
+        ],
+        [
+          ["The important thing is to tell your friend the truth without hurting her feelings.", "重要的是把真实想法告诉朋友，同时照顾她的感受。"],
+          ["To do that, you can talk to her using kind words and not feeling angry.", "你可以心平气和地用友善的语气和她谈谈，"],
+          ["You can offer her your advice on popular dressing or even suggest wearing clothes that go together.", "也可以给她一些时尚穿搭建议，甚至提议穿彼此搭配的衣服。"],
+          ["This way you’ll still look like each other, but not twins!", "这样你俩看起来还有些相似，又不会像双胞胎！"]
+        ],
+        [
+          ["My room is always messy.", "迈克：我的房间总是乱糟糟的。"]
+        ],
+        [
+          ["No matter what I do, I can’t keep it clean!—Mike", "不管我怎么做，都没办法保持整洁！"]
+        ],
+        [
+          ["Here are some great ways to make your room a bit tidier.", "有几个好方法能让房间整齐一点。"],
+          ["Start by picking up things you don’t use or want anymore.", "先把不再用、也不想留的东西挑出来，"],
+          ["You can give them away to those in need.", "送给有需要的人。"],
+          ["Less things means less mess!", "东西越少，房间越不容易乱！"],
+          ["Then, try to make it a habit to put away things after you use them.", "接下来，试着养成用完东西就收起来的习惯。"],
+          ["Done with your sports shoes for the day?", "今天穿完运动鞋了？"],
+          ["Back where they should be.", "那就放回原处。"],
+          ["Finally, set a timer for five minutes each night to clean any mess!", "最后，每天晚上设个五分钟的计时器，把乱放的东西收一收！"]
+        ],
+        [
+          ["I’m sad because I have to go to a summer camp.", "杰茜：我很难过，因为我不得不去参加夏令营。"]
+        ],
+        [
+          ["I just want to have a summer like my friends.", "我只想和朋友们过一样的暑假。"],
+          ["Help me out!—Jessie", "帮帮我吧！"]
+        ],
+        [
+          ["We’re sorry you’re feeling this way!", "很遗憾你有这样的感受！"],
+          ["The best thing to do is to look at things on the bright side.", "你可以试着往好处想。"],
+          ["There, a new group of kids will become your friends.", "在营地，一群新伙伴会成为你的朋友。"],
+          ["They’ll know exactly how you feel and help you.", "他们能理解你的感受，也会帮你。"],
+          ["What’s more, going to a summer camp doesn’t mean a terrible summer.", "参加夏令营也不意味着这个夏天会很糟。"],
+          ["You’ll still have fun in the sun with your friends.", "你还是会和朋友们一起在阳光下玩得开心。"],
+          ["The only question is, what are you guys going to do together?", "现在只剩一个问题：你们打算一起做什么呢？"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 0,
+          "image": "2023-image4.jpg",
+          "alt": "Helpful Advice 栏目标题"
+        },
+        {
+          "after": 3,
+          "image": "2023-image5.jpg",
+          "alt": "安的插图"
+        },
+        {
+          "after": 6,
+          "image": "2023-image6.jpg",
+          "alt": "迈克的插图"
+        },
+        {
+          "after": 10,
+          "image": "2023-image7.jpg",
+          "alt": "花朵插图"
+        }
+      ],
+      "questions": [
+        {
+          "stem": "Who might be most interested in reading this passage?",
+          "options": ["Young sports lovers.", "Teenagers in need of help.", "Summer camp planners.", "Kids looking for dressing ideas."],
+          "answer": "B"
+        },
+        {
+          "stem": "What problem does Mike need to solve?",
+          "options": ["Having an unwanted holiday plan.", "Failing to manage his time wisely.", "Not knowing how to tidy his room.", "Unable to get on well with his friends."],
+          "answer": "C"
+        },
+        {
+          "stem": "What advice does the writer give to Jessie?",
+          "options": ["Tell your parents how you feel.", "Be ready to help other students.", "Study harder in the summer camp.", "See the advantage of what you dislike."],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "gz-2023-b",
+      "title": "Guangzhou 2023 · Passage B",
+      "topic": "2023 B 篇｜开学第二天的寻线索游戏",
+      "paragraphs": [
+        [
+          ["Come on, Amy.", "“加油，艾米。"],
+          ["You must TRY HARDER.", "你得再努力点。”"],
+          ["Amy told herself silently.", "艾米在心里对自己说。"],
+          ["She was in her class’ Second-Day-of-School Game with her teammates, whom she only met yesterday.", "她正和昨天才认识的队友一起参加班里的“开学第二天游戏”。"],
+          ["This was her first chance to make new friends, and she was nervous.", "这是她第一次有机会结交新朋友，她有些紧张。"]
+        ],
+        [
+          ["So far Amy hadn’t given any useful suggestions—after all, she was totally new to this town.", "到目前为止，艾米还没提出任何有用的建议。毕竟，她刚来到这个小镇。"],
+          ["Luckily, no one seemed to care about it.", "幸好大家似乎并不在意，"],
+          ["This relaxed her a lot.", "这让她轻松多了。"]
+        ],
+        [
+          ["Since the Blue Team left the park, they had worked out the first two clues（线索） and had been to the post office.", "蓝队离开公园后，已经解开了前两条线索，也去过了邮局。"],
+          ["Now they were in front of the cinema.", "现在，他们来到了电影院门前。"]
+        ],
+        [
+          ["Henry was reading aloud the third clue: Go to our town founder’s last resting place.", "亨利大声读出第三条线索：去小镇创建者长眠的地方。"]
+        ],
+        [
+          ["I know THIS ONE!", "“这条我知道！”"],
+          ["Amy thought, excited.", "艾米兴奋地想。"]
+        ],
+        [
+          ["“To the cemetery（墓地）” Cindy said.", "“去墓地。”辛迪说。"]
+        ],
+        [
+          ["“No, wait!” Amy said.", "“不，等等！”艾米说，"],
+          ["“I’ve read about it.", "“我读到过这件事。"],
+          ["The founder was buried near the library.”", "创建者就葬在图书馆附近。”"]
+        ],
+        [
+          ["“Wow.", "“哇，"],
+          ["I’ve walked by every day,” Tyler said.", "我每天都从那里经过，”泰勒说，"],
+          ["“Never knew that!”", "“居然一直不知道！”"]
+        ],
+        [
+          ["“Good job!", "“太好了！"],
+          ["That will save valuable time, ” Cindy smiled at Amy.", "这下能节省宝贵的时间。”辛迪朝艾米笑了笑。"]
+        ],
+        [
+          ["“We still need to hurry,” Tyler reminded, pointing to the Yellow Team coming near.", "“我们还得快点。”泰勒指着逐渐接近的黄队提醒大家。"]
+        ],
+        [
+          ["“I know a shortcut!” Henry suggested.", "“我知道一条近路！"],
+          ["“Follow me!”", "跟我来！”亨利提议。"],
+          ["No one moved.", "大家都没动。"]
+        ],
+        [
+          ["“No, seriously,” Henry said.", "“我说真的，”亨利说，"],
+          ["“You know I’m always running late.", "“你们知道我老是迟到。"],
+          ["I know every shortcut in town.”", "镇上每一条近路我都知道。”"],
+          ["The others finally agreed.", "大家终于同意了。"]
+        ],
+        [
+          ["A few sharp turns, and they were there!", "拐了几个急弯，他们就到了！"],
+          ["This time Amy read the clue aloud: Now go to the place where the football is running around!", "这一次，艾米大声念出线索：现在去足球满场跑的地方！"]
+        ],
+        [
+          ["“The football stadium!” They called out together and started to run…", "“足球场！”大家齐声喊道，拔腿就跑……"]
+        ],
+        [
+          ["Now they’d got the final clue: Look where you’ve been, see where you are.", "他们拿到了最后一条线索：看看走过的地方，再看看你现在在哪儿。"],
+          ["Use your map wisely and you’ll be a star!", "好好运用地图，你就能成为一颗星！"]
+        ],
+        [
+          ["Looking closely at the map, everyone thought hard.", "大家仔细盯着地图，苦苦思索。"]
+        ],
+        [
+          ["“Aha!", "“啊哈！"],
+          ["A star!” Cindy suddenly broke the silence.", "一颗星！”辛迪忽然打破沉默，"],
+          ["She quickly took out a pencil.", "迅速拿出铅笔。"]
+        ],
+        [
+          ["As they watched her drawing lines on the map, everyone understood.", "看到她在地图上画线，大家都懂了。"]
+        ],
+        [
+          ["They began running back to where they started.", "他们开始往出发的地方跑。"],
+          ["They were closer and closer, and finally crossed the finish line-just one step behind the Red Team!", "终点越来越近，他们终于冲过终点线，只比红队慢了一步！"]
+        ],
+        [
+          ["“So…close…” Tyler made a face, and they all laughed together.", "“就差……那么一点……”泰勒做了个鬼脸，大家都笑了。"]
+        ],
+        [
+          ["“Nice job, new girl,” Cindy gave Amy a high-five.", "“干得漂亮，新同学。”辛迪和艾米击掌。"]
+        ],
+        [
+          ["“That was really fun,” said Henry.", "“真好玩，”亨利说，"],
+          ["“I hope we’ll be on the same team soon.”", "“希望我们很快还能在一个队。”"]
+        ],
+        [
+          ["“Me, too,” Amy agreed, smiling.", "“我也希望。”艾米笑着说。"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 23,
+          "image": "2023-image8.jpg",
+          "alt": "寻线索游戏地图。地图标注：公园、邮局、电影院、足球场、图书馆。"
+        }
+      ],
+      "questions": [
+        {
+          "stem": "What does the beginning of the story tell us about Amy?",
+          "options": ["She didn’t want to play the game.", "She was a new student in her class.", "She was a member of the Red Team.", "She didn’t understand the game rules."],
+          "answer": "B"
+        },
+        {
+          "stem": "Why did the team let Henry lead the way at last?",
+          "options": ["He ran fastest in the team.", "They didn’t know the way.", "They trusted his rich experience.", "He was best at playing the game."],
+          "answer": "C"
+        },
+        {
+          "stem": "Where was the finish line of the game?",
+          "options": ["In the park.", "Next to the post office.", "In front of the cinema.", "Outside the library."],
+          "answer": "A"
+        },
+        {
+          "stem": "Why did Amy smile at the end of the story?",
+          "options": ["Her team came in first.", "She was accepted as a friend.", "She no longer felt nervous.", "There would be a game soon."],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "gz-2023-c",
+      "title": "Guangzhou 2023 · Passage C",
+      "topic": "2023 C 篇｜机器人该长什么样",
+      "paragraphs": [
+        [
+          ["Computer scientist Mary has an idea for a new robot to help her work with children.", "计算机科学家玛丽有个想法，想造一个新机器人，让它协助自己和孩子们一起工作。"],
+          ["How should it look?", "这个机器人该长什么样呢？"],
+          ["The robot should have arms to be able to lift things.", "它应该有手臂，能拿起东西。"],
+          ["And if it is going to communicate with people, it will also need a face.", "如果还要和人交流，它也需要一张脸。"],
+          ["Scientists believe that giving a robot a face can make it seem more friendly.", "科学家认为，给机器人一张脸，会让它显得更友好，"],
+          ["Humans would also like to pay more attention to robots with faces.", "人们也更愿意留意有脸的机器人。"],
+          ["But what kind?", "可它该有一张怎样的脸呢？"]
+        ],
+        [
+          ["For Mary, she wants to make sure that her new robot doesn’t look too much like a human.", "玛丽希望自己的新机器人看起来不要太像真人。"],
+          ["She wants people to just treat it as a machine-person.", "她希望大家把它当成一个有些人类特征的机器。"],
+          ["If it looks more like a human than a machine, she thinks users might find it a bit creepy and feel afraid.", "如果它看起来更像人而不像机器，使用者可能会觉得有点瘆人。"],
+          ["Mary also believes that robot faces don’t need to look a lot like ours.", "玛丽还认为，机器人的脸不必和人的很像。"],
+          ["Her research shows that we can enjoy communicating with robots whether or not they look like humans, because our brains are able to look for faces.", "她的研究发现，不论机器人像不像人，我们都能享受和它交流的过程，因为大脑会主动寻找人脸。"],
+          ["Just put two circles on top of a robot’s body, and we will see a face.", "只要在机器人的身体上方放两个圆圈，我们就能看出一张脸。"]
+        ],
+        [
+          ["Dave feels differently.", "戴夫有不同的看法。"],
+          ["He believes that although at first we might be afraid when seeing a robot with a lifelike face, we may soon get used to it.", "他认为，刚看到长着一张逼真面孔的机器人时，我们或许会害怕，可很快就会习惯。"],
+          ["If robots are going to work closely with humans, they should look as much like us as possible.", "如果机器人要和人类密切合作，它们就应该尽可能像人。"],
+          ["After all, faces are an important part of the way we communicate.", "毕竟，面部表情是我们交流的重要组成部分。"]
+        ],
+        [
+          ["To make his robots look as much like real people as possible, Dave invented a special skin（皮肤） for their faces.", "为了让机器人尽可能像真人，戴夫为机器人的脸发明了一种特殊的皮肤。"],
+          ["With this skin, robots can show human-like expressions and appear to be angry, sad, happy or surprised.", "有了这种皮肤，它们能表现出类似人类的表情，看起来生气、悲伤、开心或惊讶。"],
+          ["Dave’s robots are also programmed to copy expressions.", "戴夫的机器人还被设定为能模仿表情。"],
+          ["How?", "它们是怎么做到的？"],
+          ["Just imagine his robot is looking at you.", "想象它正在看着你，"],
+          ["The cameras in its eyes send pictures of your face to its central computer!", "眼睛里的摄像头会把你的面部图像传给中央计算机！"]
+        ]
+      ],
+      "underline": [
+        [1, "creepy"]
+      ],
+      "questions": [
+        {
+          "stem": "Why do scientists think a robot needs a face?",
+          "options": ["It will become more beautiful.", "It can do better in lifting things.", "It will pay more attention to children.", "It can better communicate with people."],
+          "answer": "D"
+        },
+        {
+          "stem": "What does the underlined word “creepy” mean in paragraph 2?",
+          "options": ["Uncomfortable to look at.", "Impossible to touch.", "Boring to talk to.", "Difficult to understand."],
+          "answer": "A"
+        },
+        {
+          "stem": "Which of the following would Dave most probably agree with?",
+          "options": ["People should treat robots as humans.", "Robots need to express their own feelings.", "Robots shouldn't look too much like humans.", "People can easily accept robots with a human face."],
+          "answer": "D"
+        },
+        {
+          "stem": "What is the purpose of the passage?",
+          "options": ["To explain the reasons why robots should have faces.", "To suggest what humans can do with robots with faces.", "To share ideas on what kind of faces robots should have.", "To show how scientists invent robots with different faces."],
+          "answer": "C"
+        }
+      ]
+    },
+    {
+      "id": "gz-2023-d",
+      "title": "Guangzhou 2023 · Passage D",
+      "topic": "2023 D 篇｜过去怎样编词典",
+      "paragraphs": [
+        [
+          ["People believe that every word has its correct meaning(s).", "大家相信每个词都有正确的含义。"],
+          ["When we are not sure, we usually check online, or turn to our teachers or dictionaries.", "拿不准时，我们通常会在网上查，或者请教老师、翻词典。"],
+          ["But do you know how dictionaries were made in the past?", "你知道从前词典是怎么编出来的吗？"]
+        ],
+        [
+          ["Dictionary writers first read the important books of the period or the subject that the dictionary was about.", "词典编写者先阅读词典所涉及年代或学科的重要书籍。"],
+          ["As they read, they copied necessary information on cards: interesting words, common words—both in their daily uses and unusual uses, and also the sentences where they were used.", "读书时，他们把必要的信息抄到卡片上：有趣的词、常见词的日常用法和少见用法，以及用到这些词的句子。"],
+          ["That is to say, the words, along with the uses of each word, were collected.", "也就是说，词语连同各种用法都会被收集起来。"],
+          ["For a really big dictionary, millions of such cards were collected.", "一部大型词典可能需要收集数百万张这样的卡片，"],
+          ["This task could last for years.", "花上好几年。"],
+          ["As the cards were collected, they were put in alphabetical order (A—Z).", "收集来的卡片按从 A 到 Z 的字母顺序排列。"],
+          ["When this was done, there would be several hundred cards for each single word.", "完成这一步后，单是一个词就可能有几百张卡片。"]
+        ],
+        [
+          ["Then, to define（定义） a word, the dictionary writer placed its hundreds of cards before him.", "接着，编写者要给一个词下定义，就把这个词的几百张卡片摆在面前。"],
+          ["He read the cards closely, threw away some, read the rest again, and divided up the cards according to what he thought were the common uses of the word.", "他认真读卡片，舍弃一些，再读剩下的卡片，并按自己判断的常见用法把卡片分组。"],
+          ["Finally, he wrote the definitions, following the hard-and-fast rule: each definition must come from an example on a certain card in front of him.", "最后，他写下释义，遵守一条严格的规则：每个释义都必须有面前某张卡片上的例句作依据。"]
+        ],
+        [
+          ["So, the writing of a dictionary was not a task of inventing meanings of words, but a task of recording their meanings.", "所以，词语的含义由实际用法决定。"],
+          ["The writer of a dictionary was a historian, not a law maker.", "编词典的工作就像写历史，编写者负责如实记录词语的含义。"]
+        ],
+        [
+          ["As time develops, the way of producing dictionaries has greatly changed.", "随着时代发展，编词典的方式已经大变。"],
+          ["Nowadays, we can use online dictionaries too.", "如今我们也能使用在线词典。"],
+          ["When choosing our words in speaking or writing, we can be guided by the dictionary.", "说话或写作时，我们可以参考词典来选词，"],
+          ["However, we cannot be controlled by it, because new situations, new experiences, new inventions, and new feelings, are always pushing us to give new uses to old words.", "同时要给词语的新用法留出空间。新的情境、经历、发明和感受，总会促使我们赋予旧词新的用法。"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "Why did dictionary writers read important books?",
+          "options": ["To know more about the period.", "To collect words and their uses.", "To understand different subjects.", "To learn to use interesting words."],
+          "answer": "B"
+        },
+        {
+          "stem": "Which shows the correct steps of how dictionaries were made in the past?",
+          "options": ["①-③-④-②", "①-②-④-③", "③-④-②-①", "③-①-④-②"],
+          "answer": "D",
+          "image": "2023-Q38-figures.jpg",
+          "imageAlt": "第38题的步骤图①至④"
+        },
+        {
+          "stem": "What can we learn from the passage about dictionary writing in the past?",
+          "options": ["It should be done by historians.", "It was a task of inventing and recording.", "It was long-time hard work.", "It had to use the law-making rules."],
+          "answer": "C"
+        },
+        {
+          "stem": "What does the writer advise us to do when we choose words in communication?",
+          "options": ["Be open to the new uses of words.", "Follow the dictionary strictly.", "Use online dictionaries instead.", "Try to create new words."],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "gz-2022-a",
+      "title": "Guangzhou 2022 · Passage A",
+      "topic": "2022 A 篇｜怎样恰当地帮助朋友",
+      "paragraphs": [
+        [
+          ["When you and your friends turn to each other to talk about problems or troubles, you give each other advice and help.", "当你和朋友遇到问题或烦恼、彼此倾诉时，你们会互相提建议，互相帮助。"],
+          ["One important thing of our growth is to make decisions to help our friends and learn to support each other.", "在成长过程中，重要的一件事是决定在朋友需要时伸出援手，学会彼此支持。"],
+          ["This requires us to learn what it means to help friends and how to help them in right ways.", "为此，我们需要明白帮助朋友意味着什么，以及怎样以合适的方式帮助他们。"]
+        ],
+        [
+          ["The first step toward helping others is to identify that they need help.", "帮助别人的第一步是发现他们需要帮助。"],
+          ["We all know that difficulties are part of our daily lives.", "我们都知道，困难是日常生活的一部分。"],
+          ["However, sometimes small things can lead to more serious problems that require more help.", "但有时，小事会演变成更严重的问题，需要更多帮助。"],
+          ["It’s important to make sure when to help a friend.", "弄清什么时候该帮朋友很重要。"],
+          ["For example, you may pick up some signs that your friends are not acting like themselves.", "比如，你可能会注意到朋友的表现和平时不一样。"],
+          ["These signs show they may not be well.", "这些迹象说明，他们的状态也许不太好。"]
+        ],
+        [
+          ["The next step toward helping others is to listen.", "接下来要做的是倾听。"],
+          ["Paying attention to others while listening is very important throughout our life.", "听别人说话时认真留意对方，这一点终身受用。"],
+          ["When we communicate with others, we need to learn when to speak and when not to.", "和人交流时，我们需要知道什么时候该开口，什么时候该静静听。"],
+          ["As listeners, we should try to understand what the speakers are feeling or experiencing and try to see things from their perspectives.", "作为听众，我们应该努力理解对方的感受或经历，并试着站在对方的角度看事情。"],
+          ["Listening and paying attention to others when they speak is a sign of respect and a skill that will lead to deeper and better relationships.", "别人说话时认真听，既是尊重别人的表现，也能帮我们建立更深、更好的关系。"]
+        ]
+      ],
+      "underline": [
+        [1, "identify"]
+      ],
+      "questions": [
+        {
+          "stem": "What is the purpose of the passage?",
+          "options": ["To discuss why people help each other.", "To describe the problems of giving help.", "To introduce the advantages of giving help.", "To explain how we can help others properly."],
+          "answer": "D"
+        },
+        {
+          "stem": "What does the underlined word “identify” in paragraph 2 mean?",
+          "options": ["Require.", "Discover.", "Suggest.", "Remember."],
+          "answer": "B"
+        },
+        {
+          "stem": "What is the main idea of paragraph 3?",
+          "options": ["Act as a good listener to your friends.", "Learn how to give advice to your friends.", "Pay attention to your friends’ unusual acts.", "Build good relationships with your friends."],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "gz-2022-b",
+      "title": "Guangzhou 2022 · Passage B",
+      "topic": "2022 B 篇｜碎盘子做成的礼物",
+      "paragraphs": [
+        [
+          ["Slowly but surely, Amy and her grandparents were making progress.", "艾米和祖父母收拾得慢，但一直在稳步推进。"],
+          ["Boxes of all sizes were placed on top of each other throughout the house.", "大大小小的箱子堆满了屋子。"],
+          ["Amy’s grandparents had lived in the house for years and they had collected many things.", "祖父母在这里住了多年，积攒下不少东西。"]
+        ],
+        [
+          ["The dining room was full of memories.", "餐厅里满是回忆。"],
+          ["Amy’s grandfather kept many fine dinner plates（盘子）from his hometown.", "祖父留着许多从家乡带来的精美餐盘。"],
+          ["Amy remembered that they ate from the red, yellow, and blue plates during important holidays.", "艾米记得，每逢重要节日，他们就用那些红、黄、蓝三色的盘子吃饭。"]
+        ],
+        [
+          ["After carefully wrapping up（包裹）the plates and putting them into a box, Amy lifted it up and moved it out of the way.", "艾米小心地把盘子包好，放进纸箱，然后抱起箱子，想把它挪开。"],
+          ["But the box was too heavy.", "可箱子太重，"],
+          ["It suddenly fell from her arms and dropped to the floor.", "突然从她手中滑落，砸到了地上。"],
+          ["All three of them heard the plates shatter.", "三个人都听见盘子碎裂的声音。"]
+        ],
+        [
+          ["“ I’m sorry! ” Amy apologised.", "“对不起！”艾米道歉。"]
+        ],
+        [
+          ["“ It’s okay, ” her grandfather said quietly.", "“没关系，”祖父轻声说，"],
+          ["“ It was an accident. ”", "“这是个意外。”"]
+        ],
+        [
+          ["They opened the box and, sure enough, many of the plates were broken.", "他们打开箱子，果然，许多盘子都碎了，"],
+          ["Only a few remained whole.", "只剩下几个完好。"],
+          ["Looking at the small pieces, Amy felt really terrible.", "望着碎片，艾米心里难受极了。"],
+          ["She knew these plates were passed down from her great grandparents and …", "她知道这些盘子是从曾祖父母那里传下来的，而且……"]
+        ],
+        [
+          ["“ Don’t worry, ” her grandmother said, patting her on the back.", "“别难过。”祖母拍了拍她的背。"],
+          ["Carefully, they put the broken pieces into a rubbish bag.", "他们小心地把碎片装进垃圾袋。"]
+        ],
+        [
+          ["They continued packing for a little while, but Amy still felt very sorry.", "他们又接着收拾了一会儿，艾米心里还是很过意不去，"],
+          ["She was trying very hard to think of a way to make it up for her grandparents.", "努力想着怎样弥补祖父母。"]
+        ],
+        [
+          ["Soon, Amy’s father came.", "不一会儿，艾米的爸爸来了。"]
+        ],
+        [
+          ["“ I have to go, ” she said.", "“我得走了，”她说，"],
+          ["“ Dad is here to pick me up. ”", "“爸爸来接我了。”"]
+        ],
+        [
+          ["She kissed her grandparents both, picked up the bag of the broken pieces and left.", "她亲了亲祖父母，拿起那袋碎片离开了。"]
+        ],
+        [
+          ["“ What’s that? ” her father asked, as Amy climbed into the car.", "艾米上车时，爸爸问：“你拿的是什么？”"]
+        ],
+        [
+          ["Amy looked at the bag in her hands as an idea came to her.", "艾米看着手中的袋子，忽然有了主意。"],
+          ["“ This, ” she said, “ is an art project. ”", "“这个嘛，”她说，“是件美术作品。”"]
+        ],
+        [
+          ["The following day, Amy went to an art store and bought everything she needed.", "第二天，艾米到美术用品店买齐了所需材料，"],
+          ["Then she started to work.", "动手做了起来。"],
+          ["She used a thin board as the base.", "她用薄板打底，"],
+          ["Then she took out the colourful plate pieces and glued them in a creative way on the board.", "把彩色盘子碎片取出来，别出心裁地粘在板子上。"],
+          ["When it was dry, Amy wrapped it up.", "等胶干了，她把作品包了起来。"]
+        ],
+        [
+          ["A few days later, Amy’s family had a big dinner at her grandparents’ new house.", "几天后，艾米一家在祖父母的新家吃了一顿丰盛的晚餐。"],
+          ["She handed her gift to her grandparents.", "她把礼物交给祖父母。"]
+        ],
+        [
+          ["“ This is fantastic, Amy! ” said her grandfather.", "“太棒了，艾米！”祖父说。"]
+        ],
+        [
+          ["“ I can’t wait to hang it up in our new home, ” Amy’s grandmother said as she gave her a big hug.", "“我等不及要把它挂到新家里了。”祖母说着，给了她一个大大的拥抱。"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "What was Amy helping her grandparents do at the beginning of the story?",
+          "options": ["Move to a new house.", "Wrap up some presents.", "Collect fine dinner plates.", "Prepare a big family dinner."],
+          "answer": "A"
+        },
+        {
+          "stem": "Why did Amy feel sorry for the broken plates?",
+          "options": ["They were never used by the family.", "They were valuable holiday presents.", "They were meaningful family treasures.", "They were expensive hometown products."],
+          "answer": "C"
+        },
+        {
+          "stem": "How did Amy finally deal with the broken plate pieces?",
+          "options": ["She sent them to an art store.", "She put them in her father’s car.", "She made a special gift with them.", "She threw them into a rubbish bag."],
+          "answer": "C"
+        },
+        {
+          "stem": "Which of the following best describes Amy?",
+          "options": ["Kind and creative.", "Brave but forgetful.", "Careless but helpful.", "Funny and hardworking."],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "gz-2022-c",
+      "title": "Charles Darwin",
+      "topic": "2022 C 篇｜查尔斯·达尔文",
+      "paragraphs": [
+        [
+          ["Early years", "早年"]
+        ],
+        [
+          ["Charles Darwin was one of the six children from a big family.", "查尔斯·达尔文生在一个大家庭，是六个孩子之一。"],
+          ["His grandfather and father were doctors and the young Darwin went to Edinburgh University to study medicine.", "他的祖父和父亲都是医生，年轻的达尔文也去爱丁堡大学学医。"],
+          ["However, he hated to see blood and he soon realized that he couldn’t be a doctor.", "可他讨厌见血，很快意识到自己当不了医生。"],
+          ["He then went to Cambridge University and discovered that he had a great interest in studying plants, insects and animals.", "后来，他去了剑桥大学，发现自己对研究植物、昆虫和动物很感兴趣。"],
+          ["Luckily, one of Darwin’s university teachers helped him join the perfect trip for a biologist: a voyage around the world to study nature.", "幸运的是，他的一位大学老师帮他得到了一次非常适合生物学家的机会：乘船环游世界，考察自然。"]
+        ],
+        [
+          ["The Beagle", "小猎犬号"]
+        ],
+        [
+          ["In 1831, Charles Darwin left Plymouth on The Beagle, a ship that took him around the world for five years.", "1831年，达尔文搭乘“小猎犬号”离开普利茅斯。这艘船载着他进行了为期五年的环球旅行。"],
+          ["While he was travelling, he studied the plants and animals in the countries and on the islands that the ship visited.", "每到一个国家或岛屿，他都研究当地的动植物，"],
+          ["Darwin also spent his time on The Beagle writing notes about the things he had seen.", "在船上也会把所见所闻记录下来。"],
+          ["When he finally arrived back in Britain, Darwin was already starting to create his famous theory that all living things had a common ancestor（祖先）.", "终于回到英国时，他已经在构思后来著名的理论：所有生物都有共同的祖先。"]
+        ],
+        [
+          ["Down house", "唐恩庄园"]
+        ],
+        [
+          ["At home at Down House, a place that you can still visit today, Darwin wrote many articles and books about his travels, but he didn’t want to make anything about his theory known to the public.", "在今天仍可参观的唐恩庄园里，达尔文写了许多记述旅行见闻的文章和书，却不想公开自己的理论。"],
+          ["He worked in his study, where he wrote 250,000 words about his theory of evolution（进化论）, but he was frightened about what people might say about his idea that monkeys were the ancestors of humans.", "他在书房里写下25万字来阐述进化论，却害怕旁人会怎样评价他关于“猴子是人类祖先”的看法。"],
+          ["He thought the public would be against it and was so frightened that he became ill with worry.", "他以为公众会反对，担忧得甚至病倒了。"],
+          ["However, when another scientist started to write about similar ideas, Darwin decided to print his book, On the Origin of Species.", "然而，另一位科学家也开始写文章讨论类似观点，达尔文这才决定出版《物种起源》。"]
+        ],
+        [
+          ["Most scientists accepted Darwin’s theory and people continue to study it today.", "大多数科学家接受了达尔文的理论，今天仍有人研究它。"],
+          ["On 12th February, the day he was born, Darwin Day is celebrated around the world to encourage more people to study the natural world.", "每年2月12日是他的生日，世界各地都会庆祝“达尔文日”，鼓励更多人研究自然界。"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 3,
+          "image": "2022-image5.jpg",
+          "alt": "小猎犬号"
+        },
+        {
+          "after": 5,
+          "image": "2022-image6.jpg",
+          "alt": "《物种起源》封面"
+        }
+      ],
+      "questions": [
+        {
+          "stem": "What caused Darwin to give up his study of medicine?",
+          "options": ["He didn’t like seeing blood.", "He found the studies too difficult.", "He was pushed to give up by his family.", "He was advised to study natural science."],
+          "answer": "A"
+        },
+        {
+          "stem": "Why was the trip on The Beagle important to Darwin?",
+          "options": ["It helped him to finish his study at the university.", "It allowed him to change his mind about his future.", "It gave him ideas about the beginnings of human life.", "It got him to complete his most famous book on the ship."],
+          "answer": "C"
+        },
+        {
+          "stem": "In what order did the following happen in Darwin’s life? a. He arrived back in Britain in 1836. b. He thought the public would not support his ideas. c. He became interested in studying the natural world. d. He printed his famous book, On the Origin of Species. e. He received help to get a place on a trip around the world. f. He studied the plants and animals on the islands he visited.",
+          "options": ["e→f→c→a→b→d", "c→e→f→a→b→d", "e→f→a→c→d→b", "c→e→f→d→a→b"],
+          "answer": "B"
+        },
+        {
+          "stem": "Why did the writer include the last paragraph?",
+          "options": ["To introduce Darwin’s famous book.", "To tell how people celebrate Darwin Day.", "To explain why people accept Darwin’s ideas.", "To show Darwin’s influence on natural science."],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "gz-2022-d",
+      "title": "The World of Orienteering",
+      "topic": "2022 D 篇｜定向运动",
+      "paragraphs": [
+        [
+          ["Imagine you are in a new city.", "定向运动的世界想象你到了一个陌生的城市，"],
+          ["You ask someone how to get to a bookstore.", "向人打听书店怎么走。"],
+          ["They tell you to go straight, turn left, and you will find it on your left.", "对方告诉你一直往前走，再向左转，书店就在左手边。"],
+          ["In fact, you can also find your way with a phone.", "当然，你也可以用手机导航。"],
+          ["Now imagine you are in an outdoor game.", "现在，把自己想象成一场户外比赛的参赛者。"],
+          ["You only have a map and a compass, and instead of running down a city road, you may need to run around in the woods, climb over rocks and go up and down hills.", "手里只有地图和指南针。本来在城里跑的是平坦的路，这时你却可能得在树林里穿行、翻过岩石、爬上山坡再下来。"],
+          ["Welcome to orienteering!", "欢迎参加定向运动！"]
+        ],
+        [
+          ["In the game of orienteering, players use a map and a compass to find stations.", "在定向运动中，选手用地图和指南针寻找"],
+          ["These stations are called controls.", "检查点。"],
+          ["A special flag, usually in bright colours, marks each control.", "每个检查点都有一面特别的旗子，颜色通常很鲜艳。"],
+          ["Controls are not easy to find.", "检查点不容易找到，"],
+          ["They may be in front of a big rock or behind a tree.", "可能在大石头前，也可能在树后。"],
+          ["In most of the games, you’ll have to find controls in numbered order, but in some games you can change the order.", "大多数比赛要求按编号顺序寻找，但有些比赛允许改变顺序。"]
+        ],
+        [
+          ["At each control, players mark a card they carry with them and the card will be marked in different ways ( See Figure 1 ).", "每到一个检查点，选手都要在随身携带的卡片上做记号，各点的记号并不相同（见图1）。"],
+          ["The cards are very important because players must find all the controls to win.", "卡片非常重要，因为选手要找到全部检查点才有资格获胜。"],
+          ["If someone misses a control, they won’t have that mark on their cards.", "漏掉一个点，卡上就少一个记号。"],
+          ["They might cross the finish line first, but the next person to finish with a full card will win the game.", "即使你第一个冲过终点，下一位带着盖满记号的卡片到达的人也会赢得比赛。图1　定向运动检查卡　填写姓名、开始时间、路线、年龄、组别和结束时间。卡上有编号1至12的检查点栏位。"]
+        ],
+        [
+          ["Culture Note: The first compass was invented by ancient Chinese people.", "文化小知识　指南针最早由古代中国人发明。"],
+          ["It helps you find your way by always pointing to the North.", "它总是指向北方，能帮你辨明方向。"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 0,
+          "image": "2022-image7.jpg",
+          "alt": "The World of Orienteering 标题图"
+        },
+        {
+          "after": 3,
+          "image": "2022-D-control-card.jpg",
+          "alt": "图1 定向运动检查卡"
+        },
+        {
+          "after": 3,
+          "image": "2022-image8.jpg",
+          "alt": "指南针。图1　定向运动检查卡　填写姓名、开始时间、路线、年龄、组别和结束时间。卡上有编号1至12的检查点栏位。"
+        }
+      ],
+      "questions": [
+        {
+          "stem": "What will players carry in the game?",
+          "options": ["A map, a compass and a flag.", "A flag, a compass and a card.", "A compass, a map and a card.", "A phone, a compass and a map."],
+          "answer": "C"
+        },
+        {
+          "stem": "Which of the following is a rule of the game?",
+          "options": ["You don’t need to mark the cards.", "You can’t miss any of the controls to win.", "You have to find controls in numbered order.", "You must be the first to pass the finish line to win."],
+          "answer": "B"
+        },
+        {
+          "stem": "How many controls has Anna finished in the game?",
+          "options": ["9.", "10.", "11.", "12."],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "gz-2021-a",
+      "title": "Guangzhou 2021 · Passage A",
+      "topic": "2021 A 篇｜艾米和布朗小姐",
+      "paragraphs": [
+        [
+          ["Amy walked toward Miss Brown's backyard, where she was planting roses.", "艾米朝布朗小姐的后院走去，布朗小姐正在那里种玫瑰。"],
+          ["Last week, Amy and her parents just moved into the house next door.", "上周，艾米刚和父母搬到她家隔壁。"]
+        ],
+        [
+          ["The old woman looked up, \"Why the long face, Amy? \"", "老太太抬起头：“艾米，怎么愁眉苦脸的？”"]
+        ],
+        [
+          ["\"There aren't any kids around to play with, \" said Amy.", "“附近没有孩子跟我玩，”艾米说，"],
+          ["\"I have nothing to do. \"", "“我也没事可做。”"]
+        ],
+        [
+          ["Miss Brown smiled, \"You sound just like a girl who used to live here. \"", "布朗小姐笑了：“你说的话和以前住在这儿的一个女孩一模一样。”"]
+        ],
+        [
+          ["\"Really?", "“真的？"],
+          ["Who? \"", "是谁？”"]
+        ],
+        [
+          ["\"Her name is Rachel, \" said Miss Brown.", "“她叫瑞秋，”布朗小姐说，"],
+          ["\"Too bad you two young girls couldn't have lived here at the same time. \"", "“可惜你们两个小姑娘没能同时住在这儿。”"]
+        ],
+        [
+          ["\"What did Rachel do when she was bored? \" asked Amy.", "“瑞秋觉得无聊时做什么呢？”艾米问。"]
+        ],
+        [
+          ["\"She planted a flower garden, \" answered Miss Brown.", "“她种了个花园，”布朗小姐回答。"]
+        ],
+        [
+          ["Amy looked at Miss Brown's roses.", "艾米望着布朗小姐的玫瑰："],
+          ["\"Could I, too? \"", "“我也能种吗？”"]
+        ],
+        [
+          ["Miss Brown handed Amy some tools and roses.", "布朗小姐递给艾米一些工具和玫瑰苗："],
+          ["\"This will get you started. \"", "“有这些就可以开始了。”"]
+        ],
+        [
+          ["\"Thanks, \" said Amy.", "“谢谢。”艾米说。"]
+        ],
+        [
+          ["Amy worked hard the whole afternoon in her garden.", "艾米在自己的花园里忙了整整一下午。"],
+          ["When she saw the lovely roses planted, she smiled.", "看着种好的漂亮玫瑰，她笑了。"],
+          ["Still, it was too bad that Rachel wasn't there.", "可惜瑞秋还是不在这儿。"]
+        ],
+        [
+          ["The next day, Amy watered her roses and walked to Miss Brown's backyard, where she sat reading.", "第二天，艾米给玫瑰浇了水，又来到布朗小姐的后院。布朗小姐正坐着看书。"],
+          ["\"What else did Rachel do? \" asked Amy.", "“瑞秋还做了些什么呢？”艾米问。"]
+        ],
+        [
+          ["\"She wrote poems in her flower garden, \" Miss Brown answered.", "“她在花园里写诗，”布朗小姐答道，"],
+          ["\"One of her poems even won a prize in a school competition. \"", "“有一首还在学校比赛中获了奖。”"]
+        ],
+        [
+          ["Amy closed her eyes.", "艾米闭上眼睛："],
+          ["\"How good it would feel, but I don't know how to write poems, \" she said.", "“那该多棒啊，可我不会写诗。”"],
+          ["Miss Brown smiled, \"The best way is to read poems first. \"", "布朗小姐笑了：“最好先读读诗。”"],
+          ["She handed Amy her book.", "她把书递给艾米。"],
+          ["\"Thanks, \" said Amy.", "“谢谢。”艾米说。"]
+        ],
+        [
+          ["Amy lay on her stomach next to her roses and read.", "艾米趴在玫瑰旁边读诗，"],
+          ["Then she started to write.", "然后动手写起来。"],
+          ["That night she had a poem that might not be a prize winner but sounded good enough.", "那天晚上，她写成了一首诗，也许拿不到奖，可读起来还挺不错的。"],
+          ["Still, it was too bad that Rachel wasn't there.", "她还是觉得瑞秋不在这里很可惜。"]
+        ],
+        [
+          ["The third day, Amy watered her flowers, wrote a new poem, and then walked to Miss Brown again.", "第三天，艾米浇了花，写了一首新诗，又去找布朗小姐。"],
+          ["\"What else did Rachel do? \" asked Amy,", "“瑞秋还做过什么？”艾米问。"],
+          ["\"She played in the attic （阁楼）.Come with me, \" Miss Brown invited.", "“她在阁楼里玩过。跟我来。”布朗小姐招呼她。"],
+          ["\"Thanks! \" said Amy.", "“谢谢！”艾米说。"]
+        ],
+        [
+          ["\"Make yourself at home, \" Miss Brown said and left Amy to search alone there.", "“就当在自己家一样。”布朗小姐说完，留下艾米自己四处找找。"],
+          ["Then Amy found a trophy （奖杯） with these words --- First Prize in Poetry, Rachel Brown, 1937.", "接着，艾米发现了一个奖杯，上面写着“诗歌一等奖，瑞秋·布朗，1937年”。"]
+        ],
+        [
+          ["Slowly, a smile spread across her face.", "艾米脸上慢慢露出了笑容。"],
+          ["Amy ran back to Miss Brown, \"I wonder if Rachel would like to write poems in my flower garden. \"", "她跑回"],
+          ["Miss Brown smiled, \"I think she would love to. \"", "布朗小姐身边：“不知道瑞秋愿不愿意来我的花园里写诗。”布朗小姐笑着说：“我想她一定很愿意。”"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "Why was Amy unhappy at first?",
+          "options": ["She couldn't meet Rachel.", "She didn't like the new house.", "She didn't have any friends there.", "She was left alone to Miss Brown."],
+          "answer": "C"
+        },
+        {
+          "stem": "What did Miss Brown do to help Amy?",
+          "options": ["She told Amy to stay alone.", "She worked and read with Amy.", "She showed Rachel's poems to Amy.", "She suggested some activities to Amy."],
+          "answer": "D"
+        },
+        {
+          "stem": "What did Amy find out about Rachel in the attic?",
+          "options": ["Who she really is.", "Her secret hobby.", "How old she is now.", "Her prizewinning poem."],
+          "answer": "A"
+        },
+        {
+          "stem": "Which is the main lesson of the story?",
+          "options": ["Having shared interests is important to a real friendship.", "Working in the garden is the best way to fight loneliness.", "Parents should think twice before moving to a new place.", "It is difficult for children to make friends with grown﹣ups."],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "gz-2021-b",
+      "title": "Guangzhou 2021 · Passage B",
+      "topic": "2021 B 篇｜座头鲸之歌",
+      "paragraphs": [
+        [
+          ["The top-selling album （唱片）, Songs of the Humpback Whale, was made public in 1970.", "1970年，畅销唱片《座头鲸之歌》问世。"],
+          ["This collection of nature recordings changed the way many people thought about whales, and it helped save thousands of whales' lives.", "这些自然录音改变了许多人对鲸的看法，还帮助挽救了成千上万头鲸。"]
+        ],
+        [
+          ["The album might never have been made without a sound engineer named Frank Watlington.", "如果没有音响工程师弗兰克·沃特灵顿，这张唱片也许永远不会问世。"],
+          ["In the 1960s, Watlington was making underwater recordings when he noticed some strange, deep sounds.", "20世纪60年代，他在水下录音时听到一些奇怪而低沉的声音，"],
+          ["He realized they were coming from whales.", "意识到那是鲸发出的。"],
+          ["Watlington played the recordings for a pair of scientists named Roger and Katy Payne.", "他把录音放给罗杰·佩恩和凯蒂·佩恩两位科学家听。"],
+          ["When they listened, they fell in love with these beautiful voices at once.", "两人一听就喜欢上了这些动听的声音。"]
+        ],
+        [
+          ["Katy Payne studied music as well as animals, and she was greatly surprised by how the whales communicated using sounds like an opera （歌剧） singer.", "凯蒂·佩恩既研究动物，也研究音乐。鲸竟能像歌剧歌手一样借助声音交流，让她大吃一惊。"],
+          ["She also noticed another interesting fact: the sounds had clear patterns.", "她还发现，这些声音有清晰的规律。"],
+          ["According to scientists, an animal sound with a repeating pattern is called a song.", "科学家把具有重复规律的动物鸣声称为歌声。"],
+          ["Some scientists even compared these singing animals to musicians.", "甚至有科学家把这些会唱歌的动物比作音乐家。"]
+        ],
+        [
+          ["The Paynes thought that other people should also hear the beauty of the whales' songs.", "佩恩夫妇觉得其他人也应该听听鲸的美妙歌声，"],
+          ["So Roger made the recordings into an album.", "于是罗杰把录音做成了一张唱片。"],
+          ["At the time when the album came out, whales were often caught, killed and traded for money.", "唱片发行时，人们常捕杀鲸，并以此牟利。"],
+          ["Some kinds were even in danger of dying out.", "有些鲸甚至濒临灭绝。"],
+          ["Most people had never thought that whales could communicate through songs.", "此前，大多数人从没想过鲸能通过歌声交流。"],
+          ["But after hearing the album, they began to think differently.", "听完唱片后，他们开始改变看法。"]
+        ],
+        [
+          ["The album led people to take action to save whales.", "这张唱片推动人们采取行动保护鲸。"],
+          ["Musicians began using whale songs in their music, and whales were included in movies and television shows.", "音乐家开始把鲸的歌声用在音乐里，鲸也出现在电影和电视节目中。"],
+          ["In 1982, a ban to stop deep-sea whaling was made.", "1982年，人们颁布了一项禁止深海捕鲸的禁令。"],
+          ["Before it, in the 1950s and 1960s, more than fifty thousand whales per year were killed.", "此前在20世纪五六十年代，每年有五万多头鲸被杀死。"],
+          ["After it, the number went down below two thousand.", "禁令出台后，这个数字跌到两千以下。"]
+        ],
+        [
+          ["It might seem impossible that just one album could help save the lives of so many whales.", "一张唱片居然能帮助救下这么多鲸，听起来也许不可思议。"],
+          ["But this album told people secrets about whales that had long been hidden under the sea.", "可它让人们知道了长久藏在海底的秘密，"],
+          ["It allowed whales to finally share their songs with the human world.", "也让鲸终于能与人类分享它们的歌声。"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 6,
+          "image": "2021-image1.jpg",
+          "alt": "《座头鲸之歌》唱片封面"
+        }
+      ],
+      "questions": [
+        {
+          "stem": "What is the purpose of the passage?",
+          "options": ["To call on people to save whales.", "To tell how a good album was made.", "To show that whales are born singers.", "To introduce an album and its stories."],
+          "answer": "D"
+        },
+        {
+          "stem": "Who first found the special voices of the whales?",
+          "options": ["A song recorder.", "An opera singer.", "A sound engineer.", "An animal scientist."],
+          "answer": "C"
+        },
+        {
+          "stem": "What fact about the whales surprised Katy Payne?",
+          "options": ["They could talk with scientists.", "They could sing like an opera singer.", "They could repeat interesting sounds.", "They could communicate through songs."],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "gz-2021-c",
+      "title": "Making a Scarecrow",
+      "topic": "2021 C 篇｜制作稻草人",
+      "paragraphs": [
+        [
+          ["How would you like your very own scarecrow （稻草人）?", "想要一个自己的稻草人吗？"],
+          ["You can make one out of some old boards.", "你可以用旧木板做一个。"],
+          ["You can use it to scare away birds in your garden.", "它能吓走花园里的鸟，"],
+          ["You can also put a scarecrow near your front door to give visitors a big surprise!", "也可以摆在前门附近，给访客一个大惊喜！"]
+        ],
+        [
+          ["Here are what you will need:", "你需要准备："]
+        ],
+        [
+          ["- a grown-up helper", "- 一位帮忙的大人。"],
+          ["- seven boards (each 10 cm wide): one 160 cm long; three 50 cm long; one 30 cm long; two 60 cm long", "- 七块宽10厘米的木板，其中一块长160厘米，三块长50厘米，一块长30厘米，两块长60厘米。"],
+          ["- a hammer and nails; safety pins; a pen", "- 一把锤子、钉子、别针和一支笔。"],
+          ["- a shirt with long sleeves", "- 一件长袖衬衫、"],
+          ["- a long skirt", "一条长裙、"],
+          ["- gloves and boots", "手套、靴子、"],
+          ["- a hat and a pillow", "一顶帽子和一个枕头。"]
+        ],
+        [
+          ["Step 1: Lay the boards on the ground.", "1. 把木板平放在地上，"],
+          ["Make the shape according to the picture.", "照图摆出形状。"],
+          ["You will have two arm pieces left over.", "会剩下两块做手臂的板子，"],
+          ["You will add them later.", "等会儿再装。"]
+        ],
+        [
+          ["Step 2: Ask a grown-up to nail the pieces together.", "2. 请大人用钉子把摆好的木板钉在一起。"]
+        ],
+        [
+          ["Step 3: Put the shirt on.", "3. 套上衬衫。"],
+          ["Ask a grown-up to nail one arm piece to the shoulder.", "请大人把一块手臂板钉在肩部，"],
+          ["Let the sleeve fall down so that it covers the board.", "把袖子垂下来盖住木板，"],
+          ["Pin the glove to the sleeve.", "再用别针把手套固定在袖子上。"],
+          ["Do the same with the other arm.", "另一只手臂也这样做。"]
+        ],
+        [
+          ["Step 4: Put on the skirt.", "4. 给稻草人穿上裙子。"]
+        ],
+        [
+          ["Step 5: Stick the pillow on top as the head.", "5. 把枕头固定在最上方当作头，"],
+          ["Draw eyes, a nose and a mouth on it.", "在上面画出眼睛、鼻子和嘴。"]
+        ],
+        [
+          ["Step 6: Stand the body up and put it where you want.", "6. 把做好的身体立起来，放到你想摆放的位置。"]
+        ],
+        [
+          ["Step 7: Put the hat on and then put the boots under the skirt so it looks like it has feet.", "7. 戴上帽子，再把靴子放在裙子下，让它看起来有双脚。"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 3,
+          "image": "2021-image3.jpg",
+          "alt": "锤子、钉子、别针和枕头"
+        },
+        {
+          "after": 3,
+          "image": "2021-image2.jpg",
+          "alt": "稻草人的木板框架"
+        },
+        {
+          "after": 10,
+          "image": "2021-image4.jpg",
+          "alt": "完成后的稻草人"
+        }
+      ],
+      "questions": [
+        {
+          "stem": "This passage is most probably written for ______.",
+          "options": ["young kids", "parents", "grown﹣up helpers", "teachers"],
+          "answer": "A"
+        },
+        {
+          "stem": "A scarecrow can be used to ______.",
+          "options": ["catch birds", "surprise your guests", "drive dogs away", "show visitors the way"],
+          "answer": "B"
+        },
+        {
+          "stem": "Which shows the correct steps to make a scarecrow? a. Prepare all that you need. b. Let the body stand where you want. c. Dress up the body and make a head for it. d. Put the hat on and put the boots under the skirt. e. Nail the body parts together according to the picture.",
+          "options": ["a﹣e﹣c﹣b﹣d", "a﹣e﹣b﹣c﹣d", "e﹣c﹣b﹣d﹣a", "e﹣a﹣c﹣d﹣b"],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "gz-2021-d",
+      "title": "Guangzhou 2021 · Passage D",
+      "topic": "2021 D 篇｜告别拖延",
+      "paragraphs": [
+        [
+          ["Looking at the undone homework on his desk always makes David Grey feel uncomfortable.", "看到桌上没做完的作业，戴维·格雷总觉得不自在。"],
+          ["More often than not, David leaves his homework behind and surfs the Internet or watches TV instead, waiting until the last minute.", "他常常先把作业丢在一边，去上网或看电视，拖到最后一刻才开始。"],
+          ["\"But the longer I wait, \" says David, aged 15, \"the more I worry. \"", "15岁的戴维说：“可等得越久，我就越担心。”"]
+        ],
+        [
+          ["Everyone procrastinates （拖延） because they want to feel good now.", "人人都会拖延，因为大家都想现在就感觉好一点。"],
+          ["The way to do that is to avoid the task.", "暂时避开任务，就能做到这一点。"],
+          ["You can procrastinate on nearly anything, even enjoyable tasks such as planning a vacation.", "几乎任何事都可能被拖延，甚至是安排假期这样开心的事。"],
+          ["\"Some people procrastinate cleaning.", "彼得·斯通教授说：“有人拖着不打扫，"],
+          ["Some people procrastinate by cleaning, \" says Professor Peter Stone.", "有人却靠打扫卫生来拖延别的任务。”"],
+          ["Research has shown that the top tasks young people procrastinate are studying and going to bed.", "研究表明，年轻人最常拖延的是学习和上床睡觉。"],
+          ["\"One big cause for procrastination is that people are afraid of failure, of not meeting others' expectations, \" Stone adds.", "斯通补充道：“拖延的一个重要原因是，人们害怕失败，害怕辜负别人的期望。”"]
+        ],
+        [
+          ["Some people believe that procrastination will make them thrive.But researchers disagree.", "有的人认为拖延会让他们做得更好，研究人员却不这么看。"],
+          ["\"I did a study several years ago, asking procrastinators to finish a task in a certain period of time, \" says Stone.", "斯通说：“几年前我做过一项研究，要求经常拖延的人在规定时间内完成任务。"],
+          ["\"They did worse than non-procrastinators: they made more mistakes and they took longer.", "他们做得比不拖延的人差，犯错更多，花的时间也更长，"],
+          ["But they thought they did better. \"", "但他们自己却觉得做得更好。”"],
+          ["No matter what the cause is, procrastination is usually not going to be good for you.", "不论原因是什么，拖延通常没什么好处。"],
+          ["For example, bedtime procrastination can lead to sleeplessness, which in turn can cause many other health problems.", "比如，一直拖着不上床可能导致失眠，而失眠又会引起许多其他健康问题。"]
+        ],
+        [
+          ["For those who need some drives to stop procrastinating, the best advice might be to take action first.", "如果需要一点动力来停止拖延，最好的办法也许是先行动。"],
+          ["If you've been procrastinating on forming a habit of exercise, just put on your walking shoes.", "要是你一直拖着没开始锻炼，就先穿上步行鞋。"],
+          ["A little bit of progress will get you moving.", "一点点进展就能让你动起来。"]
+        ],
+        [
+          ["Next, find something to help you remember to take action.", "接着，找点东西提醒自己采取行动。"],
+          ["If you want to go to bed at 10: 30 pm, you might set a timed dimmer switch （渐暗开关） at 10 pm.", "如果你想晚上10点半上床，可以把灯设为晚上10点开始变暗。"],
+          ["When the lights are dimmer, you'll start going to bed.", "灯光暗下来，你就会开始准备睡觉。"],
+          ["It works for most people.", "这对大多数人有效。"]
+        ],
+        [
+          ["Finally, reward yourself every time you make progress.", "最后，每次有进步都奖励自己一下。"],
+          ["For example, after you've run 3 km, enjoy your favourite ice-cream.", "比如跑完三公里，就吃一个最喜欢的冰激凌。"],
+          ["But be careful: it won't work the other way around.", "记住，要先做事，再领奖励。"]
+        ]
+      ],
+      "underline": [
+        [2, "thrive"]
+      ],
+      "questions": [
+        {
+          "stem": "What can be the best title of this passage?",
+          "options": ["A day of a procrastinator.", "Procrastination：yes or no？", "Say goodbye to procrastination.", "Want to feel good now？Procrastinate!"],
+          "answer": "C"
+        },
+        {
+          "stem": "What is the main reason for people's procrastination?",
+          "options": ["They want to avoid doing hard work.", "They fear to lose and let others down.", "They need to finish the top tasks first.", "They plan to do the enjoyable tasks last."],
+          "answer": "B"
+        },
+        {
+          "stem": "The underlined word \"thrive\" in paragraph 3 most probably means ______.",
+          "options": ["think faster", "work more successfully", "give up more easily", "worry too much"],
+          "answer": "B"
+        },
+        {
+          "stem": "What should David do if he wants to stop procrastinating on a writing task?",
+          "options": ["Put on some soft music to help think actively.", "Enjoy a favourite ice﹣cream，and then start writing.", "Search the Internet for enough ideas before starting.", "Pick up a pen and write down possible starting sentences."],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "gz-2020-a",
+      "title": "Guangzhou 2020 · Passage A",
+      "topic": "2020 A 篇｜艾米的急救",
+      "paragraphs": [
+        [
+          ["“Amy! Milk!” Mama called.", "“艾米！去取牛奶！”妈妈喊道。"]
+        ],
+        [
+          ["Milk. It was Amy’s turn to get it.", "轮到艾米去取牛奶了。"],
+          ["Amy sighed and shut her first-aid（急救）book.", "她叹了口气，合上急救手册。"]
+        ],
+        [
+          ["Amy tied the cow close to a tree.", "艾米把牛拴在一棵树旁。"],
+          ["Somewhere down the mountain, some volunteer doctors were teaching medical skills to village nurses.", "山下某处，几名志愿医生正在给村里的护士传授医疗技能。"],
+          ["Amy heard Betty drive off hours ago.", "几小时前，艾米听见贝蒂开车走了。"],
+          ["“She should have taken me with her.", "“她本该带我一起去的。"],
+          ["She thinks I’m too young.” Amy thought.", "她觉得我太小了，”艾米想，"],
+          ["“But she’s wrong.", "“可她错了。"],
+          ["I am already 15!”", "我已经十五岁了！”"]
+        ],
+        [
+          ["Amy carried the milk back to Mama, then wandered up the road.", "艾米把牛奶拿给妈妈，然后沿路往前走。"],
+          ["Roy, a village boy, was trying to stand on a horse’s back.", "村里的男孩罗伊正试着站到马背上。"],
+          ["“No wonder they don’t trust kids with anything important,” Amy thought.", "“难怪大人不放心让孩子做重要的事。”艾米想。"]
+        ],
+        [
+          ["She had just turned away when she heard a heavy fall and a few cries.", "她刚转身，就听见一声重重的摔落声，接着有人叫了起来。"],
+          ["Roy was on the ground.", "罗伊倒在地上。"],
+          ["“Roy!”", "“罗伊！”"],
+          ["The kids nearby ran towards him.", "附近的孩子跑过去。"],
+          ["“Get Betty,” one said.", "有人说：“去找贝蒂。”"],
+          ["Amy shook her head.", "艾米摇摇头："],
+          ["“Betty’s gone to the city.”", "“贝蒂进城了。”"]
+        ],
+        [
+          ["The kids didn’t know what to do.", "孩子们都不知道怎么办。"],
+          ["Amy ran to Roy and saw one of his legs out of shape.", "艾米跑到罗伊身边，看见他一条腿变了形。"],
+          ["A broken leg!", "腿骨折了！"],
+          ["She remembered what the first-aid book said about it.", "她想起了急救手册上讲的处理方法。"]
+        ],
+        [
+          ["“Victor!” Amy called to one of the boys.", "“维克托！”艾米叫住一个男孩，"],
+          ["“Go get Roy’s mama, and find someone with a truck,” She turned to the others.", "“去找罗伊的妈妈，再找个有卡车的人。”她转向其他孩子说："],
+          ["“Give me your shirts.", "“把你们的衬衫给我。"],
+          ["We need something to tie his leg with.”", "我们需要东西把他的腿绑住。”"]
+        ],
+        [
+          ["Amy then found a strong, straight stick.", "艾米找来一根又结实又直的木棍，"],
+          ["She carefully wrapped the shirts around Roy’s leg and the stick.", "小心地用衬衫把罗伊的腿和木棍缠在一起。"],
+          ["Roy cried out in pain.", "罗伊痛得叫了起来。"],
+          ["“I know it hurts,” Amy said softly.", "“我知道很疼，”艾米轻声说，"],
+          ["“But this will hold it still until you get to the hospital.”", "“这样能把腿固定住，撑到你到医院。”"]
+        ],
+        [
+          ["When Amy was done, she looked up and saw Roy’s mama and a man watching beside a truck.", "处理完后，艾米抬头看见罗伊的妈妈和一个男人站在卡车旁。"],
+          ["“Thank you, Amy,” Roy’s mama said.", "“谢谢你，艾米。”罗伊的妈妈说。"],
+          ["Amy helped them lift Roy into the truck, then they drove down the hillside towards the hospital.", "艾米帮他们把罗伊抬上卡车，随后他们沿山坡开车去医院。"]
+        ],
+        [
+          ["The next day, Betty came to Amy’s home.", "第二天，贝蒂来到艾米家。"],
+          ["“I heard what you did,” Betty said.", "“我听说你做的事了，”她说，"],
+          ["“You kept your head in an emergency.", "“遇到紧急情况，你能保持冷静。"],
+          ["That’s an important skill.”", "这是很重要的本领。”"]
+        ],
+        [
+          ["Amy’s face turned red.", "艾米脸红了。"],
+          ["“I was afraid...”", "“我当时也害怕……”"]
+        ],
+        [
+          ["Betty shook her head.", "贝蒂摇摇头。"],
+          ["“It’s OK for a nurse to be afraid, as long as she has a clear head.", "“护士害怕也没关系，只要头脑清楚。"],
+          ["The volunteer doctors are coming tomorrow with vaccines.", "志愿医生明天会带疫苗来，"],
+          ["We need some more hands.", "我们还缺人手。"],
+          ["Can you help?”", "你能来帮忙吗？”"]
+        ],
+        [
+          ["“I’d love to.” Amy replied at once.", "“我很愿意。”艾米马上回答。"]
+        ],
+        [
+          ["“Come early, then.", "“那就早点来。"],
+          ["There is a lot to learn.”", "有很多东西要学。”"]
+        ],
+        [
+          ["Amy smiled.", "艾米笑了。"],
+          ["“I’ll bring my first-aid book.”", "“我会带上我的急救手册。”"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "Why didn't Betty take Amy with her to the medical training?",
+          "options": ["Amy was busy reading.", "Amy had to milk the cow.", "Betty left too early in the morning.", "Betty thought Amy wasn't old enough."],
+          "answer": "D"
+        },
+        {
+          "stem": "What happened to Roy?",
+          "options": ["He fell off the horseback.", "He was kicked by the horse.", "He successfully stood on the horseback.", "He was pulled off the horseback by the kids."],
+          "answer": "A"
+        },
+        {
+          "stem": "What is the correct order of Amy’s first-aid actions? a. She found a proper stick. b. She helped lift Roy into the truck. c. She asked the boys for some shirts. d. She tied the shirts around the broken leg. e. She sent someone to get Roy’s mum and a truck.",
+          "options": ["c-e-a-b-d", "a-c-e-d-b", "e-c-a-d-b", "e-c-a-b-d"],
+          "answer": "C"
+        },
+        {
+          "stem": "Why did Betty invite Amy to help the doctors in the end?",
+          "options": ["Amy had similar experiences before.", "Amy was cool-headed when giving first-aid.", "Betty regretted not taking Amy to the training.", "Betty realized that Amy had become a good doctor."],
+          "answer": "B"
+        },
+        {
+          "stem": "Which sentence best describes a lesson from the story?",
+          "options": ["Only trained doctors and nurses can provide first-aid.", "Knowledge from books can help solve real-life problems.", "Children need enough practice before they can be helpful.", "Helping with housework is important to children’s health."],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "gz-2020-b",
+      "title": "Guangzhou 2020 · Passage B",
+      "topic": "2020 B 篇｜风筝的历史与用途",
+      "paragraphs": [
+        [
+          ["How would you like to build a time machine?", "想造一台时光机吗？"],
+          ["Paper, sticks, glue and string are all you need.", "只要纸、木棍、胶水和线，"],
+          ["Put them together to build a kite.", "把它们做成"],
+          ["A kite connects you to the past.", "一只风筝就行。一只风筝能让你与过去相连。"]
+        ],
+        [
+          ["No one knows who flew the first kite.", "没人知道第一个放风筝的人是谁。"],
+          ["It was probably someone in China or perhaps Indonesia.", "可能是中国人，也可能是印度尼西亚人。"],
+          ["Indonesian fishermen hung fishhooks on kites and sent them out to sea to catch fish.", "印度尼西亚的渔民把鱼钩挂在风筝上，让风筝飞向海面捕鱼。"],
+          ["Starting 2,000 years ago, Chinese farmers flew kites to welcome the New Year and bring good luck to Earth.", "早在两千年前，中国农民就放风筝迎接新年，祈求大地迎来好运。"]
+        ],
+        [
+          ["In China, people also used kites during wartime.", "在中国，战时也用过风筝。"],
+          ["One Chinese story tells how soldiers put noise makers on kites and flew them at night over the enemy camp.", "有个中国故事说，士兵把能发出响声的东西装在风筝上，夜里放飞到敌营上空。"],
+          ["The enemies were frightened by the noise and ran away.", "敌人被声音吓得逃跑了。"]
+        ],
+        [
+          ["About 1,300 years ago, Chinese travelers took kites to Japan.", "约一千三百年前，中国旅行者把风筝带到了日本。"],
+          ["Soon kites filled the skies there.", "不久，日本的天空就到处都是风筝。"],
+          ["Kites reached Thailand about 700 years ago.", "约七百年前，风筝传到泰国。"],
+          ["During floods, Thai farmers flew kites over their fields.", "洪水期间，泰国农民在田地上空放风筝，"],
+          ["They hoped the kites would drive away the clouds and stop the rain.", "希望风筝驱散乌云，让雨停下来。"],
+          ["Over time, kites flew their way out of Asia.", "后来，风筝传出了亚洲。"],
+          ["Today, kites are a passion all over the world.", "如今，世界各地都有很多人热爱风筝。"],
+          ["Kite fans meet at festivals in many parts of the world and have great fun.", "爱好者在各地的风筝节上相聚，玩得很开心。"]
+        ],
+        [
+          ["Over the years, kites have also helped people understand the natural world.", "多年来，风筝还帮助人们认识自然。"],
+          ["In 1749, for example, thermometers were tied to kites to measure temperatures.", "例如，1749年，人们把温度计绑在风筝上测量气温。"],
+          ["In 1906, cameras hanging from kites took pictures of San Francisco, California after an earthquake.", "1906年，加利福尼亚州旧金山发生地震后，人们把照相机挂在风筝上拍摄城市的情况。"],
+          ["The photos helped people plan what to do.", "这些照片帮助人们制订接下来的行动计划。"]
+        ],
+        [
+          ["Kites also helped inventors find out how to make airplanes.", "风筝也帮发明家弄明白了怎么造飞机。"],
+          ["The Wright brothers studied how kites flew, which helped them make the first successful airplane.", "莱特兄弟研究风筝怎样飞行，这帮助他们造出了第一架成功飞行的飞机。"]
+        ],
+        [
+          ["Since the ancient Chinese first set their kites into the air, people have loved flying kites.", "自从古代中国人把风筝放上天空，人们就一直喜欢放风筝。"],
+          ["Kites give us ways to celebrate, relax and explore.", "风筝让我们得以庆祝、放松和探索。"],
+          ["So go fly a kite!", "去放一只风筝吧，"],
+          ["Enjoy the feeling of wonder that kite flyers have felt for centuries.", "感受几个世纪以来放风筝的人都体验过的那份惊奇！"]
+        ]
+      ],
+      "underline": [
+        [3, "passion"]
+      ],
+      "questions": [
+        {
+          "stem": "According to the passage, in which countries were kites used to make good wishes?",
+          "options": ["China and Japan.", "China and Thailand.", "Japan and Indonesia.", "Thailand and Indonesia."],
+          "answer": "B"
+        },
+        {
+          "stem": "According to the Chinese story, the army used kites to___________.",
+          "options": ["make the enemies leave in fear", "celebrate victories during wartime", "stop the enemies from sleeping well", "carry soldiers to fight against the enemies"],
+          "answer": "A"
+        },
+        {
+          "stem": "The underlined word “passion”in Paragraph 4 means__________.",
+          "options": ["strong love", "useful machine", "happy dream", "common treasure"],
+          "answer": "A"
+        },
+        {
+          "stem": "How does the writer develop Paragraph 5?",
+          "options": ["By telling stories.", "By listing numbers.", "By comparing facts.", "By giving examples."],
+          "answer": "D"
+        },
+        {
+          "stem": "What’s the purpose of this passage?",
+          "options": ["To show people how to fly kites.", "To explain how kites are used in science.", "To introduce the roles of kites in history.", "To discuss the difference among kites worldwide."],
+          "answer": "C"
+        }
+      ]
+    },
+    {
+      "id": "gz-2020-c",
+      "title": "Five interesting sports",
+      "topic": "2020 C 篇｜五项有趣的运动",
+      "paragraphs": [
+        [
+          ["Our most unusual sports from around the world", "世界各地不同寻常的运动"]
+        ],
+        [
+          ["Every country has a national sport and some popular sports are now played across the world.", "每个国家都有自己的国民运动，有些热门项目如今已传遍世界。"],
+          ["However, in most countries, people also play unusual sports, with strange or interesting rules.", "不过，大多数国家也有人参加不同寻常的运动，规则奇特或有趣。"],
+          ["Here are our top five unusual sports from around the planet.", "以下是我们选出的五项。"]
+        ],
+        [
+          ["Man vs. Horse Marathon", "人马马拉松"]
+        ],
+        [
+          ["This race takes place in a small town in Wales, about 200 miles from London.", "这项比赛在威尔士的一个小镇举行，离伦敦大约200英里。"],
+          ["It’s called a marathon（马拉松）,but it's actually 35.4km, not 42.2km like a usual marathon.", "它名叫马拉松，实际距离是35.4公里，普通马拉松则是42.2公里。"],
+          ["People race against horses across the hills and mountains.", "人和马在山丘与山地间竞速。"],
+          ["It started in 1981, but a human did not win until 2004.", "比赛始于1981年，直到2004年才第一次有人获胜。"]
+        ],
+        [
+          ["Camel Wrestling", "骆驼摔跤"]
+        ],
+        [
+          ["In Turkey, camel（骆驼）wrestling is a very old sport.", "在土耳其，骆驼摔跤是一项古老的运动。"],
+          ["The largest camel wrestling competition takes place every year and thousands of people come.", "规模最大的比赛每年举行，吸引数千人观看。"],
+          ["In the sport, two camels fight against each other.", "两头骆驼在场上较量。"],
+          ["Sometimes the camels do not want to fight and they run through the crowds, which can be dangerous.", "有时它们不愿打斗，就从人群中跑过去，这可能很危险。"]
+        ],
+        [
+          ["Dragon Boat Racing", "赛龙舟"]
+        ],
+        [
+          ["Every year in China, thousands of people watch dragon boat races.", "每年，中国都有数千人观看龙舟比赛。"],
+          ["A dragon boat is a traditional Chinese boat with a painted dragon's head on one end.", "龙舟是中国的传统船只，一头装有彩绘龙头。"],
+          ["There can be up to 36 people or more racing in each boat in the water.", "每条龙舟可有多达36人甚至更多人在水上竞渡。"],
+          ["Dragon boat racing is also popular in some other Asian countries.", "赛龙舟在亚洲其他一些国家也很受欢迎。"]
+        ],
+        [
+          ["Caber Toss", "掷木柱"]
+        ],
+        [
+          ["In this sport, players compete to throw a large piece of wood called a caber as far as they can.", "选手比赛看谁能把一根叫作 caber 的大木柱扔得更远。"],
+          ["There is no rule about the size of the caber, but it’s usually the size of a small tree.", "木柱没有规定尺寸，通常有一棵小树那么大。"],
+          ["It’s an ancient Scottish sport.", "这是苏格兰的古老运动，"],
+          ["Visitors to the UK can check it out.", "去英国旅行时可以看看。"]
+        ],
+        [
+          ["Chess Boxing", "国际象棋拳击"]
+        ],
+        [
+          ["A good chess boxer needs to be both strong and smart.", "优秀的选手既要强壮，又要聪明。"],
+          ["Players play a round of chess, followed by a round of boxing.", "选手先下一轮棋，再打一轮拳，"],
+          ["There are eleven rounds in total.", "共十一轮。"],
+          ["Chess boxing was invented in 1992 by an English comic book writer.", "这项运动由一位英国漫画作者于1992年发明，"],
+          ["The sport is more popular in England and Germany.", "在英格兰和德国比较流行。"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "What can we learn about Man vs. Horse Marathon?",
+          "options": ["it is an outdoor sport.", "It first appeared 16 years ago.", "No human has ever won the game.", "It follows the rules of a usual marathon."],
+          "answer": "A"
+        },
+        {
+          "stem": "Which of the following is mentioned about Camel Wrestling?",
+          "options": ["It should be stopped.", "It’s worth seeing.", "It’s unfair to the animals.", "It’s sometimes dangerous to watch."],
+          "answer": "D"
+        },
+        {
+          "stem": "Which picture best describes Caber Toss?",
+          "options": ["图 A（左一）", "图 B（左二）", "图 C（左三）", "图 D（右一）"],
+          "answer": "C",
+          "image": "2020-image2.jpg",
+          "imageAlt": "第38题的四幅选项图"
+        },
+        {
+          "stem": "Which sport is popular in Asia?",
+          "options": ["Man vs. Horse Marathon.", "Dragon Boat Racing.", "Caber Toss.", "Chess Boxing."],
+          "answer": "B"
+        },
+        {
+          "stem": "How many sports have animals as players?",
+          "options": ["1", "2.", "3.", "4."],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "gz-2020-d",
+      "title": "Guangzhou 2020 · Passage D",
+      "topic": "2020 D 篇｜在太空种植物",
+      "paragraphs": [
+        [
+          ["What will astronauts（宇航员）eat when a space trip takes years?", "如果一趟太空旅行持续好几年，宇航员吃什么呢？"]
+        ],
+        [
+          ["“Lots of fresh vegetables,” says Dr. Janet Williams, whose team have spent the last 10 years learning how to grow plants in a space station.", "“很多新鲜蔬菜。”珍妮特·威廉斯博士说。过去十年，她的团队一直在研究怎样在空间站种植物。"],
+          ["And it’s a good thing that she has already started her work, because space gardening can be really hard.", "她早早开始这项研究是件好事，因为太空种植着实不容易。"]
+        ],
+        [
+          ["As usual, astronaut George White looked into the closed plant room.", "和往常一样，宇航员乔治·怀特往封闭的种植室里看。"],
+          ["He had planted Dr. Williams’s quick-growing seedlings in it, but none of the stems were showing.", "他在里面种了威廉斯博士培育的速生幼苗，却一根茎都没看见。"],
+          ["He opened the room to check and found the problem.", "他打开种植室检查，"],
+          ["The stems weren’t growing upward and the roots weren't growing downward.", "发现茎没往上长，根也没往下长。"],
+          ["On Earth, gravity（重力）helps a plant’s stems and roots to find “up” and “down”.", "在地球上，重力能帮茎和根辨别“上”和“下”。"],
+          ["However, in the space station, there was almost no gravity.", "而空间站里几乎没有重力。"]
+        ],
+        [
+          ["Dr. Williams suggested a solution: give the plants more light, as plants also use sunlight to find their way.", "威廉斯博士提出了一个办法：给植物更多光，因为植物也可以借助阳光确定生长方向。"],
+          ["And it worked.", "这个办法奏效了。"],
+          ["When the plants had more light, the stems turned up and the roots went down.", "光照加强后，茎向上长，根向下伸。"]
+        ],
+        [
+          ["Now Dr. Williams was free to worry about the next problem: Would her baby plants live to flower?", "接下来，威廉斯博士开始担心另一个问题：这些幼苗能活到开花吗？"],
+          ["Can we grow food on a space journey?", "我们能在太空旅途中种出食物吗？"]
+        ],
+        [
+          ["Many plants died in the space station.", "空间站里死了许多植物。"],
+          ["Dr. Williams thought she knew why: the space plants were hungry for air.", "威廉斯博士认为自己找到了原因：太空植物缺少流动的空气。"],
+          ["Plants live by taking up CO2 from the air.", "植物靠吸收空气中的二氧化碳生存。"],
+          ["Since a plant uses it up in the air around, the plant needs moving air to bring more CO2 close to its surface!", "周围的二氧化碳用完后，植物就需要流动的空气把更多二氧化碳带到它的表面。"],
+          ["On Earth, the air is always moving.", "地球上的空气总在流动。"],
+          ["Gravity pulls down cold air, and warm air rises.", "重力让冷空气下沉，暖空气则会上升。"],
+          ["And with these air movements, plants get enough CO2.", "空气这样流动，植物就能得到足够的二氧化碳。"]
+        ],
+        [
+          ["Many earlier experiments with plants in space had used closed rooms.", "以往许多太空植物实验都在封闭的房间里进行。"],
+          ["Dr. Williams tried a new greenhouse that had a fan to keep the air moving.", "威廉斯博士试用了一间新温室，里面有风扇让空气保持流动。"],
+          ["The plants loved it.", "植物长得很好，"],
+          ["They flowered and even produced more seeds.", "开了花，甚至结出了更多种子。"],
+          ["Using Dr. Williams's method, astronaut George completed the first seed-to-seed experiment in space, and moved one step closer to a garden in space.", "乔治用她的方法完成了首次太空“从种子到种子”的实验，让建成太空花园的目标更近了一步。"]
+        ],
+        [
+          ["“And this,” says Dr. Williams, “is good news for long-term space travel.”", "“这对长期太空旅行来说是个好消息。”威廉斯博士说。"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 8,
+          "image": "2020-image3.jpg",
+          "alt": "种子、幼苗、茎和根示意图。图中标注：seed 是种子，seedlings 是幼苗，stem 是茎，roots 是根。"
+        }
+      ],
+      "underline": [
+        [6, "it"]
+      ],
+      "questions": [
+        {
+          "stem": "Why have Dr. Williams’s team tried to grow plants in space?",
+          "options": ["To produce fresh air for astronauts.", "To help astronauts relax themselves.", "To provide food for long space journeys.", "To make the space garden more beautiful."],
+          "answer": "C"
+        },
+        {
+          "stem": "How did light help solve the problem mentioned in Paragraph 3?",
+          "options": ["It caused the gravity to change.", "It encouraged the plants to grow faster.", "It helped the plants to grow in the right direction.", "It showed the astronauts where to plant vegetables."],
+          "answer": "C"
+        },
+        {
+          "stem": "Why did many plants die in the space station?",
+          "options": ["The light was too strong.", "There was too much CO2.", "There was not enough room to grow.", "The air condition was not good enough."],
+          "answer": "D"
+        },
+        {
+          "stem": "The underlined word “it” in Paragraph 7 refers to________.",
+          "options": ["the moving air", "the closed room", "the space journey", "the space garden"],
+          "answer": "A"
+        },
+        {
+          "stem": "What can we learn about Dr. Williams’s team from the passage?",
+          "options": ["They mainly live on fresh vegetables.", "They have successfully built a space garden.", "They invented a special fan for their greenhouse.", "They have worked on space gardening for many years."],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "gz-2019-a",
+      "title": "Guangzhou 2019 · Passage A",
+      "topic": "2019 A 篇｜大象、鳄鱼和铁帽",
+      "paragraphs": [
+        [
+          ["An elephant and a crocodile were once standing beside a river.", "从前，一头大象和一条鳄鱼站在河边，"],
+          ["They were disputing which was the better animal.", "争论谁更了不起。"]
+        ],
+        [
+          ["\"Look at my strength, \"said the elephant.", "“看看我的力气。”大象说，"],
+          ["\"I can pull up a tree, roots and all, with my trunk\"", "“我能用鼻子把整棵树连根拔起。”"]
+        ],
+        [
+          ["“Ah! But your skin is not nearly so thick as mine, \"replied the crocodile.", "“啊！可是你的皮远没有我的厚。”鳄鱼回答，"],
+          ["\"No knife or tooth can cut through it.”", "“刀也好，牙齿也好，都割不透我的皮。”"]
+        ],
+        [
+          ["Just as they were coming to blows, a lion happened to pass.", "它们正要打起来，一头狮子刚好经过。"]
+        ],
+        [
+          ["\"My dear friends !\" said the King of all animals, going up to them.", "“亲爱的朋友们！”这位百兽之王走上前说，"],
+          ["\"Let me know the cause of your disagreement.”", "“告诉我，你们为什么争吵？”"]
+        ],
+        [
+          ["“Will you kindly tell us which is the better animal? \"cried both at once.", "“请您告诉我们，谁更了不起？”它们齐声问。"]
+        ],
+        [
+          ["\"Certainly,\" said the lion, pointing across the river.", "“当然可以。”狮子指着河对岸说，"],
+          ["\"Do you see the soldier’s metal hat on that wall?”", "“你们看见那堵墙上的士兵铁帽了吗？”"]
+        ],
+        [
+          ["“Yes! \"replied the beasts.", "“看见了！”两只动物回答。"]
+        ],
+        [
+          ["“Well, then, \"continued the lion, \" go and get it, and bring it to me, and I shall be able then to decide between you.”", "“那好，”狮子接着说，“去把它拿来给我，到时我就能判断了。”"]
+        ],
+        [
+          ["Upon hearing this, off they started.", "听了这话，它们立刻出发。"],
+          ["The crocodile, being used to the water, reached the opposite side of the river first, and was soon standing beside the wall.", "鳄鱼熟悉水性，先到对岸，很快来到墙边。"]
+        ],
+        [
+          ["Here he waited till the elephant came up.", "它在那儿等大象赶来。"],
+          ["The elephant, seeing that the crocodile had no way of reaching their goal, raised his long trunk, and took down the hat quite easily.", "大象见鳄鱼够不着铁帽，便举起长鼻子，轻轻松松把帽子取了下来。"]
+        ],
+        [
+          ["They then made their way together back again across the river.", "它们又一起往回渡河。"],
+          ["The elephant was trying to keep up with the fast-moving crocodile in the water and became careless.", "大象急着跟上游得很快的鳄鱼，一时大意。"],
+          ["When he was forced to turn sharply to avoid a floating tree branch, the elephant dropped the hat and it fell to the river bottom.", "为避开一根漂过来的树枝，它不得不猛地转弯，铁帽也被它弄掉了，沉到河底。"],
+          ["The crocodile noticed the accident, so down he dived, and brought it up in his huge mouth.", "鳄鱼发现了，便潜下水，用大嘴把帽子叼了上来。"],
+          ["They then returned, and the crocodile laid the metal hat at the lion's feet.", "它们回到岸上，鳄鱼把帽子放到狮子脚边。"],
+          ["The King took it up, and turning to the elephant, said:", "狮子捡起帽子，转向大象说："]
+        ],
+        [
+          ["“You, because of your size and trunk, were able to reach the hat on the wall but, having lost it, you were unable to get it back.", "“凭着个头和长鼻子，你够到了墙上的帽子，可帽子掉了，你便没办法取回来。”"],
+          ["\"And you,\" said the lion to the crocodile, \"although unable to reach the hat, were able to dive for it and save it.", "狮子又对鳄鱼说：“你虽然够不着墙上的帽子，却能潜水把它捞起来。"],
+          ["You are both wise and able in your own ways.", "你们各有智慧和本领，"],
+          ["One is no better than the other.”", "谁也不比谁强。”"]
+        ]
+      ],
+      "figures": [
+        {
+          "after": 0,
+          "image": "2019-WordDocument-1.jpg",
+          "alt": "大象和鳄鱼插图"
+        }
+      ],
+      "underline": [
+        [0, "disputing"]
+      ],
+      "questions": [
+        {
+          "stem": "The underlined word \"disputing\" in Paragraph 1 means",
+          "options": ["playing", "quarrelling", "complaining", "deciding"],
+          "answer": "B"
+        },
+        {
+          "stem": "What did the crocodile think was best about himself?",
+          "options": ["His big mouth", "His strong skin", "His swimming skill", "His dangerous teeth"],
+          "answer": "B"
+        },
+        {
+          "stem": "How did the lion deal with the animals disagreement?",
+          "options": ["He ordered them to fight.", "He made a quick decision.", "He suggested a competition", "He asked them to describe themselves"],
+          "answer": "C"
+        },
+        {
+          "stem": "What caused the elephant to drop the hat?",
+          "options": ["The hat got wet in the river.", "He hit a floating tree", "He was trying to swim too fast", "He wanted to fight the crocodile"],
+          "answer": "C"
+        },
+        {
+          "stem": "How were the elephant and the crocodile able to complete their task?",
+          "options": ["By working together", "planning carefully", "By sharing their ideas", "By listening to the lion"],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "gz-2019-b",
+      "title": "Guangzhou 2019 · Passage B",
+      "topic": "2019 B 篇｜徐霞客的旅行",
+      "paragraphs": [
+        [
+          ["They say that\"travel is the best teacher\"and there is no better example of this idea than the Ming dynasty travel writer and geographer Xu Xiake (1587-1641).", "人们常说，“旅行是最好的老师”。明代游记作家、地理学家徐霞客（1587—1641）就是这句话最好的例证。"],
+          ["His book The Travel Notes of Xu Xiake, not only encouraged a love of travelling among Chinese people but provided important scientific information about the country's land and geography.", "他的《徐霞客游记》让国人更加热爱旅行，也提供了关于中国地形和地理的重要科学资料。"]
+        ],
+        [
+          ["Born into a wealthy Jiangyin family, Xu became interested in books about different places at an early age and wanted to travel.", "徐霞客出生于江阴一个富裕家庭。他从小喜欢读介绍各地的书，也想出门远游。"],
+          ["When he was 18, however, Xu's father died and so, it seemed, did his travelling dreams.", "然而，他18岁时父亲去世，他的旅行梦想似乎也随之破灭了。"],
+          ["He now was responsible for the family farm and taking care of his 60-year-old mother as tradition required.", "按传统，他得打理家里的田产，照顾60岁的母亲。"]
+        ],
+        [
+          ["But his mother had different ideas.", "但母亲有不同的想法。"],
+          ["Understanding her son’s love of travel and valuing the knowledge he could get from such experiences, this modern-thinking woman refused to keep her son at home.", "她理解儿子对旅行的热爱，也重视旅行能带给他的知识。她思想开明，不愿把儿子留在家里。"],
+          ["She agreed that Xu could travel for three months every year, when there was less farm work.", "她同意徐霞客每年趁农活较少时外出旅行三个月。"]
+        ],
+        [
+          ["So at the age of twenty and with his mother's support, Xu set off for the first time, leaving behind not only his mother but his new wife as well.", "20岁那年，在母亲的支持下，徐霞客第一次告别母亲和新婚妻子，踏上旅程。"],
+          ["He would repeat this goodbye each year for most of the next 30 years.", "此后大约30年里，他几乎每年都要这样告别。"],
+          ["During this time, he travelled throughout the Ming kingdom, carefully studying the lands he passed through and recording his experiences and many discoveries in a diary.", "他游历明朝各地，仔细考察沿途的土地，把经历和众多发现记在日记里。"],
+          ["This diary, which once had over 500,000 words, would eventually become The Travel Notes of Xu Xiake.", "这部日记一度超过五十万字，后来成了《徐霞客游记》。"]
+        ],
+        [
+          ["Although rich, Xu avoided comfortable travel, preferring to go almost everywhere on foot.", "尽管家境富裕，徐霞客却不求旅途舒适，几乎到哪里都步行。"],
+          ["This way he could research the environment in detail and get a true picture of the natural world.", "这样他可以细致地研究环境，了解自然的真实面貌。"],
+          ["Many of his trips were to hard-to-reach mountain areas, and through wild forests where few people lived.", "他常去难以到达的山区，穿过人迹罕至的野林。"],
+          ["His willingness to face hardships came at a cost, however.", "但勇于面对艰险也要付出代价。"],
+          ["Progress was slow and tiring and he was frequently sick, robbed and beaten during his journeys.", "行路缓慢而劳累，他途中还常常生病、遭抢劫和挨打。"]
+        ],
+        [
+          ["Sadly Xu became seriously ill during his last and longest journey, a 4-year trip through the Southwest of China.", "遗憾的是，徐霞客在最后一次、也是历时最长的一次旅行中病得很重。这趟中国西南之旅长达四年。"],
+          ["He died in 1641, soon after returning to his hometown for the last time.", "1641年，他最后一次回到家乡后不久便去世了。"],
+          ["When his diary was finally printed years after his death, much of it had been destroyed or lost.", "多年后他的日记终于出版，这时相当一部分已经毁坏或遗失。"],
+          ["Although incomplete, it still made Xu a travelling legend around the world.", "尽管并不完整，这部游记仍让徐霞客成为享誉世界的传奇旅行家。"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "What is the passage mainly about",
+          "options": ["The general details of Xu Xiake's life story", "The difficulties Xu Xiake faced in his travels", "The important discoveries made by Xu Xiake", "The influence of Xu's book The Travel Notes of Xu Xiake"],
+          "answer": "A"
+        },
+        {
+          "stem": "Which of the following best describes Xu's mother",
+          "options": ["Strict but interesting", "Kind but uneducated", "Helpful and hardworking", "Supportive and open-minded"],
+          "answer": "D"
+        },
+        {
+          "stem": "Why did Xu prefer walking during his travels?",
+          "options": ["It gave him the chance to meet different kinds of people", "It helped him to save money and travel for a longer time", "It allowed him to see and study the environment in detail", "It was the only way to reach the places he was interested in"],
+          "answer": "C"
+        },
+        {
+          "stem": "What is true about Xu's book The Travel Notes of Xu Xiake",
+          "options": ["It was only made public after Xu died", "It made Xu very famous during his lifetime", "It was the first travel book ever written in China", "It was mainly about the different people of China"],
+          "answer": "A"
+        },
+        {
+          "stem": "What is the correct order for the following events from Xu's life a. He went on his first journey. b. His book was finally printed c. He returned to his hometown for the last time. d. He developed an interest in books about other places e. He started managing the family farm after his father died",
+          "options": ["a-e-d-c-b", "d-e-a-c-b", "d-e-a-b", "e-d-a-b-c"],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "gz-2019-c",
+      "title": "Guangzhou 2019 · Passage C",
+      "topic": "2019 C 篇｜博物馆该免费吗",
+      "paragraphs": [
+        [
+          ["https://www.youthnews/yourview", "网页地址：https://www.youthnews/yourview"]
+        ],
+        [
+          ["YOUTH", "《青年"]
+        ],
+        [
+          ["NEWS News School Life Your View Sport", "新闻》｜新闻　校园生活　你的观点　体育"]
+        ],
+        [
+          ["Should Museum Entry Be Free?", "博物馆该免费入场吗？"]
+        ],
+        [
+          ["With International Museum Day coming up, today we are asking readers: Should museums be free or should people have to pay for a ticket?", "国际博物馆日快到了，今天我们想问读者：博物馆应该免费开放吗？还是应该让参观者买票？"],
+          ["Let us know your view.", "说说你的看法吧。"]
+        ],
+        [
+          ["Comments", "评论"]
+        ],
+        [
+          ["Museums are not only there for enjoyment; they are education.", "博物馆能让人获得乐趣，也能让人学到东西。"],
+          ["This is why they must be free.", "所以它们必须免费。"],
+          ["While museums need a huge amount of money to operate, let the wealthy pay for it.", "经营博物馆确实需要大量资金，但可以让富人承担费用。"],
+          ["The idea of a person or child interested in art not being able to view it because of cost is wrong", "让对艺术有兴趣的人或孩子因为费用看不到艺术品，这不妥当。"]
+        ],
+        [
+          ["Krista Chen(US)-Age 15", "——克丽丝塔·陈（美国，15岁）"]
+        ],
+        [
+          ["Free entry does not attract people or encourage them to appreciate art.", "免费入场既不会吸引人，也不能鼓励人们欣赏艺术。"],
+          ["Generally people respect things that are difficult or costly to get.", "通常，人们更看重难得或价格高的东西。"],
+          ["Museums should require regular visitors to pay a fee, but provide free tickets as prizes for high-achieving students who can appreciate them more", "博物馆应向普通参观者收费，但可以把免费门票作为奖品发给成绩优异的学生，他们会更懂得欣赏馆藏。"]
+        ],
+        [
+          ["Fred Smith(New Zealand)-Age 14", "——弗雷德·史密斯（新西兰，14岁）"]
+        ],
+        [
+          ["Museums teach people about their past.", "博物馆帮助人们了解自己的过去。"],
+          ["This is part of our shared culture that should be available to everyone, rich or poor.", "这是大家共有的文化，不论贫富，人人都应当接触得到。"],
+          ["People should never be asked to pay an entrance fee.", "绝不该向参观者收门票。"]
+        ],
+        [
+          ["Rob Sanchez (Australia)-Age 17", "——罗布·桑切斯（澳大利亚，17岁）"]
+        ],
+        [
+          ["There are no simple answers.", "这事没有简单的答案。"],
+          ["Low ticket prices could help museums stay open.", "收取低价门票能帮助博物馆维持开放。"],
+          ["But companies and businessmen should also provide museums with more money and other support.", "企业和商人也应向博物馆提供更多资金和其他支持。"],
+          ["They have a social responsibility too.", "他们同样负有社会责任。"]
+        ],
+        [
+          ["Amber White (UK)-Age 16", "——安伯·怀特（英国，16岁）"]
+        ],
+        [
+          ["I think museums and art galleries should all be free to the public.", "我认为博物馆和美术馆都应该向公众免费开放。"],
+          ["I do, however, think twice a year the museums should organize money-raising events to help pay for the cost of staying open.", "不过，我觉得博物馆可以每年办两次筹款活动，帮助支付运营费用。"]
+        ],
+        [
+          ["Li Mishao(China)-Age 15", "——李米绍（音译，中国，15岁）"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "How many readers support the idea of free museums?",
+          "options": ["2.", "3", "4", "5"],
+          "answer": "B"
+        },
+        {
+          "stem": "Who suggests museums should regularly hold special events to collect money?",
+          "options": ["Krista Chen.", "Fred Smith", "Rob Sanchez", "Li Mishao"],
+          "answer": "D"
+        },
+        {
+          "stem": "Why does Fred Smith believe that free tickets should be given to high-achieving students?",
+          "options": ["Students will then study harder.", "Museums will attract more visitors", "Museums can make themselves more famous", "These students can better appreciate museums"],
+          "answer": "D"
+        },
+        {
+          "stem": "Which of the following does Amber White agree with?",
+          "options": ["Businesses should offer museums more help", "People should only pay what they can afford", "Free entry doesn't encourage visitors to museums", "Everybody should have a chance to visit museums"],
+          "answer": "A"
+        },
+        {
+          "stem": "What can we know about the website?",
+          "options": ["It's quite a new website", "It was started in Australia", "It's generally for young readers", "It mainly discusses scientific topics"],
+          "answer": "C"
+        }
+      ]
+    },
+    {
+      "id": "gz-2019-d",
+      "title": "Guangzhou 2019 · Passage D",
+      "topic": "2019 D 篇｜电子老师比尔",
+      "paragraphs": [
+        [
+          ["While the start of a new school year is always exciting, this year was even more so for some students at White Cloud Primary School.", "新学年开学总是令人兴奋，而对白云小学的一些学生来说，这一年尤其令人兴奋。"],
+          ["They became the world's first kids to be “taught” by an electronic teacher.", "他们成了世界上第一批由电子老师授课的孩子。"],
+          ["This electronic teacher is not a human-like robot walking around the classroom.", "这位电子老师并非在教室里走动的仿人机器人，"],
+          ["Instead, he is a computer-created head that appears, when needed, on students’ computer or phone screens.", "而是电脑生成的一张人脸，需要时会出现在学生的电脑或手机屏幕上。"],
+          ["His name is Bill.", "他叫比尔。"]
+        ],
+        [
+          ["Created by technology company Smart Machines, Bill is able to show human-like behavior.", "比尔由智能机器科技公司开发，能表现出类似人类的行为。"],
+          ["He is designed to teach a special program about environmental-friendly power created by the sun and wind.", "他负责教授一门专门课程，讲解利用阳光和风产生的环保能源。"],
+          ["This program, started in 2005, used to be taught by human teachers.", "这门课于2005年开设，以前由真人教师教授。"]
+        ],
+        [
+          ["Just like human teachers, Bill is able to immediately respond to the students' questions and opinions about the topic.", "和真人教师一样，比尔能立即回应学生对课题提出的问题或看法。"],
+          ["Thanks to computer cameras, he is also able to see and react to students’ physical actions.", "借助电脑摄像头，他还能看到学生的动作并作出反应。"],
+          ["For example, if a student smiles at Bill, he responds by smiling back.", "例如，学生对他笑，他就会回以微笑。"],
+          ["This two-way exchange helps get the students' attention.", "这种双向互动有助于吸引学生的注意力，"],
+          ["More importantly, it allows the program developers to improve Bill’s behavior and knowledge base when needed.", "更重要的是，开发人员可以在需要时改善比尔的行为并扩充他的知识库。"]
+        ],
+        [
+          ["The program has been a great success, according to Smart Machines spokesman Robert Frost.", "智能机器公司发言人罗伯特·弗罗斯特说，这门课程非常成功。"],
+          ["Frost says, \"What is interesting to me is the children's reaction to Bill.", "“让我感兴趣的是孩子们对比尔的反应。"],
+          ["He really captures their attention.", "他确实抓住了孩子们的注意力。”"],
+          ["\"Frost thinks kids don't find the experience of being taught by smart machines as strange as older people because they have grown up in a time of computers and smart phones.", "弗罗斯特认为，孩子们从小生活在有电脑和智能手机的时代，因此对智能机器授课这件事，他们不像年长的人那样觉得陌生。"]
+        ],
+        [
+          ["It is doubtful, however, that human educators will lose their jobs to Bill any time soon.", "不过，真人教师短期内不太可能被比尔取代。"],
+          ["For one, his talking head's knowledge base is not large.", "首先，这张会说话的人脸掌握的知识不算多。"],
+          ["More importantly, even the smartest computer programs can't guess and react to all the unexpected situations that educators face daily.", "更重要的是，即使是最聪明的计算机程序，也无法预料和应对教师每天遇到的所有突发情况。"],
+          ["Bill’s future might be as a “personal tutor”, providing kids with one-on-one help for different subjects and topics.", "将来，比尔可能成为一名“私人辅导老师”，在不同学科和主题上为孩子提供一对一的指导。"]
+        ]
+      ],
+      "underline": [
+        [3, "they"]
+      ],
+      "questions": [
+        {
+          "stem": "What is Bill?",
+          "options": ["A human-like robot", "A kind of computer game", "A computer recording tool", "A computer-created talking head"],
+          "answer": "D"
+        },
+        {
+          "stem": "How does the two-way exchange help the program developers?",
+          "options": ["It lets them correct students' mistakes", "It allows Bill to respond more quickly", "It helps them know how to improve Bill", "It helps them study students' body language"],
+          "answer": "C"
+        },
+        {
+          "stem": "The underlined word \"they\"in Paragraph 4 refers to",
+          "options": ["kids", "older people", "smart machines", "program developers"],
+          "answer": "A"
+        },
+        {
+          "stem": "What is Bill NOT good at doing?",
+          "options": ["Attracting students' attention", "Understanding body language", "Responding to students' questions", "Dealing with unexpected situations"],
+          "answer": "D"
+        },
+        {
+          "stem": "How might Bill be used in the future according to the last paragraph?",
+          "options": ["To work as human classroom teachers", "To encourage students' interest in computers", "To give students personal help with different subjects", "To watch over the behavior of the students in the classroom"],
+          "answer": "C"
+        }
+      ]
+    },
+    {
+      "id": "gz-2018-a",
+      "title": "Guangzhou 2018 · Passage A",
+      "topic": "2018 A 篇｜改变人生的生日礼物",
+      "paragraphs": [
+        [
+          ["For his eleventh birthday, Lin was given a gift that would shape his life.", "林在十一岁生日那天收到了一份改变他一生的礼物。"],
+          ["On that day his father took him to the Children’s Activity Centre and said he could choose any course that interested him.", "爸爸带他去儿童活动中心，说他可以选任何一门自己感兴趣的课。"],
+          ["There was just one requirement: Lin would have to promise to study it for at least one year.", "唯一的要求是，林必须答应至少学一年。"]
+        ],
+        [
+          ["To that point Lin had had many hobbies, but none kept his interest for more than a week or two.", "在那之前，林有过不少爱好，可没有一个能让他感兴趣超过一两周。"],
+          ["His mum once gave him a bag of stamps to encourage stamp collecting.", "妈妈曾送给他一袋邮票，鼓励他集邮。"],
+          ["That hobby lasted a week.", "这个爱好只持续了一周。"],
+          ["Then his father got him some paints hoping that Lin's artistic side would shine through.", "后来，爸爸买来一些颜料，希望林能展露艺术天分。"],
+          ["Those paints were now under his bed, still unopened.", "那些颜料现在还在床底下，包装都没拆。"],
+          ["This time Lin’s parents would let him decide.", "这一次，父母让他自己选。"]
+        ],
+        [
+          ["Lin's eyes moved down the noticeboard that listed all the courses on offer.", "林沿着公告板一项项看活动中心开设的课程，"],
+          ["He stopped at \"Photography\".", "在“摄影”一栏停了下来。"],
+          ["He liked the idea of taking beautiful pictures but the notice said that each student needed their own camera.", "他喜欢拍漂亮照片的想法，可通知上说每名学生都得自备相机。"],
+          ["Although Lin's family weren't poor, they weren’t rich either, and a camera cost a lot of money.", "林家不穷，也谈不上富裕，而相机价格不菲。"],
+          ["He continued looking.", "他继续往下看。"]
+        ],
+        [
+          ["The next course to catch his eye was \"Language Art\".", "接着吸引他的是“语言艺术”。"],
+          ["He didn’t even know what that meant.", "他甚至不知道那是什么意思。"],
+          ["His father explained that it taught people how to make public speeches.", "爸爸解释说，这门课教人如何当众演讲。"],
+          ["Lin, a shy boy, could think of nothing worse.", "林很害羞，在他看来，没有比这更糟的事了。"]
+        ],
+        [
+          ["Then he saw it.", "这时他看到了“烹饪”。"],
+          ["\"Cooking\" sounded like something he'd like to do.", "这听起来像是他喜欢做的事。"],
+          ["It was inexpensive and convenient, it could be done alone and it was also creative.", "学起来花钱不多，也方便，可以一个人做，还能发挥创意。"]
+        ],
+        [
+          ["Based on Lin’s hobby history, his dad had doubts, but he agreed.", "想到林过去那些爱好，爸爸有些犹豫，最后还是同意了。"],
+          ["Much to his parents' surprise, Lin kept his promise.", "让父母意外的是，林守住了承诺。"],
+          ["He studied cooking at the Centre every Saturday, and practised at home, making delicious meals for his family.", "他每周六去活动中心学烹饪，还在家练习，给家人做可口的饭菜。"],
+          ["Everyone looked forward to birthdays, when they could eat his cakes.", "大家都盼着过生日，因为那时就能吃到他做的蛋糕。"],
+          ["Lin got great satisfaction from the pleasure his food brought to others.", "看到自己做的食物能让别人开心，林觉得非常满足。"]
+        ],
+        [
+          ["The months turned to years but his hobby never changed again.", "几个月变成了几年，他的爱好一直没变。"]
+        ],
+        [
+          ["Now Lin is an adult and runs a successful restaurant.", "如今，林已长大，经营着一家生意很好的餐馆。"],
+          ["When customers say they enjoy his meal, he still gets the same pleasure he did as a child, and remembers the special gift he received all those years ago.", "客人说喜欢他做的饭菜时，他依然能体会到小时候的那种快乐，也会想起多年前收到的那份特别的生日礼物。"]
+        ]
+      ],
+      "underline": [
+        [3, "catch his eye"]
+      ],
+      "questions": [
+        {
+          "stem": "Why didn't Lin choose to study photography?",
+          "options": ["It was too expensive.", "He had no interest in it.", "He was not very creative.", "It was not offered that term."],
+          "answer": "A"
+        },
+        {
+          "stem": "The underlined expression \"catch his eye\" in Paragraph 4 means “ ______”.",
+          "options": ["make him excited", "cause him surprise", "get his attention", "help him see clearly"],
+          "answer": "C"
+        },
+        {
+          "stem": "Which of the following best describes Lin's interest in cooking?",
+          "options": ["It only lasted for a short time.", "It seemed to match his character.", "It was forced on him by his parents.", "It developed slowly over many months."],
+          "answer": "B"
+        },
+        {
+          "stem": "Why did the father have doubts about Lin's choice of cooking?",
+          "options": ["Lin wasn't good at cooking.", "Cooking wasn't very convenient.", "He didn’t think Lin would continue.", "Cooking wasn't a good hobby for a boy."],
+          "answer": "C"
+        },
+        {
+          "stem": "What's the best title for the passage?",
+          "options": ["A Strict Father", "A Changeable Boy", "The Fun of Cooking", "The Birthday Gift"],
+          "answer": "D"
+        }
+      ]
+    },
+    {
+      "id": "gz-2018-b",
+      "title": "Guangzhou 2018 · Passage B",
+      "topic": "2018 B 篇｜餐馆是怎么发展起来的",
+      "paragraphs": [
+        [
+          ["Experts believe that there are more than 8 million restaurants in the world today.", "专家认为，如今世界上的餐馆超过八百万家。"],
+          ["So it might surprise you to learn that restaurants, as we know them, have only existed for a few centuries.", "你可能想不到，我们今天所说的餐馆其实只有几百年的历史。"],
+          ["Before 1765, there were no restaurants.", "1765年以前，没有"],
+          ["That is, there were no places that provided the restaurant experience.", "能提供现代餐馆体验的地方。"],
+          ["There was nowhere in which a waiter brought you food and drink that you picked from a menu.", "你找不到一家店，可以先从菜单上选吃的喝的，再让服务员端上来。"],
+          ["In fact, there were no menus anywhere.", "那时甚至根本没有菜单。"]
+        ],
+        [
+          ["There were eating places travellers could go to centuries before that.", "在那之前的几百年里，旅人也有地方吃东西。"],
+          ["The countryside was full of inns that would serve food.", "乡间到处是供应饭菜的旅店，"],
+          ["And there were taverns where one could get drinks.", "也有能喝酒的酒馆。"],
+          ["The rich could also eat special meals prepared by private cooks.", "富人还可以请私人厨师做讲究的饭菜。"],
+          ["But none of them could be called a “restaurant”.", "不过，这些地方都称不上“餐馆”。"]
+        ],
+        [
+          ["A man called Boulanger changed that.", "一个叫布朗热的人改变了这种情况。"],
+          ["In 1765, he opened a place in Paris that sold soups（汤）.", "1765年，他在巴黎开了一家店卖汤。"],
+          ["On his sign he used the word \"restaurant\" to describe what he was selling.", "招牌上，他用“restaurant”这个词来形容自己卖的东西。"],
+          ["At that time, soups were considered something that could help \"restore\"（恢复）your health- in French the word \"restore\" is “restaurer”--- so he called the soups \"restaurants\".", "当时人们认为喝汤能帮助恢复健康，而法语里“恢复”是 restaurer，于是他把这些汤叫作“restaurants”。"],
+          ["Soon, people started buying Boulanger's soups even when they were not ill.", "很快，人们即使没生病也去买他的汤。"],
+          ["And over time, people began to use the word \"restaurant\" to refer to a place selling soup rather than the soup itself.", "渐渐地，“restaurant”转而指卖汤的地方。"],
+          ["More \"restaurants\" opened in France, and people began to buy soups more often.", "法国开了更多这样的店，人们也更常买汤喝。"]
+        ],
+        [
+          ["Later, restaurants in Paris began to serve other food besides soup.", "后来，巴黎的餐馆除了汤也开始供应别的食物。"],
+          ["In the 1790s, menus started to appear.", "18世纪90年代，菜单开始出现。"],
+          ["By the mid-1800s, there were many types of restaurants throughout the world.", "到19世纪中叶，各类餐馆已经遍布世界各地。"],
+          ["The United States offered coffee shops.", "美国有咖啡馆，"],
+          ["Tea houses became popular throughout China.", "中国各地流行茶馆。"],
+          ["Paris created beautiful restaurants for the rich.", "巴黎开起了招待富人的漂亮餐馆。"],
+          ["The British began to copy the French, and the restaurant idea spread throughout the British Empire.", "英国人也开始效仿法国人，开餐馆的做法随之传遍大英帝国。"]
+        ],
+        [
+          ["Today cities are filled with all types of restaurants.", "如今，城市里到处都是各式各样的餐馆，"],
+          ["Diners have millions of options from which to choose.", "食客有数不清的选择。"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "What is the passage mainly about?",
+          "options": ["How restaurants developed", "What made a good restaurant.", "Who created the first restaurant", "Why restaurants became popular."],
+          "answer": "A"
+        },
+        {
+          "stem": "According to the first paragraph, what made restaurants different from earlier eating places?",
+          "options": ["Restaurants only served food", "Restaurants were more expensive", "Restaurants were mainly in cities", "Restaurants had a list of meal choices"],
+          "answer": "D"
+        },
+        {
+          "stem": "Who did Boulanger expect to come and eat at his restaurant?",
+          "options": ["Rich people", "Sick people.", "Travellers.", "Workers."],
+          "answer": "B"
+        },
+        {
+          "stem": "When it was first used, what did the word \"restaurant\" refer to?",
+          "options": ["A person.", "A place.", "Illness.", "Soup."],
+          "answer": "D"
+        },
+        {
+          "stem": "When did restaurants begin to grow internationally?",
+          "options": ["In the 1600s.", "In the 1700s.", "In the 1800s.", "In the 1900s."],
+          "answer": "C"
+        }
+      ]
+    },
+    {
+      "id": "gz-2018-c",
+      "title": "Guangzhou 2018 · Passage C",
+      "topic": "2018 C 篇｜太空垃圾",
+      "paragraphs": [
+        [
+          ["Many people know that rubbish is a big problem on planet Earth.", "许多人知道垃圾是地球上的一个大问题。"],
+          ["What many people don't know is that junk（垃圾）has become a problem in outer space too.", "很多人还不知道，垃圾在外太空也成了问题。"]
+        ],
+        [
+          ["According to BBC News, there are more than 22,000 pieces of space junk floating around the earth.", "据英国广播公司新闻报道，有两万两千多件太空垃圾在绕地球漂浮。"],
+          ["And these are just the things that we can see from the surface of the earth by telescopes（望远镜）.", "这些还只是我们在地面上用望远镜能看到的。"],
+          ["There are also millions of smaller pieces of junk that we can't see.", "另有数百万块更小的碎片，我们看不见。"]
+        ],
+        [
+          ["Objects, like bits of old space rockets or satellites, move around the planet at very high speeds, so fast that even a very small piece can break important satellites or become dangerous to astronauts.", "旧火箭和卫星的碎片等物体高速绕地球飞行。即使是很小的一块，也会撞坏重要的卫星，或者给宇航员带来危险。"],
+          ["If the tiniest piece of junk crashed into a spaceship, it could damage the vehicle.", "哪怕最小的碎片撞上飞船，也可能损坏飞船。"]
+        ],
+        [
+          ["To make things worse, when two objects in space crash, they break into many smaller pieces.", "更糟的是，两个物体在太空相撞后，会碎成更多小块。"],
+          ["For example, when a U. S. satellite hit an old Russian rocket in 2009, it broke into more than 2,000 pieces, increasing the amount of space junk.", "例如，2009年美国一颗卫星撞上一枚俄罗斯旧火箭，产生了两千多块碎片，进一步增加了太空垃圾的数量。"]
+        ],
+        [
+          ["To reduce additional space junk, countries have agreed that all new space tools can only stay in space for 25 years at most.", "为了减少新增垃圾，各国约定，新发射的航天设备在太空中最多只能停留25年。"],
+          ["Each tool must be built to fall safely into the earth's atmosphere after that time.", "设计时，就必须让设备在期满后能安全落回地球大气层，"],
+          ["In the upper parts of the atmosphere, it will burn up.", "并在大气层上部烧毁。"]
+        ],
+        [
+          ["Many scientists are also suggesting different ways to clean up space junk.", "许多科学家也在提出不同的清理办法。"],
+          ["In England scientists are testing a metal net that can be fired into space junk.", "英国科学家正在测试一种可以朝太空垃圾发射的金属网。"],
+          ["The net catches the junk and then pulls it into the earth's atmosphere to burn up.", "网住垃圾后，就把它拉进地球大气层烧掉。"],
+          ["The Germans are building robots that can collect pieces of space junk and bring them back to Earth to be safely destroyed.", "德国人正在制造能收集太空垃圾的机器人，把碎片带回地球安全销毁。"]
+        ],
+        [
+          ["“The problem is becoming more challenging because we're sending more objects into space to help people use their mobile phones and computers,” says Marco Castronuovo, an Italian space researcher.", "意大利太空研究人员马尔科·卡斯特罗努沃说：“为了方便人们使用手机和电脑，我们正在往太空送去更多物体，所以这个问题越来越难解决。”"]
+        ],
+        [
+          ["“The time to act is now.", "他说：“现在就该行动。"],
+          ["The longer we leave the problem, the bigger it will become,” he says.", "拖得越久，问题就越大。”"]
+        ]
+      ],
+      "underline": [
+        [1, "these"]
+      ],
+      "questions": [
+        {
+          "stem": "What does the underlined word “these” in Paragraph 2 refer to?",
+          "options": ["Telescopes.", "Satellites.", "Pieces of space junk.", "BBC news reports."],
+          "answer": "C"
+        },
+        {
+          "stem": "Why is space junk considered a problem?",
+          "options": ["It burns up after it re-enters the atmosphere", "It often stops the view of telescopes on Earth", "It could force new space tools to travel at slower speeds", "It may crash into other space tools causing damage or death"],
+          "answer": "D"
+        },
+        {
+          "stem": "Countries want future space tools to be able to fall back into the earth's atmosphere so that ______.",
+          "options": ["the tools can be reused later", "the tools don't become space junk", "the earth’s atmosphere can stay clean", "the effects of space flight can be studied"],
+          "answer": "B"
+        },
+        {
+          "stem": "How do the Germans plan to deal with space junk?",
+          "options": ["Catch it with nets.", "Use robots to collect it.", "Burn it in the earth's atmosphere.", "Send it further away from the earth."],
+          "answer": "B"
+        },
+        {
+          "stem": "In which section of the newspaper would you probably read this article?",
+          "options": ["Environment.", "Local News.", "Education.", "Fashion."],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "gz-2018-d",
+      "title": "Science for Kids",
+      "topic": "2018 D 篇｜儿童科普图书",
+      "paragraphs": [
+        [
+          ["This month's most popular books", "儿童科学读物｜本月最受欢迎的图书"]
+        ],
+        [
+          ["1. Women in Science by Rachel Ignotofsky", "1.《科学界的女性》，蕾切尔·伊格诺托夫斯基著，"]
+        ],
+        [
+          ["Price $25", "25美元。"]
+        ],
+        [
+          ["We all know the story of Marie Curie and her many scientific achievements.", "我们都知道玛丽·居里的故事和她的许多科学成就，"],
+          ["But many other brilliant female scientists are far less well known.", "可其他许多杰出的女科学家鲜为人知。"],
+          ["This book is a great introduction to the lives and works of some of the most important and up-to-now unknown women in science.", "这本书很好地介绍了一些举足轻重、迄今却鲜为人知的女性科学家的生平及成果。"]
+        ],
+        [
+          ["Recommended for Ages: 12-15 Order Now", "推荐年龄：12至15岁。立即订购。"]
+        ],
+        [
+          ["Special Offer", "特别优惠"]
+        ],
+        [
+          ["For this month only, all Bestbooks Book Club members will pay 20% less for every", "仅限本月，Bestbooks 图书俱乐部会员订购每本"]
+        ],
+        [
+          ["book ordered.", "书均享八折。"],
+          ["Join our club for free and", "免费加入俱乐部，"]
+        ],
+        [
+          ["save big money!", "即可省下不少钱！"]
+        ],
+        [
+          ["2. First Big book of How by Jill Esbaum", "2.《我的第一本“怎么会”大百科》，吉尔·埃斯鲍姆著，"]
+        ],
+        [
+          ["Price $15", "15美元。"]
+        ],
+        [
+          ["An excellent book about sea life for young children.", "这是一本适合幼儿的优秀海洋生物书。"],
+          ["The book is divided into 4 parts, one for each of the Pacific, Atlantic, Indian and Arctic oceans.", "全书分为四部分，分别介绍太平洋、大西洋、印度洋和北冰洋。"],
+          ["It focuses on the different animals found in each of these seas, along with interesting facts and amazing pictures.", "它重点讲述各大洋里的不同动物，并配有有趣的知识和精彩的图片。"]
+        ],
+        [
+          ["Ages: 5-10 Order Now", "适合年龄：5至10岁。立即订购。"]
+        ],
+        [
+          ["Delivery", "配送"]
+        ],
+        [
+          ["We bring every book you order right to your door within three days.", "所有订购的图书三天内送货上门。"],
+          ["For Bestbooks", "对于 Bestbooks"]
+        ],
+        [
+          ["Book Club members this is free.", "图书俱乐部会员免运费，"],
+          ["Non-members must pay an extra $2 per book.", "非会员每本书另付2美元。"]
+        ],
+        [
+          ["3. A Really Short History of Nearly Everything by Bill Bryson", "3.《万物简史（超简版）》，比尔·布莱森著，"]
+        ],
+        [
+          ["Price $15", "15美元。"]
+        ],
+        [
+          ["Bill Bryson takes readers on a very funny and educational trip through the history of modern science-from its unexpected successes to its great failures and everything in between.", "比尔·布莱森带读者踏上一趟有趣且长知识的现代科学史之旅，讲述意外的成功、重大的失败，以及其间的各种经历。"]
+        ],
+        [
+          ["Ages: 14 and over Order Now", "适合年龄：14岁及以上。立即订购。"]
+        ],
+        [
+          ["4. National Geographic's First Big Book of the World by Jan Carn.", "4.《美国国家地理·我的第一本世界大百科》，简·卡恩著，"]
+        ],
+        [
+          ["Price $20", "20美元。"]
+        ],
+        [
+          ["This book is the perfect introduction to the seven continents.", "这本书适合用来认识世界七大洲。"],
+          ["It tells young readers about the different animals that live on each of these lands and gives a simple description of the people's history and culture.", "书里讲述各洲生活的不同动物，还简要介绍当地居民的历史和文化。"]
+        ],
+        [
+          ["Ages: 5-12 Order Now", "适合年龄：5至12岁。立即订购。"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "How are the books on this webpage listed?",
+          "options": ["By price.", "By popularity.", "By reader’s age.", "By writer’ s name."],
+          "answer": "B"
+        },
+        {
+          "stem": "What is true about the book Women in Science?",
+          "options": ["It is mainly about Marie Curie's history.", "It lists all the important scientific achievements.", "It includes women scientists that aren’t famous.", "It is mostly about the development of modern science."],
+          "answer": "C"
+        },
+        {
+          "stem": "How much will a Bestbooks Book Club member pay in total if he orders First Big Book of How and A Really Short History of Nearly Everything today?",
+          "options": ["$34.", "$30.", "$26.", "$24."],
+          "answer": "D"
+        },
+        {
+          "stem": "A primary school student who needs to write a science report about African elephants should choose ______.",
+          "options": ["Women in science", "First Big Book of How", "A Really Short History of Nearly Everything", "National Geographic's First Big Book of the World"],
+          "answer": "D"
+        },
+        {
+          "stem": "What is the main purpose of this webpage?",
+          "options": ["To sell books to young readers.", "To attract new book club members.", "To encourage students' interest in science.", "To review books young readers might like."],
+          "answer": "A"
+        }
+      ]
+    },
+    {
+      "id": "gz-2017-a",
+      "title": "Guangzhou 2017 · Passage A",
+      "topic": "2017 A 篇｜冰湖救狗",
+      "paragraphs": [
+        [
+          ["We often hear stories of animals rescuing people.", "我们常听说动物救人的故事。"],
+          ["But now someone has managed to return the favour.", "如今，有人也救了一只动物，算是回报了这份恩情。"]
+        ],
+        [
+          ["The event took place one snowy January morning.", "这件事发生在一月一个下雪的早晨。"],
+          ["Thomas Smith was walking his dog, Jack, in the park.", "托马斯·史密斯正在公园遛他的狗杰克。"],
+          ["\"As I was walking, I just saw Jack running onto the ice towards the ducks in the middle, and then he fell into the water and couldn't climb out,\" said Smith.", "“我走着走着，就看见杰克跑上冰面，朝湖中央的鸭子奔去。接着它掉进水里，怎么也爬不出来。”史密斯说。"],
+          ["He realized he had no choice but to try and save his dog.", "他意识到自己只能下水救狗。"],
+          ["\"Someone else told me the lake was only one-metre deep, but it was at least twice that.", "“有人告诉我湖水只有一米深，其实至少有两米。"],
+          ["I had to break my way through the 6-cm ice.", "我得一路破开六厘米厚的冰。"],
+          ["Finally, I got Jack by the neck and pulled him out.", "最后，我抓住杰克的脖子，把它拉了出来。"],
+          ["I don't think I've ever felt so cold by the time we got back to dry land.", "等我们回到岸上时，我觉得自己从来没这么冷过。"],
+          ["And when we got there, everyone was asking if Jack was okay — no one was particularly worried about me! \"", "可一上岸，大家都在问杰克有没有事，没谁特别担心我！”"]
+        ],
+        [
+          ["A neighbour, Julie Brown, saw it all happen.", "邻居朱莉·布朗目睹了全过程。"],
+          ["\"The dog went onto an icy lake.", "“那只狗跑到结冰的湖上，"],
+          ["All of a sudden, it started to go under.", "突然就开始往下沉。"],
+          ["There were crowds of people around, and they were all shouting and screaming.", "周围围着很多人，大家都在叫喊。"],
+          ["Before I knew it, the owner (Smith) was in the water forcing his way through the ice.", "我还没反应过来，主人史密斯已经下了水，破冰往前。"],
+          ["I can't begin to imagine how cold it was.", "水有多冷，我简直不敢想。"],
+          ["Everyone was very nervous, but he was as cool as a cucumber — he just crawled back out, put the dog on its lead, and went home. \"", "大家都紧张极了，他却镇定自若。他就那样爬上来，给狗拴好牵引绳，然后回家了。”"]
+        ],
+        [
+          ["Many regard him as a hero, but Mr. Smith is quite laid-back about it.", "许多人把史密斯先生视为英雄，他自己却看得很淡。"],
+          ["\"Most dog owners are the same as me.", "“大多数养狗的人都跟我一样，"],
+          ["They would do what I did without a second thought.", "会毫不犹豫地这么做。"],
+          ["But in the future, I'm going to make sure he's on a lead near any icy ponds. \"", "不过以后只要靠近结冰的池塘，我一定会给它拴好牵引绳。”"]
+        ],
+        [
+          ["Pets are members of our family.", "宠物是家里的一员。"],
+          ["Would you do the same for them?", "你也会为它们这么做吗？"]
+        ]
+      ],
+      "underline": [
+        [2, "as cool as a cucumber"]
+      ],
+      "questions": [
+        {
+          "stem": "What happened on a cold January morning?",
+          "options": ["Mr. Smith met Jack in the park.", "Mr. Smith ran after Jack on the ice.", "Jack fell from the ice into the water.", "Jack played with the ducks in the water."],
+          "answer": "C"
+        },
+        {
+          "stem": "How did Mr. Smith save Jack?",
+          "options": ["He asked a neighbour for help.", "He broke the ice and shouted to Jack.", "He got Jack by the leg and pulled him out", "He pulled Jack out of the icy water by the neck."],
+          "answer": "D"
+        },
+        {
+          "stem": "The underlined phrase \"as cool as a cucumber\" in Paragraph 3 means \"___\".",
+          "options": ["relaxed", "proud", "shy", "brave"],
+          "answer": "A"
+        },
+        {
+          "stem": "In the last paragraph, the writer asks a question to___.",
+          "options": ["suggest keeping pets for fun", "remind people to put their dogs on the leads", "encourage people to take good care of their pets", "advise people not to leave their dogs near icy ponds"],
+          "answer": "C"
+        },
+        {
+          "stem": "What is the best title of the passage?",
+          "options": ["A Man's Pet Dog", "A Dog's Best Friend", "The Danger on the Icy Lake", "Suggestions for Pets' Owners"],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "gz-2017-b",
+      "title": "Guangzhou 2017 · Passage B",
+      "topic": "2017 B 篇｜万维网的发明",
+      "paragraphs": [
+        [
+          ["Tim Berners-Lee is not the most famous inventor in the world.", "蒂姆·伯纳斯-李并非世界上最有名的发明家。"],
+          ["However, his invention has changed our lives.", "他的发明却改变了我们的生活。"]
+        ],
+        [
+          ["He was born in London, England in 1955.", "他于1955年出生在英国伦敦。"],
+          ["When he was a small boy, Tim was interested in playing with electrical things.", "蒂姆小时候就喜欢摆弄电器。"],
+          ["He studied science at Oxford University.", "他在牛津大学学习科学，"],
+          ["He made his first computer from an old television at the age of 21.", "21岁时用一台旧电视机做出了自己的第一台电脑。"]
+        ],
+        [
+          ["Tim started working on early computers.", "蒂姆开始研究早期的电脑。"],
+          ["At that time, they were much bigger than now.", "那时的电脑比现在大得多。"],
+          ["He worked in England then Switzerland.", "他先在英国工作，后来去了瑞士。"],
+          ["Tim was really interested in two things, computers and how the brain works.", "蒂姆对两件事很感兴趣：电脑和大脑的工作原理。"],
+          ["How could the brain connect so many facts so quickly?", "大脑怎么能那么快地把这么多信息联系起来呢？"],
+          ["He had to work with people all over the world.", "他得和世界各地的人合作，"],
+          ["They shared information about computers.", "交流有关电脑的信息。"],
+          ["It was hard to manage all the information.", "整理这些信息很难，"],
+          ["He answered the same questions again and again.", "他一遍遍回答同样的问题，"],
+          ["It took a lot of time.", "花了很多时间。"],
+          ["It was even difficult for computers in the same office in Switzerland to share information.", "在瑞士，就连同一间办公室里的电脑也很难共享信息。"],
+          ["Tim also forgot things easily.", "蒂姆自己也容易忘事。"],
+          ["Could a computer work like a brain?", "电脑能像大脑一样工作吗？"],
+          ["Could it \"talk\" to other computers?", "电脑之间能互相“说话”吗？"]
+        ],
+        [
+          ["There was an Internet already but it was difficult to use.", "当时已经有了互联网，却很难使用。"],
+          ["In 1989, Tim Berners-Lee invented the World Wide Web (WWW) all by himself.", "1989年，蒂姆·伯纳斯-李独自发明了万维网（WWW）。"],
+          ["This had a special language that helped computers talk to each other on the Internet.", "它有一种特殊的语言，让电脑能在互联网上彼此通信。"],
+          ["When people wanted to share information with others, they used the World Wide Web.", "人们想和别人分享信息时，就使用万维网。"],
+          ["The Internet grew quickly after that.", "此后互联网很快发展起来。"]
+        ],
+        [
+          ["Tim Berners-Lee doesn't think he did anything special.", "蒂姆·伯纳斯-李觉得自己没有做什么特别的事。"],
+          ["He says that all of the ideas about the Internet were already there.", "他说，有关互联网的点子早就有了，"],
+          ["All he did was to put them together.", "自己只是把它们组合起来。"],
+          ["He says that many other people worked together to make the Internet what it is today.", "还有许多人共同努力，才有了今天的互联网。"]
+        ],
+        [
+          ["Most inventors want to become rich.", "多数发明家希望发财，"],
+          ["But Tim gave away the World Wide Web for nothing.", "蒂姆却把万维网无偿地分享给了大家。"],
+          ["He now works in America.", "他现在在美国工作，"],
+          ["He helps people share technology and wants the Internet to be free for everyone to use.", "帮助人们共享技术，也希望人人都能免费使用互联网。"],
+          ["Maybe he is the most important but least famous inventor in the world today!", "也许他就是当今世界上最重要、却最不出名的发明家！"]
+        ]
+      ],
+      "underline": [
+        [2, "It"]
+      ],
+      "questions": [
+        {
+          "stem": "What was Tim Berners-Lee interested in?",
+          "options": ["Looking for jobs in different cities.", "Talking to people around the world.", "Studying how to connect computers.", "Exploring how to improve memory."],
+          "answer": "C"
+        },
+        {
+          "stem": "The underlined word \"It\" in Paragraph 3 refers to",
+          "options": ["Working on early computers", "Connecting different facts together", "Travelling to the office in Switzerland", "Repeating the answers to the same questions"],
+          "answer": "D"
+        },
+        {
+          "stem": "Why is Tim Berners-Lee one of the most important men in the world?",
+          "options": ["He made information sharing on the Internet possible.", "He made the first computer when he was 21 years old.", "He helped people understand better how the brain works.", "He invented the Internet and made it free for everyone to use."],
+          "answer": "A"
+        },
+        {
+          "stem": "In what order did the following events take place? a. Tim worked in England. b. Tim worked in Switzerland. c. Tim made his first computer. d. Tim invented the World Wide Web. e. Tim studied science at Oxford University.",
+          "options": ["c-e-d-a-b", "e-b-a-c-d", "c-d-a-e-b", "e-c-a-b-d"],
+          "answer": "D"
+        },
+        {
+          "stem": "What does the writer think of Tim Berners-Lee?",
+          "options": ["He is not famous because he is not rich.", "He has changed our lives and he is great.", "He did nothing special but make people a good life.", "He has made great achievements in memory research."],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "gz-2017-c",
+      "title": "Libraries",
+      "topic": "2017 C 篇｜英国的图书馆",
+      "paragraphs": [
+        [
+          ["Public Libraries", "公共图书馆"]
+        ],
+        [
+          ["Most towns in Britain have a public library.", "英国大多数城镇都有公共图书馆。"],
+          ["A library usually has a large selection of books and other resources, which library members can use and borrow for free.", "图书馆通常有大量图书和其他资源，持证读者可以免费使用和借阅。"]
+        ],
+        [
+          ["Britain's First Public Library", "英国第一家公共图书馆"]
+        ],
+        [
+          ["The first public library in Britain opened in Manchester in 1852.", "英国第一家公共图书馆于1852年在曼彻斯特开放。"],
+          ["Its first librarian was a man called Edward Edwards.", "首任图书管理员名叫爱德华·爱德华兹。"],
+          ["Edwards attended the library's opening ceremony and two famous writers called Charles Dickens and William Thackeray were there too.", "他出席了开馆仪式，两位著名作家查尔斯·狄更斯和威廉·萨克雷也到场了。"]
+        ],
+        [
+          ["How to Join a Library", "如何办理借书证"]
+        ],
+        [
+          ["To join a library, go to your local library and fill in a form.", "到当地的图书馆填一张表，"],
+          ["You'll receive a library card which is needed when using library services.", "你就能领到借书证。使用图书馆服务时需要出示这张卡。"]
+        ],
+        [
+          ["Library Services", "图书馆服务"]
+        ],
+        [
+          ["Modern public libraries have something for everyone.", "现代公共图书馆能满足不同读者的需求。"],
+          ["Most of them have audio books, CDs, newspapers and DVDs as well as books to borrow.", "除了书，大多数馆还提供有声书、CD、报纸和DVD供人借阅。"]
+        ],
+        [
+          ["Mobile Libraries", "流动图书馆"]
+        ],
+        [
+          ["Not everyone can get to a library.", "并不是每个人都能去图书馆。"],
+          ["Some people live far away from towns and cities.", "有些人住得离城镇很远，"],
+          ["Other people find it difficult to go out because they have an illness or a disability.", "还有些人因为生病或身体有障碍，出门不方便。"],
+          ["Thanks to mobile libraries, these people can still borrow books.", "多亏有流动图书馆，他们也能借到书。"]
+        ],
+        [
+          ["Unlike most libraries, which store books in buildings, mobile libraries usually keep their books in a mini-bus.", "多数图书馆把书存放在建筑里，流动图书馆则通常把书放在一辆小型巴士里。"],
+          ["The back of the mini-bus has shelves for the books, and it is big enough for borrowers to step inside and look around.", "巴士后部装有书架，空间足以让读者上车浏览。"],
+          ["A driver takes the mini-bus to a certain place at a certain time, so people know when to expect it.", "司机定时把车开到指定地点，大家知道什么时候来，"],
+          ["They can then return their books and borrow some more.", "就可以还书，再借几本。"]
+        ],
+        [
+          ["All Aboard the Library!", "上车看书！"]
+        ],
+        [
+          ["A school in London didn't have space for a library inside the building.", "伦敦有一所学校，教学楼内腾不出地方建图书馆，"],
+          ["However, everybody agreed that it was still important to have a school library.", "可大家都认为学校有图书馆很重要。"],
+          ["So, the head of the school, Graham Blake, decided to park an old bus on the school car park and change it into a library.", "于是，校长格雷厄姆·布莱克决定把一辆旧巴士停在学校停车场，改成图书馆。"],
+          ["Pupils helped to paint the bus, and after eight months, the new library was ready.", "学生们帮忙给车刷漆，八个月后，新图书馆就准备好了。"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "Who was the first librarian of the first public library in Britain?",
+          "options": ["Charles Dickens.", "William Thackeray.", "Edward Edwards.", "Graham Blake."],
+          "answer": "C"
+        },
+        {
+          "stem": "Who can use public library services?",
+          "options": ["CD or DVD sellers.", "Anyone living in Britain.", "A person with a library card.", "Newspaper or book writers."],
+          "answer": "C"
+        },
+        {
+          "stem": "What is special about the mobile library?",
+          "options": ["Keeping books in buildings.", "Returning books to readers.", "Offering special services to pupils.", "Going to a certain place at a certain time."],
+          "answer": "D"
+        },
+        {
+          "stem": "Why did the school in London build its library on an old bus?",
+          "options": ["Because parents offered the school an old bus.", "Because pupils thought it was fun to read on a bus.", "Because the school didn't have enough money to buy books.", "Because the school didn't have enough space inside the building."],
+          "answer": "D"
+        },
+        {
+          "stem": "What can we learn from the passage?",
+          "options": ["Schools in London like mobile libraries.", "Public library services in the UK are free.", "People living far away can't use libraries.", "Many famous British writers lived in Manchester."],
+          "answer": "B"
+        }
+      ]
+    },
+    {
+      "id": "gz-2017-d",
+      "title": "Guangzhou 2017 · Passage D",
+      "topic": "2017 D 篇｜怎样打好电话",
+      "paragraphs": [
+        [
+          ["People can't see you when you're speaking on the phone, but they can hear you.", "打电话时，对方看不见你，却能听见你。"],
+          ["So, the way you speak is especially important.", "你说话的方式因此特别重要。"],
+          ["In fact, researchers have calculated that 80% of communication over the phone is through your tone of voice; and only 20% is from the words you use.", "研究人员算出，电话交流中的信息有80%通过语气传递，只有20%来自你所用的词语。"],
+          ["Here are our top tips on how to speak over the phone.", "下面是一些打电话时的实用建议。"]
+        ],
+        [
+          ["1. Facial Expressions", "1. 面部表情"]
+        ],
+        [
+          ["Your facial expression can influence your voice.", "表情会影响声音。"],
+          ["For example, if you smile, your voice will sound warm and friendly, just the opposite, if you have an angry look on your face, it can make you sound unpleasant.", "微笑时，你的声音听起来会温暖友好。皱着脸生气时，说话的声音可能就不太好听。"]
+        ],
+        [
+          ["2. Volume", "2. 音量"]
+        ],
+        [
+          ["If you speak too loudly, you could sound angry.", "声音太大，听起来像在生气。"],
+          ["And if you speak too softly, it'll be difficult to hear you.", "声音太轻，对方又听不清。"],
+          ["So, speak loudly enough to be heard clearly, but not so loud that you're shouting.", "音量以能让人听清为宜，别大到像在喊叫。"]
+        ],
+        [
+          ["3. Pace", "3. 语速"]
+        ],
+        [
+          ["The pace of your voice is how quickly you speak.", "语速是指你说话的快慢，"],
+          ["And this can show how you feel.", "也能反映情绪。"],
+          ["For example, an angry person might speak faster than normal.", "生气的人可能比平常说得快，"],
+          ["Or a downhearted person might speak very slowly.", "情绪低落的人可能说得很慢。"],
+          ["Try speaking a little more slowly than normal.", "试着比平常说慢一点。"],
+          ["This will make you sound confident, and it'll make it easier for the other person to understand you.", "这样听起来更自信，对方也更容易听懂。"]
+        ],
+        [
+          ["4. Gestures", "4. 手势"]
+        ],
+        [
+          ["Gesturing can influence the tone of your voice.", "做手势会影响语气。"],
+          ["When you gesture, you bring more air into the lungs, which can make your voice sound warmer.", "打手势时，你吸进肺里的空气更多，声音听起来会更温暖。"],
+          ["Gestures are also useful to help you stress the right words or even find the words you need.", "手势也有助于强调该强调的词，甚至能帮你想起要说的词。"],
+          ["The best thing about gesturing during a phone call is that no one can see what you're doing, so you can gesture as wildly as you like!", "打电话做手势的好处是没人看得见，你想怎么比画都行！"]
+        ],
+        [
+          ["5. Movement", "5. 走动"]
+        ],
+        [
+          ["If you're feeling nervous, stand up and move around.", "如果你感到紧张，就站起来走一走。"],
+          ["It will reduce the nervousness in your body and help your voice to sound more confident.", "这能缓解身体的紧张，也能让你的声音听起来更自信。"]
+        ],
+        [
+          ["6. Pauses", "6. 停顿"]
+        ],
+        [
+          ["Using pauses every now and then can help you to slow down.", "偶尔停一停有助于放慢语速，"],
+          ["This will make you sound more confident and in control.", "听起来更自信、更从容。"],
+          ["Also, if you pause after giving some new information, it'll give the other person time to understand it.", "告诉对方新信息后稍作停顿，也能给对方一点时间去理解。"],
+          ["At the same time, listen to how the other person uses pauses.", "同时，留意对方如何停顿。"],
+          ["They could tell you something about the speaker's feeling.", "这可能让你听出对方的情绪。"],
+          ["For example, when a speaker is really angry, he might use pauses and says, \"I... am... so... angry...\"", "例如，非常生气的人可能会一字一顿地说：“我……真的……太……生气了……”"]
+        ]
+      ],
+      "questions": [
+        {
+          "stem": "How much of telephone communication is from the words you use?",
+          "options": ["20%.", "40%.", "60%.", "80%."],
+          "answer": "A"
+        },
+        {
+          "stem": "What can people do to reduce their nervousness on the phone?",
+          "options": ["Gesture wildly.", "Move around.", "Raise their voices.", "Make facial expressions."],
+          "answer": "B"
+        },
+        {
+          "stem": "How can pauses help people talk on the phone?",
+          "options": ["The speaker can show he is friendly.", "The speaker can tell more information.", "The listener will feel confident and in control.", "The listener will have time to understand the words."],
+          "answer": "D"
+        },
+        {
+          "stem": "What is the passage mainly about?",
+          "options": ["How to control the speed of your speech.", "Different good ways of talking on the phone.", "Reasons of making gestures while talking.", "How to improve communication among friends."],
+          "answer": "B"
+        },
+        {
+          "stem": "What is the writer's opinion about telephone talk?",
+          "options": ["Your voice on the phone will show what you're feeling.", "Using too many pauses while talking will annoy others.", "Speaking loudly makes it easier for others to understand you.", "The words you use are more important than the way you speak."],
+          "answer": "A"
+        }
+      ]
+    }
+  ]
+}

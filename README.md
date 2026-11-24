@@ -45,6 +45,7 @@ Everything the site shows lives in `content/` and `images/`, and only `content.j
 - `content/<version>.json` holds one collection's `words` and `stories`. Placement 01 (`screening.json`) keeps its older shape.
 - `content/dictionary.json` is the word list every collection is tokenized with.
 - `images/<id>/<story id>.jpg` is each story's picture, described by the story's `picture`.
+- A story may also carry `questions` (stem, four options A–D, `answer`; optional `image`), `figures` (exam images placed `after` a paragraph) and `underline` (`[paragraph, words]`). The reading page shows the questions under the passage; choices and 对答案 results sync with the rest of the progress. Placement 02 (`placement-02`) holds the Guangzhou 中考 reading passages 2017–2026 this way.
 
 New review batches are written by the writer agent and illustrated by the illustrator agent, who follow [CONTENT.md](CONTENT.md) and never change code. `node scripts/check-content.mjs` checks all of it (the **Content check** Action runs it on every push), and `--pictures` lists the pictures still to draw. A malformed collection is skipped by every page rather than breaking it.
 

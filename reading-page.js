@@ -2,7 +2,7 @@
 // progress and its GitHub sync. Which collection, and its words and stories,
 // come from content/ (content.js); this file never names a collection.
 
-import { findCollection, loadCollection, loadDictionary, loadManifest, storyPicture } from "./content.js";
+import { LETTERS, findCollection, loadCollection, loadDictionary, loadManifest, storyPicture } from "./content.js";
 import { readingPlainText, splitSentences } from "./vocab-context.js";
 
 // Site files, read fresh so a collection published a minute ago shows up.
@@ -138,6 +138,9 @@ const readings = edition
     picture: storyPicture(collection, story),
     figure: story.figure,
     sources: story.sources,
+    questions: story.questions ?? [],
+    figures: story.figures ?? [],
+    underline: story.underline ?? [],
     primary: [],
     targets: edition.words,
     sentences: story.paragraphs.map(paragraph => paragraph.map(([english]) => english))
@@ -182,6 +185,17 @@ const marks = allReadings.map((lesson, index) => {
 const readIds = new Set(readings.map(lesson => lesson.id));
 const finished = new Set(Array.isArray(savedProgress.finished)
   ? savedProgress.finished.filter(id => readIds.has(id)) : []);
+// Reading questions: the letter chosen for each question, and the stories whose
+// answers have been checked (after which the choices stay as they were).
+const questionCounts = new Map(readings.map(lesson => [lesson.id, lesson.questions?.length ?? 0]));
+const answers = new Map();
+for (const [id, chosen] of Object.entries(savedProgress.answers ?? {})) {
+  const count = questionCounts.get(id);
+  if (!count || !Array.isArray(chosen)) continue;
+  answers.set(id, Array.from({ length: count }, (_, index) => LETTERS.includes(chosen[index]) ? chosen[index] : null));
+}
+const checked = new Set(Array.isArray(savedProgress.checked)
+  ? savedProgress.checked.filter(id => questionCounts.get(id)) : []);
 let activeIndex = Math.max(0, readings.findIndex(lesson => lesson.id === savedProgress.active));
 let currentView = "reader";
 let visibleWords = new Map();
@@ -221,7 +235,8 @@ function writeLocalProgress() {
   try {
     const byLesson = Object.fromEntries(allReadings.map((lesson, index) => [lesson.id, [...marks[index]]]));
     localStorage.setItem(storageKey, JSON.stringify({
-      active: readings[activeIndex].id, finished: [...finished], marks: byLesson, directoryClosed
+      active: readings[activeIndex].id, finished: [...finished], marks: byLesson, directoryClosed,
+      answers: Object.fromEntries(answers), checked: [...checked]
     }));
     byId("storage-error").hidden = true;
   } catch {
@@ -559,8 +574,17 @@ function selectLesson(index, moveFocus = true) {
       chineseParagraph.append(chinese);
     });
     block.append(englishParagraph, chineseParagraph);
+    for (const [at, phrase] of lesson.underline ?? []) if (at === paragraphIndex) underlinePhrase(englishParagraph, phrase);
     return block;
   }));
+  // Figures from the exam paper, placed after the paragraph they follow.
+  const blocks = [...passage.children];
+  for (const figure of lesson.figures ?? []) {
+    const node = examImage(figure.image, figure.alt, "passage-figure");
+    const before = blocks[figure.after];
+    if (before) passage.insertBefore(node, before);
+    else passage.append(node);
+  }
   updateBilingual();
   wordContainers.forEach(container => { container.querySelector(".word").tabIndex = 0; });
   showActiveDirectoryEntry();
@@ -571,7 +595,132 @@ function selectLesson(index, moveFocus = true) {
     saveProgress();
   }
   renderInlineGlosses();
+  renderQuestions();
   window.readingPage?.onLessonShown?.();
+}
+
+function examImage(file, alt, className) {
+  const figure = document.createElement("figure");
+  figure.className = className;
+  const image = document.createElement("img");
+  image.src = collection.imageDir + file;
+  image.alt = alt;
+  image.loading = "lazy";
+  image.decoding = "async";
+  figure.append(image);
+  return figure;
+}
+
+// The words an exam underlines, which its questions ask about.
+function underlinePhrase(paragraph, phrase) {
+  const wanted = phrase.toLowerCase().match(/[\p{L}]+(?:['’\-][\p{L}]+)*/gu) ?? [];
+  const words = [...paragraph.querySelectorAll(".word")];
+  for (let start = 0; start + wanted.length <= words.length; start++) {
+    if (wanted.every((word, offset) => words[start + offset].textContent.toLowerCase() === word)) {
+      for (let offset = 0; offset < wanted.length; offset++) words[start + offset].classList.add("underlined");
+      return;
+    }
+  }
+}
+
+function chosenFor(id) {
+  if (!answers.has(id)) answers.set(id, Array(questionCounts.get(id)).fill(null));
+  return answers.get(id);
+}
+
+// The story's questions under the passage: tap an option to choose it, then
+// 对答案 shows which were right; 重做 clears them.
+const quiz = byId("quiz");
+function renderQuestions() {
+  const lesson = readings[activeIndex];
+  const questions = lesson.questions ?? [];
+  quiz.hidden = !questions.length;
+  quiz.replaceChildren();
+  if (!questions.length) return;
+  const chosen = answers.get(lesson.id) ?? [];
+  const done = checked.has(lesson.id);
+  const heading = document.createElement("h3");
+  heading.className = "quiz-title";
+  heading.textContent = "阅读理解";
+  quiz.append(heading);
+  let right = 0;
+  questions.forEach((question, questionIndex) => {
+    const item = document.createElement("fieldset");
+    item.className = "question";
+    const stem = document.createElement("legend");
+    stem.className = "question-stem";
+    stem.lang = "en";
+    stem.textContent = (questionIndex + 1) + ". " + question.stem;
+    item.append(stem);
+    if (question.image) item.append(examImage(question.image, question.imageAlt ?? "", "question-figure"));
+    const options = document.createElement("div");
+    options.className = "question-options";
+    if (done && chosen[questionIndex] === question.answer) right++;
+    question.options.forEach((text, optionIndex) => {
+      const letter = LETTERS[optionIndex];
+      const option = document.createElement("button");
+      option.type = "button";
+      option.className = "question-option";
+      option.lang = "en";
+      option.setAttribute("aria-pressed", chosen[questionIndex] === letter);
+      const mark = document.createElement("span");
+      mark.className = "option-letter";
+      mark.textContent = letter;
+      const label = document.createElement("span");
+      label.textContent = text;
+      option.append(mark, label);
+      if (done) {
+        option.disabled = true;
+        if (letter === question.answer) option.classList.add("correct");
+        else if (chosen[questionIndex] === letter) option.classList.add("wrong");
+      } else {
+        option.addEventListener("click", () => {
+          const list = chosenFor(lesson.id);
+          list[questionIndex] = list[questionIndex] === letter ? null : letter;
+          saveProgress();
+          renderQuestions();
+          quiz.querySelectorAll(".question")[questionIndex]
+            ?.querySelectorAll(".question-option")[optionIndex]?.focus();
+        });
+      }
+      options.append(option);
+    });
+    item.append(options);
+    quiz.append(item);
+  });
+  const foot = document.createElement("div");
+  foot.className = "quiz-foot";
+  const status = document.createElement("p");
+  status.className = "quiz-status";
+  status.setAttribute("role", "status");
+  const action = document.createElement("button");
+  action.type = "button";
+  action.className = "foot-button quiz-action";
+  if (done) {
+    status.textContent = "答对 " + right + " / " + questions.length;
+    status.classList.toggle("all-right", right === questions.length);
+    action.textContent = "重做";
+    action.addEventListener("click", () => {
+      checked.delete(lesson.id);
+      answers.set(lesson.id, Array(questions.length).fill(null));
+      saveProgress();
+      renderQuestions();
+    });
+  } else {
+    const left = questions.length - chosen.filter(Boolean).length;
+    status.textContent = left ? "还有 " + left + " 题没选" : "都选好了";
+    action.textContent = "对答案";
+    action.disabled = left > 0;
+    action.addEventListener("click", () => {
+      checked.add(lesson.id);
+      finished.add(lesson.id);
+      saveProgress();
+      renderQuestions();
+      updateProgress();
+    });
+  }
+  foot.append(status, action);
+  quiz.append(foot);
 }
 
 const directoryItems = readings.map((lesson, index) => {
@@ -916,6 +1065,10 @@ let pendingHere = Boolean(syncStorage() && progressSync.pendingFiles(syncStorage
 function readingFields() {
   const fields = new Map([["active", readings[activeIndex].id]]);
   for (const id of finished) fields.set("read/" + id, true);
+  for (const id of checked) fields.set("checked/" + id, true);
+  for (const [id, chosen] of answers) {
+    chosen.forEach((letter, index) => { if (letter) fields.set("answer/" + id + "/" + index, letter); });
+  }
   marks.forEach((group, index) => {
     for (const [word, example] of group) fields.set("mark/" + allReadings[index].id + "/" + word, example);
   });
@@ -926,6 +1079,12 @@ function validReadingField(field, value) {
   if (field === "active") return readIds.has(value);
   const [kind, id, word, extra] = field.split("/");
   if (kind === "read") return word === undefined && readIds.has(id) && typeof value === "boolean";
+  if (kind === "checked") return word === undefined && Boolean(questionCounts.get(id)) && typeof value === "boolean";
+  if (kind === "answer") {
+    const index = Number(word);
+    return extra === undefined && /^\d+$/.test(word ?? "") && index < (questionCounts.get(id) ?? 0)
+      && (value === null || LETTERS.includes(value));
+  }
   if (kind !== "mark" || extra !== undefined) return false;
   const term = allReadings[syncIndices.get(id)]?.terms.get(word);
   return Boolean(term && (value === null || (Number.isInteger(value) && term.examples[value] !== undefined)));
@@ -967,7 +1126,8 @@ function noteProgressChange() {
   if (!changed.length) return;
   syncClock = Math.max(Date.now(), syncClock + 1);
   for (const field of changed) {
-    const value = current.has(field) ? current.get(field) : field.startsWith("read/") ? false : null;
+    const value = current.has(field) ? current.get(field)
+      : field.startsWith("read/") || field.startsWith("checked/") ? false : null;
     progressRecords.set(field, [syncClock, syncWriter, value]);
   }
   lastReadingFields = current;
@@ -989,10 +1149,14 @@ function applySyncedProgress(remote, resume) {
   if (changed) {
     marks.forEach(group => group.clear());
     finished.clear();
+    answers.clear();
+    checked.clear();
     for (const [field, [clock, , value]] of merged) {
       syncClock = Math.max(syncClock, clock);
       const [kind, id, word] = field.split("/");
       if (kind === "read" && value) finished.add(id);
+      if (kind === "checked" && value) checked.add(id);
+      if (kind === "answer" && value) chosenFor(id)[Number(word)] = value;
       if (kind === "mark" && value !== null) marks[syncIndices.get(id)].set(word, value);
     }
   }
@@ -1004,6 +1168,7 @@ function applySyncedProgress(remote, resume) {
       for (const button of buttons) button.setAttribute("aria-pressed", marks[activeIndex].has(word));
     }
     renderInlineGlosses();
+    renderQuestions();
     updateProgress();
   }
   lastReadingFields = readingFields();

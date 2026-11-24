@@ -1,6 +1,7 @@
 {
   "collections": [
     {"id": "screening", "kind": "placement", "number": "01"},
+    {"id": "placement-02", "kind": "placement", "number": "02"},
     {"id": "reading-01", "kind": "review", "number": "01"},
     {"id": "reading-02", "kind": "review", "number": "02", "version": "reading-02-v3", "earlier": ["reading-02-v2", "reading-02"]},
     {"id": "reading-03", "kind": "review", "number": "03", "version": "reading-03-v2", "earlier": ["reading-03"]},

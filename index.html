@@ -143,6 +143,41 @@
     #next { justify-self: end; background: var(--solid); color: var(--on-solid); }
     #next:hover { background: var(--solid); opacity: .9; }
 
+    /* ---------- Reading questions ---------- */
+    .quiz { margin-top: 40px; padding-top: 24px; box-shadow: inset 0 1px var(--hair); }
+    .quiz-title { font-size: 1rem; color: var(--muted); font-weight: 600; }
+    .question { margin: 22px 0 0; padding: 0; border: 0; min-width: 0; }
+    .question-stem { padding: 0; font: 1.08rem/1.6 var(--english); color: var(--ink); }
+    .question-options { display: grid; gap: 8px; margin-top: 10px; }
+    .question-option {
+      display: flex; gap: 12px; align-items: baseline; width: 100%; min-height: 44px; padding: 10px 14px;
+      border-radius: 12px; background: var(--fill); color: var(--ink); text-align: left;
+      font: 1rem/1.5 var(--english); -webkit-tap-highlight-color: transparent;
+    }
+    .question-option span:last-child { min-width: 0; overflow-wrap: anywhere; }
+    .option-letter { flex: 0 0 auto; font-weight: 600; color: var(--muted); }
+    @media (hover: hover) { .question-option:hover:not(:disabled) { background: var(--fill-hover); } }
+    .question-option[aria-pressed="true"] { background: var(--solid); color: var(--on-solid); }
+    .question-option[aria-pressed="true"] .option-letter { color: inherit; }
+    .question-option:disabled { cursor: default; }
+    .question-option.correct { background: none; color: var(--ok); box-shadow: inset 0 0 0 2px var(--ok); }
+    .question-option.correct .option-letter { color: inherit; }
+    .question-option.correct::after { content: "✓"; margin-left: auto; }
+    .question-option.wrong { background: var(--accent-soft); color: var(--accent); }
+    .question-option.wrong .option-letter { color: inherit; }
+    .question-option.wrong::after { content: "✗"; margin-left: auto; }
+    .quiz-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 22px; }
+    .quiz-status { color: var(--muted); font-size: .95rem; }
+    .quiz-status.all-right { color: var(--ok); }
+    .quiz-action { background: var(--solid); color: var(--on-solid); }
+    .quiz-action:disabled { background: var(--fill); color: var(--muted); }
+    .passage-figure, .question-figure { margin: 1em 0; }
+    .passage-figure img, .question-figure img {
+      display: block; max-width: 100%; height: auto; margin-inline: auto; border-radius: 10px; background: #fff;
+    }
+    .question-figure { margin: 10px 0 0; }
+    .word.underlined { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+
     /* ---------- 词汇表 ---------- */
     #resume-vocabulary { display: none; }
     .empty { padding: 48px 0; text-align: center; color: var(--muted); }
@@ -312,6 +347,7 @@
               <figcaption class="reading-credit" id="reading-credit" hidden></figcaption>
             </figure>
             <div class="passage" id="passage"></div>
+            <section class="quiz" id="quiz" aria-label="阅读理解" hidden></section>
             <p class="reading-sources" id="reading-sources" hidden></p>
           </div>
           <footer class="reading-foot">
