@@ -2,6 +2,7 @@
 // mark's example index points at the same sentence.
 
 import { loadCollection, loadDictionary, loadManifest } from "./content.js";
+import { addTerm, collectionGlossary, createWordMeaning } from "./word-meaning.js";
 
 const sentencePattern = /[^.!?]+[.!?]+(?:["”'’])?|[^.!?]+$/g;
 
@@ -37,43 +38,17 @@ export function wordPatternFromDictionary(dictionary) {
   return new RegExp(prefix + "[\\p{L}]+(?:['’\\-][\\p{L}]+)*", "giu");
 }
 
-export function glossaryFromScreening(screening) {
-  return Object.fromEntries(Object.entries(screening?.forms || {}).map(([surface, key]) => {
-    const [display, meaning] = screening.dictionary?.[key] || [key, ""];
-    return [surface, [key, meaning, display]];
-  }));
-}
-
-function buildIndexedLesson(lesson, definitions, wordPattern, extraMeanings, dictionary) {
+// One lesson's words, keyed by their term key. `meanings` is the lesson's lookup from
+// word-meaning.js, which gives every word its key and meaning.
+function buildIndexedLesson(lesson, meanings, wordPattern) {
   const terms = new Map();
-  const targetKeys = new Map();
-  const phrases = new Set(Object.keys(definitions).filter(key => key.includes(" ")));
-  for (const [key, value] of Object.entries(lesson.targets || {})) {
-    const forms = Array.isArray(value) ? value.slice(1) : [];
-    for (const form of [key, ...forms]) targetKeys.set(form, key);
-    if (key.includes(" ")) phrases.add(key);
-  }
-  const phrasePatterns = [...phrases].sort((left, right) => right.length - left.length)
-    .map(phrase => escapePattern(phrase) + "(?![\\p{L}])");
-  const pattern = new RegExp([...phrasePatterns, wordPattern.source].join("|"), "giu");
+  const pattern = new RegExp([...meanings.phrasePatterns, wordPattern.source].join("|"), "giu");
 
   function tokenize(text, chinese) {
     text = readingPlainText(text);
     for (const match of text.matchAll(pattern)) {
       const surface = match[0];
-      const normalized = surface.toLowerCase().replaceAll("’", "'");
-      let entry = Object.hasOwn(definitions, surface) ? definitions[surface]
-        : Object.hasOwn(definitions, normalized) ? definitions[normalized] : undefined;
-      const override = lesson.overrides?.[normalized];
-      if (override && dictionary?.[override]) {
-        const [display, meaning] = dictionary[override];
-        entry = [override, meaning, display];
-      }
-      const key = targetKeys.get(normalized) ?? entry?.[0] ?? normalized;
-      const meaning = lesson.targets?.[key]?.[0] ?? entry?.[1] ?? extraMeanings?.[normalized] ?? "";
-      const display = entry?.[2] ?? key;
-      if (!terms.has(key)) terms.set(key, { display, meaning, examples: [] });
-      terms.get(key).examples.push({
+      addTerm(terms, meanings.lookup(surface)).examples.push({
         surface,
         sentence: text,
         offset: match.index,
@@ -118,7 +93,7 @@ export function buildCatalog({
 } = {}) {
   const dictionary = screening?.dictionary || {};
   const wordPattern = wordPatternFromDictionary(dictionary);
-  const baseGlossary = glossaryFromScreening(screening);
+  const meanings = createWordMeaning({ dictionary, forms: screening?.forms || {}, extraMeanings });
   const bySource = new Map();
   const titles = new Map();
   // Headwords of the site's own word lists, so base-form.js can tell a real word
@@ -139,15 +114,17 @@ export function buildCatalog({
       const chinese = sentences.map((paragraph, index) => alignedChinese(paragraph, bilingual?.[lesson.id]?.[index]));
       titles.set("screening/" + lesson.id, lesson.title || "");
       lessons.set(lesson.id, buildIndexedLesson({
-        ...lesson, targets, sentences, chinese
-      }, baseGlossary, wordPattern, extraMeanings, dictionary));
+        ...lesson, sentences, chinese
+      }, meanings.forLesson({ targets, overrides: lesson.overrides }), wordPattern));
     }
     if (trialLessons.length && trialGlossary) {
       for (const lesson of trialLessons) {
         const sentences = (lesson.paragraphs || []).map(splitSentences);
         lessons.set(lesson.id, buildIndexedLesson({
           ...lesson, sentences, chinese: []
-        }, trialGlossary, wordPattern, extraMeanings, dictionary));
+        }, meanings.forLesson({
+          collection: trialGlossary, targets: lesson.targets, overrides: lesson.overrides, useWordList: false
+        }), wordPattern));
       }
     }
     bySource.set("screening", lessons);
@@ -155,12 +132,8 @@ export function buildCatalog({
 
   for (const [sourceId, edition] of Object.entries(editions)) {
     if (!edition?.stories || !edition?.words) continue;
-    const definitions = { ...baseGlossary };
-    for (const [key, value] of Object.entries(edition.words)) {
-      addHeadword(key);
-      const [meaning, ...forms] = Array.isArray(value) ? value : [""];
-      for (const form of [key, ...forms]) definitions[form] = [key, meaning, key];
-    }
+    Object.keys(edition.words).forEach(addHeadword);
+    const lessonMeanings = meanings.forLesson({ collection: collectionGlossary(edition.words), targets: edition.words });
     const lessons = new Map();
     for (const story of edition.stories) {
       const sentences = (story.paragraphs || []).map(paragraph => paragraph.map(([english]) => english));
@@ -169,10 +142,9 @@ export function buildCatalog({
       lessons.set(story.id, buildIndexedLesson({
         id: story.id,
         title: story.title,
-        targets: edition.words,
         sentences,
         chinese
-      }, definitions, wordPattern, extraMeanings, dictionary));
+      }, lessonMeanings, wordPattern));
     }
     bySource.set(sourceId, lessons);
   }

@@ -4,6 +4,7 @@
 
 import { LETTERS, findCollection, loadCollection, loadDictionary, loadManifest, storyPicture } from "./content.js";
 import { readingPlainText, splitSentences } from "./vocab-context.js";
+import { addTerm, collectionGlossary, createWordMeaning } from "./word-meaning.js";
 
 // Site files, read fresh so a collection published a minute ago shows up.
 async function readSiteFile(path) {
@@ -44,7 +45,6 @@ const bilingualText = edition
 const bilingualTitles = edition
   ? Object.fromEntries(edition.stories.map(({ id, topic }) => [id, topic]))
   : data.titles;
-const extraMeanings = dictionaryFile.extraMeanings;
 const originalVocabulary = edition
   ? [["重点词", Object.entries(edition.words).map(([key, [meaning]]) => [key, key, " " + meaning])]]
   : data.vocabulary;
@@ -71,28 +71,17 @@ function fixedGlossAnchors(text) {
   return anchors;
 }
 const storageKey = collection.storageKey;
-const sourceGlossary = Object.fromEntries(Object.entries(screening.forms).map(([surface, key]) => {
-  const [display, meaning] = screening.dictionary[key];
-  return [surface, [key, meaning, display]];
-}));
-if (edition) {
-  for (const [key, [meaning, ...forms]] of Object.entries(edition.words)) {
-    for (const form of [key, ...forms]) sourceGlossary[form] = [key, meaning, key];
-  }
-}
+const wordMeaning = createWordMeaning({
+  dictionary: screening.dictionary,
+  forms: screening.forms,
+  extraMeanings: dictionaryFile.extraMeanings
+});
 
-function buildLesson(lesson, definitions) {
+// `meanings` is the lesson's lookup from word-meaning.js, which gives every word
+// its key and meaning (the same lookup the vocabulary board uses).
+function buildLesson(lesson, meanings) {
   const terms = new Map();
-  const targetKeys = new Map();
-  const phrases = new Set(Object.keys(definitions).filter(key => key.includes(" ")));
-  for (const [key, [, ...forms]] of Object.entries(lesson.targets)) {
-    for (const form of [key, ...forms]) targetKeys.set(form, key);
-    if (key.includes(" ")) phrases.add(key);
-  }
-  const phrasePatterns = [...phrases].sort((a, b) => b.length - a.length).map(phrase =>
-    escapePattern(phrase) + "(?![\\p{L}])"
-  );
-  const pattern = new RegExp([...phrasePatterns, wordPattern.source].join("|"), "giu");
+  const pattern = new RegExp([...meanings.phrasePatterns, wordPattern.source].join("|"), "giu");
 
   function tokenize(text) {
     text = readingPlainText(text);
@@ -100,22 +89,11 @@ function buildLesson(lesson, definitions) {
     let position = 0;
     for (const match of text.matchAll(pattern)) {
       const surface = match[0];
-      const normalized = surface.toLowerCase().replaceAll("’", "'");
-      let entry = Object.hasOwn(definitions, surface) ? definitions[surface]
-        : Object.hasOwn(definitions, normalized) ? definitions[normalized] : undefined;
-      const override = lesson.overrides?.[normalized];
-      if (override) {
-        const [display, meaning] = screening.dictionary[override];
-        entry = [override, meaning, display];
-      }
-      const key = targetKeys.get(normalized) ?? entry?.[0] ?? normalized;
-      const meaning = lesson.targets[key]?.[0] ?? entry?.[1] ?? extraMeanings[normalized] ?? "";
-      const display = entry?.[2] ?? key;
+      const found = meanings.lookup(surface);
       if (match.index > position) segments.push({ text: text.slice(position, match.index) });
-      const token = { text: surface, key, sentence: text, offset: match.index };
+      const token = { text: surface, key: found.key, sentence: text, offset: match.index };
       segments.push(token);
-      if (!terms.has(key)) terms.set(key, { display, meaning, examples: [] });
-      terms.get(key).examples.push(token);
+      addTerm(terms, found).examples.push(token);
       position = match.index + surface.length;
     }
     if (position < text.length) segments.push({ text: text.slice(position) });
@@ -144,13 +122,17 @@ const readings = edition
     primary: [],
     targets: edition.words,
     sentences: story.paragraphs.map(paragraph => paragraph.map(([english]) => english))
-  }, sourceGlossary))
+  }, wordMeaning.forLesson({ collection: collectionGlossary(edition.words), targets: edition.words })))
   : screening.lessons.map(lesson => {
     const targets = Object.fromEntries([...lesson.primary, ...lesson.review].map(key => [key, []]));
-    return buildLesson({ ...lesson, targets, picture: storyPicture(collection, lesson) }, sourceGlossary);
+    return buildLesson({ ...lesson, targets, picture: storyPicture(collection, lesson) },
+      wordMeaning.forLesson({ targets, overrides: lesson.overrides }));
   });
-const trialReadings = edition ? [] : trialLessons.map(lesson => buildLesson(lesson, trialGlossary));
-const previousReadings = edition ? [] : previousLessons.map(lesson => buildLesson(lesson, previousGlossary));
+const legacyMeanings = (lesson, glossary) => wordMeaning.forLesson({
+  collection: glossary, targets: lesson.targets, overrides: lesson.overrides, useWordList: false
+});
+const trialReadings = edition ? [] : trialLessons.map(lesson => buildLesson(lesson, legacyMeanings(lesson, trialGlossary)));
+const previousReadings = edition ? [] : previousLessons.map(lesson => buildLesson(lesson, legacyMeanings(lesson, previousGlossary)));
 const allReadings = [...readings, ...trialReadings, ...previousReadings];
 const articleLocations = new Map();
 const primaryLocations = new Map();
