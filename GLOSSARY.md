@@ -28,6 +28,19 @@ _Avoid_: article, lesson, chapter
 One English sentence and its Chinese rendering; the smallest unit a story is made of, and the unit listening moves by.
 _Avoid_: line, segment
 
+## Word meanings
+
+**Word list（中考词表）**:
+The standard list of about 1,900 zhongkao words, with their forms and Chinese meanings, that placement sets are written from and that every story is checked against.
+_Avoid_: dictionary, vocabulary list
+
+**Base dictionary（基础词典）**:
+A general English–Chinese dictionary of everyday words, used only so that any word the reader taps has a basic meaning when neither the collection nor the word list gives one.
+_Avoid_: fallback dictionary, full dictionary
+
+**Proper noun（专有名词）**:
+A capitalised word that no word source explains, such as a name or a place; it is shown as 专有名词 instead of a dictionary meaning.
+
 ## Listening
 
 **Listening（听读）**:
