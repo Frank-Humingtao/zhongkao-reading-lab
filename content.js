@@ -6,6 +6,8 @@
 //   content/index.json         the list of collections (newest last)
 //   content/<version>.json     one collection's words and stories
 //   content/dictionary.json    the word list every collection is tokenized with
+//   content/base-dictionary.json  everyday words from ECDICT, the meaning of last resort
+//                              (scripts/base-dictionary.mjs; docs/adr/0004)
 //   images/<id>/<story>.jpg    one picture per story
 //
 // CONTENT.md is the guide the writer agent and the illustrator agent follow.
@@ -17,6 +19,7 @@ import { readingPlainText } from "./vocab-context.js";
 
 export const MANIFEST = "content/index.json";
 export const DICTIONARY = "content/dictionary.json";
+export const BASE_DICTIONARY = "content/base-dictionary.json";
 
 const KINDS = {
   placement: { label: "Placement", name: "摸底短文" },
@@ -351,6 +354,32 @@ export async function loadDictionary(readText) {
   return JSON.parse(text);
 }
 
+// The base dictionary, word → meaning. A missing or broken file is no base
+// dictionary at all: words it would have explained show no meaning, nothing fails.
+export async function loadBaseDictionary(readText) {
+  try {
+    const data = JSON.parse(await readText(BASE_DICTIONARY));
+    return data && typeof data === "object" && !Array.isArray(data) ? data : {};
+  } catch {
+    return {};
+  }
+}
+
+// The base dictionary is generated, never written by hand: a flat object of
+// lowercase word → meaning. Its problems, for the content check.
+export function checkBaseDictionary(text) {
+  const file = BASE_DICTIONARY;
+  let data;
+  try {
+    data = JSON.parse(text);
+  } catch (error) {
+    return [`${file}：不是合法的 JSON（${error.message}）。用 node scripts/base-dictionary.mjs 重新生成。`];
+  }
+  if (!data || typeof data !== "object" || Array.isArray(data)) return [`${file}：应该是“词 → 释义”的对象。用 node scripts/base-dictionary.mjs 重新生成。`];
+  const wrong = Object.entries(data).filter(([word, meaning]) => word !== word.toLowerCase() || typeof meaning !== "string" || !meaning);
+  return wrong.length ? [`${file}：${wrong.length} 个词不是小写或没有释义（例如 ${wrong[0][0]}）。用 node scripts/base-dictionary.mjs 重新生成。`] : [];
+}
+
 // The progress sources the 生词 board and the daily export read, one per
 // collection, labelled the way the board shows where a word was marked.
 export function vocabSources(collections) {
@@ -366,6 +395,8 @@ export function vocabSources(collections) {
 // draws it later). `exists(path)` says whether a file is in the repository.
 export async function checkLibrary(readText, exists) {
   const { collections, problems } = await loadManifest(readText);
+  const base = await readText(BASE_DICTIONARY);
+  if (base !== null) problems.push(...checkBaseDictionary(base));
   const missingPictures = [];
   const repetition = [];
   for (const collection of collections) {

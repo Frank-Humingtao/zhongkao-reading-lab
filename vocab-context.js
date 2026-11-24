@@ -1,7 +1,8 @@
 // Lesson lookup for the 生词 board. Tokenization matches the reading page so a
 // mark's example index points at the same sentence.
 
-import { loadCollection, loadDictionary, loadManifest } from "./content.js";
+import { loadBaseDictionary, loadCollection, loadDictionary, loadManifest } from "./content.js";
+import { addTerm, atSentenceStart, collectionGlossary, createWordMeaning } from "./word-meaning.js";
 
 const sentencePattern = /[^.!?]+[.!?]+(?:["”'’])?|[^.!?]+$/g;
 
@@ -37,43 +38,19 @@ export function wordPatternFromDictionary(dictionary) {
   return new RegExp(prefix + "[\\p{L}]+(?:['’\\-][\\p{L}]+)*", "giu");
 }
 
-export function glossaryFromScreening(screening) {
-  return Object.fromEntries(Object.entries(screening?.forms || {}).map(([surface, key]) => {
-    const [display, meaning] = screening.dictionary?.[key] || [key, ""];
-    return [surface, [key, meaning, display]];
-  }));
-}
-
-function buildIndexedLesson(lesson, definitions, wordPattern, extraMeanings, dictionary) {
+// One lesson's words, keyed by their term key. `meanings` is the lesson's lookup from
+// word-meaning.js, which gives every word its key and meaning.
+function buildIndexedLesson(lesson, meanings, wordPattern) {
   const terms = new Map();
-  const targetKeys = new Map();
-  const phrases = new Set(Object.keys(definitions).filter(key => key.includes(" ")));
-  for (const [key, value] of Object.entries(lesson.targets || {})) {
-    const forms = Array.isArray(value) ? value.slice(1) : [];
-    for (const form of [key, ...forms]) targetKeys.set(form, key);
-    if (key.includes(" ")) phrases.add(key);
-  }
-  const phrasePatterns = [...phrases].sort((left, right) => right.length - left.length)
-    .map(phrase => escapePattern(phrase) + "(?![\\p{L}])");
-  const pattern = new RegExp([...phrasePatterns, wordPattern.source].join("|"), "giu");
+  const pattern = new RegExp([...meanings.phrasePatterns, wordPattern.source].join("|"), "giu");
 
-  function tokenize(text, chinese) {
+  // A title is title-cased, so each of its words counts as a sentence start.
+  function tokenize(text, chinese, isTitle = false) {
     text = readingPlainText(text);
     for (const match of text.matchAll(pattern)) {
       const surface = match[0];
-      const normalized = surface.toLowerCase().replaceAll("’", "'");
-      let entry = Object.hasOwn(definitions, surface) ? definitions[surface]
-        : Object.hasOwn(definitions, normalized) ? definitions[normalized] : undefined;
-      const override = lesson.overrides?.[normalized];
-      if (override && dictionary?.[override]) {
-        const [display, meaning] = dictionary[override];
-        entry = [override, meaning, display];
-      }
-      const key = targetKeys.get(normalized) ?? entry?.[0] ?? normalized;
-      const meaning = lesson.targets?.[key]?.[0] ?? entry?.[1] ?? extraMeanings?.[normalized] ?? "";
-      const display = entry?.[2] ?? key;
-      if (!terms.has(key)) terms.set(key, { display, meaning, examples: [] });
-      terms.get(key).examples.push({
+      const sentenceStart = isTitle || atSentenceStart(text, match.index);
+      addTerm(terms, meanings.lookup(surface, { sentenceStart })).examples.push({
         surface,
         sentence: text,
         offset: match.index,
@@ -82,7 +59,7 @@ function buildIndexedLesson(lesson, definitions, wordPattern, extraMeanings, dic
     }
   }
 
-  tokenize(readingPlainText(lesson.title || ""), "");
+  tokenize(readingPlainText(lesson.title || ""), "", true);
   const paragraphs = lesson.sentences || (lesson.paragraphs || []).map(splitSentences);
   paragraphs.forEach((sentences, paragraphIndex) => {
     sentences.forEach((sentence, sentenceIndex) => {
@@ -112,13 +89,14 @@ export function buildCatalog({
   screening,
   bilingual = {},
   extraMeanings = {},
+  baseDictionary = {},
   editions = {},
   trialLessons = [],
   trialGlossary = null
 } = {}) {
   const dictionary = screening?.dictionary || {};
   const wordPattern = wordPatternFromDictionary(dictionary);
-  const baseGlossary = glossaryFromScreening(screening);
+  const meanings = createWordMeaning({ dictionary, forms: screening?.forms || {}, extraMeanings, baseDictionary });
   const bySource = new Map();
   const titles = new Map();
   // Headwords of the site's own word lists, so base-form.js can tell a real word
@@ -139,15 +117,17 @@ export function buildCatalog({
       const chinese = sentences.map((paragraph, index) => alignedChinese(paragraph, bilingual?.[lesson.id]?.[index]));
       titles.set("screening/" + lesson.id, lesson.title || "");
       lessons.set(lesson.id, buildIndexedLesson({
-        ...lesson, targets, sentences, chinese
-      }, baseGlossary, wordPattern, extraMeanings, dictionary));
+        ...lesson, sentences, chinese
+      }, meanings.forLesson({ targets, overrides: lesson.overrides }), wordPattern));
     }
     if (trialLessons.length && trialGlossary) {
       for (const lesson of trialLessons) {
         const sentences = (lesson.paragraphs || []).map(splitSentences);
         lessons.set(lesson.id, buildIndexedLesson({
           ...lesson, sentences, chinese: []
-        }, trialGlossary, wordPattern, extraMeanings, dictionary));
+        }, meanings.forLesson({
+          collection: trialGlossary, targets: lesson.targets, overrides: lesson.overrides, useWordList: false
+        }), wordPattern));
       }
     }
     bySource.set("screening", lessons);
@@ -155,12 +135,8 @@ export function buildCatalog({
 
   for (const [sourceId, edition] of Object.entries(editions)) {
     if (!edition?.stories || !edition?.words) continue;
-    const definitions = { ...baseGlossary };
-    for (const [key, value] of Object.entries(edition.words)) {
-      addHeadword(key);
-      const [meaning, ...forms] = Array.isArray(value) ? value : [""];
-      for (const form of [key, ...forms]) definitions[form] = [key, meaning, key];
-    }
+    Object.keys(edition.words).forEach(addHeadword);
+    const lessonMeanings = meanings.forLesson({ collection: collectionGlossary(edition.words), targets: edition.words });
     const lessons = new Map();
     for (const story of edition.stories) {
       const sentences = (story.paragraphs || []).map(paragraph => paragraph.map(([english]) => english));
@@ -169,10 +145,9 @@ export function buildCatalog({
       lessons.set(story.id, buildIndexedLesson({
         id: story.id,
         title: story.title,
-        targets: edition.words,
         sentences,
         chinese
-      }, definitions, wordPattern, extraMeanings, dictionary));
+      }, lessonMeanings, wordPattern));
     }
     bySource.set(sourceId, lessons);
   }
@@ -180,6 +155,14 @@ export function buildCatalog({
   return {
     sources: [...bySource.keys()],
     headwords,
+    // Every lesson's words: [sourceId, lessonId, key, { display, meaning, source, examples }].
+    *terms() {
+      for (const [sourceId, lessons] of bySource) {
+        for (const [lessonId, terms] of lessons) {
+          for (const [key, term] of terms) yield [sourceId, lessonId, key, term];
+        }
+      }
+    },
     title(sourceId, lessonId) {
       return titles.get(sourceId + "/" + lessonId) || "";
     },
@@ -208,7 +191,9 @@ export function buildCatalog({
 // version id. A collection whose file is missing or malformed is left out; its
 // words still show, only without their sentence.
 export async function loadWordCatalog(readText) {
-  const [dictionary, { collections }] = await Promise.all([loadDictionary(readText), loadManifest(readText)]);
+  const [dictionary, { collections }, baseDictionary] = await Promise.all([
+    loadDictionary(readText), loadManifest(readText), loadBaseDictionary(readText)
+  ]);
   const editions = {};
   let placement = null;
   await Promise.all(collections.map(async collection => {
@@ -221,8 +206,31 @@ export async function loadWordCatalog(readText) {
     screening: { dictionary: dictionary.dictionary, forms: dictionary.forms, lessons: placement?.lessons },
     bilingual: placement?.chinese || {},
     extraMeanings: dictionary.extraMeanings || {},
+    baseDictionary,
     trialLessons: placement?.legacy?.trialLessons || [],
     trialGlossary: placement?.legacy?.trialGlossary || null,
     editions
   });
+}
+
+// The words no source explains (collection, word list, base dictionary), per
+// collection file in content/index.json order: [{ file, words }], words sorted,
+// collections with none left out. Looked up exactly as the page does. A blank
+// is always lowercase: an unexplained capitalised word is a 专有名词.
+export async function unexplainedWords(readText) {
+  const [{ collections }, catalog] = await Promise.all([loadManifest(readText), loadWordCatalog(readText)]);
+  const bySource = new Map();
+  for (const [sourceId, , key, term] of catalog.terms()) {
+    if (term.meaning) continue;
+    if (!bySource.has(sourceId)) bySource.set(sourceId, new Set());
+    bySource.get(sourceId).add(key);
+  }
+  return collections
+    .filter(collection => bySource.has(collection.version))
+    .map(collection => ({ file: collection.file, words: [...bySource.get(collection.version)].sort() }));
+}
+
+// The content check's notice for those words, one line per collection. Never a problem.
+export function unexplainedNotice({ file, words }) {
+  return `${file}：${words.length} 个小写词点开没有中文释义（合集、词表、基础词典里都没有）：${words.join("、")}。只是提醒，不算问题。`;
 }

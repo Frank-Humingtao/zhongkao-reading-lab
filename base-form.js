@@ -75,7 +75,7 @@ function candidates(word) {
   if (word.endsWith("s") && word.length > 3 && !/(?:ss|us|is|'s)$/.test(word)) return [word.slice(0, -1)];
   if (word.endsWith("ied") && word.length > 4) return [word.slice(0, -3) + "y"];
   if (word.endsWith("ed") && word.length > 3) return verbStems(word.slice(0, -2));
-  if (word.endsWith("ing") && word.length > 5) {
+  if (word.endsWith("ing") && word.length > 4) {
     const stem = word.slice(0, -3);
     if (stem.endsWith("y")) return [stem];
     return verbStems(stem);

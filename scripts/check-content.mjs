@@ -3,7 +3,8 @@
 // well formed? Run it before every push; GitHub runs it again after.
 //
 //   node scripts/check-content.mjs              # problems, in plain words; exit 1 if any
-//                                               # (including words a batch repeats too few times)
+//                                               # (including words a batch repeats too few times),
+//                                               # then, as a notice only, the words no source explains
 //   node scripts/check-content.mjs --pictures   # the pictures still to draw, as JSON
 //
 // It only reads files. A picture that is not drawn yet is not a problem: the
@@ -11,9 +12,10 @@
 
 import { existsSync, readdirSync, statSync } from "node:fs";
 import { readFile } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { checkLibrary, loadCollection, storyImages, storyPicture } from "../content.js";
+import { BASE_DICTIONARY, DICTIONARY, checkLibrary, loadCollection, storyImages, storyPicture } from "../content.js";
+import { unexplainedNotice, unexplainedWords } from "../vocab-context.js";
 
 const MAX_PICTURE = 1.5 * 1024 * 1024;
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -58,7 +60,7 @@ for (const collection of collections) {
 }
 
 // A collection written but not listed in content/index.json never shows.
-const listed = new Set(["index.json", "dictionary.json", ...collections.map(collection => collection.version + ".json")]);
+const listed = new Set(["index.json", basename(DICTIONARY), basename(BASE_DICTIONARY), ...collections.map(collection => collection.version + ".json")]);
 for (const name of readdirSync(join(root, "content"))) {
   if (name.endsWith(".json") && !listed.has(name)) {
     problems.push(`content/${name}：没有在 content/index.json 里登记，网站看不到它。在 collections 末尾加一行 {"id": "${name.slice(0, -5)}", "kind": "review"}。`);
@@ -74,6 +76,10 @@ const lines = failed
     "", "改好后再运行一次 node scripts/check-content.mjs。"]
   : [`✓ 内容检查通过：${collections.length} 个合集，${stories} 篇。`,
     ...(missingPictures.length ? [`还有 ${missingPictures.length} 张图没画（配图 agent 会补上，不算问题）。`] : [])];
+// Words a reader taps and gets no meaning for: a notice, never a failure.
+// Without content/dictionary.json there is nothing to look words up in.
+const unexplained = await unexplainedWords(readText).catch(() => []);
+if (unexplained.length) lines.push("", "提醒（不影响检查结果）：", ...unexplained.map(item => "· " + unexplainedNotice(item)));
 console.log(lines.join("\n"));
 if (process.env.GITHUB_STEP_SUMMARY) {
   const { appendFileSync } = await import("node:fs");

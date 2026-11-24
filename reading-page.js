@@ -2,8 +2,9 @@
 // progress and its GitHub sync. Which collection, and its words and stories,
 // come from content/ (content.js); this file never names a collection.
 
-import { LETTERS, findCollection, loadCollection, loadDictionary, loadManifest, storyPicture } from "./content.js";
+import { LETTERS, findCollection, loadBaseDictionary, loadCollection, loadDictionary, loadManifest, storyPicture } from "./content.js";
 import { readingPlainText, splitSentences } from "./vocab-context.js";
+import { addTerm, atSentenceStart, awaitsBaseDictionary, collectionGlossary, createWordMeaning, refreshTerms } from "./word-meaning.js";
 
 // Site files, read fresh so a collection published a minute ago shows up.
 async function readSiteFile(path) {
@@ -44,7 +45,6 @@ const bilingualText = edition
 const bilingualTitles = edition
   ? Object.fromEntries(edition.stories.map(({ id, topic }) => [id, topic]))
   : data.titles;
-const extraMeanings = dictionaryFile.extraMeanings;
 const originalVocabulary = edition
   ? [["重点词", Object.entries(edition.words).map(([key, [meaning]]) => [key, key, " " + meaning])]]
   : data.vocabulary;
@@ -71,63 +71,47 @@ function fixedGlossAnchors(text) {
   return anchors;
 }
 const storageKey = collection.storageKey;
-const sourceGlossary = Object.fromEntries(Object.entries(screening.forms).map(([surface, key]) => {
-  const [display, meaning] = screening.dictionary[key];
-  return [surface, [key, meaning, display]];
-}));
-if (edition) {
-  for (const [key, [meaning, ...forms]] of Object.entries(edition.words)) {
-    for (const form of [key, ...forms]) sourceGlossary[form] = [key, meaning, key];
-  }
-}
+const wordListFiles = {
+  dictionary: screening.dictionary,
+  forms: screening.forms,
+  extraMeanings: dictionaryFile.extraMeanings
+};
+const wordMeaning = createWordMeaning(wordListFiles);
 
-function buildLesson(lesson, definitions) {
+// `lessonWords` is what word-meaning.js's forLesson takes for this lesson; its
+// lookup gives every word its key and meaning (the same lookup the vocabulary
+// board uses). The base dictionary arrives later and fills in what it can
+// (loadBaseDictionaryOnce, below).
+function buildLesson(lesson, lessonWords) {
+  const meanings = wordMeaning.forLesson(lessonWords);
   const terms = new Map();
-  const targetKeys = new Map();
-  const phrases = new Set(Object.keys(definitions).filter(key => key.includes(" ")));
-  for (const [key, [, ...forms]] of Object.entries(lesson.targets)) {
-    for (const form of [key, ...forms]) targetKeys.set(form, key);
-    if (key.includes(" ")) phrases.add(key);
-  }
-  const phrasePatterns = [...phrases].sort((a, b) => b.length - a.length).map(phrase =>
-    escapePattern(phrase) + "(?![\\p{L}])"
-  );
-  const pattern = new RegExp([...phrasePatterns, wordPattern.source].join("|"), "giu");
+  const pattern = new RegExp([...meanings.phrasePatterns, wordPattern.source].join("|"), "giu");
 
-  function tokenize(text) {
+  // A title is title-cased, so each of its words counts as a sentence start.
+  function tokenize(text, isTitle = false) {
     text = readingPlainText(text);
     const segments = [];
     let position = 0;
     for (const match of text.matchAll(pattern)) {
       const surface = match[0];
-      const normalized = surface.toLowerCase().replaceAll("’", "'");
-      let entry = Object.hasOwn(definitions, surface) ? definitions[surface]
-        : Object.hasOwn(definitions, normalized) ? definitions[normalized] : undefined;
-      const override = lesson.overrides?.[normalized];
-      if (override) {
-        const [display, meaning] = screening.dictionary[override];
-        entry = [override, meaning, display];
-      }
-      const key = targetKeys.get(normalized) ?? entry?.[0] ?? normalized;
-      const meaning = lesson.targets[key]?.[0] ?? entry?.[1] ?? extraMeanings[normalized] ?? "";
-      const display = entry?.[2] ?? key;
+      const sentenceStart = isTitle || atSentenceStart(text, match.index);
+      const found = meanings.lookup(surface, { sentenceStart });
       if (match.index > position) segments.push({ text: text.slice(position, match.index) });
-      const token = { text: surface, key, sentence: text, offset: match.index };
+      const token = { text: surface, key: found.key, sentence: text, offset: match.index, sentenceStart };
       segments.push(token);
-      if (!terms.has(key)) terms.set(key, { display, meaning, examples: [] });
-      terms.get(key).examples.push(token);
+      addTerm(terms, found).examples.push(token);
       position = match.index + surface.length;
     }
     if (position < text.length) segments.push({ text: text.slice(position) });
     return segments;
   }
 
-  const title = tokenize(lesson.title);
+  const title = tokenize(lesson.title, true);
   const sourceSentences = lesson.sentences ?? lesson.paragraphs.map(splitSentences);
   const fixedGlosses = sourceSentences.map(paragraph => paragraph.map(fixedGlossAnchors));
   const sentences = sourceSentences.map(paragraph => paragraph.map(readingPlainText));
   const paragraphs = sentences.map(paragraph => paragraph.map(tokenize));
-  return { ...lesson, title, paragraphs, terms, fixedGlosses };
+  return { ...lesson, title, paragraphs, terms, fixedGlosses, lessonWords };
 }
 
 const readings = edition
@@ -144,13 +128,17 @@ const readings = edition
     primary: [],
     targets: edition.words,
     sentences: story.paragraphs.map(paragraph => paragraph.map(([english]) => english))
-  }, sourceGlossary))
+  }, { collection: collectionGlossary(edition.words), targets: edition.words }))
   : screening.lessons.map(lesson => {
     const targets = Object.fromEntries([...lesson.primary, ...lesson.review].map(key => [key, []]));
-    return buildLesson({ ...lesson, targets, picture: storyPicture(collection, lesson) }, sourceGlossary);
+    return buildLesson({ ...lesson, targets, picture: storyPicture(collection, lesson) },
+      { targets, overrides: lesson.overrides });
   });
-const trialReadings = edition ? [] : trialLessons.map(lesson => buildLesson(lesson, trialGlossary));
-const previousReadings = edition ? [] : previousLessons.map(lesson => buildLesson(lesson, previousGlossary));
+const legacyMeanings = (lesson, glossary) => ({
+  collection: glossary, targets: lesson.targets, overrides: lesson.overrides, useWordList: false
+});
+const trialReadings = edition ? [] : trialLessons.map(lesson => buildLesson(lesson, legacyMeanings(lesson, trialGlossary)));
+const previousReadings = edition ? [] : previousLessons.map(lesson => buildLesson(lesson, legacyMeanings(lesson, previousGlossary)));
 const allReadings = [...readings, ...trialReadings, ...previousReadings];
 const articleLocations = new Map();
 const primaryLocations = new Map();
@@ -364,18 +352,55 @@ function pronounceWord(surface, button, status) {
   }
 }
 
+// The base dictionary (content/base-dictionary.json, docs/adr/0004): fetched once,
+// in the background after the first story is shown, then used to look up again
+// every word that had no meaning. Until it arrives, a marked word that may need it
+// shows no gloss yet rather than 暂无中文释义; the gloss appears when it lands.
+let baseDictionaryLoaded = false;
+let baseDictionaryTask;
+function loadBaseDictionaryOnce() {
+  baseDictionaryTask ??= loadBaseDictionary(readSiteFile).then(baseDictionary => {
+    const withBase = createWordMeaning({ ...wordListFiles, baseDictionary });
+    for (const lesson of allReadings) {
+      const { lookup } = withBase.forLesson(lesson.lessonWords);
+      refreshTerms(lesson.terms, token => lookup(token.text, { sentenceStart: token.sentenceStart }));
+    }
+    baseDictionaryLoaded = true;
+    if (currentView === "reader") renderInlineGlosses();
+  });
+  return baseDictionaryTask;
+}
+function loadBaseDictionaryWhenIdle() {
+  // Safari and the app's web view have no requestIdleCallback.
+  if (window.requestIdleCallback) requestIdleCallback(loadBaseDictionaryOnce, { timeout: 1500 });
+  else setTimeout(loadBaseDictionaryOnce, 300);
+}
+
 function renderInlineGlosses() {
   const lesson = readings[activeIndex];
   reader.querySelectorAll(".inline-gloss:not([data-fixed-gloss])").forEach(gloss => gloss.remove());
   for (const [key, exampleIndex] of marks[activeIndex]) {
     const word = visibleWords.get(key)[exampleIndex];
-    const meaning = lesson.terms.get(key).meaning || "暂无中文释义";
+    const term = lesson.terms.get(key);
+    if (!baseDictionaryLoaded && awaitsBaseDictionary(term)) {
+      loadBaseDictionaryOnce();
+      continue;
+    }
+    const meaning = term.meaning || "暂无中文释义";
     const fixed = word.nextElementSibling?.hasAttribute("data-fixed-gloss") ? word.nextElementSibling : null;
     if (fixed?.textContent === "（" + meaning + "）") continue;
     const gloss = document.createElement("span");
     gloss.className = "inline-gloss";
     gloss.lang = "zh-CN";
-    gloss.textContent = "（" + meaning + "）";
+    gloss.append("（" + meaning);
+    // A base-dictionary meaning is general, not written for this story.
+    if (term.source === "base-dictionary") {
+      const mark = document.createElement("span");
+      mark.className = "gloss-source";
+      mark.textContent = "词典";
+      gloss.append(mark);
+    }
+    gloss.append("）");
     (fixed || word).after(gloss);
   }
 }
@@ -1006,6 +1031,7 @@ byId("next").addEventListener("click", () => {
 });
 updateDirectory();
 selectLesson(activeIndex, false);
+loadBaseDictionaryWhenIdle();
 // What listening.js needs from the page. Listening only reads the page,
 // switches 中英 and follows a run to its next story; it never saves progress.
 window.readingPage = {
