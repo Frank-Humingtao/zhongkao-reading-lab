@@ -354,6 +354,17 @@ export async function loadDictionary(readText) {
   return JSON.parse(text);
 }
 
+// The base dictionary, word → meaning. A missing or broken file is no base
+// dictionary at all: words it would have explained show no meaning, nothing fails.
+export async function loadBaseDictionary(readText) {
+  try {
+    const data = JSON.parse(await readText(BASE_DICTIONARY));
+    return data && typeof data === "object" && !Array.isArray(data) ? data : {};
+  } catch {
+    return {};
+  }
+}
+
 // The base dictionary is generated, never written by hand: a flat object of
 // lowercase word → meaning. Its problems, for the content check.
 export function checkBaseDictionary(text) {

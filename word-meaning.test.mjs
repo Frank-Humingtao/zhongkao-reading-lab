@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import { addTerm, collectionGlossary, createWordMeaning } from "./word-meaning.js";
-import { buildCatalog } from "./vocab-context.js";
+import { addTerm, atSentenceStart, collectionGlossary, createWordMeaning, refreshTerms } from "./word-meaning.js";
+import { buildCatalog, loadWordCatalog } from "./vocab-context.js";
+import { loadBaseDictionary } from "./content.js";
 
 const wordList = JSON.parse(readFileSync("content/dictionary.json", "utf8"));
 const meanings = createWordMeaning(wordList);
@@ -113,4 +114,133 @@ test("short -ing forms reduce to their verb", async () => {
   assert.equal(baseForm("doing"), "do");
   assert.equal(baseForm("being"), "be");
   for (const word of ["bring", "thing", "sting", "swing"]) assert.equal(baseForm(word), word);
+});
+
+const fixtureBase = { algorithm: "n. 算法", amy: "n. 艾米（女子名）", mike: "vi. 偷懒", suddenly: "adv. 突然", delete: "vt. 删除" };
+
+test("forms base-form.js leaves alone still find their word", () => {
+  const { lookup } = createWordMeaning({ ...wordList, baseDictionary: fixtureBase }).forLesson();
+  for (const [word, base] of [["happier", "happy"], ["bigger", "big"], ["wider", "wide"], ["taller", "tall"],
+    ["safest", "safe"], ["fishermen", "fisherman"], ["menus", "menu"], ["mini-bus", "minibus"]]) {
+    assert.equal(lookup(word).meaning, listMeaning(base), word);
+    assert.equal(lookup(word).key, word, word);
+  }
+  // The base-form retry knows base-dictionary words: "deleted" is "delete", not "delet".
+  assert.equal(lookup("deleted").meaning, "vt. 删除");
+  // A hyphenated compound is never glossed part by part.
+  assert.equal(lookup("second-floor").meaning, "");
+});
+
+test("a word starts a sentence at the beginning, after an opening quote or after a full stop", () => {
+  const text = 'Amy said, "Mike is here." Then Mike left with Amy: Suddenly it rained.';
+  const startOf = word => atSentenceStart(text, text.indexOf(word));
+  assert.equal(startOf("Amy said"), true);
+  assert.equal(startOf("Mike is"), true);
+  assert.equal(startOf("Then"), true);
+  assert.equal(startOf("Mike left"), false);
+  assert.equal(startOf("Amy:"), false);
+  assert.equal(startOf("Suddenly"), true);
+});
+
+test("a capitalised word mid-sentence is a name before it is a base-dictionary word", () => {
+  const { lookup } = createWordMeaning({ ...wordList, baseDictionary: fixtureBase }).forLesson();
+  assert.equal(lookup("Mike", { sentenceStart: false }).meaning, "专有名词");
+  // At a sentence start the base dictionary is a guess, which a name or a lowercase use outranks.
+  assert.deepEqual(lookup("Suddenly", { sentenceStart: true }),
+    { key: "suddenly", display: "suddenly", meaning: "adv. 突然", source: "base-dictionary", guess: true });
+  assert.equal(lookup("suddenly", { sentenceStart: false }).guess, undefined);
+  // I'm, I've and I'd are capitalised everywhere and are no names.
+  const withContractions = createWordMeaning({ ...wordList, baseDictionary: { "i've": "= I have 我已经" } }).forLesson();
+  assert.equal(withContractions.lookup("I’ve", { sentenceStart: false }).meaning, "= I have 我已经");
+
+  const terms = new Map();
+  addTerm(terms, lookup("Amy", { sentenceStart: true }));
+  addTerm(terms, lookup("Amy", { sentenceStart: false }));
+  addTerm(terms, lookup("Algorithms", { sentenceStart: true }));
+  addTerm(terms, lookup("algorithms", { sentenceStart: false }));
+  assert.equal(terms.get("amy").meaning, "专有名词");
+  assert.deepEqual(terms.get("algorithms"), { display: "algorithms", meaning: "n. 算法", source: "base-dictionary", examples: [] });
+});
+
+test("terms looked up before the base dictionary arrives are filled in place when it does", () => {
+  const sentences = ["Algorithms help.", "She met Amy and Mike.", "Amy liked algorithms and books."];
+  const tokens = sentences.flatMap(sentence => [...sentence.matchAll(/[\p{L}]+/gu)].map(match => ({
+    text: match[0], sentenceStart: atSentenceStart(sentence, match.index)
+  })));
+  const build = lookup => {
+    const terms = new Map();
+    for (const token of tokens) addTerm(terms, lookup(token.text, token)).examples.push(token);
+    return terms;
+  };
+  const terms = build(meanings.forLesson().lookup);
+  const before = new Map([...terms].map(([key, term]) => [key, term.examples]));
+  assert.equal(terms.get("algorithms").meaning, "专有名词");
+  assert.equal(terms.get("books").meaning, listMeaning("book"));
+
+  const { lookup } = createWordMeaning({ ...wordList, baseDictionary: fixtureBase }).forLesson();
+  refreshTerms(terms, token => lookup(token.text, token));
+  // Same keys, same examples, so saved marks still point where they did.
+  assert.deepEqual(new Map([...terms].map(([key, term]) => [key, term.examples])), before);
+  assert.equal(terms.get("algorithms").meaning, "n. 算法");
+  assert.equal(terms.get("algorithms").source, "base-dictionary");
+  assert.equal(terms.get("amy").meaning, "专有名词");
+  assert.equal(terms.get("mike").meaning, "专有名词");
+  assert.deepEqual(terms, build(lookup));
+});
+
+test("the vocabulary board shows base-dictionary meanings too", () => {
+  const edition = { words: {}, stories: [{ id: "s1", title: "Notes", paragraphs: [[["They studied algorithms.", ""]]] }] };
+  const catalog = buildCatalog({
+    screening: { dictionary: wordList.dictionary, forms: wordList.forms },
+    extraMeanings: wordList.extraMeanings,
+    baseDictionary: fixtureBase,
+    editions: { e1: edition }
+  });
+  assert.equal(catalog.lookup("e1", "s1", "algorithms", 0).meaning, "n. 算法");
+});
+
+test("a missing or broken base dictionary is no base dictionary", async () => {
+  assert.deepEqual(await loadBaseDictionary(async () => null), {});
+  assert.deepEqual(await loadBaseDictionary(async () => "{"), {});
+  assert.deepEqual(await loadBaseDictionary(async () => "[1]"), {});
+  assert.deepEqual(await loadBaseDictionary(async () => '{"car": "n. 车"}'), { car: "n. 车" });
+});
+
+// Lowercase words in published stories that no source explains. Keep this short: a new
+// word here means a story uses a word the base dictionary does not have.
+const UNEXPLAINED = {
+  // Hyphenated compounds: never glossed part by part (second-floor is not 秒＋地面), and
+  // multi-word expressions are out of the base dictionary's scope.
+  compounds: `computer-created cross-subject deep-sea environmental-friendly fast-moving grown-up
+    hard-and-fast hard-to-reach high-achieving high-five human-like human-machine human-made laid-back
+    long-term machine-person modern-day modern-thinking money-raising multi-step non-procrastinators
+    one-metre one-on-one pie-making quick-growing ready-made real-life second-floor seed-to-seed
+    super-cold super-fast top-selling two-legged two-way up-to-now year-old`,
+  // Pieces of web addresses in exam passages (www.youthnews.com).
+  web: "com https www sunshineschoolweekly youthnews yourview",
+  // In ECDICT but outside the base dictionary's selection (scripts/base-dictionary.mjs).
+  rare: `chrysalises downhearted fishhooks gameplay hexagon hexagons lifelike lychee noticeboard pewee
+    procrastinators refashion repurposed sleeplessness undone unopened upcycle upcycled upcycling`,
+  // Typos and foreign words in the source passages.
+  typos: "line-just restaurer science-from"
+};
+
+test("every lowercase word in the published stories has a meaning, beyond a named allowance", async () => {
+  const readText = async path => {
+    try {
+      return readFileSync(path, "utf8");
+    } catch {
+      return null;
+    }
+  };
+  const allowed = new Set(Object.values(UNEXPLAINED).flatMap(words => words.trim().split(/\s+/)));
+  const catalog = await loadWordCatalog(readText);
+  const blank = new Set();
+  let count = 0;
+  for (const [, , key, term] of catalog.terms()) {
+    count++;
+    if (!term.meaning && !allowed.has(key)) blank.add(key);
+  }
+  assert.ok(count > 20000, "the catalog holds every published story");
+  assert.deepEqual([...blank].sort(), []);
 });

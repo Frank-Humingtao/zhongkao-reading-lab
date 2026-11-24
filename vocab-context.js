@@ -1,8 +1,8 @@
 // Lesson lookup for the 生词 board. Tokenization matches the reading page so a
 // mark's example index points at the same sentence.
 
-import { loadCollection, loadDictionary, loadManifest } from "./content.js";
-import { addTerm, collectionGlossary, createWordMeaning } from "./word-meaning.js";
+import { loadBaseDictionary, loadCollection, loadDictionary, loadManifest } from "./content.js";
+import { addTerm, atSentenceStart, collectionGlossary, createWordMeaning } from "./word-meaning.js";
 
 const sentencePattern = /[^.!?]+[.!?]+(?:["”'’])?|[^.!?]+$/g;
 
@@ -44,11 +44,13 @@ function buildIndexedLesson(lesson, meanings, wordPattern) {
   const terms = new Map();
   const pattern = new RegExp([...meanings.phrasePatterns, wordPattern.source].join("|"), "giu");
 
-  function tokenize(text, chinese) {
+  // A title is title-cased, so each of its words counts as a sentence start.
+  function tokenize(text, chinese, isTitle = false) {
     text = readingPlainText(text);
     for (const match of text.matchAll(pattern)) {
       const surface = match[0];
-      addTerm(terms, meanings.lookup(surface)).examples.push({
+      const sentenceStart = isTitle || atSentenceStart(text, match.index);
+      addTerm(terms, meanings.lookup(surface, { sentenceStart })).examples.push({
         surface,
         sentence: text,
         offset: match.index,
@@ -57,7 +59,7 @@ function buildIndexedLesson(lesson, meanings, wordPattern) {
     }
   }
 
-  tokenize(readingPlainText(lesson.title || ""), "");
+  tokenize(readingPlainText(lesson.title || ""), "", true);
   const paragraphs = lesson.sentences || (lesson.paragraphs || []).map(splitSentences);
   paragraphs.forEach((sentences, paragraphIndex) => {
     sentences.forEach((sentence, sentenceIndex) => {
@@ -87,13 +89,14 @@ export function buildCatalog({
   screening,
   bilingual = {},
   extraMeanings = {},
+  baseDictionary = {},
   editions = {},
   trialLessons = [],
   trialGlossary = null
 } = {}) {
   const dictionary = screening?.dictionary || {};
   const wordPattern = wordPatternFromDictionary(dictionary);
-  const meanings = createWordMeaning({ dictionary, forms: screening?.forms || {}, extraMeanings });
+  const meanings = createWordMeaning({ dictionary, forms: screening?.forms || {}, extraMeanings, baseDictionary });
   const bySource = new Map();
   const titles = new Map();
   // Headwords of the site's own word lists, so base-form.js can tell a real word
@@ -152,6 +155,14 @@ export function buildCatalog({
   return {
     sources: [...bySource.keys()],
     headwords,
+    // Every lesson's words: [sourceId, lessonId, key, { display, meaning, source, examples }].
+    *terms() {
+      for (const [sourceId, lessons] of bySource) {
+        for (const [lessonId, terms] of lessons) {
+          for (const [key, term] of terms) yield [sourceId, lessonId, key, term];
+        }
+      }
+    },
     title(sourceId, lessonId) {
       return titles.get(sourceId + "/" + lessonId) || "";
     },
@@ -180,7 +191,9 @@ export function buildCatalog({
 // version id. A collection whose file is missing or malformed is left out; its
 // words still show, only without their sentence.
 export async function loadWordCatalog(readText) {
-  const [dictionary, { collections }] = await Promise.all([loadDictionary(readText), loadManifest(readText)]);
+  const [dictionary, { collections }, baseDictionary] = await Promise.all([
+    loadDictionary(readText), loadManifest(readText), loadBaseDictionary(readText)
+  ]);
   const editions = {};
   let placement = null;
   await Promise.all(collections.map(async collection => {
@@ -193,6 +206,7 @@ export async function loadWordCatalog(readText) {
     screening: { dictionary: dictionary.dictionary, forms: dictionary.forms, lessons: placement?.lessons },
     bilingual: placement?.chinese || {},
     extraMeanings: dictionary.extraMeanings || {},
+    baseDictionary,
     trialLessons: placement?.legacy?.trialLessons || [],
     trialGlossary: placement?.legacy?.trialGlossary || null,
     editions
