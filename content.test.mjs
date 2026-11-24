@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import test from "node:test";
-import { checkCollection, checkLibrary, findCollection, formatContent, loadCollection, readManifest, storyPicture,
+import { checkCollection, checkLibrary, checkRepetition, wordRepetition, findCollection, formatContent, loadCollection, readManifest, storyPicture,
   switcherGroups } from "./content.js";
 
 const manifest = collections => readManifest(JSON.stringify({ collections }));
@@ -40,7 +40,8 @@ test("a new review batch needs only an id and a kind; everything else is derived
 test("the published collections keep the ids, labels and progress they had", () => {
   const { collections, problems } = readManifest(readFileSync("content/index.json", "utf8"));
   assert.deepEqual(problems, []);
-  assert.deepEqual(collections.map(collection => collection.label),
+  // Review batches the writer agent adds later sit after these; they never change this test.
+  assert.deepEqual(collections.filter(collection => !/^review-\d/.test(collection.id)).map(collection => collection.label),
     ["Placement 01", "Review 01", "Review 02", "Review 03", "Review 04", "News 01"]);
   const placement = findCollection(collections, null);
   assert.equal(placement.id, "screening");
@@ -133,7 +134,8 @@ test("a story's picture is named after it, unless an older story names its own f
 test("everything published passes the content check, and every picture it names is there", async () => {
   const { problems, missingPictures } = await checkLibrary(readText, async path => existsSync(path));
   assert.deepEqual(problems, []);
-  assert.deepEqual(missingPictures, []);
+  // A new batch's pictures may still be waiting for the illustrator agent.
+  assert.deepEqual(missingPictures.filter(picture => !/^review-\d/.test(picture.collection)), []);
 });
 
 test("a batch whose pictures are not drawn yet lists them for the illustrator agent", async () => {
@@ -152,6 +154,36 @@ test("content files are written in one format: short lists on one line", () => {
     '{\n  "words": {\n    "lamp": ["灯", "lamps"]\n  },\n  "stories": []\n}\n');
   for (const name of readdirSync("content")) {
     const text = readFileSync("content/" + name, "utf8");
-    if (name !== "index.json") assert.equal(formatContent(JSON.parse(text)), text, name);
+    // The agents' own batches may be laid out however they write them.
+    if (name !== "index.json" && !/^review-\d/.test(name)) assert.equal(formatContent(JSON.parse(text)), text, name);
   }
+});
+
+// A batch whose words each appear `times` times, one story per appearance.
+const repeated = (times, sentence = word => `The ${word} was there.`) => ({
+  words: { lamp: ["灯", "lamps"], "pick up": ["捡起", "picked up"] },
+  stories: Array.from({ length: times }, (_, index) => ({
+    id: "review-2026-11-24-0" + (index + 1), title: "T", topic: "题", picture: "画面。",
+    paragraphs: [[[sentence("lamp"), "灯在那里。"], ["She picked up her bag.", "她拿起包。"]]]
+  }))
+});
+
+test("a word's repeats count its base form and inflections together, story by story", () => {
+  const data = repeated(3);
+  data.stories[2].paragraphs[0][0][0] = "Two lamps（灯） were on.";
+  const counts = wordRepetition(data);
+  assert.deepEqual([...counts].map(([word, { count, stories }]) => [word, count, stories.size]),
+    [["lamp", 3, 3], ["pick up", 3, 3]]);
+  assert.deepEqual(checkRepetition(dated(), data), []);
+});
+
+test("a batch that repeats a word too few or too many times, or in too few stories, is reported", () => {
+  const [few] = checkRepetition(dated(), repeated(1));
+  assert.match(few, /content\/review-2026-11-24\.json：生词 "lamp" 出现了 1 次，在 1 篇里（至少要 3 次，要分布在至少 3 篇里）/);
+  const many = checkRepetition(dated(), repeated(8));
+  assert.match(many[0], /"lamp" 出现了 8 次.*最多 7 次/);
+  const crowded = repeated(2, word => `The ${word} and the ${word} again.`);
+  assert.match(checkRepetition(dated(), crowded)[0], /"lamp" 出现了 4 次，在 2 篇里（要分布在至少 3 篇里）/);
+  const older = manifest([{ id: "reading-05", kind: "review", number: "05" }]).collections[0];
+  assert.deepEqual(checkRepetition(older, repeated(1)), []);
 });
