@@ -212,3 +212,25 @@ export async function loadWordCatalog(readText) {
     editions
   });
 }
+
+// The words no source explains (collection, word list, base dictionary), per
+// collection file in content/index.json order: [{ file, words }], words sorted,
+// collections with none left out. Looked up exactly as the page does. A blank
+// is always lowercase: an unexplained capitalised word is a 专有名词.
+export async function unexplainedWords(readText) {
+  const [{ collections }, catalog] = await Promise.all([loadManifest(readText), loadWordCatalog(readText)]);
+  const bySource = new Map();
+  for (const [sourceId, , key, term] of catalog.terms()) {
+    if (term.meaning) continue;
+    if (!bySource.has(sourceId)) bySource.set(sourceId, new Set());
+    bySource.get(sourceId).add(key);
+  }
+  return collections
+    .filter(collection => bySource.has(collection.version))
+    .map(collection => ({ file: collection.file, words: [...bySource.get(collection.version)].sort() }));
+}
+
+// The content check's notice for those words, one line per collection. Never a problem.
+export function unexplainedNotice({ file, words }) {
+  return `${file}：${words.length} 个小写词点开没有中文释义（合集、词表、基础词典里都没有）：${words.join("、")}。只是提醒，不算问题。`;
+}

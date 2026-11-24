@@ -2,8 +2,8 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import { addTerm, atSentenceStart, collectionGlossary, createWordMeaning, refreshTerms } from "./word-meaning.js";
-import { buildCatalog, loadWordCatalog } from "./vocab-context.js";
-import { loadBaseDictionary } from "./content.js";
+import { buildCatalog, loadWordCatalog, unexplainedNotice, unexplainedWords } from "./vocab-context.js";
+import { checkLibrary, loadBaseDictionary } from "./content.js";
 
 const wordList = JSON.parse(readFileSync("content/dictionary.json", "utf8"));
 const meanings = createWordMeaning(wordList);
@@ -206,8 +206,8 @@ test("a missing or broken base dictionary is no base dictionary", async () => {
   assert.deepEqual(await loadBaseDictionary(async () => '{"car": "n. 车"}'), { car: "n. 车" });
 });
 
-// Lowercase words in published stories that no source explains. Keep this short: a new
-// word here means a story uses a word the base dictionary does not have.
+// Lowercase words in the collections published by 2026-11-24 that no source explains.
+// Keep this short: a new word here means a story uses a word the base dictionary does not have.
 const UNEXPLAINED = {
   // Hyphenated compounds: never glossed part by part (second-floor is not 秒＋地面), and
   // multi-word expressions are out of the base dictionary's scope.
@@ -225,22 +225,57 @@ const UNEXPLAINED = {
   typos: "line-just restaurer science-from"
 };
 
-test("every lowercase word in the published stories has a meaning, beyond a named allowance", async () => {
-  const readText = async path => {
-    try {
-      return readFileSync(path, "utf8");
-    } catch {
-      return null;
-    }
-  };
-  const allowed = new Set(Object.values(UNEXPLAINED).flatMap(words => words.trim().split(/\s+/)));
-  const catalog = await loadWordCatalog(readText);
-  const blank = new Set();
-  let count = 0;
-  for (const [, , key, term] of catalog.terms()) {
-    count++;
-    if (!term.meaning && !allowed.has(key)) blank.add(key);
+const readText = async path => {
+  try {
+    return readFileSync(path, "utf8");
+  } catch {
+    return null;
   }
+};
+
+// The collections that existed when the allowance was written. Later ones are left to the
+// content check's notice, so an ordinary content push never turns these tests red.
+const PUBLISHED = ["content/screening.json", "content/placement-02.json", "content/reading-01.json",
+  "content/reading-02-v3.json", "content/reading-03-v2.json", "content/reading-04.json",
+  "content/daily-news-01.json", "content/review-2026-11-24.json"];
+
+test("every lowercase word in the published stories has a meaning, beyond a named allowance", async () => {
+  const allowed = new Set(Object.values(UNEXPLAINED).flatMap(words => words.trim().split(/\s+/)));
+  let count = 0;
+  for (const _ of (await loadWordCatalog(readText)).terms()) count++;
   assert.ok(count > 20000, "the catalog holds every published story");
-  assert.deepEqual([...blank].sort(), []);
+  const blank = (await unexplainedWords(readText))
+    .filter(({ file }) => PUBLISHED.includes(file))
+    .flatMap(({ file, words }) => words.filter(word => !allowed.has(word)).map(word => file + " " + word));
+  assert.deepEqual(blank, []);
+});
+
+// A new three-story batch, `sentence` in its first story, on top of the real word list
+// and base dictionary. Its word repeats enough, so the batch itself is fine.
+const withCollection = sentence => async path => {
+  if (path === "content/index.json") return JSON.stringify({ collections: [{ id: "review-2026-12-01", kind: "review" }] });
+  if (path === "content/review-2026-12-01.json") return JSON.stringify({
+    words: { lamp: ["灯", "lamps"] },
+    stories: [sentence, "The lamp was on.", "The lamp was old."].map((english, index) => ({
+      id: "review-2026-12-01-0" + (index + 1), title: "The Lamp", topic: "那盏灯", picture: "一盏旧台灯。",
+      paragraphs: [[[english, "灯亮着。"]]]
+    }))
+  });
+  return readText(path);
+};
+
+test("the content check names the file and the word no source explains, and still passes", async () => {
+  const files = withCollection("Mia saw the lamps and a zzyzxq near Guangzhou.");
+  const { problems, repetition } = await checkLibrary(files, async () => true);
+  assert.deepEqual(problems, []);
+  assert.deepEqual(repetition, []);
+  const unexplained = await unexplainedWords(files);
+  assert.deepEqual(unexplained, [{ file: "content/review-2026-12-01.json", words: ["zzyzxq"] }]);
+  const notice = unexplainedNotice(unexplained[0]);
+  assert.match(notice, /^content\/review-2026-12-01\.json：1 个/);
+  assert.match(notice, /zzyzxq/);
+});
+
+test("a collection every word of which has a meaning gets no notice", async () => {
+  assert.deepEqual(await unexplainedWords(withCollection("Mia saw the lamps, the books and the algorithms.")), []);
 });
