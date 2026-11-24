@@ -248,7 +248,7 @@ test("the word catalog built from content/ finds marked sentences in every colle
   assert.ok(bang.chinese);
   assert.equal(catalog.title("reading-01", "memory-01-film"), "Thunder for a Film");
 
-  assert.deepEqual([...catalog.sources].sort(), ["daily-news-01", "reading-01", "reading-02-v3", "reading-03-v2", "reading-04", "screening"]);
+  assert.deepEqual([...catalog.sources].filter(id => !/^review-\d/.test(id)).sort(), ["daily-news-01", "reading-01", "reading-02-v3", "reading-03-v2", "reading-04", "screening"]);
   const two = JSON.parse(readFileSync("content/reading-02-v3.json", "utf8"));
   const word = Object.keys(two.words).find(key => catalog.lookup("reading-02-v3", two.stories[0].id, key, 0)?.sentence);
   assert.ok(word, "reading-02-v3 should resolve a marked example");
@@ -265,7 +265,7 @@ test("progress keys stay where the reading page has always kept them", () => {
     progressKey: "zhongkao-reading-lab-v3", recordsKey: "zhongkao-github-sync-records-v1" });
   assert.deepEqual(source("reading-02-v3"), { id: "reading-02-v3", label: "Review 02", file: "progress-reading-02-v3.json",
     progressKey: "zhongkao-reading-lab-reading-02-v3", recordsKey: "zhongkao-github-sync-records-reading-02-v3-v1" });
-  assert.deepEqual(progressSources.map(item => item.id), ["screening", "reading-01", "reading-02-v3", "reading-02-v2", "reading-02",
+  assert.deepEqual(progressSources.map(item => item.id).filter(id => !/^review-\d/.test(id)), ["screening", "reading-01", "reading-02-v3", "reading-02-v2", "reading-02",
     "reading-03-v2", "reading-03", "reading-04", "daily-news-01"]);
   // Marks made in a replaced version still count, under the collection's label.
   assert.deepEqual(source("reading-02-v2"), { id: "reading-02-v2", label: "Review 02", file: "progress-reading-02-v2.json",

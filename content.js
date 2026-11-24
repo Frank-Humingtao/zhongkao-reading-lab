@@ -12,6 +12,7 @@
 // `readText(path)` is how callers load a file: fetch in the browser, fs in node.
 // It returns the text, or null when the file does not exist.
 
+import { baseForm } from "./base-form.js";
 import { readingPlainText } from "./vocab-context.js";
 
 export const MANIFEST = "content/index.json";
@@ -229,6 +230,65 @@ export function checkCollection(collection, data) {
 // One collection's words and stories, or null with the problems when the file
 // is missing or malformed. Pages skip a collection that fails rather than
 // breaking.
+// How a review batch repeats its words (CONTENT.md): each word in `words` should
+// appear 3 to 7 times, base form and inflections counted together, in at least
+// 3 different stories. Returns one line per word that misses, naming the word,
+// its count and its stories. Only dated batches are held to it; a batch that
+// misses still shows on the site.
+export const REPEAT = { min: 3, max: 7, stories: 3 };
+
+function escapePattern(text) {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+export function wordRepetition(data) {
+  const counts = new Map();
+  const words = isObject(data?.words) ? Object.entries(data.words) : [];
+  for (const [key] of words) counts.set(key, { count: 0, stories: new Set() });
+  const single = new Map();
+  const phrases = [];
+  for (const [key, value] of words) {
+    const forms = [key, ...(Array.isArray(value) ? value.slice(1) : [])].filter(form => typeof form === "string" && form);
+    if (/[\s-]/.test(key)) {
+      phrases.push([key, new RegExp("\\b(?:" + forms.map(escapePattern).join("|") + ")\\b", "gi")]);
+    } else {
+      for (const form of forms) single.set(form.toLowerCase(), key);
+    }
+  }
+  const known = new Set(single.keys());
+  for (const story of Array.isArray(data?.stories) ? data.stories : []) {
+    for (const paragraph of Array.isArray(story?.paragraphs) ? story.paragraphs : []) {
+      for (const pair of Array.isArray(paragraph) ? paragraph : []) {
+        if (!Array.isArray(pair) || typeof pair[0] !== "string") continue;
+        const english = readingPlainText(pair[0]);
+        const seen = key => {
+          const entry = counts.get(key);
+          entry.count += 1;
+          entry.stories.add(story.id);
+        };
+        for (const token of english.toLowerCase().match(/[a-z]+(?:'[a-z]+)?/g) ?? []) {
+          const key = single.get(token) ?? single.get(baseForm(token, known));
+          if (key) seen(key);
+        }
+        for (const [key, pattern] of phrases) for (const _ of english.matchAll(pattern)) seen(key);
+      }
+    }
+  }
+  return counts;
+}
+
+export function checkRepetition(collection, data) {
+  if (!DATED.test(collection.id)) return [];
+  const problems = [];
+  for (const [word, { count, stories }] of wordRepetition(data)) {
+    if (count >= REPEAT.min && count <= REPEAT.max && stories.size >= REPEAT.stories) continue;
+    const need = count < REPEAT.min ? `至少要 ${REPEAT.min} 次` : count > REPEAT.max ? `最多 ${REPEAT.max} 次` : "";
+    const spread = stories.size < REPEAT.stories ? `要分布在至少 ${REPEAT.stories} 篇里` : "";
+    problems.push(`${collection.file}：生词 "${word}" 出现了 ${count} 次，在 ${stories.size} 篇里（${[need, spread].filter(Boolean).join("，")}）。`);
+  }
+  return problems;
+}
+
 export async function loadCollection(readText, collection) {
   const { file } = collection;
   const text = await readText(file);
@@ -258,23 +318,26 @@ export function vocabSources(collections) {
   })));
 }
 
-// The whole library, for the content check: every problem, plus every picture
+// The whole library, for the content check: every problem, every word a review
+// batch does not repeat enough (`repetition`; the batch still shows), plus every picture
 // a story describes that is not there yet (not a problem: the illustrator agent
 // draws it later). `exists(path)` says whether a file is in the repository.
 export async function checkLibrary(readText, exists) {
   const { collections, problems } = await loadManifest(readText);
   const missingPictures = [];
+  const repetition = [];
   for (const collection of collections) {
     const shown = await loadCollection(readText, collection);
     problems.push(...shown.problems);
     if (!shown.data) continue;
+    repetition.push(...checkRepetition(collection, shown.data));
     const stories = collection.legacyScreening ? shown.data.lessons : shown.data.stories;
     for (const story of stories) {
       const picture = storyPicture(collection, story);
       if (picture && !(await exists(picture.src))) missingPictures.push({ collection: collection.id, story: story.id, src: picture.src, description: picture.alt });
     }
   }
-  return { collections, problems, missingPictures };
+  return { collections, problems, repetition, missingPictures };
 }
 
 // Content files are written the same way every time: two-space indents, with a

@@ -3,6 +3,7 @@
 // well formed? Run it before every push; GitHub runs it again after.
 //
 //   node scripts/check-content.mjs              # problems, in plain words; exit 1 if any
+//                                               # (including words a batch repeats too few times)
 //   node scripts/check-content.mjs --pictures   # the pictures still to draw, as JSON
 //
 // It only reads files. A picture that is not drawn yet is not a problem: the
@@ -25,7 +26,7 @@ const readText = async path => {
 };
 const exists = async path => existsSync(join(root, path));
 
-const { collections, problems, missingPictures } = await checkLibrary(readText, exists);
+const { collections, problems, repetition, missingPictures } = await checkLibrary(readText, exists);
 
 if (process.argv.includes("--pictures")) {
   process.stdout.write(JSON.stringify(missingPictures.map(({ collection, story, src, description }) =>
@@ -63,8 +64,13 @@ for (const name of readdirSync(join(root, "content"))) {
   }
 }
 
-const lines = problems.length
-  ? [`内容检查没有通过，共 ${problems.length} 个问题：`, ...problems.map(problem => "✗ " + problem), "", "改好后再运行一次 node scripts/check-content.mjs。"]
+const failed = problems.length + repetition.length;
+const lines = failed
+  ? [`内容检查没有通过，共 ${failed} 个问题：`,
+    ...problems.map(problem => "✗ " + problem),
+    ...(repetition.length ? ["", `生词复现次数不对（写文 agent 改文章；配图 agent 不用管，照常上传图片）：`] : []),
+    ...repetition.map(problem => "✗ " + problem),
+    "", "改好后再运行一次 node scripts/check-content.mjs。"]
   : [`✓ 内容检查通过：${collections.length} 个合集，${stories} 篇。`,
     ...(missingPictures.length ? [`还有 ${missingPictures.length} 张图没画（配图 agent 会补上，不算问题）。`] : [])];
 console.log(lines.join("\n"));
@@ -72,4 +78,4 @@ if (process.env.GITHUB_STEP_SUMMARY) {
   const { appendFileSync } = await import("node:fs");
   appendFileSync(process.env.GITHUB_STEP_SUMMARY, lines.join("\n\n") + "\n");
 }
-process.exit(problems.length ? 1 : 0);
+process.exit(failed ? 1 : 0);
