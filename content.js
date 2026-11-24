@@ -40,7 +40,7 @@ const LEGACY_PROGRESS = {
   }
 };
 
-const MANIFEST_FIELDS = new Set(["id", "kind", "number", "version"]);
+const MANIFEST_FIELDS = new Set(["id", "kind", "number", "version", "earlier"]);
 const COLLECTION_FIELDS = new Set(["words", "stories", "columnTitle", "editionDate"]);
 const STORY_FIELDS = new Set(["id", "title", "topic", "picture", "image", "figure", "sources", "paragraphs"]);
 
@@ -69,7 +69,10 @@ function describe(entry, kind) {
     href: entry.id === LEGACY_SCREENING ? "./" : "./?set=" + entry.id,
     imageDir: "images/" + entry.id + "/",
     legacyScreening: entry.id === LEGACY_SCREENING,
-    ...progressFor(version)
+    ...progressFor(version),
+    // Versions this collection replaced: their stories are gone, but the 生词
+    // marked in them still count on the board.
+    earlier: (entry.earlier ?? []).map(old => ({ version: old, ...progressFor(old) }))
   };
 }
 
@@ -97,7 +100,7 @@ export function readManifest(text) {
     const fail = message => problems.push(`${where}：${message}`);
     if (!isObject(entry)) return fail("必须是一个 {...} 对象。");
     const unknown = Object.keys(entry).filter(key => !MANIFEST_FIELDS.has(key));
-    if (unknown.length) return fail(`不认识的字段 ${unknown.join("、")}。只能有 id、kind（老合集还有 number、version）。`);
+    if (unknown.length) return fail(`不认识的字段 ${unknown.join("、")}。只能有 id、kind（老合集还有 number、version、earlier）。`);
     if (typeof entry.id !== "string" || !ID.test(entry.id)) return fail("id 只能用小写字母、数字和连字符，例如 review-2026-11-24。");
     if (!Object.hasOwn(KINDS, entry.kind)) return fail("kind 只能是 placement、review 或 news。");
     if (entry.kind === "review" && entry.number === undefined && !DATED.test(entry.id)) {
@@ -106,6 +109,8 @@ export function readManifest(text) {
     if (entry.kind !== "review" && entry.number === undefined) return fail("需要 number，例如 \"02\"。");
     if (entry.number !== undefined && (typeof entry.number !== "string" || !entry.number)) return fail("number 必须是文字，例如 \"02\"。");
     if (entry.version !== undefined && (typeof entry.version !== "string" || !ID.test(entry.version))) return fail("version 只能是 id。");
+    if (entry.earlier !== undefined && (!Array.isArray(entry.earlier)
+      || !entry.earlier.every(old => typeof old === "string" && ID.test(old)))) return fail("earlier 只能是旧版本 id 的列表。");
     if (seen.has(entry.id)) return fail("这个 id 前面已经登记过了，不要重复登记。");
     seen.add(entry.id);
     collections.push(describe(entry, entry.kind));
@@ -247,10 +252,10 @@ export async function loadDictionary(readText) {
 // The progress sources the 生词 board and the daily export read, one per
 // collection, labelled the way the board shows where a word was marked.
 export function vocabSources(collections) {
-  return collections.map(collection => ({
-    id: collection.version, label: collection.label, file: collection.progressFile,
-    progressKey: collection.storageKey, recordsKey: collection.recordsKey
-  }));
+  return collections.flatMap(collection => [collection, ...collection.earlier].map(version => ({
+    id: version.version, label: collection.label, file: version.progressFile,
+    progressKey: version.storageKey, recordsKey: version.recordsKey
+  })));
 }
 
 // The whole library, for the content check: every problem, plus every picture

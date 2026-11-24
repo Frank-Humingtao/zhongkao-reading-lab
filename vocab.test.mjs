@@ -74,7 +74,7 @@ test("a null record hides a stale local mark", () => {
   assert.equal(marks.size, 0);
 });
 
-test("same word in one set keeps the earliest mark and one label", () => {
+test("same word in one set counts once, and shows again as a repeat on a later day", () => {
   const state = aggregateVocab([{
     label: "02 v2",
     progress: null,
@@ -86,7 +86,11 @@ test("same word in one set keeps the earliest mark and one label", () => {
   assert.equal(state.count, 1);
   assert.deepEqual(state.words[0].sources, ["02 v2"]);
   assert.equal(state.words[0].firstTimestamp, NOV_18);
-  assert.equal(state.days[0].label, "2026年11月18日");
+  assert.deepEqual(state.days.map(day => day.label), ["2026年11月20日", "2026年11月18日"]);
+  assert.equal(state.days[0].words[0].repeat, true);
+  assert.equal(state.days[0].words[0].details.length, 1);
+  assert.deepEqual(state.days[0].fresh, []);
+  assert.deepEqual(state.days[1].fresh.map(word => word.word), ["quill"]);
 });
 
 test("dedupes across sets and prefers the earliest first mark", () => {
@@ -110,7 +114,8 @@ test("dedupes across sets and prefers the earliest first mark", () => {
   assert.equal(state.count, 1);
   assert.equal(state.words[0].word, "Quill");
   assert.deepEqual(state.words[0].sources, ["标词", "02 v2"]);
-  assert.equal(state.days[0].key, "2026-11-18");
+  assert.deepEqual(state.days.map(day => day.key), ["2026-11-20", "2026-11-18"]);
+  assert.deepEqual(state.days[0].words.map(word => [word.word, word.repeat, word.firstDay]), [["Quill", true, "2026-11-18"]]);
 });
 
 test("timestamp 0 is 较早/同步前 and sorts after real days", () => {
@@ -144,7 +149,9 @@ test("a pre-sync mark is earlier than a later mark of the same word", () => {
   ]);
   assert.equal(state.words[0].firstTimestamp, 0);
   assert.deepEqual(state.words[0].sources, ["标词", "01"]);
-  assert.equal(state.days[0].label, PRESYNC_LABEL);
+  assert.deepEqual(state.days.map(day => day.label), ["2026年11月20日", PRESYNC_LABEL]);
+  assert.equal(state.days[0].words[0].repeat, true);
+  assert.deepEqual(state.days[1].fresh.map(word => word.word), ["amber"]);
 });
 
 test("merge keeps the newer record and breaks timestamp ties by writer id", () => {
@@ -207,7 +214,8 @@ test("demo preview is labeled fixture data and does not keep a cleared mark", ()
   assert.deepEqual(state.days.map(day => day.label), [
     "2026年11月20日", "2026年11月19日", "2026年11月18日", PRESYNC_LABEL
   ]);
-  assert.deepEqual(state.days[0].words.map(word => word.word), ["cloudmint", "velvetkey"]);
+  assert.deepEqual(state.days[0].words.map(word => word.word), ["cloudmint", "paperfox", "riverbell", "velvetkey"]);
+  assert.deepEqual(state.days[0].fresh.map(word => word.word), ["cloudmint", "velvetkey"]);
   assert.deepEqual(state.days.at(-1).words.map(word => word.word), ["glowbug", "paperfox"]);
   const labels = new Set(state.words.flatMap(word => word.sources));
   for (const label of ["筛选", "01", "02", "03"]) assert.equal(labels.has(label), true);
@@ -220,7 +228,7 @@ test("demo preview is labeled fixture data and does not keep a cleared mark", ()
   const riverbell = presentDetails(state.words.find(word => word.word === "riverbell").details);
   assert.equal(riverbell.length, 2);
   assert.deepEqual(riverbell.map(detail => detail.source), ["02", "02"]);
-  assert.equal(dayCopyText(state.days[0].words), "cloudmint\nvelvetkey");
+  assert.equal(dayCopyText(state.days[0].fresh), "cloudmint\nvelvetkey");
   assert.doesNotMatch(dayCopyText(state.words), /词义|萤火虫/);
   for (const word of state.words) {
     assert.ok(word.details.some(detail => detail.meaning && detail.sentence));
@@ -257,8 +265,11 @@ test("progress keys stay where the reading page has always kept them", () => {
     progressKey: "zhongkao-reading-lab-v3", recordsKey: "zhongkao-github-sync-records-v1" });
   assert.deepEqual(source("reading-02-v3"), { id: "reading-02-v3", label: "Review 02", file: "progress-reading-02-v3.json",
     progressKey: "zhongkao-reading-lab-reading-02-v3", recordsKey: "zhongkao-github-sync-records-reading-02-v3-v1" });
-  assert.deepEqual(progressSources.map(item => item.id), ["screening", "reading-01", "reading-02-v3", "reading-03-v2", "reading-04",
-    "daily-news-01"]);
+  assert.deepEqual(progressSources.map(item => item.id), ["screening", "reading-01", "reading-02-v3", "reading-02-v2", "reading-02",
+    "reading-03-v2", "reading-03", "reading-04", "daily-news-01"]);
+  // Marks made in a replaced version still count, under the collection's label.
+  assert.deepEqual(source("reading-02-v2"), { id: "reading-02-v2", label: "Review 02", file: "progress-reading-02-v2.json",
+    progressKey: "zhongkao-reading-lab-reading-02-v2", recordsKey: "zhongkao-github-sync-records-reading-02-v2-v1" });
 });
 
 test("the public page does not ship tokens or progress contents", () => {
@@ -314,7 +325,8 @@ test("inflected marks of one word count once under the base form", () => {
   ]);
   assert.deepEqual(state.words.map(word => word.word), ["slip"]);
   assert.equal(state.words[0].details.length, 2);
-  assert.deepEqual(state.days.map(day => day.key), ["2026-11-18"]);
+  assert.deepEqual(state.days.map(day => day.key), ["2026-11-20", "2026-11-18"]);
+  assert.equal(state.days[0].words[0].repeat, true);
 });
 
 test("wordsInRange counts an old word marked again in a new article", () => {

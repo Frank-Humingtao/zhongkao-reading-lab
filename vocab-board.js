@@ -211,9 +211,12 @@ async function boot() {
     const display = shown && shown.toLocaleLowerCase("en") === entry.word.toLocaleLowerCase("en") ? shown : entry.word;
     const term = el("span", "term", display);
     term.lang = "en";
+
     const mainMeaning = details.find(detail => detail.meaning)?.meaning || "";
     const plain = text => String(text || "").replace(/^(?:n|v|vt|vi|adj|adv|prep|conj|pron|num)\.?\s*/i, "").trim();
-    wordBox.append(term, el("p", "meaning", mainMeaning));
+    wordBox.append(term);
+    if (entry.repeat) wordBox.append(el("span", "repeat", "又标了 · 首次 " + (entry.firstDay ? dayNames(entry.firstDay).short : "更早")));
+    wordBox.append(el("p", "meaning", mainMeaning));
 
     const speak = el("button", "speak");
     speak.type = "button";
@@ -246,7 +249,7 @@ async function boot() {
   }
 
   async function copyDay(day, button, section) {
-    const text = dayCopyText(day.words);
+    const text = dayCopyText(day.fresh);
     let fallback = section.querySelector(".copy-fallback");
     const label = button.querySelector("span");
     try {
@@ -282,10 +285,12 @@ async function boot() {
     const head = el("div", "day-head");
     const title = el("h2", "day-title", names.long);
     title.append(el("span", "weekday", names.weekday));
-    const count = el("span", "day-count", day.words.length + " 个");
+    const repeats = day.words.length - day.fresh.length;
+    const count = el("span", "day-count", day.fresh.length + " 个新词" + (repeats ? " · 又标 " + repeats : ""));
     const copy = el("button", "copy");
     copy.type = "button";
-    copy.setAttribute("aria-label", "复制" + names.long + "的生词");
+    copy.setAttribute("aria-label", "复制" + names.long + "的新词");
+    copy.hidden = !day.fresh.length;
     copy.append(icon("copy"), el("span", "", "复制"));
     copy.addEventListener("click", () => copyDay(day, copy, section));
     head.append(title, count, copy);

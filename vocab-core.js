@@ -207,14 +207,29 @@ function collectWords(sources, known) {
 
 const byWordName = (left, right) => left.word.localeCompare(right.word, "en", { sensitivity: "base" });
 
+// The board: every word once in `words` (and `count`), and one day per Beijing
+// day a mark was made. A day lists every word marked that day, each with only
+// that day's marks; a word already marked on an earlier day (or before sync) is
+// `repeat`. `fresh` is the day's new words, the list the 墨墨 export adds.
+// Words whose first mark predates sync also get a 更早 day of their own.
 export function aggregateVocab(sources, { known = null } = {}) {
-  const byWord = collectWords(sources, known);
-  const words = [...byWord.values()].sort(byWordName);
+  const words = [...collectWords(sources, known).values()].sort(byWordName);
   const grouped = new Map();
-  for (const word of words) {
-    const key = shanghaiDateKey(word.firstTimestamp) ?? "";
+  const add = (key, word) => {
     if (!grouped.has(key)) grouped.set(key, []);
     grouped.get(key).push(word);
+  };
+  for (const word of words) {
+    const firstDay = shanghaiDateKey(word.firstTimestamp);
+    if (firstDay === null) add("", { ...word, firstDay, repeat: false, details: word.details.filter(detail => shanghaiDateKey(detail.timestamp) === null) });
+    const byDay = new Map();
+    for (const detail of word.details) {
+      const key = shanghaiDateKey(detail.timestamp);
+      if (key === null) continue;
+      if (!byDay.has(key)) byDay.set(key, []);
+      byDay.get(key).push(detail);
+    }
+    for (const [key, details] of byDay) add(key, { ...word, firstDay, repeat: firstDay === null || firstDay < key, details });
   }
   const days = [...grouped.keys()].sort((left, right) => {
     if (left === "") return 1;
@@ -223,7 +238,8 @@ export function aggregateVocab(sources, { known = null } = {}) {
   }).map(key => ({
     key: key || "presync",
     label: key ? formatShanghaiDate(key) : PRESYNC_LABEL,
-    words: grouped.get(key)
+    words: grouped.get(key),
+    fresh: grouped.get(key).filter(word => !word.repeat)
   }));
   return { count: words.length, words, days };
 }
@@ -335,7 +351,7 @@ export function emptyNote({ syncing, hasToken, hasStoredPayload }) {
 // This is the list the daily 墨墨 export adds; pre-sync words never belong to a day.
 export function wordsForDay(sources, dateKey, options) {
   const day = aggregateVocab(sources, options).days.find(item => item.key === dateKey);
-  return day ? day.words : [];
+  return day ? day.fresh : [];
 }
 
 // Every word marked in any article between fromKey and toKey (Beijing days, inclusive),
