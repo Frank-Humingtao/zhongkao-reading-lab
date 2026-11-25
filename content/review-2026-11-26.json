@@ -1,0 +1,1722 @@
+{
+  "words": {
+    "activity": [
+      "活动",
+      "activities"
+    ],
+    "arctic": [
+      "北极的",
+      "Arctic"
+    ],
+    "artistic": [
+      "艺术的"
+    ],
+    "assigned": [
+      "分派；指派"
+    ],
+    "atlantic": [
+      "大西洋的",
+      "Atlantic"
+    ],
+    "attend": [
+      "出席；参加",
+      "attended"
+    ],
+    "bead": [
+      "珠子",
+      "beads"
+    ],
+    "best-seller": [
+      "畅销书"
+    ],
+    "biscuit": [
+      "饼干",
+      "biscuits"
+    ],
+    "cannon": [
+      "大炮"
+    ],
+    "caption": [
+      "图注；说明文字"
+    ],
+    "cart": [
+      "手推车；运货马车"
+    ],
+    "ceremony": [
+      "典礼；仪式"
+    ],
+    "clip": [
+      "夹子"
+    ],
+    "clue": [
+      "线索"
+    ],
+    "composition": [
+      "作文"
+    ],
+    "concert": [
+      "音乐会"
+    ],
+    "conductor": [
+      "列车员；指挥"
+    ],
+    "continent": [
+      "大陆；洲",
+      "continents"
+    ],
+    "convenient": [
+      "方便的"
+    ],
+    "corridor": [
+      "走廊"
+    ],
+    "costume": [
+      "戏服；演出服",
+      "costumes"
+    ],
+    "crawl": [
+      "爬行",
+      "crawled"
+    ],
+    "cucumber": [
+      "黄瓜"
+    ],
+    "cushion": [
+      "垫子"
+    ],
+    "demonstration": [
+      "演示；示范"
+    ],
+    "detective": [
+      "侦探"
+    ],
+    "diagram": [
+      "示意图"
+    ],
+    "dialogue": [
+      "对话"
+    ],
+    "dictation": [
+      "听写"
+    ],
+    "disc": [
+      "光盘；圆盘",
+      "discs"
+    ],
+    "doubt": [
+      "怀疑；疑惑"
+    ],
+    "downhearted": [
+      "情绪低落的；灰心的"
+    ],
+    "early access": [
+      "抢先体验版"
+    ],
+    "egyptian": [
+      "埃及的；埃及人",
+      "Egyptian"
+    ],
+    "eligible": [
+      "有资格的；合格的"
+    ],
+    "empire": [
+      "帝国"
+    ],
+    "enlarge": [
+      "扩大；放大"
+    ],
+    "essay": [
+      "文章；短文"
+    ],
+    "exhibition": [
+      "展览"
+    ],
+    "expert": [
+      "专家"
+    ],
+    "facial": [
+      "面部的"
+    ],
+    "failure": [
+      "失败"
+    ],
+    "familiar": [
+      "熟悉的"
+    ],
+    "favour": [
+      "恩惠；帮忙"
+    ],
+    "fly": [
+      "乘飞机；飞",
+      "flew",
+      "flown"
+    ],
+    "force": [
+      "强行；迫使",
+      "forcing",
+      "forced"
+    ],
+    "form": [
+      "表格",
+      "forms"
+    ],
+    "gesture": [
+      "手势",
+      "gestures",
+      "gesturing"
+    ],
+    "idiom": [
+      "习语；成语"
+    ],
+    "influence": [
+      "影响"
+    ],
+    "inn": [
+      "客栈；小旅馆"
+    ],
+    "junk": [
+      "垃圾"
+    ],
+    "laid-back": [
+      "悠闲的；看得开的"
+    ],
+    "leather": [
+      "皮革"
+    ],
+    "librarian": [
+      "图书管理员"
+    ],
+    "lining": [
+      "衬里；内层"
+    ],
+    "lung": [
+      "肺",
+      "lungs"
+    ],
+    "manage": [
+      "管理；设法对付"
+    ],
+    "multi-step": [
+      "多步骤的"
+    ],
+    "nail": [
+      "钉子"
+    ],
+    "pace": [
+      "速度；节奏"
+    ],
+    "paper": [
+      "纸；纸条"
+    ],
+    "picnic": [
+      "野餐"
+    ],
+    "pleasant": [
+      "令人愉快的"
+    ],
+    "pond": [
+      "池塘"
+    ],
+    "postage": [
+      "邮资"
+    ],
+    "precise edit": [
+      "精确编辑"
+    ],
+    "preserve": [
+      "保存；保鲜",
+      "preserved"
+    ],
+    "purse": [
+      "钱包"
+    ],
+    "rail": [
+      "铁路；铁轨"
+    ],
+    "rapidata": [
+      "Rapidata（机构名）",
+      "Rapidata"
+    ],
+    "rescue": [
+      "营救"
+    ],
+    "restore": [
+      "恢复；修复"
+    ],
+    "rope": [
+      "绳子"
+    ],
+    "satellite": [
+      "卫星"
+    ],
+    "scrap": [
+      "碎布；碎片"
+    ],
+    "self": [
+      "自己",
+      "selves"
+    ],
+    "servant": [
+      "仆人；佣人"
+    ],
+    "shake": [
+      "摇晃",
+      "shaking"
+    ],
+    "shine": [
+      "发光；展现"
+    ],
+    "sleeve": [
+      "袖子"
+    ],
+    "snapshot": [
+      "快照"
+    ],
+    "soap": [
+      "肥皂"
+    ],
+    "stitch": [
+      "一针；缝合",
+      "stitches",
+      "stitched"
+    ],
+    "stress": [
+      "压力"
+    ],
+    "tavern": [
+      "酒馆；客栈"
+    ],
+    "tear": [
+      "撕开；扯破",
+      "tore",
+      "torn"
+    ],
+    "telescope": [
+      "望远镜"
+    ],
+    "tin": [
+      "铁盒；金属罐"
+    ],
+    "tour": [
+      "参观；旅行"
+    ],
+    "town": [
+      "城镇"
+    ],
+    "tray": [
+      "托盘"
+    ],
+    "trousers": [
+      "裤子"
+    ],
+    "tuck": [
+      "塞进；掖好",
+      "tucked"
+    ],
+    "tune": [
+      "曲调"
+    ],
+    "unpleasant": [
+      "令人不愉快的"
+    ],
+    "vehicle": [
+      "车辆；交通工具"
+    ],
+    "verse": [
+      "Verse（编程语言）",
+      "Verse"
+    ]
+  },
+  "stories": [
+    {
+      "id": "review-2026-11-26-01",
+      "title": "The Glass Case",
+      "topic": "玻璃柜里的戏服",
+      "picture": "博物馆展厅中央，一件带金珠的埃及皮制戏服立在玻璃柜里，讲解员正指向衣服的衬里和针脚。",
+      "paragraphs": [
+        [
+          [
+            "The museum opened a new exhibition on Friday morning.",
+            "博物馆星期五早上开办了一场新展览。"
+          ],
+          [
+            "In the middle stood an Egyptian costume.",
+            "展厅中央立着一件埃及戏服。"
+          ],
+          [
+            "Small gold beads ran down the front.",
+            "一排小金珠顺着衣襟向下排列。"
+          ]
+        ],
+        [
+          [
+            "The trousers were made of soft leather.",
+            "裤子是用柔软的皮革做的。"
+          ],
+          [
+            "Inside, the lining had been mended with tiny stitches.",
+            "里面的衬里用细密的针脚修补过。"
+          ]
+        ],
+        [
+          [
+            "A rusty nail was still caught in a scrap of cloth at the hem.",
+            "下摆一块碎布上还挂着一枚生锈的钉子。"
+          ],
+          [
+            "Visitors stopped and read the card beside the case.",
+            "参观者停下脚步，阅读柜子旁的说明卡片。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-02",
+      "title": "After the School Play",
+      "topic": "演出后的戏服",
+      "picture": "学校礼堂后台，几个学生把埃及戏服铺在桌上，有的缝珠子，有的检查裤子的衬里。",
+      "paragraphs": [
+        [
+          [
+            "The school play needed an Egyptian costume for the final scene.",
+            "学校话剧的最后一场需要一件埃及戏服。"
+          ],
+          [
+            "Lin stitched loose beads back onto the collar.",
+            "林把松掉的珠子重新缝到衣领上。"
+          ]
+        ],
+        [
+          [
+            "A scrap of leather was used to patch the trousers.",
+            "他们用一块皮革碎料补了裤子。"
+          ],
+          [
+            "The lining had a small hole, so they closed it before the show.",
+            "衬里有一个小洞，他们在开演前把它缝上了。"
+          ],
+          [
+            "Someone found a nail in the pocket and put it in a box.",
+            "有人在口袋里发现一枚钉子，便把它放进盒子里。"
+          ]
+        ],
+        [
+          [
+            "After the play, the clothes would go into a weekend exhibition in the hall.",
+            "演出结束后，这些衣服会放到礼堂里做周末展览。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-03",
+      "title": "The Tailor's Table",
+      "topic": "裁缝台上的旧衣",
+      "picture": "裁缝店窗边，老裁缝把一件皮制戏服翻开，正在缝衬里，桌上放着珠子、碎布和一枚钉子。",
+      "paragraphs": [
+        [
+          [
+            "A tailor was asked to repair a leather costume from an exhibition.",
+            "有人请裁缝修理一件展览上的皮革戏服。"
+          ],
+          [
+            "He turned it over and checked the lining and the trousers.",
+            "他把衣服翻过来，检查衬里和裤子。"
+          ]
+        ],
+        [
+          [
+            "The Egyptian design was still clear, but two beads were missing.",
+            "上面的埃及图案仍然清晰，但少了两颗珠子。"
+          ],
+          [
+            "He added a few stitches and kept a scrap of cloth for later.",
+            "他又缝了几针，并留了一块碎布备用。"
+          ]
+        ],
+        [
+          [
+            "When a loose nail rolled onto the floor, he picked it up and smiled.",
+            "一枚松动的钉子滚到地上，他捡起来，笑了笑。"
+          ],
+          [
+            "By evening the costume looked ready to wear again.",
+            "到了傍晚，这件戏服看起来又能穿了。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-04",
+      "title": "A Purse with a Note",
+      "topic": "钱包里的纸条",
+      "picture": "公交车站旁，一位年轻侦探打开失而复得的钱包，从里面抽出一张叠好的纸条。",
+      "paragraphs": [
+        [
+          [
+            "A young detective was assigned to a simple case.",
+            "一名年轻侦探被分派去办一件简单的案子。"
+          ],
+          [
+            "A woman had lost her purse on the bus.",
+            "一位女士在公交车上丢了钱包。"
+          ]
+        ],
+        [
+          [
+            "Inside a returned bag, he found a folded paper.",
+            "在一只被送回的包里，他发现一张叠好的纸。"
+          ],
+          [
+            "The note was the first clue: it had a shop name and a time.",
+            "那张纸条是第一条线索：上面有店名和时间。"
+          ]
+        ],
+        [
+          [
+            "A photo on the notice board had no caption, so he added one.",
+            "布告栏上的照片没有说明文字，于是他补写了一条。"
+          ],
+          [
+            "By noon, the owner came and took the purse home.",
+            "中午之前，失主来了，把钱包带回了家。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-05",
+      "title": "The Photo Caption",
+      "topic": "照片下的说明",
+      "picture": "教室里，女孩对着一张长椅上红色钱包的照片做记录，照片下方的说明文字很短。",
+      "paragraphs": [
+        [
+          [
+            "The class was assigned a task: write like a detective for one afternoon.",
+            "这天下午，全班被分派了一项任务：像侦探一样写记录。"
+          ],
+          [
+            "Mia studied a photo of a red purse on a bench.",
+            "米娅仔细看一张长椅上红色钱包的照片。"
+          ]
+        ],
+        [
+          [
+            "The caption was short, but it gave no name.",
+            "说明文字很短，却没有写出名字。"
+          ],
+          [
+            "She looked for a clue in the background.",
+            "她在背景里寻找线索。"
+          ]
+        ],
+        [
+          [
+            "On the ground lay a piece of paper with a phone number.",
+            "地上有一张写着电话号码的纸。"
+          ],
+          [
+            "She wrote down the number and finished her report.",
+            "她记下号码，完成了报告。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-06",
+      "title": "The Missing School Bag",
+      "topic": "失踪的书包",
+      "picture": "校园布告栏前，侦探模样的学生指着照片下的说明，旁边放着一只找回的钱包和一张纸条。",
+      "paragraphs": [
+        [
+          [
+            "A detective had been assigned to find a missing school purse.",
+            "一名侦探被分派去寻找一只失踪的校园钱包。"
+          ],
+          [
+            "The only clue was a caption under a photo on a notice board.",
+            "唯一的线索是布告栏上一张照片下的说明文字。"
+          ]
+        ],
+        [
+          [
+            "Inside the purse was a paper with the owner's class number.",
+            "钱包里有一张纸，上面写着失主的班级号。"
+          ],
+          [
+            "He returned it before the last lesson.",
+            "他在最后一节课之前把钱包送了回去。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-07",
+      "title": "Postage for a Disc",
+      "topic": "光盘的邮资",
+      "picture": "老火车站的窗口前，列车员帮一家旅客给包裹补邮票，包裹里装着光盘和一块肥皂。",
+      "paragraphs": [
+        [
+          [
+            "The family took a rail tour to an old station museum.",
+            "这家人坐火车去参观一座老车站博物馆。"
+          ],
+          [
+            "A conductor showed them a box of music discs.",
+            "一位列车员给他们看了一盒音乐光盘。"
+          ]
+        ],
+        [
+          [
+            "Grandma smiled when she saw her younger self on one film.",
+            "奶奶在一段影像里看见年轻时的自己，笑了。"
+          ],
+          [
+            "There was not enough postage on a parcel that also held a bar of soap.",
+            "一个还装着一块肥皂的包裹，邮资不够。"
+          ]
+        ],
+        [
+          [
+            "They bought one more stamp and got back on the train.",
+            "他们又买了一张邮票，然后重新上了火车。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-08",
+      "title": "The Train Gift",
+      "topic": "火车上的礼物",
+      "picture": "列车车厢里，列车员正帮一个男孩把快要脱落的邮资标签重新贴好，男孩手里拿着光盘和肥皂。",
+      "paragraphs": [
+        [
+          [
+            "On the rail journey, the conductor collected tickets with a smile.",
+            "在这趟铁路旅程上，列车员微笑着收票。"
+          ],
+          [
+            "A boy was going on a tour with his uncle.",
+            "一个男孩正和叔叔一起去旅行。"
+          ]
+        ],
+        [
+          [
+            "He carried a disc of family photos and a small cake of soap as a gift.",
+            "他带着一张家庭照片光盘，还有一小块当作礼物的肥皂。"
+          ],
+          [
+            "The postage label on his bag had come half off.",
+            "他包上的邮资标签已经快要脱落了。"
+          ]
+        ],
+        [
+          [
+            "He looked at his tired self in the window and sat up straighter.",
+            "他在车窗里看见疲倦的自己，于是坐得更直了些。"
+          ],
+          [
+            "The conductor stuck the label back on for him.",
+            "列车员帮他把标签重新贴好。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-09",
+      "title": "Before the Tour",
+      "topic": "出发前",
+      "picture": "火车站台边，列车员朝一户人家挥手，孩子提着装了肥皂和光盘的袋子，准备开始旅行。",
+      "paragraphs": [
+        [
+          [
+            "They packed soap, a disc, and a letter.",
+            "他们装好了肥皂、一张光盘，还有一封信。"
+          ],
+          [
+            "The postage was more than they expected.",
+            "邮资比他们预想的要多。"
+          ]
+        ],
+        [
+          [
+            "At the rail station, the conductor called out the platform number.",
+            "在火车站，列车员大声报出了站台号。"
+          ],
+          [
+            "The tour would last two days.",
+            "这次旅行会持续两天。"
+          ]
+        ],
+        [
+          [
+            "They wanted photos of their smiling selves at every stop.",
+            "他们想在每一站都拍下自己微笑的样子。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-10",
+      "title": "The Opening Ceremony",
+      "topic": "开馆仪式",
+      "picture": "小镇新图书馆门口，管理员拿着登记表迎接前来参加开馆仪式的家庭。",
+      "paragraphs": [
+        [
+          [
+            "The town opened a new library and held a small ceremony.",
+            "镇上开办了新图书馆，并举行了一个小小的仪式。"
+          ],
+          [
+            "Many families came to attend it.",
+            "许多家庭都来参加。"
+          ],
+          [
+            "The librarian asked each visitor to fill in a form.",
+            "图书管理员请每位来访者填一张表。"
+          ]
+        ],
+        [
+          [
+            "It was convenient, because the library stood next to the school.",
+            "这很方便，因为图书馆就在学校旁边。"
+          ],
+          [
+            "People said it was a favour to the whole community.",
+            "大家都说，这对整个社区都是一件好事。"
+          ]
+        ],
+        [
+          [
+            "The librarian would manage the books and the reading room.",
+            "图书管理员将负责管理图书和阅览室。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-11",
+      "title": "A Form and a Favour",
+      "topic": "表格和帮忙",
+      "picture": "图书馆借阅台前，男孩一边填写表格，一边帮一位老人打印地图。",
+      "paragraphs": [
+        [
+          [
+            "Ben needed a library card, so he went to attend a short talk at the town library.",
+            "本需要办借书证，于是去镇图书馆参加一个短讲座。"
+          ],
+          [
+            "The librarian gave him a form and a pen.",
+            "图书管理员给了他一张表格和一支笔。"
+          ]
+        ],
+        [
+          [
+            "\"Could you do me a favour and print this map?\" an old man asked.",
+            "“能帮我一个忙，把这张地图打印出来吗？”一位老人问。"
+          ],
+          [
+            "The printer was convenient, and Ben was happy to help.",
+            "打印机就在旁边，很方便，本乐意帮忙。"
+          ]
+        ],
+        [
+          [
+            "After the talk, there was a small ceremony for new members.",
+            "讲座结束后，还有一个给新读者的小小仪式。"
+          ],
+          [
+            "Ben learned how to manage his borrowing dates on the board.",
+            "本学会了在公告板上管理自己的借阅日期。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-12",
+      "title": "Saturday at the Library",
+      "topic": "图书馆的星期六",
+      "picture": "星期六上午，图书馆门口排着队，管理员提着一盒表格，孩子们正等候参加活动仪式。",
+      "paragraphs": [
+        [
+          [
+            "It was convenient to attend the Saturday ceremony, because it began after breakfast.",
+            "参加星期六的仪式很方便，因为它在早饭后才开始。"
+          ],
+          [
+            "The town square was already full.",
+            "镇广场上已经站满了人。"
+          ]
+        ],
+        [
+          [
+            "A librarian stood at the door with a box of forms.",
+            "一位图书管理员提着一盒表格站在门口。"
+          ],
+          [
+            "She did a favour for a girl who had forgotten her pen.",
+            "她帮了一个忘带笔的女孩。"
+          ]
+        ],
+        [
+          [
+            "Inside, two students helped manage the line of children.",
+            "屋里，两名学生帮忙维持孩子们排成的队伍。"
+          ],
+          [
+            "By noon, every form had been collected.",
+            "到了中午，所有表格都收齐了。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-13",
+      "title": "A Rescue by the Pond",
+      "topic": "池塘边的营救",
+      "picture": "池塘边的野餐垫旁，一名男子分开高草，用绳子把一只小狗从泥里拉上来，旁边停着一辆菜车。",
+      "paragraphs": [
+        [
+          [
+            "They had planned a picnic beside the pond.",
+            "他们本来计划在池塘边野餐。"
+          ],
+          [
+            "A small dog slipped on the mud and could not crawl out.",
+            "一只小狗在泥里滑倒，爬不出来。"
+          ]
+        ],
+        [
+          [
+            "Mr Li was usually laid-back, but he moved fast.",
+            "李先生平时很悠闲，这回却动作很快。"
+          ],
+          [
+            "He had to force his way through the tall grass with a rope.",
+            "他得带着绳子，从高草丛中挤过去。"
+          ]
+        ],
+        [
+          [
+            "A vegetable cart stood nearby, and a boy ran to help.",
+            "附近停着一辆菜车，一个男孩跑过来帮忙。"
+          ],
+          [
+            "Together they completed the rescue, then washed their hands and ate a cucumber.",
+            "他们一起完成了营救，然后洗手，吃了一根黄瓜。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-14",
+      "title": "After the Picnic",
+      "topic": "野餐之后",
+      "picture": "池塘边，孩子们用绳子掀起倒下的树枝，一位农夫停下手推车，从车上拿出一根黄瓜。",
+      "paragraphs": [
+        [
+          [
+            "After the picnic, the children walked around the pond.",
+            "野餐之后，孩子们绕着池塘走。"
+          ],
+          [
+            "A duckling had crawled under a fallen branch.",
+            "一只小鸭子爬到了倒下的树枝下面。"
+          ]
+        ],
+        [
+          [
+            "They did not force it out; they used a soft rope to lift the branch.",
+            "他们没有硬把它赶出来，而是用一根软绳子把树枝抬起来。"
+          ],
+          [
+            "A laid-back farmer came over with his cart and offered a ride home.",
+            "一位脾气很悠闲的农夫推着车走过来，提出送他们回家。"
+          ]
+        ],
+        [
+          [
+            "He also gave them a cucumber from a box on the cart.",
+            "他还从车上的盒子里给了他们一根黄瓜。"
+          ],
+          [
+            "\"You did a kind rescue,\" he said.",
+            "“你们做了一次好心的营救。”他说。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-15",
+      "title": "The Cool Plan",
+      "topic": "冷静的办法",
+      "picture": "池塘边的土路上，一辆手推车陷入泥里，有人从车下爬过去系绳子，岸上还有人在吃黄瓜。",
+      "paragraphs": [
+        [
+          [
+            "The rescue team stayed laid-back even when the cart got stuck near the pond.",
+            "即便手推车陷在池塘附近，营救小组也保持冷静。"
+          ],
+          [
+            "One man crawled under the cart with a rope.",
+            "一名男子拿着绳子，从车子下面爬了过去。"
+          ]
+        ],
+        [
+          [
+            "They did not force the wheel; they lifted it together.",
+            "他们没有硬扳轮子，而是一起把它抬起来。"
+          ],
+          [
+            "A girl eating a cucumber watched and then joined the picnic group on the bank.",
+            "一个正在吃黄瓜的女孩看了一会儿，随后加入了岸边的野餐人群。"
+          ]
+        ],
+        [
+          [
+            "By sunset, everyone was safe and dry.",
+            "到了日落时，大家都安全，而且身上也干了。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-16",
+      "title": "A Morning Lesson",
+      "topic": "上午的课",
+      "picture": "教室黑板前，老师画着文章结构示意图，一边讲解习语，一边让学生准备听写和作文。",
+      "paragraphs": [
+        [
+          [
+            "First they had an English dictation.",
+            "他们先进行了英语听写。"
+          ],
+          [
+            "Then the teacher asked for a short composition about the weekend.",
+            "接着，老师要求写一篇关于周末的短作文。"
+          ]
+        ],
+        [
+          [
+            "She explained an idiom and asked the class to use it in a dialogue.",
+            "她讲解了一个习语，并让全班用它来编一段对话。"
+          ],
+          [
+            "On the board she drew a diagram of the story's parts.",
+            "她在黑板上画了一张故事结构示意图。"
+          ]
+        ],
+        [
+          [
+            "A demonstration at the front showed how to begin the essay.",
+            "讲台前的示范演示了怎样开头写这篇短文。"
+          ],
+          [
+            "The students began to write.",
+            "学生们开始动笔。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-17",
+      "title": "Homework on the Table",
+      "topic": "桌上的作业",
+      "picture": "书桌前，女孩写完听写后开始写短文，旁边摊开的课本上有一张结构示意图。",
+      "paragraphs": [
+        [
+          [
+            "Lin finished her dictation and started an essay.",
+            "林写完听写，开始写一篇短文。"
+          ],
+          [
+            "She wanted to use a new idiom in the first line.",
+            "她想在第一句里用一个新习语。"
+          ]
+        ],
+        [
+          [
+            "Her partner wrote a dialogue, and they compared their work.",
+            "她的同伴写了一段对话，两人一起对照。"
+          ],
+          [
+            "A diagram in the textbook made the structure clear.",
+            "课本里的示意图把结构讲得很清楚。"
+          ]
+        ],
+        [
+          [
+            "Their composition teacher had given a short demonstration the day before.",
+            "他们的作文老师前一天做过一次简短的示范。"
+          ],
+          [
+            "Lin copied the useful parts into her notebook.",
+            "林把有用的部分抄进了笔记本。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-18",
+      "title": "The Writing Club",
+      "topic": "写作社",
+      "picture": "放学后的教室里，写作社成员围坐在一起，桌上放着对话稿、习语卡片和一张结构示意图。",
+      "paragraphs": [
+        [
+          [
+            "The writing club began with a demonstration of a clear diagram.",
+            "写作社先示范了一张清晰的示意图。"
+          ],
+          [
+            "Each member read a dialogue and circled one idiom.",
+            "每位成员读一段对话，并圈出一个习语。"
+          ]
+        ],
+        [
+          [
+            "Then they wrote a composition in twenty minutes.",
+            "接着，他们用二十分钟写了一篇作文。"
+          ],
+          [
+            "The last task was an essay of only six sentences.",
+            "最后一项任务是写一篇只有六句话的短文。"
+          ]
+        ],
+        [
+          [
+            "A short dictation of new words closed the meeting.",
+            "会议结束前，又进行了一次简短的生词听写。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-19",
+      "title": "Before the Concert",
+      "topic": "音乐会开始前",
+      "picture": "音乐厅走廊里，女孩的袖子被门上的夹子挂住，妈妈正帮她整理衣袖，厅内已传来熟悉的曲调。",
+      "paragraphs": [
+        [
+          [
+            "A familiar tune came from the end of the corridor.",
+            "走廊尽头传来一支熟悉的曲调。"
+          ],
+          [
+            "Lin was going to a concert with her mother.",
+            "林正和妈妈一起去听音乐会。"
+          ]
+        ],
+        [
+          [
+            "She caught her sleeve on a door clip, and the cloth started to tear.",
+            "她的袖子被门上的夹子挂住，布料开始撕裂。"
+          ],
+          [
+            "They still arrived before the first song.",
+            "但他们还是在第一首歌开始前赶到了。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-20",
+      "title": "A Torn Programme",
+      "topic": "撕破的节目单",
+      "picture": "音乐会结束后，拥挤的走廊里，一个男孩用夹子夹着撕破的节目单，袖子上还沾着灰尘。",
+      "paragraphs": [
+        [
+          [
+            "After the concert, the corridor was crowded.",
+            "音乐会结束后，走廊里挤满了人。"
+          ],
+          [
+            "A boy in a familiar jacket had a torn programme in his hand.",
+            "一个穿着眼熟外套的男孩，手里拿着一份撕破的节目单。"
+          ]
+        ],
+        [
+          [
+            "A clip held the pages together.",
+            "一个夹子把书页夹在一起。"
+          ],
+          [
+            "His sleeve was dusty from the wall.",
+            "他的袖子上沾了墙上的灰尘。"
+          ]
+        ],
+        [
+          [
+            "Someone began to hum a tune from the show.",
+            "有人开始哼起演出中的一支曲调。"
+          ],
+          [
+            "They waited near the door until the crowd moved.",
+            "他们在门口等到人群散去。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-21",
+      "title": "The Lost Clip",
+      "topic": "丢失的夹子",
+      "picture": "音乐会当晚，走廊墙上的海报角开始撕开，一个女孩拾起掉落的夹子，把它重新夹好。",
+      "paragraphs": [
+        [
+          [
+            "On concert night, a clip fell off a poster in the corridor.",
+            "音乐会那天晚上，走廊里一张海报上的夹子掉了下来。"
+          ],
+          [
+            "The poster started to tear at the corner.",
+            "海报的角上开始撕开。"
+          ]
+        ],
+        [
+          [
+            "A girl in a blue sleeve picked it up and fixed the page.",
+            "一个穿着蓝色袖子衣服的女孩把它捡起来，重新夹好。"
+          ],
+          [
+            "The tune from the hall was already familiar to her.",
+            "厅里传来的曲调她已经很熟悉。"
+          ]
+        ],
+        [
+          [
+            "She went in and found a seat at the back.",
+            "她走进去，在后排找到一个座位。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-22",
+      "title": "Tea on a Tray",
+      "topic": "托盘上的茶",
+      "picture": "窗边的小桌上，妈妈把饼干从铁盒里取出放进托盘，椅子上放着软垫，午后的阳光很温和。",
+      "paragraphs": [
+        [
+          [
+            "Mum put biscuits from a tin onto a tray.",
+            "妈妈把铁盒里的饼干放进托盘。"
+          ],
+          [
+            "She tucked a napkin under the cups.",
+            "她把一张餐巾纸掖在杯子下面。"
+          ]
+        ],
+        [
+          [
+            "A soft cushion waited on the chair by the window.",
+            "窗边的椅子上放着一个软垫。"
+          ],
+          [
+            "It was a pleasant afternoon, with weak sunlight.",
+            "那是一个愉快的下午，阳光不烈。"
+          ]
+        ],
+        [
+          [
+            "\"Don't shake the tray,\" she said, laughing.",
+            "“别晃托盘。”她笑着说。"
+          ],
+          [
+            "Grandpa took a biscuit and smiled.",
+            "爷爷拿了一块饼干，笑了。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-23",
+      "title": "A Pleasant Visit",
+      "topic": "一次愉快的来访",
+      "picture": "客厅茶几上放着一盒饼干和托盘，客人把包塞到沙发垫旁边，窗外起风，窗框轻轻晃动。",
+      "paragraphs": [
+        [
+          [
+            "Auntie brought a tin of biscuits and set them on a tray.",
+            "阿姨带来一铁盒饼干，把它们放在托盘上。"
+          ],
+          [
+            "The guest tucked her bag beside a cushion on the sofa.",
+            "客人把包塞到沙发上的垫子旁边。"
+          ]
+        ],
+        [
+          [
+            "They had a pleasant talk about the garden.",
+            "她们愉快地聊着花园里的事。"
+          ],
+          [
+            "The window began to shake in the wind, so they closed it.",
+            "窗户在风里开始晃动，于是她们把窗关上了。"
+          ]
+        ],
+        [
+          [
+            "More tea was poured, and the tin was almost empty.",
+            "茶又续上了，铁盒也快空了。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-24",
+      "title": "After Dinner",
+      "topic": "晚饭之后",
+      "picture": "晚饭后的客厅里，孩子把托盘端进厨房，奶奶坐在软垫上，把毯子掖好，铁盒里还剩一块饼干。",
+      "paragraphs": [
+        [
+          [
+            "Dad asked the children not to shake the table.",
+            "爸爸叮嘱孩子们不要晃桌子。"
+          ],
+          [
+            "They carried a tray of cups into the kitchen.",
+            "他们把装着杯子的托盘端进厨房。"
+          ]
+        ],
+        [
+          [
+            "The last biscuit in the tin was left for Grandma.",
+            "铁盒里最后一块饼干留给了奶奶。"
+          ],
+          [
+            "She sat on a cushion and tucked a blanket around her knees.",
+            "她坐在垫子上，把毯子掖在膝盖周围。"
+          ]
+        ],
+        [
+          [
+            "The house felt quiet and pleasant.",
+            "屋里安静而愉快。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-25",
+      "title": "The Speaking Class",
+      "topic": "口语课",
+      "picture": "口语课上，老师让学生放慢语速、用手势配合表情练习，后排一个情绪低落的男孩正准备开口。",
+      "paragraphs": [
+        [
+          [
+            "The teacher said a facial expression can influence your voice.",
+            "老师说，面部表情会影响声音。"
+          ],
+          [
+            "She asked them to slow their pace and take air into the lungs.",
+            "她让大家放慢节奏，把空气吸入肺里。"
+          ]
+        ],
+        [
+          [
+            "A small gesture with the hands made the words clearer.",
+            "一个小小的手势让话语更清楚了。"
+          ],
+          [
+            "One downhearted boy sat in the back and did not speak at first.",
+            "一个情绪低落的男孩坐在后排，起初没有说话。"
+          ]
+        ],
+        [
+          [
+            "After a few tries, his face relaxed, and he finished his sentence.",
+            "试了几次后，他的表情放松了，把那句话说完了。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-26",
+      "title": "Before the Talk",
+      "topic": "发言之前",
+      "picture": "上台前，女孩对着镜子练习表情和手势，朋友在一旁提醒她放慢速度，深吸一口气。",
+      "paragraphs": [
+        [
+          [
+            "Mina felt downhearted before her talk.",
+            "米娜在发言前感到有些沮丧。"
+          ],
+          [
+            "Her friend said, \"Slow your pace and add one gesture.\"",
+            "朋友说：“放慢节奏，再加上一个手势。”"
+          ]
+        ],
+        [
+          [
+            "Mina practised in front of a mirror and watched her facial expression.",
+            "米娜对着镜子练习，观察自己的面部表情。"
+          ],
+          [
+            "She took a deep breath into her lungs.",
+            "她深深吸了一口气，让空气进入肺里。"
+          ]
+        ],
+        [
+          [
+            "The kind words had a real influence, and she walked onto the stage.",
+            "那些暖心的话真的起了影响，她走上了台。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-27",
+      "title": "A Warmer Voice",
+      "topic": "更温暖的声音",
+      "picture": "教室里，学生们一边做手势一边练习发声，老师提醒他们保持稳定的节奏，连情绪低落时也要带一点微笑。",
+      "paragraphs": [
+        [
+          [
+            "When you gesture, more air can enter the lungs.",
+            "做手势时，会有更多空气进入肺里。"
+          ],
+          [
+            "That may influence the warmth of your voice.",
+            "这可能会影响声音的温暖程度。"
+          ]
+        ],
+        [
+          [
+            "A facial smile also helps, even if you still feel downhearted.",
+            "即使你仍然感到沮丧，一个面部的微笑也会有帮助。"
+          ],
+          [
+            "Keep a steady pace, and the listeners will stay with you.",
+            "保持稳定的节奏，听的人就会跟得上。"
+          ]
+        ],
+        [
+          [
+            "The class tried this together and heard the difference.",
+            "全班一起试了试，听见了其中的差别。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-28",
+      "title": "The Art Room",
+      "topic": "美术室",
+      "picture": "美术室里，学生们在安静的音乐中画画，老师鼓励大家不必紧张，让各自的想法展现在墙上。",
+      "paragraphs": [
+        [
+          [
+            "The first activity was drawing with quiet music.",
+            "第一项活动是在安静的音乐里画画。"
+          ],
+          [
+            "Some students felt stress about making a perfect picture.",
+            "有些学生因为想画得完美而感到压力。"
+          ]
+        ],
+        [
+          [
+            "The teacher said it was not an unpleasant test, just practice.",
+            "老师说这不是一次令人不快的测验，只是练习。"
+          ],
+          [
+            "She hoped each artistic idea would shine in its own way.",
+            "她希望每一个有艺术感的想法都能以自己的方式展现出来。"
+          ]
+        ],
+        [
+          [
+            "By the end, the wall was full of colour.",
+            "结束时，整面墙都布满了色彩。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-29",
+      "title": "Colour After School",
+      "topic": "放学后的颜色",
+      "picture": "放学后的美术社里，女孩把上午的不快画进一张鲜艳的海报里，颜色让她的心情渐渐亮起来。",
+      "paragraphs": [
+        [
+          [
+            "An unpleasant morning had left Lin full of stress.",
+            "一个令人不快的上午，让林心里满是压力。"
+          ],
+          [
+            "The art club was her favourite activity.",
+            "美术社是她最喜欢的活动。"
+          ]
+        ],
+        [
+          [
+            "She tried an artistic poster with bright paint.",
+            "她用鲜艳的颜料做了一张富有艺术感的海报。"
+          ],
+          [
+            "Slowly her mood began to shine through the colours.",
+            "渐渐地，她的心情从这些颜色里展现出来。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-30",
+      "title": "A Quiet Project",
+      "topic": "安静的习作",
+      "picture": "星期五的教室里，学生们不慌不忙地完成艺术活动，作品在灯光下显得很亮。",
+      "paragraphs": [
+        [
+          [
+            "The school planned an artistic activity for Friday.",
+            "学校为星期五安排了一项艺术活动。"
+          ],
+          [
+            "There was no stress and no unpleasant race to finish first.",
+            "没有压力，也没有令人不快的抢先比赛。"
+          ]
+        ],
+        [
+          [
+            "Students let their work shine under the classroom lights.",
+            "学生们让自己的作品在教室灯光下展现出来。"
+          ],
+          [
+            "Parents later said the pictures felt fresh and kind.",
+            "家长后来都说，这些画看起来清新而友善。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-31",
+      "title": "A New Picture Tool",
+      "topic": "新的绘图工具",
+      "picture": "电脑课上，女孩对着屏幕里的桌面快照做精确编辑，并放大画面的一角，旁边还开着 Verse 的教程。",
+      "paragraphs": [
+        [
+          [
+            "Lin was eligible for the early access of a picture tool.",
+            "林获得了这款绘图工具抢先体验版的使用资格。"
+          ],
+          [
+            "She took a snapshot of her desk and tried a precise edit.",
+            "她拍了一张书桌的快照，并尝试做一次精确编辑。"
+          ]
+        ],
+        [
+          [
+            "The tool could enlarge a corner without making it unclear.",
+            "这个工具能放大画面的一角，又不会让它变模糊。"
+          ],
+          [
+            "A multi-step task appeared on the screen.",
+            "屏幕上出现了一项多步骤的任务。"
+          ]
+        ],
+        [
+          [
+            "The teacher said this model had done well on a Rapidata list.",
+            "老师说，这个模型在 Rapidata 的一份名单上表现很好。"
+          ],
+          [
+            "Lin also opened a short lesson on a language called Verse.",
+            "林还打开了一节关于一种叫 Verse 的语言的短课。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-32",
+      "title": "The Test List",
+      "topic": "测试名单",
+      "picture": "社团活动室里，几个学生按多步骤计划处理快照，成绩将出现在 Rapidata 的页面上。",
+      "paragraphs": [
+        [
+          [
+            "Only club members were eligible to try the early access version.",
+            "只有社团成员才有资格试用这个抢先体验版。"
+          ],
+          [
+            "They had to follow a multi-step plan: snapshot, then enlarge the result.",
+            "他们必须按多步骤计划进行：先拍快照，再放大结果。"
+          ]
+        ],
+        [
+          [
+            "One girl added a precise edit before she saved the file.",
+            "有个女孩在保存文件前又做了一次精确编辑。"
+          ],
+          [
+            "Scores were posted on a Rapidata page the next morning.",
+            "第二天早上，分数被发在 Rapidata 的页面上。"
+          ]
+        ],
+        [
+          [
+            "One boy wrote a tiny game in Verse and added a picture later.",
+            "一个男孩用 Verse 写了一个小游戏，稍后再配上了图。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-33",
+      "title": "After Computer Class",
+      "topic": "电脑课之后",
+      "picture": "机房放学后，女孩对着黑板上的快照做精确编辑，并询问自己能否再使用一周抢先体验版。",
+      "paragraphs": [
+        [
+          [
+            "In the computer room, a snapshot of the board was still on the screen.",
+            "机房里，屏幕上还留着黑板的一张快照。"
+          ],
+          [
+            "Mia used a precise edit to cut the edge, then chose enlarge.",
+            "米娅用精确编辑裁掉边缘，然后选择放大。"
+          ]
+        ],
+        [
+          [
+            "She was eligible to keep the early access for another week.",
+            "她有资格再使用一周这个抢先体验版。"
+          ],
+          [
+            "Her homework included one multi-step exercise and three lines of Verse.",
+            "她的作业包括一道多步骤练习，以及三行 Verse。"
+          ]
+        ],
+        [
+          [
+            "\"Did we beat the Rapidata score?\" someone asked, and the teacher smiled.",
+            "“我们有没有超过 Rapidata 上的分数？”有人问，老师笑了。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-34",
+      "title": "A Book of Oceans",
+      "topic": "海洋之书",
+      "picture": "科学课上，老师翻开一本分章介绍北极和大西洋的书，旁边放着卫星照片和望远镜图。",
+      "paragraphs": [
+        [
+          [
+            "The book had a part for the Arctic and a part for the Atlantic.",
+            "这本书有一章写北极，有一章写大西洋。"
+          ],
+          [
+            "A map showed every continent in a different colour.",
+            "一张地图用不同颜色标出了每一块大陆。"
+          ]
+        ],
+        [
+          [
+            "An expert on space talked about junk around the Earth.",
+            "一位空间方面的专家谈到了地球周围的垃圾。"
+          ],
+          [
+            "A satellite photo was placed next to a picture from a telescope.",
+            "一张卫星照片被放在一张望远镜拍到的图片旁边。"
+          ]
+        ],
+        [
+          [
+            "Some students had doubt about the numbers, but the teacher explained them.",
+            "有些学生对这些数字感到怀疑，但老师做了解释。"
+          ],
+          [
+            "One failure in an old launch was also on the page.",
+            "书页上还写着一次旧发射任务的失败。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-35",
+      "title": "Night on the Roof",
+      "topic": "屋顶上的夜晚",
+      "picture": "夜色里，几个学生在屋顶支起望远镜寻找卫星，专家正在讲解太空垃圾的问题。",
+      "paragraphs": [
+        [
+          [
+            "They set up a telescope to look for a satellite.",
+            "他们支起望远镜，寻找一颗卫星。"
+          ],
+          [
+            "\"Junk in space,\" the expert said, \"can be as small as a screw.\"",
+            "专家说，太空中的垃圾可能只有一颗螺丝那么小。"
+          ]
+        ],
+        [
+          [
+            "Nobody had doubt that the Arctic night would be clearer than a city night.",
+            "没有人怀疑，北极的夜会比城市的夜更清澈。"
+          ],
+          [
+            "Across the Atlantic, another school was watching too.",
+            "在大西洋的另一边，也有一所学校在观望。"
+          ]
+        ],
+        [
+          [
+            "A past failure had taught them to check the stand twice.",
+            "一次过去的失败教会他们要把支架检查两遍。"
+          ],
+          [
+            "Later they marked each continent they had discussed.",
+            "后来，他们标出了讨论过的每一块大陆。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-36",
+      "title": "The Science Club",
+      "topic": "科学社",
+      "picture": "科学社活动中，专家拿出望远镜模型，讲解卫星如何拍摄大西洋和北极，并谈到清理失败的风险。",
+      "paragraphs": [
+        [
+          [
+            "An expert brought a model of a telescope to the science club.",
+            "一位专家把一个望远镜模型带到了科学社。"
+          ],
+          [
+            "She showed how a satellite collects pictures of the Atlantic and the Arctic.",
+            "她演示卫星如何拍摄大西洋和北极的图片。"
+          ]
+        ],
+        [
+          [
+            "\"Space junk is a real problem,\" she said, without any doubt.",
+            "“太空垃圾是个真正的问题。”她说，语气里没有丝毫怀疑。"
+          ],
+          [
+            "A failure to clean old parts could hurt a future flight.",
+            "如果没能清理旧零件，这次失败可能会影响将来的飞行。"
+          ]
+        ],
+        [
+          [
+            "The club then drew the continent outlines from memory.",
+            "接着，社员凭记忆画出了大陆的轮廓。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-37",
+      "title": "A Book about an Empire",
+      "topic": "一本关于帝国的书",
+      "picture": "灯下，一本畅销书摊开在桌上，插图里有一门大炮、一辆旧车，还有客栈和酒馆的招牌。",
+      "paragraphs": [
+        [
+          [
+            "A best-seller told how a young servant travelled across an old empire.",
+            "一本畅销书写一名年轻仆人如何走遍一个古老的帝国。"
+          ],
+          [
+            "He would fly from one city to another in a government vehicle.",
+            "他会乘坐公家的交通工具，从一座城市飞到另一座城市。"
+          ]
+        ],
+        [
+          [
+            "At night he slept at a small inn, or ate in a tavern by the river.",
+            "夜里，他睡在一家小客栈，或者在河边的酒馆吃饭。"
+          ],
+          [
+            "In one chapter, soldiers pulled a cannon through the mud.",
+            "有一章里，士兵们拖着一门大炮走过泥地。"
+          ]
+        ],
+        [
+          [
+            "The book also explained how people used salt to preserve meat.",
+            "书里还写了人们怎样用盐保存肉类。"
+          ],
+          [
+            "Readers said the writer helped restore interest in that period.",
+            "读者们说，作者重新唤起了人们对那个时代的兴趣。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-38",
+      "title": "The Old Inn",
+      "topic": "古老的客栈",
+      "picture": "院落里停着一辆帝国年代的木制车子，门边是正在修复的客栈和酒馆，花园里还摆着一门旧炮。",
+      "paragraphs": [
+        [
+          [
+            "The owner wanted to restore an old inn and a tavern next door.",
+            "主人想修复一家旧客栈，以及隔壁的酒馆。"
+          ],
+          [
+            "A wooden vehicle from the empire years stood in the yard.",
+            "院子里停着一辆帝国年代的木制车子。"
+          ]
+        ],
+        [
+          [
+            "A rusted cannon was kept in the garden, just to look at.",
+            "花园里还留着一门生锈的大炮，只是供人观看。"
+          ],
+          [
+            "The owner, once a servant in a big house, now cooked for guests.",
+            "这位主人曾经在一栋大房子里当仆人，如今为客人做饭。"
+          ]
+        ],
+        [
+          [
+            "He used family methods to preserve fruit for the winter.",
+            "他用家里传下来的方法为冬天保存水果。"
+          ],
+          [
+            "A best-seller on the shelf described someone who would fly this route a century ago.",
+            "书架上的一本畅销书写到，一百年前也有人乘飞机走过这条路线。"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "review-2026-11-26-39",
+      "title": "On the Road",
+      "topic": "在路上",
+      "picture": "山坡客栈对面是一家旧酒馆，向导指着山上的古炮遗址，主人端出蜜饯迎接刚下车的旅客。",
+      "paragraphs": [
+        [
+          [
+            "They would fly to the coast, then take a local vehicle to a hillside inn.",
+            "他们将先乘飞机到海边，再换乘当地的交通工具，前往山坡上的客栈。"
+          ],
+          [
+            "A tavern across the street still used a sign from the empire days.",
+            "街对面的酒馆仍使用帝国时期的招牌。"
+          ]
+        ],
+        [
+          [
+            "A guide tried to restore the old story of a cannon on the hill.",
+            "向导试图恢复山上那门大炮的旧故事。"
+          ],
+          [
+            "The inn keeper, like a careful servant, came out to welcome them.",
+            "客栈主人像一位细心的仆人，出门来迎接他们。"
+          ]
+        ],
+        [
+          [
+            "He offered preserved plums and a page from a local best-seller.",
+            "他端出腌制的李子，还附上当地一本畅销书里的一页。"
+          ],
+          [
+            "The guests sat down and opened their maps.",
+            "客人们坐下来，打开了地图。"
+          ]
+        ]
+      ]
+    }
+  ]
+}

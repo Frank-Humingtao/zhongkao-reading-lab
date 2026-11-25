@@ -7,6 +7,7 @@
     {"id": "reading-03", "kind": "review", "number": "03", "version": "reading-03-v2", "earlier": ["reading-03"]},
     {"id": "reading-04", "kind": "review", "number": "04"},
     {"id": "daily-news-01", "kind": "news", "number": "01"},
-    {"id": "review-2026-11-24", "kind": "review"}
+    {"id": "review-2026-11-24", "kind": "review"},
+    {"id": "review-2026-11-26", "kind": "review"}
   ]
 }
